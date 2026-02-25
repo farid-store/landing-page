@@ -6,70 +6,28 @@
     <title>Farid Store | Your Gadget Solution</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Poppins', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            500: '#3b82f6',
-                            600: '#2563eb',
-                            900: '#0f172a',
-                        }
-                    }
+                    fontFamily: { sans: ['Poppins', 'sans-serif'] },
+                    colors: { brand: { 500: '#3b82f6', 600: '#2563eb', 900: '#0f172a' } }
                 }
             }
         }
     </script>
     <style>
         body { background-color: #0f172a; color: #f8fafc; overflow-x: hidden; }
-        
-        /* Glassmorphism utility */
-        .glass {
-            background: rgba(15, 23, 42, 0.7);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        /* Floating Animation for Hero Image */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
-        .animate-float {
-            animation: float 4s ease-in-out infinite;
-        }
-
-        /* Custom Gradient Text */
-        .text-gradient {
-            background: linear-gradient(to right, #3b82f6, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Blob background animations */
-        @keyframes blob {
-            0% { transform: translate(0px, 0px) scale(1); }
-            33% { transform: translate(30px, -50px) scale(1.1); }
-            66% { transform: translate(-20px, 20px) scale(0.9); }
-            100% { transform: translate(0px, 0px) scale(1); }
-        }
-        .animate-blob {
-            animation: blob 7s infinite;
-        }
-        .animation-delay-2000 { animation-delay: 2s; }
+        .glass { background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-20px); } 100% { transform: translateY(0px); } }
+        .animate-float { animation: float 4s ease-in-out infinite; }
+        .text-gradient { background: linear-gradient(to right, #3b82f6, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .loader { border: 4px solid rgba(255,255,255,0.1); border-left-color: #3b82f6; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body class="antialiased selection:bg-brand-500 selection:text-white">
@@ -82,165 +40,120 @@
                     <span class="font-bold text-2xl tracking-tight text-white">Farid<span class="text-brand-500">Store</span></span>
                 </div>
                 <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#home" class="text-gray-300 hover:text-white transition duration-300 font-medium">Beranda</a>
-                    <a href="#katalog" class="text-gray-300 hover:text-white transition duration-300 font-medium">Katalog</a>
-                    <a href="#layanan" class="text-gray-300 hover:text-white transition duration-300 font-medium">Layanan</a>
-                    <a href="#kontak" class="bg-brand-600 hover:bg-brand-500 text-white px-6 py-2.5 rounded-full font-medium transition duration-300 transform hover:scale-105 shadow-[0_0_15px_rgba(59,130,246,0.5)]">
-                        Hubungi Kami
-                    </a>
+                    <a href="#home" class="text-gray-300 hover:text-white transition duration-300">Beranda</a>
+                    <a href="#katalog" class="text-gray-300 hover:text-white transition duration-300">Katalog Dinamis</a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <section id="home" class="relative min-h-screen flex items-center pt-20 overflow-hidden">
-        <div class="absolute top-0 -left-4 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
-        <div class="absolute top-0 -right-4 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
-        
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <div data-aos="fade-right" data-aos-duration="1000">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 mb-6">
-                        <span class="relative flex h-3 w-3">
-                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                          <span class="relative inline-flex rounded-full h-3 w-3 bg-blue-500"></span>
-                        </span>
-                        Koleksi Terbaru Tersedia
-                    </div>
-                    <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-6">
-                        Temukan <br>
-                        <span class="text-gradient">Gadget Impian</span><br>
-                        Anda Di Sini.
-                    </h1>
-                    <p class="text-lg text-gray-400 mb-8 max-w-lg">
-                        <strong class="text-gray-200">Farid Store:</strong> Your Gadget Solution. Kami menyediakan berbagai pilihan smartphone dan laptop berkualitas terbaik untuk menunjang produktivitas dan gaya hidup Anda.
-                    </p>
-                    <div class="flex flex-wrap gap-4">
-                        <a href="#katalog" class="bg-brand-600 hover:bg-brand-500 text-white px-8 py-3.5 rounded-full font-semibold transition duration-300 flex items-center gap-2 shadow-lg shadow-brand-500/30">
-                            Lihat Katalog <i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                        <a href="#kontak" class="bg-transparent border border-gray-600 hover:border-gray-400 text-white px-8 py-3.5 rounded-full font-semibold transition duration-300">
-                            Konsultasi
-                        </a>
-                    </div>
-                </div>
-                <div class="relative hidden md:block" data-aos="fade-left" data-aos-duration="1200">
-                    <img src="https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?auto=format&fit=crop&q=80&w=800" alt="Gadgets Showcase" class="rounded-2xl shadow-2xl animate-float border border-gray-800">
-                    
-                    <div class="absolute -bottom-6 -left-6 bg-gray-800/80 backdrop-blur-md p-4 rounded-xl border border-gray-700 shadow-xl flex items-center gap-4 animate-float" style="animation-delay: 1s;">
-                        <i class="fa-brands fa-apple text-3xl text-white"></i>
-                        <i class="fa-brands fa-android text-3xl text-green-500"></i>
-                        <i class="fa-brands fa-windows text-3xl text-blue-400"></i>
-                    </div>
-                </div>
-            </div>
+    <section id="home" class="relative min-h-screen flex items-center pt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full text-center">
+            <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-6" data-aos="fade-down">
+                Temukan <span class="text-gradient">Gadget Impian</span> Anda.
+            </h1>
+            <p class="text-lg text-gray-400 mb-8 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                Your Gadget Solution. Update stok realtime ponsel dan laptop berkualitas pilihan kami.
+            </p>
+            <a href="#katalog" class="inline-block bg-brand-600 hover:bg-brand-500 text-white px-8 py-3.5 rounded-full font-semibold transition duration-300 shadow-[0_0_20px_rgba(59,130,246,0.4)]" data-aos="zoom-in" data-aos-delay="200">
+                Lihat Stok Hari Ini <i class="fa-solid fa-arrow-down ml-2"></i>
+            </a>
         </div>
     </section>
 
-    <section id="katalog" class="py-24 bg-gray-900/50 relative">
+    <section id="katalog" class="py-24 bg-gray-900/50 min-h-screen">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-3xl md:text-5xl font-bold mb-4">Kategori <span class="text-gradient">Unggulan</span></h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">Eksplorasi perangkat terbaik yang telah kami kurasi khusus untuk memenuhi kebutuhan digital Anda, dari mobilitas tinggi hingga komputasi berat.</p>
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Stok <span class="text-gradient">Tersedia</span></h2>
+                <p class="text-gray-400">Data ditarik secara langsung dari database JSONBin.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="group relative rounded-3xl overflow-hidden cursor-pointer bg-gray-800 border border-gray-700 hover:border-brand-500 transition-all duration-500" data-aos="fade-up" data-aos-delay="100">
-                    <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent z-10"></div>
-                    <img src="https://images.unsplash.com/photo-1598327105666-5b89351cb315?auto=format&fit=crop&q=80&w=800" alt="Smartphones" class="w-full h-80 object-cover transform group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute bottom-0 left-0 p-8 z-20 w-full">
-                        <h3 class="text-3xl font-bold text-white mb-2 group-hover:-translate-y-2 transition-transform duration-300">Smartphones</h3>
-                        <p class="text-gray-300 mb-4 opacity-0 group-hover:opacity-100 group-hover:-translate-y-2 transition-all duration-300 delay-100">Kondisi prima, spesifikasi gahar. Temukan daily driver baru Anda.</p>
-                        <a href="#" class="inline-flex items-center text-brand-400 font-semibold group-hover:text-brand-300">
-                            Eksplor <i class="fa-solid fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
-                        </a>
-                    </div>
-                </div>
+            <div id="loading-state" class="flex flex-col items-center justify-center py-20">
+                <div class="loader mb-4"></div>
+                <p class="text-gray-400 animate-pulse">Memuat data dari serverless...</p>
+            </div>
 
-                <div class="group relative rounded-3xl overflow-hidden cursor-pointer bg-gray-800 border border-gray-700 hover:border-purple-500 transition-all duration-500" data-aos="fade-up" data-aos-delay="200">
-                    <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent z-10"></div>
-                    <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&q=80&w=800" alt="Laptops" class="w-full h-80 object-cover transform group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute bottom-0 left-0 p-8 z-20 w-full">
-                        <h3 class="text-3xl font-bold text-white mb-2 group-hover:-translate-y-2 transition-transform duration-300">Laptops</h3>
-                        <p class="text-gray-300 mb-4 opacity-0 group-hover:opacity-100 group-hover:-translate-y-2 transition-all duration-300 delay-100">Performa tinggi untuk coding, desain, maupun sekadar office harian.</p>
-                        <a href="#" class="inline-flex items-center text-purple-400 font-semibold group-hover:text-purple-300">
-                            Eksplor <i class="fa-solid fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
-                        </a>
-                    </div>
+            <div id="product-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 hidden">
                 </div>
+            
+            <div id="error-state" class="hidden text-center text-red-400 py-10 bg-red-900/20 rounded-2xl border border-red-500/30">
+                <i class="fa-solid fa-triangle-exclamation text-4xl mb-3"></i>
+                <p id="error-message">Gagal memuat katalog.</p>
             </div>
         </div>
     </section>
 
-    <section id="layanan" class="py-24 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <div class="bg-gray-800/50 p-8 rounded-2xl border border-gray-700 hover:bg-gray-800 transition-colors" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-14 h-14 rounded-xl bg-blue-500/20 flex items-center justify-center mb-6">
-                        <i class="fa-solid fa-check-double text-2xl text-blue-400"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Kualitas Terjamin</h3>
-                    <p class="text-gray-400">Setiap gadget melalui proses Quality Control yang ketat sebelum sampai ke tangan Anda.</p>
-                </div>
-                <div class="bg-gray-800/50 p-8 rounded-2xl border border-gray-700 hover:bg-gray-800 transition-colors" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-14 h-14 rounded-xl bg-purple-500/20 flex items-center justify-center mb-6">
-                        <i class="fa-solid fa-tags text-2xl text-purple-400"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Harga Kompetitif</h3>
-                    <p class="text-gray-400">Kami menawarkan rasio spesifikasi dan harga terbaik (price-to-performance) di pasaran.</p>
-                </div>
-                <div class="bg-gray-800/50 p-8 rounded-2xl border border-gray-700 hover:bg-gray-800 transition-colors" data-aos="fade-up" data-aos-delay="300">
-                    <div class="w-14 h-14 rounded-xl bg-green-500/20 flex items-center justify-center mb-6">
-                        <i class="fa-solid fa-shield-halved text-2xl text-green-400"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Garansi Aman</h3>
-                    <p class="text-gray-400">Belanja tenang dengan jaminan garansi toko yang jelas dan layanan purna jual yang responsif.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer id="kontak" class="bg-gray-900 border-t border-gray-800 pt-16 pb-8 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="bg-gradient-to-r from-brand-600 to-purple-600 rounded-3xl p-10 md:p-16 text-center mb-16 shadow-2xl" data-aos="zoom-in">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Siap Upgrade Perangkat Anda?</h2>
-                <p class="text-blue-100 mb-8 max-w-2xl mx-auto text-lg">Konsultasikan kebutuhan spesifikasi dan budget Anda dengan tim kami sekarang juga.</p>
-                <a href="https://wa.me/0000000000" target="_blank" class="inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-full font-bold hover:bg-gray-100 transition-all transform hover:-translate-y-1 shadow-lg">
-                    <i class="fa-brands fa-whatsapp text-green-500 text-xl"></i> Chat WhatsApp Kami
-                </a>
-            </div>
-
-            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-                <div class="flex items-center gap-2">
-                    <i class="fa-solid fa-microchip text-brand-500 text-2xl"></i>
-                    <span class="font-bold text-xl text-white">Farid<span class="text-brand-500">Store</span></span>
-                </div>
-                <p class="text-gray-500 text-sm">© 2026 Farid Store. Your Gadget Solution. All rights reserved.</p>
-                <div class="flex gap-4">
-                    <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-brand-500 hover:text-white transition-colors"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-brand-500 hover:text-white transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-brand-500 hover:text-white transition-colors"><i class="fa-brands fa-tiktok"></i></a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.css"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Inisialisasi animasi scroll
-        AOS.init({
-            once: true,
-            offset: 100,
-        });
+        AOS.init({ once: true, offset: 50 });
 
-        // Efek shadow pada navbar saat di scroll
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 20) {
-                nav.classList.add('shadow-lg');
-            } else {
-                nav.classList.remove('shadow-lg');
+        // Nomor WhatsApp Admin Anda (Ganti dengan nomor Farid Store)
+        const waNumber = "6281234567890"; 
+
+        // Fungsi memuat data dari Vercel Serverless API
+        async function fetchProducts() {
+            const container = document.getElementById('product-container');
+            const loading = document.getElementById('loading-state');
+            const errorState = document.getElementById('error-state');
+            const errorMessage = document.getElementById('error-message');
+
+            try {
+                // Memanggil file /api/products.js di Vercel
+                const response = await fetch('/api/products');
+                
+                if (!response.ok) {
+                    throw new Error('Gagal terhubung ke API Vercel.');
+                }
+
+                const products = await response.json();
+                
+                // Sembunyikan loading, tampilkan kontainer
+                loading.classList.add('hidden');
+                container.classList.remove('hidden');
+
+                // Render setiap produk ke dalam HTML
+                products.forEach((product, index) => {
+                    // Format pesan WhatsApp otomatis
+                    const waText = encodeURIComponent(`Halo Admin Farid Store, saya tertarik dengan ${product.nama} yang harganya ${product.harga}. Apakah stoknya masih ada?`);
+                    const waLink = `https://wa.me/${waNumber}?text=${waText}`;
+
+                    const card = document.createElement('div');
+                    card.className = "bg-gray-800 rounded-3xl overflow-hidden border border-gray-700 hover:border-brand-500 transition-all duration-300 transform hover:-translate-y-2 group shadow-xl";
+                    card.setAttribute('data-aos', 'fade-up');
+                    card.setAttribute('data-aos-delay', (index * 100).toString());
+
+                    card.innerHTML = `
+                        <div class="relative h-64 overflow-hidden">
+                            <img src="${product.gambar}" alt="${product.nama}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute top-4 right-4 bg-brand-600 text-white text-xs font-bold px-3 py-1 rounded-full backdrop-blur-md">
+                                ${product.kategori}
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-2 line-clamp-1">${product.nama}</h3>
+                            <p class="text-gray-400 text-sm mb-4"><i class="fa-solid fa-check-circle text-green-500 mr-1"></i> ${product.kondisi}</p>
+                            <div class="flex items-center justify-between mt-6">
+                                <span class="text-2xl font-bold text-brand-400">${product.harga}</span>
+                                <a href="${waLink}" target="_blank" class="w-12 h-12 bg-green-500 hover:bg-green-400 rounded-full flex items-center justify-center text-white transition-colors shadow-lg shadow-green-500/30">
+                                    <i class="fa-brands fa-whatsapp text-2xl"></i>
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+
+            } catch (error) {
+                loading.classList.add('hidden');
+                errorState.classList.remove('hidden');
+                errorMessage.textContent = error.message;
+                console.error(error);
             }
-        });
+        }
+
+        // Jalankan saat halaman selesai dimuat
+        document.addEventListener('DOMContentLoaded', fetchProducts);
     </script>
 </body>
 </html>
