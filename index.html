@@ -240,6 +240,19 @@
         </div>
     </section>
 
+    <section class="py-10 px-6 max-w-7xl mx-auto" data-aos="zoom-in">
+        <div class="glass-panel rounded-[2.5rem] p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 border-brand-500/20 relative overflow-hidden group">
+            <div class="absolute -right-20 -top-20 w-64 h-64 bg-brand-500/10 rounded-full blur-3xl group-hover:bg-brand-500/20 transition-colors"></div>
+            <div class="z-10 text-center md:text-left">
+                <h3 class="font-heading text-3xl md:text-4xl font-black mb-4">Punya HP Bekas? <span class="text-brand-400">Kami Beli!</span></h3>
+                <p class="text-gray-400 max-w-xl text-lg">Dapatkan penawaran harga terbaik untuk gadget lama Anda. Terima Tukar Tambah atau Jual Putus dengan proses cepat di Pekanbaru.</p>
+            </div>
+            <a href="https://wa.me/6281371127121?text=Halo%20Farid%20Store,%20saya%20mau%20jual/tukar%20tambah%20HP%20saya" class="z-10 bg-white text-black px-10 py-5 rounded-2xl font-black text-lg hover:scale-105 transition-transform flex items-center gap-3 whitespace-nowrap">
+                Cek Harga HP Saya <i class="fa-solid fa-calculator"></i>
+            </a>
+        </div>
+    </section>
+
     <section id="katalog" class="py-24 relative z-20 min-h-screen">
         <div class="max-w-7xl mx-auto px-6 lg:px-8 border-t border-white/10 pt-20">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8" data-aos="fade-up">
@@ -249,8 +262,8 @@
                 </div>
                 
                 <div class="flex flex-col gap-4 w-full md:w-auto">
-                    <div class="relative">
-                        <i class="fa-solid fa-magnifying-glass absolute left-5 top-1/2 -translate-y-1/2 text-gray-500"></i>
+                    <div class="relative group">
+                        <i class="fa-solid fa-magnifying-glass absolute left-5 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-brand-400 transition-colors"></i>
                         <input type="text" id="searchInput" onkeyup="searchProducts()" placeholder="Cari unit..." class="bg-white/5 border border-white/10 glass-pill rounded-2xl py-3.5 pl-14 pr-6 w-full md:w-80 text-sm focus:border-brand-500 focus:outline-none transition-all">
                     </div>
                     
@@ -265,7 +278,7 @@
 
             <div id="loading-state" class="flex flex-col items-center justify-center py-20"><div class="spinner mb-6"></div><p class="text-gray-500 font-bold tracking-widest text-sm">SINKRONISASI DATA...</p></div>
             <div id="error-state" class="hidden text-center py-20"><div class="inline-flex w-16 h-16 rounded-full bg-red-500/10 items-center justify-center text-red-500 mb-4"><i class="fa-solid fa-link-slash text-2xl"></i></div><p class="text-gray-400">Gagal terhubung ke sistem inventori.</p></div>
-            <div id="empty-state" class="hidden text-center py-20"><div class="inline-flex w-16 h-16 rounded-full bg-white/5 items-center justify-center text-gray-400 mb-4"><i class="fa-solid fa-ghost text-2xl"></i></div><p class="text-gray-400 font-medium text-lg">Kategori ini sedang kosong.</p></div>
+            <div id="empty-state" class="hidden text-center py-20"><div class="inline-flex w-16 h-16 rounded-full bg-white/5 items-center justify-center text-gray-400 mb-4"><i class="fa-solid fa-ghost text-2xl"></i></div><p class="text-gray-400 font-medium text-lg">Unit tidak ditemukan.</p></div>
 
             <div id="product-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 hidden pb-10">
                 </div>
@@ -276,7 +289,7 @@
         <div class="glass-panel rounded-[2.5rem] p-10 flex flex-col md:flex-row gap-12 items-center">
             <div class="flex-1 text-center md:text-left">
                 <h3 class="font-heading text-4xl font-bold mb-6">Lokasi COD Pekanbaru</h3>
-                <p class="text-gray-400 mb-8 leading-relaxed">Kami melayani transaksi langsung (COD) di seluruh area Pekanbaru untuk menjamin keamanan dan kenyamanan Anda mengecek unit.</p>
+                <p class="text-gray-400 mb-8 leading-relaxed text-lg">Kami melayani transaksi langsung (COD) di area Pekanbaru untuk menjamin keamanan dan kenyamanan Anda mengecek unit.</p>
                 <div class="flex flex-col gap-4">
                     <div class="flex items-center gap-4 text-gray-300">
                         <i class="fa-solid fa-location-dot text-brand-500 text-xl"></i>
@@ -287,8 +300,11 @@
                         <span>Buka: 08.00 - 23.30 WIB</span>
                     </div>
                 </div>
+                <a href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127669.04824317926!2d101.37346143999908!3d0.5104443905001224!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d5ac0334887301%3A0x296a1a3641604a37!2sPekanbaru%2C%20Kota%20Pekanbaru%2C%20Riau!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" target="_blank" class="inline-flex mt-10 bg-white/5 border border-white/10 px-8 py-4 rounded-2xl font-bold transition-all gap-3 items-center hover:bg-white/10">
+                    <i class="fa-solid fa-map-location-dot"></i> Buka Google Maps
+                </a>
             </div>
-            <div class="flex-1 w-full h-80 rounded-[2rem] overflow-hidden grayscale contrast-125 opacity-70 border border-white/10">
+            <div class="flex-1 w-full h-80 rounded-[2rem] overflow-hidden grayscale contrast-125 opacity-40 border border-white/10">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127669.048261895!2d101.3582136!3d0.5113945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d5ac244e432b21%3A0x67399a9a0166257e!2sPekanbaru%2C%20Kota%20Pekanbaru%2C%20Riau!5e0!3m2!1sid!2sid!4v1700000000000" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
@@ -328,7 +344,7 @@
 
         const waNumber = "6281371127121"; 
         let globalProducts = [];
-        let filteredProducts = [];
+        let currentKategori = "Semua";
 
         async function fetchProducts() {
             const loading = document.getElementById('loading-state');
@@ -339,7 +355,6 @@
                 if (!response.ok) throw new Error('API Error');
                 
                 globalProducts = await response.json();
-                filteredProducts = globalProducts;
                 loading.classList.add('hidden');
                 
                 renderProducts(globalProducts);
@@ -351,10 +366,14 @@
             }
         }
 
-        // Search Logic
+        // Logic Search
         function searchProducts() {
             const query = document.getElementById('searchInput').value.toLowerCase();
-            const results = globalProducts.filter(p => p.nama.toLowerCase().includes(query));
+            const results = globalProducts.filter(p => {
+                const matchName = p.nama.toLowerCase().includes(query);
+                const matchKategori = currentKategori === "Semua" || p.kategori_device === currentKategori;
+                return matchName && matchKategori;
+            });
             renderProducts(results);
         }
 
@@ -378,7 +397,6 @@
                 card.setAttribute('data-aos', 'fade-up');
                 card.setAttribute('data-aos-delay', (Math.min(index * 50, 200)).toString());
                 
-                // Trigger Modal on click
                 card.onclick = () => openModal(product);
 
                 card.innerHTML = `
@@ -400,7 +418,7 @@
                                 ${product.harga}
                             </div>
                         </div>
-                        <div class="w-14 h-14 rounded-full bg-white/5 flex items-center justify-center text-white border border-white/10 group-hover:bg-white group-hover:text-black transition-all">
+                        <div class="w-14 h-14 rounded-full bg-white/5 flex items-center justify-center text-white border border-white/10 group-hover:bg-white transition-all">
                              <i class="fa-solid fa-eye"></i>
                         </div>
                     </div>
@@ -416,29 +434,33 @@
             const waText = encodeURIComponent(`Halo Farid Store, saya ingin info detail untuk unit *${product.nama}* (Rp ${product.harga}). Apakah masih tersedia?`);
 
             content.innerHTML = `
-                <span class="text-brand-400 font-bold text-xs uppercase tracking-[0.2em] mb-4 block">${product.kategori_device} • ${product.kondisi_barang}</span>
-                <h2 class="font-heading text-4xl font-black text-white mb-8 leading-tight">${product.nama}</h2>
-                
-                <div class="grid grid-cols-2 gap-4 mb-8">
-                    <div class="bg-white/5 p-4 rounded-2xl border border-white/5">
-                        <p class="text-gray-500 text-[10px] font-bold uppercase mb-1">Status</p>
-                        <p class="text-white font-bold text-sm">Ready Stock</p>
+                <div class="space-y-6">
+                    <div>
+                        <span class="text-brand-400 font-bold text-xs uppercase tracking-[0.2em] mb-4 block">${product.kategori_device} • ${product.kondisi_barang}</span>
+                        <h2 class="font-heading text-4xl font-black text-white leading-tight">${product.nama}</h2>
                     </div>
-                    <div class="bg-white/5 p-4 rounded-2xl border border-white/5">
-                        <p class="text-gray-500 text-[10px] font-bold uppercase mb-1">Harga</p>
-                        <p class="text-brand-400 font-bold text-sm">${product.harga}</p>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white/5 p-4 rounded-2xl border border-white/5 text-center">
+                            <p class="text-gray-500 text-[10px] font-bold uppercase mb-1">Status</p>
+                            <p class="text-white font-bold text-sm">Ready Stock</p>
+                        </div>
+                        <div class="bg-white/5 p-4 rounded-2xl border border-white/5 text-center">
+                            <p class="text-gray-500 text-[10px] font-bold uppercase mb-1">Harga Nett</p>
+                            <p class="text-brand-400 font-bold text-sm">${product.harga}</p>
+                        </div>
                     </div>
-                </div>
 
-                <div class="bg-white/5 p-6 rounded-3xl border border-white/5 mb-10">
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        Unit ini telah lolos QC standar Farid Store. Fungsi 100% normal, fisik mulus, dan bergaransi personal toko. Silakan hubungi admin untuk foto detail fisik unit.
-                    </p>
-                </div>
+                    <div class="bg-white/5 p-6 rounded-3xl border border-white/5">
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Unit ini telah lolos QC standar Farid Store. Fungsi 100% normal, fisik mulus, dan bergaransi personal toko. Silakan hubungi admin untuk foto detail fisik unit.
+                        </p>
+                    </div>
 
-                <a href="https://wa.me/${waNumber}?text=${waText}" target="_blank" class="w-full bg-brand-500 hover:bg-brand-400 text-white font-bold py-5 rounded-2xl flex items-center justify-center gap-3 transition-all transform hover:scale-[1.02]">
-                    <i class="fa-brands fa-whatsapp text-2xl"></i> Chat Admin Sekarang
-                </a>
+                    <a href="https://wa.me/${waNumber}?text=${waText}" target="_blank" class="w-full bg-brand-500 hover:bg-brand-400 text-white font-bold py-5 rounded-2xl flex items-center justify-center gap-3 transition-all transform hover:scale-[1.02]">
+                        <i class="fa-brands fa-whatsapp text-2xl"></i> Chat Admin Sekarang
+                    </a>
+                </div>
             `;
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -449,21 +471,14 @@
             document.body.style.overflow = 'auto';
         }
 
+        // Filter Logic
         window.filterKategori = function(kategori, event) {
-            const btnElement = event.currentTarget; 
-
+            currentKategori = kategori;
             document.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.className = "filter-btn glass-pill text-gray-400 hover:text-white px-6 py-3 rounded-2xl font-bold text-sm whitespace-nowrap transition-all";
             });
-            
-            btnElement.className = "filter-btn active bg-white text-black px-6 py-3 rounded-2xl font-bold text-sm whitespace-nowrap transition-all shadow-lg border-transparent";
-
-            if (kategori === 'Semua') {
-                renderProducts(globalProducts);
-            } else {
-                const filtered = globalProducts.filter(p => p.kategori_device === kategori);
-                renderProducts(filtered);
-            }
+            event.currentTarget.className = "filter-btn active bg-white text-black px-6 py-3 rounded-2xl font-bold text-sm whitespace-nowrap transition-all shadow-lg border-transparent";
+            searchProducts();
         };
 
         document.addEventListener('DOMContentLoaded', fetchProducts);
