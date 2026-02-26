@@ -83,6 +83,55 @@
         }
         .card-sold { filter: grayscale(0.7); opacity: 0.8; }
         .card-sold:hover { filter: grayscale(0.2); opacity: 1; }
+
+        /* --- NEW: Sold Marquee & Stamp Style --- */
+        .sold-marquee-container { overflow: hidden; padding: 2rem 0; background: linear-gradient(to right, transparent, rgba(239, 68, 68, 0.03), transparent); }
+        .sold-marquee-content { display: flex; gap: 1.5rem; animation: marquee-sold 40s linear infinite; width: max-content; }
+        .sold-marquee-content:hover { animation-play-state: paused; }
+        @keyframes marquee-sold { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        .sold-card {
+            width: 280px;
+            flex-shrink: 0;
+            background: rgba(15, 15, 15, 0.6);
+            border: 1px solid rgba(255,255,255,0.03);
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .stamp-sold {
+            position: absolute;
+            top: 10px;
+            right: -15px;
+            background: transparent;
+            border: 3px solid #ef4444;
+            color: #ef4444;
+            padding: 2px 15px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 900;
+            font-size: 14px;
+            text-transform: uppercase;
+            transform: rotate(15deg);
+            opacity: 0.8;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.2);
+            pointer-events: none;
+            z-index: 5;
+        }
+        .stamp-sold::after {
+            content: "VERIFIED";
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 8px;
+            background: #ef4444;
+            color: black;
+            padding: 0 4px;
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-brand-500 selection:text-white">
@@ -186,6 +235,22 @@
                 </div>
                 <i class="fa-solid fa-check-double absolute -right-4 -bottom-4 text-white/5 text-9xl group-hover:text-green-500/10 transition-colors"></i>
             </div>
+        </div>
+    </section>
+
+    <section class="py-12 border-t border-white/5 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 mb-8 flex items-center justify-between">
+            <div>
+                <h3 class="text-2xl font-black text-white font-heading tracking-tight">Wall of Proof</h3>
+                <p class="text-gray-500 text-sm">Unit yang telah menemukan pemilik barunya.</p>
+            </div>
+            <div class="hidden md:block">
+                <span class="bg-red-500/10 text-red-500 border border-red-500/20 px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest">Live Updates</span>
+            </div>
+        </div>
+        <div class="sold-marquee-container">
+            <div id="sold-marquee-list" class="sold-marquee-content">
+                </div>
         </div>
     </section>
 
@@ -427,12 +492,39 @@
                 // Kalkulasi Insight Statistik & Render
                 calculateInsights(globalProducts);
                 renderProducts(globalProducts);
+                // NEW: Render Sold Slider
+                renderSoldSlider(globalProducts);
 
             } catch (error) {
                 console.error("Fetch Error:", error);
                 loading.classList.add('hidden');
                 errorState.classList.remove('hidden');
             }
+        }
+
+        // NEW: Fungsi khusus merender Slider Produk Terjual (Unlimited Marquee)
+        function renderSoldSlider(allItems) {
+            const soldOnly = allItems.filter(p => p.status === 'sold');
+            const marqueeList = document.getElementById('sold-marquee-list');
+            
+            if (soldOnly.length === 0) return;
+
+            // Gandakan item untuk efek unlimited seamless
+            const displayItems = [...soldOnly, ...soldOnly, ...soldOnly]; // Repeat 3x for safety
+
+            marqueeList.innerHTML = displayItems.map(item => `
+                <div class="sold-card premium-hover">
+                    <div class="stamp-sold">SOLD</div>
+                    <div class="flex flex-col h-full">
+                        <span class="text-[9px] text-brand-400 font-black uppercase tracking-widest mb-2">${getBrandCategory(item.name)}</span>
+                        <h4 class="text-white font-bold text-sm mb-4 line-clamp-1">${item.name}</h4>
+                        <div class="mt-auto flex justify-between items-center">
+                            <span class="text-xs text-gray-500 font-medium">${item.soldAt || 'Baru Saja'}</span>
+                            <span class="text-white/20 font-black text-xs italic">Rp ${item.price.toLocaleString('id-ID')}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
         }
 
         // --- REVISI TOTAL: CALCULATE INSIGHTS MENGGUNAKAN LOGIKA BRAND BARU ---
