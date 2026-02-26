@@ -145,6 +145,37 @@
         </div>
     </section>
 
+    <section id="insights" class="py-10 px-6 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="glass-panel rounded-[2rem] p-8 relative overflow-hidden group premium-hover" data-aos="fade-up">
+                <div class="relative z-10">
+                    <p class="text-brand-400 font-bold text-xs uppercase tracking-widest mb-2">Best Seller Brand</p>
+                    <h3 id="best-seller-name" class="text-3xl font-black text-white">Memuat...</h3>
+                    <p class="text-gray-500 text-sm mt-2">Paling banyak terjual ke pelanggan.</p>
+                </div>
+                <i class="fa-solid fa-fire absolute -right-4 -bottom-4 text-white/5 text-9xl group-hover:text-brand-500/10 transition-colors"></i>
+            </div>
+
+            <div class="glass-panel rounded-[2rem] p-8 relative overflow-hidden group premium-hover" data-aos="fade-up" data-aos-delay="100">
+                <div class="relative z-10">
+                    <p class="text-purple-400 font-bold text-xs uppercase tracking-widest mb-2">Terjual Bulan Ini</p>
+                    <h3 id="sales-this-month" class="text-4xl font-black text-white">0 <span class="text-lg font-normal text-gray-500 uppercase">Unit</span></h3>
+                    <p id="sales-vs-last" class="text-gray-500 text-sm mt-2">Menghitung statistik...</p>
+                </div>
+                <i class="fa-solid fa-chart-line absolute -right-4 -bottom-4 text-white/5 text-9xl group-hover:text-purple-500/10 transition-colors"></i>
+            </div>
+
+            <div class="glass-panel rounded-[2rem] p-8 relative overflow-hidden group premium-hover" data-aos="fade-up" data-aos-delay="200">
+                <div class="relative z-10">
+                    <p class="text-green-400 font-bold text-xs uppercase tracking-widest mb-2">Baru Saja Terjual</p>
+                    <div id="recent-sold-list" class="space-y-2 mt-3">
+                        </div>
+                </div>
+                <i class="fa-solid fa-check-double absolute -right-4 -bottom-4 text-white/5 text-9xl group-hover:text-green-500/10 transition-colors"></i>
+            </div>
+        </div>
+    </section>
+
     <div class="marquee-container shadow-[0_0_30px_rgba(56,189,248,0.02)]">
         <div class="marquee-content text-brand-400/80 font-bold text-sm tracking-[0.2em] uppercase items-center">
             <span>✦ 100% Original Unit</span>
@@ -330,7 +361,6 @@
     <script>
         AOS.init({ once: true, offset: 50, duration: 800 });
 
-        // Navbar Blur
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
             if (window.scrollY > 50) {
@@ -351,28 +381,86 @@
             const errorState = document.getElementById('error-state');
 
             try {
-                const response = await fetch('/api/products');
-                if (!response.ok) throw new Error('API Error');
+                // SESUAIKAN: Gantilah URL ini dengan endpoint API JSONBin/Vercel kamu
+                const response = await fetch('/api/products'); 
+                const data = await response.json();
                 
-                globalProducts = await response.json();
+                // Simpan data (Handle format {"items": [...]})
+                globalProducts = data.items || [];
+                
                 loading.classList.add('hidden');
                 
-                renderProducts(globalProducts);
+                // 1. Render yang Ready Stock
+                const readyStock = globalProducts.filter(p => p.status === 'stok');
+                renderProducts(readyStock);
+                
+                // 2. Olah Insight dari yang Sold
+                calculateInsights(globalProducts.filter(p => p.status === 'sold'));
 
             } catch (error) {
-                console.error(error);
+                console.error("Fetch Error:", error);
                 loading.classList.add('hidden');
                 errorState.classList.remove('hidden');
             }
         }
 
-        // Logic Search
+        // --- FITUR BARU: INSIGHT CALCULATOR (Hanya Membaca Data Sold) ---
+        function calculateInsights(soldItems) {
+            const now = new Date();
+            const thisMonth = now.getMonth() + 1;
+            const thisYear = now.getFullYear();
+            const lastMonth = thisMonth === 1 ? 12 : thisMonth - 1;
+
+            let countThisMonth = 0;
+            let countLastMonth = 0;
+            const brands = {};
+
+            soldItems.forEach(item => {
+                // Ekstrak Brand (Kata pertama dari nama)
+                const brand = item.name.split(' ')[0].replace(/[^a-zA-Z]/g, "");
+                brands[brand] = (brands[brand] || 0) + 1;
+
+                // Hitung Statistik Waktu berdasarkan soldAt
+                if (item.soldAt && item.soldAt !== "Imported") {
+                    const parts = item.soldAt.split(' ')[0].split('/');
+                    const m = parseInt(parts[1]);
+                    const y = parseInt(parts[2]);
+
+                    if (y === thisYear && m === thisMonth) countThisMonth++;
+                    if (y === thisYear && m === lastMonth) countLastMonth++;
+                }
+            });
+
+            // UI Update: Best Seller
+            const topBrand = Object.keys(brands).reduce((a, b) => brands[a] > brands[b] ? a : b, "Apple");
+            document.getElementById('best-seller-name').innerText = topBrand;
+
+            // UI Update: Sales Count
+            document.getElementById('sales-this-month').innerHTML = `${countThisMonth} <span class="text-lg font-normal text-gray-500 uppercase">Unit</span>`;
+            
+            const diff = countThisMonth - countLastMonth;
+            const trendText = document.getElementById('sales-vs-last');
+            if (diff >= 0) {
+                trendText.innerHTML = `<span class="text-green-400 font-bold">↑ ${diff} unit</span> lebih banyak dari bulan lalu`;
+            } else {
+                trendText.innerHTML = `<span class="text-gray-400 font-bold">↓ ${Math.abs(diff)} unit</span> dari bulan lalu`;
+            }
+
+            // UI Update: Recent Sold List (3 Unit Terakhir)
+            const recent = soldItems.slice(-3).reverse();
+            document.getElementById('recent-sold-list').innerHTML = recent.map(item => `
+                <div class="flex items-center gap-2 text-xs font-bold text-gray-300">
+                    <i class="fa-solid fa-circle-check text-green-500"></i> ${item.name}
+                </div>
+            `).join('');
+        }
+
         function searchProducts() {
             const query = document.getElementById('searchInput').value.toLowerCase();
             const results = globalProducts.filter(p => {
-                const matchName = p.nama.toLowerCase().includes(query);
+                const matchName = p.name.toLowerCase().includes(query);
                 const matchKategori = currentKategori === "Semua" || p.kategori_device === currentKategori;
-                return matchName && matchKategori;
+                return p.status === 'stok' && matchName && matchKategori;
             });
             renderProducts(results);
         }
@@ -395,27 +483,23 @@
                 const card = document.createElement('div');
                 card.className = "glass-panel p-8 rounded-[2rem] flex flex-col relative premium-hover cursor-pointer";
                 card.setAttribute('data-aos', 'fade-up');
-                card.setAttribute('data-aos-delay', (Math.min(index * 50, 200)).toString());
-                
                 card.onclick = () => openModal(product);
 
                 card.innerHTML = `
                     <div class="flex justify-between items-center mb-8">
                         <span class="bg-white/5 border border-white/10 text-gray-300 text-[10px] font-bold tracking-widest uppercase px-4 py-2 rounded-full">
-                            ${product.kategori_device}
+                            ${product.type === 'new' ? 'New Arrival' : 'Pre-loved'}
                         </span>
                         <span class="flex items-center gap-2 text-xs font-bold text-gray-400">
-                            <span class="w-2 h-2 rounded-full bg-brand-500 shadow-[0_0_10px_rgba(14,165,233,0.5)]"></span> ${product.kondisi_barang}
+                            <span class="w-2 h-2 rounded-full bg-brand-500 shadow-[0_0_10px_rgba(14,165,233,0.5)]"></span> Ready Stock
                         </span>
                     </div>
-                    
-                    <h3 class="font-heading text-2xl md:text-3xl font-bold text-white mb-10 leading-snug line-clamp-2">${product.nama}</h3>
-                    
+                    <h3 class="font-heading text-2xl md:text-3xl font-bold text-white mb-10 leading-snug line-clamp-2">${product.name}</h3>
                     <div class="mt-auto pt-6 border-t border-white/10 flex justify-between items-end">
                         <div>
                             <p class="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-1.5">Harga Unit</p>
                             <div class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-brand-300 to-brand-500 tracking-tighter drop-shadow-sm">
-                                ${product.harga}
+                                Rp ${product.price.toLocaleString('id-ID')}
                             </div>
                         </div>
                         <div class="w-14 h-14 rounded-full bg-white/5 flex items-center justify-center text-white border border-white/10 group-hover:bg-white transition-all">
@@ -427,19 +511,17 @@
             });
         }
 
-        // Modal Logic
         function openModal(product) {
             const modal = document.getElementById('productModal');
             const content = document.getElementById('modalContent');
-            const waText = encodeURIComponent(`Halo Farid Store, saya ingin info detail untuk unit *${product.nama}* (Rp ${product.harga}). Apakah masih tersedia?`);
+            const waText = encodeURIComponent(`Halo Farid Store, saya ingin info detail untuk unit *${product.name}* (Rp ${product.price.toLocaleString('id-ID')}). Apakah masih tersedia?`);
 
             content.innerHTML = `
                 <div class="space-y-6">
                     <div>
-                        <span class="text-brand-400 font-bold text-xs uppercase tracking-[0.2em] mb-4 block">${product.kategori_device} • ${product.kondisi_barang}</span>
-                        <h2 class="font-heading text-4xl font-black text-white leading-tight">${product.nama}</h2>
+                        <span class="text-brand-400 font-bold text-xs uppercase tracking-[0.2em] mb-4 block">${product.type} Condition</span>
+                        <h2 class="font-heading text-4xl font-black text-white leading-tight">${product.name}</h2>
                     </div>
-                    
                     <div class="grid grid-cols-2 gap-4">
                         <div class="bg-white/5 p-4 rounded-2xl border border-white/5 text-center">
                             <p class="text-gray-500 text-[10px] font-bold uppercase mb-1">Status</p>
@@ -447,16 +529,12 @@
                         </div>
                         <div class="bg-white/5 p-4 rounded-2xl border border-white/5 text-center">
                             <p class="text-gray-500 text-[10px] font-bold uppercase mb-1">Harga Nett</p>
-                            <p class="text-brand-400 font-bold text-sm">${product.harga}</p>
+                            <p class="text-brand-400 font-bold text-sm">Rp ${product.price.toLocaleString('id-ID')}</p>
                         </div>
                     </div>
-
                     <div class="bg-white/5 p-6 rounded-3xl border border-white/5">
-                        <p class="text-gray-400 text-sm leading-relaxed">
-                            Unit ini telah lolos QC standar Farid Store. Fungsi 100% normal, fisik mulus, dan bergaransi personal toko. Silakan hubungi admin untuk foto detail fisik unit.
-                        </p>
+                        <p class="text-gray-400 text-sm leading-relaxed">Unit ini telah lolos QC standar Farid Store. Fungsi 100% normal, fisik mulus, dan bergaransi personal toko.</p>
                     </div>
-
                     <a href="https://wa.me/${waNumber}?text=${waText}" target="_blank" class="w-full bg-brand-500 hover:bg-brand-400 text-white font-bold py-5 rounded-2xl flex items-center justify-center gap-3 transition-all transform hover:scale-[1.02]">
                         <i class="fa-brands fa-whatsapp text-2xl"></i> Chat Admin Sekarang
                     </a>
@@ -471,7 +549,6 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Filter Logic
         window.filterKategori = function(kategori, event) {
             currentKategori = kategori;
             document.querySelectorAll('.filter-btn').forEach(btn => {
