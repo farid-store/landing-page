@@ -33,10 +33,10 @@
         }
     </script>
     <style>
-        /* Mencegah layar terpotong / scroll horizontal yang bocor */
+        /* Base Setup - Anti Bocor / Anti Mepet */
         html, body { background-color: #020202; color: #f8fafc; overflow-x: hidden; width: 100%; position: relative; }
         
-        /* Modern Floating Glass dari Desain Anda */
+        /* Modern Floating Glass (Clean) */
         .glass-pill { background: rgba(10, 10, 10, 0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.08); }
         .glass-panel { background: linear-gradient(145deg, rgba(25,25,25,0.4) 0%, rgba(10,10,10,0.8) 100%); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.05); }
         
@@ -44,9 +44,9 @@
         .text-glow { background: linear-gradient(to right, #ffffff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .text-accent { background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
-        /* Ambient Glow Backgrounds */
-        .ambient-glow-1 { position: absolute; top: -10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(14,165,233,0.15) 0%, rgba(0,0,0,0) 60%); filter: blur(60px); z-index: -1; animation: pulse 8s infinite alternate; }
-        .ambient-glow-2 { position: absolute; bottom: 20%; right: -10%; width: 40vw; height: 40vw; background: radial-gradient(circle, rgba(129,140,248,0.1) 0%, rgba(0,0,0,0) 60%); filter: blur(60px); z-index: -1; animation: pulse 10s infinite alternate-reverse; }
+        /* Ambient Backgrounds */
+        .ambient-glow-1 { position: absolute; top: -10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(14,165,233,0.12) 0%, rgba(0,0,0,0) 60%); filter: blur(60px); z-index: -1; animation: pulse 8s infinite alternate; }
+        .ambient-glow-2 { position: absolute; bottom: 20%; right: -10%; width: 40vw; height: 40vw; background: radial-gradient(circle, rgba(129,140,248,0.08) 0%, rgba(0,0,0,0) 60%); filter: blur(60px); z-index: -1; animation: pulse 10s infinite alternate-reverse; }
         
         @keyframes pulse { 0% { opacity: 0.5; transform: scale(0.9); } 100% { opacity: 1; transform: scale(1.1); } }
 
@@ -57,6 +57,10 @@
         /* Hide Scrollbar */
         .hide-scroll::-webkit-scrollbar { display: none; }
         .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Card Hover Effect */
+        .premium-hover { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .premium-hover:hover { transform: translateY(-4px); border-color: rgba(56, 189, 248, 0.3); box-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.15); }
     </style>
 </head>
 <body class="antialiased selection:bg-brand-500 selection:text-white">
@@ -72,20 +76,21 @@
             </div>
             <div class="hidden md:flex space-x-8 items-center">
                 <a href="#katalog" class="text-sm font-semibold text-gray-300 hover:text-white transition">Inventory</a>
-                <a href="#bento" class="text-sm font-semibold text-gray-300 hover:text-white transition">Mengapa Kami?</a>
+                <a href="#bento" class="text-sm font-semibold text-gray-300 hover:text-white transition">Keunggulan</a>
+                <a href="#platform" class="text-sm font-semibold text-gray-300 hover:text-white transition">Official Platform</a>
             </div>
-            <a href="https://wa.me/6281371127121" target="_blank" class="bg-brand-500 hover:bg-brand-400 text-white text-sm font-bold px-4 py-2 sm:px-5 sm:py-2 rounded-full transition-transform hover:scale-105 flex items-center gap-2">
-                <i class="fa-brands fa-whatsapp text-lg"></i> <span class="hidden sm:inline">Chat Admin</span>
+            <a href="https://wa.me/6281371127121" target="_blank" class="bg-brand-500 hover:bg-brand-400 text-white text-sm font-bold px-4 py-2 sm:px-5 sm:py-2.5 rounded-full transition-transform hover:scale-105 flex items-center gap-2">
+                <i class="fa-brands fa-whatsapp text-lg"></i> <span class="hidden sm:inline">Hubungi Kami</span>
             </a>
         </nav>
     </div>
 
-    <section id="home" class="relative min-h-screen flex items-center pt-32 pb-20 px-6 max-w-7xl mx-auto">
+    <section id="home" class="relative min-h-[90vh] flex items-center pt-32 pb-10 px-6 max-w-7xl mx-auto">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center w-full">
             <div data-aos="fade-right" data-aos-duration="1200" class="text-center lg:text-left">
                 <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-brand-500/30 bg-brand-500/10 mb-8 mx-auto lg:mx-0">
                     <span class="w-2 h-2 rounded-full bg-brand-400 animate-pulse"></span>
-                    <span class="text-xs font-bold text-brand-300 tracking-wider uppercase">Your Gadget Solution</span>
+                    <span class="text-xs font-bold text-brand-300 tracking-wider uppercase">Pekanbaru Ready Stock</span>
                 </div>
                 
                 <h1 class="font-heading text-5xl md:text-6xl lg:text-7xl font-black leading-[1.05] mb-6 text-glow tracking-tighter">
@@ -94,8 +99,8 @@
                     <span class="text-accent">Harga Rasional.</span>
                 </h1>
                 
-                <p class="text-base md:text-lg text-gray-400 mb-10 max-w-lg mx-auto lg:mx-0 font-medium leading-relaxed">
-                    Eksplorasi jajaran smartphone dan laptop pilihan di Pekanbaru. Kami memastikan setiap perangkat yang Anda beli adalah investasi teknologi terbaik.
+                <p class="text-base md:text-lg text-gray-400 mb-10 max-w-xl mx-auto lg:mx-0 font-medium leading-relaxed">
+                    Eksplorasi jajaran smartphone dan laptop pilihan di Pekanbaru. Kami memastikan setiap perangkat yang Anda beli adalah investasi teknologi terbaik tanpa kompromi.
                 </p>
                 
                 <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
@@ -123,33 +128,69 @@
         </div>
     </section>
 
-    <section id="bento" class="py-20 px-6 max-w-7xl mx-auto">
+    <section id="platform" class="py-10 px-6 max-w-7xl mx-auto border-t border-white/5 mt-10">
+        <div class="text-center mb-10" data-aos="fade-up">
+            <h3 class="text-sm font-bold text-gray-500 tracking-widest uppercase">Official Platform Kami</h3>
+        </div>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4" data-aos="fade-up" data-aos-delay="100">
+            <a href="https://id.shp.ee/ieSggGu" target="_blank" class="glass-panel p-6 rounded-3xl flex flex-col items-center justify-center gap-3 premium-hover group">
+                <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-orange-500/20 transition-colors border border-white/5">
+                    <i class="fa-solid fa-bag-shopping text-2xl text-gray-400 group-hover:text-orange-500 transition-colors"></i>
+                </div>
+                <span class="text-sm font-bold text-gray-300 group-hover:text-white transition-colors">Shopee</span>
+            </a>
+            
+            <a href="https://instagram.com/scv.farid1717_" target="_blank" class="glass-panel p-6 rounded-3xl flex flex-col items-center justify-center gap-3 premium-hover group">
+                <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-pink-500/20 transition-colors border border-white/5">
+                    <i class="fa-brands fa-instagram text-2xl text-gray-400 group-hover:text-pink-500 transition-colors"></i>
+                </div>
+                <span class="text-sm font-bold text-gray-300 group-hover:text-white transition-colors">Instagram</span>
+            </a>
+
+            <a href="https://www.facebook.com/marketplace/profile/100025975151176" target="_blank" class="glass-panel p-6 rounded-3xl flex flex-col items-center justify-center gap-3 premium-hover group">
+                <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-blue-500/20 transition-colors border border-white/5">
+                    <i class="fa-brands fa-facebook-f text-2xl text-gray-400 group-hover:text-blue-500 transition-colors"></i>
+                </div>
+                <span class="text-sm font-bold text-gray-300 group-hover:text-white transition-colors text-center">Marketplace [1]</span>
+            </a>
+
+            <a href="https://www.facebook.com/marketplace/profile/100012652447480" target="_blank" class="glass-panel p-6 rounded-3xl flex flex-col items-center justify-center gap-3 premium-hover group">
+                <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-blue-500/20 transition-colors border border-white/5">
+                    <i class="fa-solid fa-store text-2xl text-gray-400 group-hover:text-blue-500 transition-colors"></i>
+                </div>
+                <span class="text-sm font-bold text-gray-300 group-hover:text-white transition-colors text-center">Marketplace [2]</span>
+            </a>
+        </div>
+    </section>
+
+    <section id="bento" class="py-24 px-6 max-w-7xl mx-auto">
         <div class="text-center mb-16" data-aos="fade-up">
-            <h2 class="font-heading text-3xl md:text-5xl font-bold mb-4">Mengapa Farid Store?</h2>
-            <p class="text-gray-400">Dedikasi kami untuk pengalaman berbelanja terbaik Anda.</p>
+            <h2 class="font-heading text-4xl md:text-5xl font-bold mb-4">Mengapa Farid Store?</h2>
+            <p class="text-gray-400 font-medium">Dedikasi kami untuk pengalaman berbelanja terbaik Anda.</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-5 auto-rows-[200px]" data-aos="fade-up" data-aos-delay="100">
+        <div class="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-5 auto-rows-[220px]" data-aos="fade-up" data-aos-delay="100">
             <div class="glass-panel rounded-[2rem] p-8 md:col-span-2 md:row-span-2 flex flex-col justify-end relative overflow-hidden group">
-                <div class="absolute top-8 right-8 w-16 h-16 rounded-full bg-white/5 flex items-center justify-center text-white text-2xl border border-white/10 group-hover:scale-110 transition"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
-                <h3 class="font-heading text-3xl font-bold text-white mb-2 z-10">Quality Control <br>Super Ketat.</h3>
-                <p class="text-gray-400 z-10 max-w-sm">Setiap unit baik baru maupun second dipastikan berfungsi 100% normal tanpa kendala tersembunyi.</p>
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-0"></div>
+                <div class="absolute top-8 right-8 w-16 h-16 rounded-full bg-white/5 flex items-center justify-center text-white text-2xl border border-white/10 group-hover:scale-110 transition-transform duration-500"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                <h3 class="font-heading text-4xl font-bold text-white mb-3 z-10 leading-tight">Quality Control <br>Super Ketat.</h3>
+                <p class="text-gray-400 z-10 max-w-md text-base leading-relaxed">Setiap unit baik baru maupun second dipastikan berfungsi 100% normal tanpa kendala tersembunyi. Kepercayaan Anda adalah prioritas kami.</p>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent z-0"></div>
             </div>
             
-            <div class="glass-panel rounded-[2rem] p-6 flex flex-col justify-between hover:border-brand-500/50 transition">
+            <div class="glass-panel rounded-[2rem] p-8 flex flex-col justify-between hover:border-brand-500/50 transition-colors duration-300">
                 <i class="fa-solid fa-handshake text-3xl text-brand-400"></i>
                 <div>
-                    <h3 class="font-heading text-xl font-bold text-white mb-1">Tukar Tambah</h3>
-                    <p class="text-gray-400 text-sm">Upgrade gadget lama Anda dengan harga potong yang masuk akal.</p>
+                    <h3 class="font-heading text-xl font-bold text-white mb-2">Tukar Tambah</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Upgrade gadget lama Anda dengan harga potong yang masuk akal dan adil.</p>
                 </div>
             </div>
 
-            <div class="glass-panel rounded-[2rem] p-6 flex flex-col justify-between hover:border-purple-500/50 transition">
+            <div class="glass-panel rounded-[2rem] p-8 flex flex-col justify-between hover:border-purple-500/50 transition-colors duration-300">
                 <i class="fa-solid fa-truck-fast text-3xl text-purple-400"></i>
                 <div>
-                    <h3 class="font-heading text-xl font-bold text-white mb-1">Pengiriman Aman</h3>
-                    <p class="text-gray-400 text-sm">Siap melayani COD area Pekanbaru dan kirim ke seluruh nusantara.</p>
+                    <h3 class="font-heading text-xl font-bold text-white mb-2">Pengiriman Aman</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Melayani COD area Pekanbaru dan pengiriman asuransi ke seluruh nusantara.</p>
                 </div>
             </div>
         </div>
@@ -157,17 +198,17 @@
 
     <section id="katalog" class="py-24 relative z-20 min-h-screen">
         <div class="max-w-7xl mx-auto px-6 lg:px-8 border-t border-white/10 pt-20">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6" data-aos="fade-up">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8" data-aos="fade-up">
                 <div>
-                    <h2 class="font-heading text-4xl md:text-6xl font-black tracking-tight mb-2">Live <span class="text-brand-500">Inventory.</span></h2>
-                    <p class="text-gray-400 font-medium">Katalog tersinkronisasi realtime dengan database toko.</p>
+                    <h2 class="font-heading text-5xl md:text-6xl font-black tracking-tight mb-3">Live <span class="text-brand-500 drop-shadow-[0_0_20px_rgba(14,165,233,0.3)]">Inventory.</span></h2>
+                    <p class="text-gray-400 font-medium tracking-wide">Katalog tersinkronisasi realtime dengan database toko.</p>
                 </div>
                 
-                <div class="flex overflow-x-auto hide-scroll gap-2 pb-2 w-full md:w-auto" id="filter-container">
+                <div class="flex overflow-x-auto hide-scroll gap-3 pb-2 w-full md:w-auto" id="filter-container">
                     <button onclick="filterKategori('Semua', event)" class="filter-btn bg-white text-black px-6 py-3 rounded-2xl font-bold text-sm whitespace-nowrap transition-all shadow-lg border-transparent">All Series</button>
-                    <button onclick="filterKategori('Apple', event)" class="filter-btn glass-pill text-gray-300 hover:text-white px-6 py-3 rounded-2xl font-bold text-sm whitespace-nowrap transition-all">Apple</button>
-                    <button onclick="filterKategori('Android', event)" class="filter-btn glass-pill text-gray-300 hover:text-white px-6 py-3 rounded-2xl font-bold text-sm whitespace-nowrap transition-all">Android</button>
-                    <button onclick="filterKategori('Laptop', event)" class="filter-btn glass-pill text-gray-300 hover:text-white px-6 py-3 rounded-2xl font-bold text-sm whitespace-nowrap transition-all">Mac/PC</button>
+                    <button onclick="filterKategori('Apple', event)" class="filter-btn glass-pill text-gray-400 hover:text-white px-6 py-3 rounded-2xl font-bold text-sm whitespace-nowrap transition-all">Apple</button>
+                    <button onclick="filterKategori('Android', event)" class="filter-btn glass-pill text-gray-400 hover:text-white px-6 py-3 rounded-2xl font-bold text-sm whitespace-nowrap transition-all">Android</button>
+                    <button onclick="filterKategori('Laptop', event)" class="filter-btn glass-pill text-gray-400 hover:text-white px-6 py-3 rounded-2xl font-bold text-sm whitespace-nowrap transition-all">Mac/PC</button>
                 </div>
             </div>
 
@@ -184,16 +225,23 @@
         <i class="fa-brands fa-whatsapp group-hover:rotate-12 transition-transform"></i>
     </a>
 
-    <footer class="border-t border-white/10 py-12 bg-[#020202] text-center mt-10">
-        <h2 class="font-heading font-black text-3xl text-white mb-2 opacity-50">FaridStore</h2>
-        <p class="text-gray-600 text-sm font-medium">Your Gadget Solution • Pekanbaru, Indonesia.<br>© 2026 All rights reserved.</p>
+    <footer class="border-t border-white/10 py-16 bg-[#020202] text-center mt-10 relative overflow-hidden">
+        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-32 bg-brand-500/10 rounded-t-full blur-3xl pointer-events-none"></div>
+        <h2 class="font-heading font-black text-4xl text-white mb-3 tracking-widest uppercase opacity-20">FaridStore</h2>
+        <p class="text-gray-500 text-sm font-bold tracking-widest uppercase mb-6">Your Premium Gadget Solution</p>
+        <div class="flex justify-center gap-6 text-gray-600">
+            <a href="https://id.shp.ee/ieSggGu" target="_blank" class="hover:text-white transition-colors"><i class="fa-solid fa-bag-shopping text-xl"></i></a>
+            <a href="https://instagram.com/scv.farid1717_" target="_blank" class="hover:text-white transition-colors"><i class="fa-brands fa-instagram text-xl"></i></a>
+            <a href="https://www.facebook.com/marketplace/profile/100025975151176" target="_blank" class="hover:text-white transition-colors"><i class="fa-brands fa-facebook-f text-xl"></i></a>
+        </div>
+        <p class="text-gray-700 text-xs font-semibold tracking-widest uppercase mt-8">Pekanbaru • © 2026 All rights reserved.</p>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ once: true, offset: 50, duration: 800 });
 
-        // Navbar blur behavior on scroll
+        // Navbar Blur
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
             if (window.scrollY > 50) {
@@ -247,14 +295,14 @@
                 const waText = encodeURIComponent(`Halo Farid Store, saya ingin info detail untuk unit *${product.nama}* (Rp ${product.harga}). Apakah masih tersedia?`);
                 
                 const card = document.createElement('div');
-                // Desain Kartu Teks Murni yang Elegan (Tanpa Gambar)
-                card.className = "glass-panel p-8 rounded-[2rem] flex flex-col relative group hover:-translate-y-2 transition-transform duration-500 border border-white/5 hover:border-brand-500/30";
+                // Kartu Produk Premium (Teks Murni, Padding Luas, Border Rapi)
+                card.className = "glass-panel p-8 rounded-[2rem] flex flex-col relative premium-hover";
                 card.setAttribute('data-aos', 'fade-up');
                 card.setAttribute('data-aos-delay', (Math.min(index * 50, 200)).toString());
 
                 card.innerHTML = `
-                    <div class="flex justify-between items-start mb-8 relative z-10">
-                        <span class="bg-white/5 border border-white/10 text-gray-300 text-[10px] font-bold tracking-wider uppercase px-4 py-2 rounded-full">
+                    <div class="flex justify-between items-center mb-8">
+                        <span class="bg-white/5 border border-white/10 text-gray-300 text-[10px] font-bold tracking-widest uppercase px-4 py-2 rounded-full">
                             ${product.kategori_device}
                         </span>
                         <span class="flex items-center gap-2 text-xs font-bold text-gray-400">
@@ -262,11 +310,11 @@
                         </span>
                     </div>
                     
-                    <h3 class="font-heading text-2xl md:text-3xl font-bold text-white mb-10 leading-snug">${product.nama}</h3>
+                    <h3 class="font-heading text-2xl md:text-3xl font-bold text-white mb-10 leading-snug line-clamp-2">${product.nama}</h3>
                     
-                    <div class="mt-auto pt-6 border-t border-white/10 flex justify-between items-end relative z-10">
+                    <div class="mt-auto pt-6 border-t border-white/10 flex justify-between items-end">
                         <div>
-                            <p class="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-1">Harga Unit</p>
+                            <p class="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-1.5">Harga Unit</p>
                             <div class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-brand-300 to-brand-500 tracking-tighter drop-shadow-sm">
                                 ${product.harga}
                             </div>
@@ -282,17 +330,17 @@
 
         // FUNGSI FILTER BEBAS BUG
         window.filterKategori = function(kategori, event) {
-            const btnElement = event.currentTarget; // Menggunakan currentTarget untuk akurasi klik yang mutlak
+            const btnElement = event.currentTarget; 
 
-            // Kembalikan seluruh tombol ke mode glass-pill
+            // Reset semua tombol ke transparan
             document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.className = "filter-btn glass-pill text-gray-300 hover:text-white px-6 py-3 rounded-2xl font-bold text-sm whitespace-nowrap transition-all";
+                btn.className = "filter-btn glass-pill text-gray-400 hover:text-white px-6 py-3 rounded-2xl font-bold text-sm whitespace-nowrap transition-all";
             });
             
-            // Jadikan tombol yang diklik menyala
+            // Set tombol aktif
             btnElement.className = "filter-btn active bg-white text-black px-6 py-3 rounded-2xl font-bold text-sm whitespace-nowrap transition-all shadow-lg border-transparent";
 
-            // Proses Penyaringan
+            // Eksekusi filter
             if (kategori === 'Semua') {
                 renderProducts(globalProducts);
             } else {
@@ -301,7 +349,7 @@
             }
         };
 
-        // Eksekusi Muat Data
+        // Muat Data
         document.addEventListener('DOMContentLoaded', fetchProducts);
     </script>
 </body>
