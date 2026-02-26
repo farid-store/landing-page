@@ -63,27 +63,26 @@
         .hide-scroll::-webkit-scrollbar { display: none; }
         .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
         
-        /* Card Hover Effect: Uniform for all panels */
+        /* Card Hover Effect */
         .premium-hover { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(255,255,255,0.05); }
         .premium-hover:hover { transform: translateY(-4px); border-color: rgba(56, 189, 248, 0.3); box-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.15); }
 
-        /* New Modal Detail Style */
         .modal-blur { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,0.8); backdrop-filter: blur(12px); align-items: center; justify-content: center; padding: 20px; }
         .modal-blur.active { display: flex; }
 
-        /* --- TAMBAHAN REVISI: SOLD & BEST SELLER ANIMATION --- */
-        .sold-label {
-            background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+        /* Label Sold Animatif */
+        .sold-badge {
+            background: linear-gradient(135deg, #ef4444 0%, #7f1d1d 100%);
             box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
-            animation: pulse-red 2s infinite;
+            animation: sold-pulse 2s infinite;
         }
-        @keyframes pulse-red {
+        @keyframes sold-pulse {
             0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.05); opacity: 0.9; }
+            50% { transform: scale(1.05); opacity: 0.85; }
             100% { transform: scale(1); opacity: 1; }
         }
-        .card-sold { filter: grayscale(0.5); opacity: 0.9; }
-        .card-sold:hover { filter: grayscale(0); opacity: 1; }
+        .card-sold { filter: grayscale(0.7); opacity: 0.8; }
+        .card-sold:hover { filter: grayscale(0.2); opacity: 1; }
     </style>
 </head>
 <body class="antialiased selection:bg-brand-500 selection:text-white">
@@ -165,7 +164,7 @@
                 <div class="relative z-10">
                     <p class="text-brand-400 font-bold text-xs uppercase tracking-widest mb-2">Best Seller Brand</p>
                     <h3 id="best-seller-name" class="text-3xl font-black text-white">Memuat...</h3>
-                    <p class="text-gray-500 text-sm mt-2">Paling banyak terjual ke pelanggan.</p>
+                    <p class="text-gray-500 text-sm mt-2">Kategori brand paling diminati pelanggan.</p>
                 </div>
                 <i class="fa-solid fa-fire absolute -right-4 -bottom-4 text-white/5 text-9xl group-hover:text-brand-500/10 transition-colors"></i>
             </div>
@@ -182,7 +181,7 @@
             <div class="glass-panel rounded-[2rem] p-8 relative overflow-hidden group premium-hover" data-aos="fade-up" data-aos-delay="200">
                 <div class="relative z-10">
                     <p class="text-green-400 font-bold text-xs uppercase tracking-widest mb-2">Baru Saja Terjual</p>
-                    <div id="recent-sold-list" class="space-y-2 mt-3">
+                    <div id="recent-sold-list" class="space-y-2 mt-3 text-xs font-bold text-gray-300">
                         </div>
                 </div>
                 <i class="fa-solid fa-check-double absolute -right-4 -bottom-4 text-white/5 text-9xl group-hover:text-green-500/10 transition-colors"></i>
@@ -345,12 +344,12 @@
                         <span>Buka: 08.00 - 23.30 WIB</span>
                     </div>
                 </div>
-                <a href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127669.04824317926!2d101.37346143999908!3d0.5104443905001224!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d5ac0334887301%3A0x296a1a3641604a37!2sPekanbaru%2C%20Kota%20Pekanbaru%2C%20Riau!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" target="_blank" class="inline-flex mt-10 bg-white/5 border border-white/10 px-8 py-4 rounded-2xl font-bold transition-all gap-3 items-center hover:bg-white/10">
+                <a href="http://googleusercontent.com/maps.google.com/4" target="_blank" class="inline-flex mt-10 bg-white/5 border border-white/10 px-8 py-4 rounded-2xl font-bold transition-all gap-3 items-center hover:bg-white/10">
                     <i class="fa-solid fa-map-location-dot"></i> Buka Google Maps
                 </a>
             </div>
             <div class="flex-1 w-full h-80 rounded-[2rem] overflow-hidden grayscale contrast-125 opacity-40 border border-white/10">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127669.048261895!2d101.3582136!3d0.5113945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d5ac244e432b21%3A0x67399a9a0166257e!2sPekanbaru%2C%20Kota%20Pekanbaru%2C%20Riau!5e0!3m2!1sid!2sid!4v1700000000000" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                <iframe src="http://googleusercontent.com/maps.google.com/5" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
     </section>
@@ -390,15 +389,27 @@
         let globalProducts = [];
         let currentKategori = "Semua";
 
-        // --- REVISI: HELPER PARSE TANGGAL DD/M/YYYY ---
-        function parseCustomDate(dateStr) {
+        // --- REVISI: LOGIKA PENGELOMPOKAN BRAND CERDAS ---
+        function getBrandCategory(itemName) {
+            const lower = itemName.toLowerCase();
+            if (lower.includes('iphone') || lower.includes('apple') || lower.includes('ipad') || lower.includes('ip ')) return 'APPLE';
+            if (lower.includes('samsung') || lower.includes('galaxy') || lower.includes('sein') || lower.includes('z flip') || lower.includes('z fold')) return 'SAMSUNG';
+            if (lower.includes('xiaomi') || lower.includes('note') || lower.includes('redmi') || lower.includes('poco') || lower.includes('mi ')) return 'XIAOMI/POCO';
+            if (lower.includes('oppo') || lower.includes('reno')) return 'OPPO';
+            if (lower.includes('vivo') || lower.includes('iqoo')) return 'VIVO';
+            if (lower.includes('realme')) return 'REALME';
+            if (lower.includes('infinix')) return 'INFINIX';
+            if (lower.includes('tecno')) return 'TECNO';
+            if (lower.includes('itel')) return 'ITEL';
+            if (lower.includes('asus') || lower.includes('rog')) return 'ASUS';
+            if (lower.includes('google') || lower.includes('pixel')) return 'GOOGLE';
+            return itemName.split(' ')[0].replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
+        }
+
+        function parseDate(dateStr) {
             if (!dateStr || dateStr === "Imported") return null;
             const parts = dateStr.split(' ')[0].split('/');
-            return {
-                day: parseInt(parts[0]),
-                month: parseInt(parts[1]),
-                year: parseInt(parts[2])
-            };
+            return { d: parseInt(parts[0]), m: parseInt(parts[1]), y: parseInt(parts[2]) };
         }
 
         async function fetchProducts() {
@@ -406,7 +417,6 @@
             const errorState = document.getElementById('error-state');
 
             try {
-                // Sesuai Database JSON yang kamu berikan
                 const response = await fetch('/api/products'); 
                 const data = await response.json();
                 
@@ -414,11 +424,9 @@
                 
                 loading.classList.add('hidden');
                 
-                // Render Katalog (Tampilkan yang Stok + Sold Bulan Ini untuk Trust)
-                renderProducts(globalProducts);
-                
-                // Hitung Statistik
+                // Kalkulasi Insight Statistik & Render
                 calculateInsights(globalProducts);
+                renderProducts(globalProducts);
 
             } catch (error) {
                 console.error("Fetch Error:", error);
@@ -427,37 +435,37 @@
             }
         }
 
-        // --- REVISI TOTAL: INSIGHT CALCULATOR (Best Seller, Monthly, Realtime Sold) ---
+        // --- REVISI TOTAL: CALCULATE INSIGHTS MENGGUNAKAN LOGIKA BRAND BARU ---
         function calculateInsights(allItems) {
             const now = new Date();
-            const thisMonth = 2; // Sesuai data kamu Feb 2026
+            const thisMonth = 2; // Data kamu didominasi Februari 2026
             const thisYear = 2026;
             const lastMonth = 1;
 
             let countThisMonth = 0;
             let countLastMonth = 0;
-            const brandsSales = {};
-            const soldItems = allItems.filter(p => p.status === 'sold');
+            const brandsStats = {};
+            const soldOnly = allItems.filter(p => p.status === 'sold');
 
-            soldItems.forEach(item => {
-                // Bersihkan karakter sampah dan ambil Brand (kata pertama)
-                const cleanName = item.name.replace(/[^a-zA-Z0-9 ]/g, "").trim();
-                const brand = cleanName.split(' ')[0];
-                brandsSales[brand] = (brandsSales[brand] || 0) + 1;
+            soldOnly.forEach(item => {
+                // Gunakan fungsi getBrandCategory Farid
+                const b = getBrandCategory(item.name);
+                brandsStats[b] = (brandsStats[b] || 0) + 1;
 
                 // Hitung Penjualan Bulanan
-                const dt = parseCustomDate(item.soldAt);
+                const dt = parseDate(item.soldAt);
                 if (dt) {
-                    if (dt.month === thisMonth && dt.year === thisYear) countThisMonth++;
-                    if (dt.month === lastMonth && dt.year === thisYear) countLastMonth++;
+                    if (dt.m === thisMonth && dt.y === thisYear) countThisMonth++;
+                    if (dt.m === lastMonth && dt.y === thisYear) countLastMonth++;
                 }
             });
 
-            // 1. UI Update: Best Seller Brand
-            const topBrand = Object.keys(brandsSales).reduce((a, b) => brandsSales[a] > brandsSales[b] ? a : b, "Apple");
+            // 1. UI Update: Best Seller Brand Berdasarkan Frekuensi Terbanyak
+            const sortedBrands = Object.keys(brandsStats).sort((a,b) => brandsStats[b] - brandsStats[a]);
+            const topBrand = sortedBrands[0] || "APPLE";
             document.getElementById('best-seller-name').innerText = topBrand;
 
-            // 2. UI Update: Sales Count Bulan Ini
+            // 2. UI Update: Total Penjualan & Trend
             document.getElementById('sales-this-month').innerHTML = `${countThisMonth} <span class="text-lg font-normal text-gray-500 uppercase">Unit</span>`;
             
             const diff = countThisMonth - countLastMonth;
@@ -468,10 +476,10 @@
                 trendText.innerHTML = `<span class="text-gray-400 font-bold">↓ ${Math.abs(diff)} unit</span> dari bulan lalu`;
             }
 
-            // 3. UI Update: Recent Sold List (Animatif)
-            const recent = soldItems.slice(-3).reverse();
+            // 3. UI Update: Recent Sold List (3 Unit Terakhir)
+            const recent = soldOnly.slice(-3).reverse();
             document.getElementById('recent-sold-list').innerHTML = recent.map(item => `
-                <div class="flex items-center gap-2 text-[11px] font-bold text-gray-300 animate-pulse">
+                <div class="flex items-center gap-2 animate-pulse">
                     <i class="fa-solid fa-circle-check text-green-500"></i> ${item.name}
                 </div>
             `).join('');
@@ -481,16 +489,12 @@
             const query = document.getElementById('searchInput').value.toLowerCase();
             const results = globalProducts.filter(p => {
                 const matchName = p.name.toLowerCase().includes(query);
-                const matchKategori = currentKategori === "Semua" || 
-                                     (currentKategori === "Apple" && p.name.toLowerCase().includes("iphone")) ||
-                                     (currentKategori === "Android" && !p.name.toLowerCase().includes("iphone") && !p.name.toLowerCase().includes("macbook")) ||
-                                     (currentKategori === "Laptop" && p.name.toLowerCase().includes("laptop") || p.name.toLowerCase().includes("macbook"));
+                const matchKategori = currentKategori === "Semua" || p.kategori_device === currentKategori;
                 return matchName && matchKategori;
             });
             renderProducts(results);
         }
 
-        // --- REVISI: RENDER DENGAN LABEL SOLD ANIMATIF ---
         function renderProducts(products) {
             const container = document.getElementById('product-container');
             const emptyState = document.getElementById('empty-state');
@@ -505,7 +509,10 @@
             emptyState.classList.add('hidden');
             container.classList.remove('hidden');
 
-            products.forEach((product) => {
+            // Sort: Prioritaskan Stok Ready di atas
+            const sorted = [...products].sort((a,b) => (a.status === 'sold' ? 1 : -1));
+
+            sorted.forEach((product) => {
                 const isSold = product.status === 'sold';
                 const card = document.createElement('div');
                 card.className = `glass-panel p-8 rounded-[2rem] flex flex-col relative premium-hover cursor-pointer ${isSold ? 'card-sold' : ''}`;
@@ -515,21 +522,21 @@
                 card.innerHTML = `
                     <div class="flex justify-between items-center mb-8">
                         ${isSold ? 
-                            `<span class="sold-label text-white text-[10px] font-bold tracking-widest uppercase px-4 py-2 rounded-full">SOLD OUT</span>` :
+                            `<span class="sold-badge text-white text-[10px] font-bold tracking-widest uppercase px-4 py-2 rounded-full">SOLD OUT</span>` :
                             `<span class="bg-white/5 border border-white/10 text-gray-300 text-[10px] font-bold tracking-widest uppercase px-4 py-2 rounded-full">
                                 ${product.type === 'new' ? 'New Arrival' : 'Pre-loved'}
                             </span>`
                         }
                         <span class="flex items-center gap-2 text-xs font-bold ${isSold ? 'text-red-500' : 'text-gray-400'}">
-                            <span class="w-2 h-2 rounded-full ${isSold ? 'bg-red-500 animate-ping' : 'bg-brand-500'} shadow-lg"></span> 
-                            ${isSold ? 'Unit Terjual' : 'Ready Stock'}
+                            <span class="w-2 h-2 rounded-full ${isSold ? 'bg-red-500' : 'bg-brand-500 shadow-[0_0_10px_rgba(14,165,233,0.5)]'}"></span> 
+                            ${isSold ? 'Terjual' : 'Ready Stock'}
                         </span>
                     </div>
                     <h3 class="font-heading text-2xl md:text-3xl font-bold text-white mb-10 leading-snug line-clamp-2">${product.name}</h3>
                     <div class="mt-auto pt-6 border-t border-white/10 flex justify-between items-end">
                         <div>
-                            <p class="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-1.5">${isSold ? 'Harga Terakhir' : 'Harga Unit'}</p>
-                            <div class="${isSold ? 'text-2xl text-white/40 line-through decoration-brand-500/50' : 'text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-brand-300 to-brand-500'} tracking-tighter drop-shadow-sm">
+                            <p class="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-1.5">${isSold ? 'Terjual Seharga' : 'Harga Unit'}</p>
+                            <div class="${isSold ? 'text-2xl text-white/30 line-through' : 'text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-brand-300 to-brand-500'} tracking-tighter drop-shadow-sm">
                                 Rp ${product.price.toLocaleString('id-ID')}
                             </div>
                         </div>
@@ -546,33 +553,33 @@
             const modal = document.getElementById('productModal');
             const content = document.getElementById('modalContent');
             const isSold = product.status === 'sold';
-            const waText = encodeURIComponent(`Halo Farid Store, saya ingin info detail untuk unit *${product.name}* (Rp ${product.price.toLocaleString('id-ID')}). Apakah masih tersedia?`);
+            const waText = encodeURIComponent(`Halo Farid Store, saya ingin tanya untuk unit *${product.name}* (Rp ${product.price.toLocaleString('id-ID')}). Apakah masih ada?`);
 
             content.innerHTML = `
                 <div class="space-y-6">
                     <div>
-                        <span class="text-brand-400 font-bold text-xs uppercase tracking-[0.2em] mb-4 block">${product.type} Condition</span>
+                        <span class="text-brand-400 font-bold text-xs uppercase tracking-[0.2em] mb-4 block">${product.type === 'new' ? 'Brand New' : 'Used'} Condition</span>
                         <h2 class="font-heading text-4xl font-black text-white leading-tight">${product.name}</h2>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div class="bg-white/5 p-4 rounded-2xl border border-white/5 text-center">
                             <p class="text-gray-500 text-[10px] font-bold uppercase mb-1">Status</p>
-                            <p class="${isSold ? 'text-red-500' : 'text-white'} font-bold text-sm">${isSold ? 'Sold Out' : 'Ready Stock'}</p>
+                            <p class="${isSold ? 'text-red-500' : 'text-white'} font-bold text-sm">${isSold ? 'Sudah Laku' : 'Tersedia'}</p>
                         </div>
                         <div class="bg-white/5 p-4 rounded-2xl border border-white/5 text-center">
-                            <p class="text-gray-500 text-[10px] font-bold uppercase mb-1">Harga Nett</p>
+                            <p class="text-gray-500 text-[10px] font-bold uppercase mb-1">Harga Final</p>
                             <p class="text-brand-400 font-bold text-sm">Rp ${product.price.toLocaleString('id-ID')}</p>
                         </div>
                     </div>
                     <div class="bg-white/5 p-6 rounded-3xl border border-white/5">
-                        <p class="text-gray-400 text-sm leading-relaxed">${isSold ? 'Unit ini sudah terjual. Silahkan hubungi admin untuk PO unit serupa.' : 'Unit ini telah lolos QC standar Farid Store. Fungsi 100% normal, fisik mulus, dan bergaransi personal toko.'}</p>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            ${isSold ? 'Unit ini sudah terjual ke pelanggan lain. Silahkan hubungi admin untuk ketersediaan unit sejenis atau inden.' : 'Unit ini telah melewati Quality Control ketat Farid Store. Jaminan fungsi normal 100% dan garansi toko.'}
+                        </p>
                     </div>
                     ${isSold ? 
-                        `<button disabled class="w-full bg-gray-800 text-gray-500 font-bold py-5 rounded-2xl flex items-center justify-center gap-3 cursor-not-allowed">
-                            Unit Sudah Terjual
-                        </button>` :
+                        `<button disabled class="w-full bg-gray-800 text-gray-500 font-bold py-5 rounded-2xl cursor-not-allowed">Sold Out</button>` :
                         `<a href="https://wa.me/${waNumber}?text=${waText}" target="_blank" class="w-full bg-brand-500 hover:bg-brand-400 text-white font-bold py-5 rounded-2xl flex items-center justify-center gap-3 transition-all transform hover:scale-[1.02]">
-                            <i class="fa-brands fa-whatsapp text-2xl"></i> Chat Admin Sekarang
+                            <i class="fa-brands fa-whatsapp text-2xl"></i> Hubungi Admin
                         </a>`
                     }
                 </div>
@@ -581,7 +588,7 @@
             document.body.style.overflow = 'hidden';
         }
 
-        function closeModal(e) {
+        function closeModal() {
             document.getElementById('productModal').classList.remove('active');
             document.body.style.overflow = 'auto';
         }
