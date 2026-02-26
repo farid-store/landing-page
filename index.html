@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Farid Store | Premium Gadget Solution</title>
+    <title>Farid Store | Your Gadget Solution</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -19,188 +19,192 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
+                    fontFamily: { 
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif']
+                    },
                     colors: {
-                        dark: '#050505', // OLED Black
-                        surface: '#111111', // Dark Gray for cards
-                        brand: { 400: '#60a5fa', 500: '#3b82f6', 600: '#2563eb' }
+                        dark: '#020202', 
+                        surface: '#0a0a0a', 
+                        brand: { 400: '#38bdf8', 500: '#0ea5e9', 600: '#0284c7' }
                     }
                 }
             }
         }
     </script>
     <style>
-        body { background-color: #050505; color: #fafafa; overflow-x: hidden; }
+        body { background-color: #020202; color: #f8fafc; overflow-x: hidden; }
         
-        /* Premium Glass Effect */
-        .glass-nav { background: rgba(5, 5, 5, 0.65); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .glass-card { background: rgba(17, 17, 17, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); }
+        /* Modern Floating Glass */
+        .glass-pill { background: rgba(10, 10, 10, 0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.08); }
+        .glass-panel { background: linear-gradient(145deg, rgba(25,25,25,0.4) 0%, rgba(10,10,10,0.8) 100%); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.05); }
         
-        /* Typography Gradients */
-        .text-glow { background: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .text-accent { background: linear-gradient(135deg, #60a5fa 0%, #a855f7 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        /* Text Gradients */
+        .text-glow { background: linear-gradient(to right, #ffffff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .text-accent { background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
-        /* Mesh Gradient Background */
-        .hero-glow {
-            position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, rgba(0,0,0,0) 70%);
-            top: -200px; left: 50%; transform: translateX(-50%); z-index: 0; pointer-events: none;
-        }
+        /* Ambient Glow Backgrounds */
+        .ambient-glow-1 { position: absolute; top: -10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(14,165,233,0.15) 0%, rgba(0,0,0,0) 60%); filter: blur(60px); z-index: -1; animation: pulse 8s infinite alternate; }
+        .ambient-glow-2 { position: absolute; bottom: 20%; right: -10%; width: 40vw; height: 40vw; background: radial-gradient(circle, rgba(129,140,248,0.1) 0%, rgba(0,0,0,0) 60%); filter: blur(60px); z-index: -1; animation: pulse 10s infinite alternate-reverse; }
+        
+        @keyframes pulse { 0% { opacity: 0.5; transform: scale(0.9); } 100% { opacity: 1; transform: scale(1.1); } }
 
-        /* Modern Marquee */
-        .marquee-container { overflow: hidden; white-space: nowrap; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); background: #0a0a0a; }
-        .marquee-content { display: inline-block; animation: marquee 25s linear infinite; }
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
+        /* Loader */
+        .spinner { width: 40px; height: 40px; border: 3px solid rgba(255,255,255,0.1); border-radius: 50%; border-top-color: #0ea5e9; animation: spin 1s ease-in-out infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        
         /* Hide Scrollbar */
         .hide-scroll::-webkit-scrollbar { display: none; }
         .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
-
-        /* Loader */
-        .loader { width: 48px; height: 48px; border: 3px solid rgba(255,255,255,0.1); border-radius: 50%; display: inline-block; border-top-color: #3b82f6; animation: spin 1s ease-in-out infinite; }
-        @keyframes spin { to { transform: rotate(360deg); } }
     </style>
 </head>
 <body class="antialiased selection:bg-brand-500 selection:text-white">
 
-    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8 flex justify-between items-center h-20">
-            <div class="flex items-center gap-2 cursor-pointer group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-purple-600 flex items-center justify-center text-white shadow-lg group-hover:scale-105 transition">
-                    <i class="fa-solid fa-bolt"></i>
-                </div>
-                <span class="font-extrabold text-2xl tracking-tighter text-white">Farid<span class="text-gray-400 font-medium">Store</span></span>
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+
+    <div class="fixed w-full top-6 z-50 px-4 sm:px-6 flex justify-center pointer-events-none">
+        <nav class="glass-pill rounded-full px-6 py-3 flex justify-between items-center w-full max-w-5xl pointer-events-auto shadow-[0_10px_40px_rgba(0,0,0,0.5)] transition-all duration-300" id="navbar">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-black font-bold text-sm">FS</div>
+                <span class="font-heading font-bold text-xl tracking-tight text-white">Farid<span class="text-gray-400">Store</span></span>
             </div>
             <div class="hidden md:flex space-x-8 items-center">
-                <a href="#katalog" class="text-sm font-semibold text-gray-400 hover:text-white transition tracking-wide">Katalog Produk</a>
-                <a href="#faq" class="text-sm font-semibold text-gray-400 hover:text-white transition tracking-wide">Informasi</a>
-                <a href="#katalog" class="text-sm font-bold bg-white text-black px-5 py-2.5 rounded-full hover:bg-gray-200 transition transform hover:-translate-y-0.5">
-                    Cek Stok
-                </a>
+                <a href="#katalog" class="text-sm font-semibold text-gray-300 hover:text-white transition">Inventory</a>
+                <a href="#bento" class="text-sm font-semibold text-gray-300 hover:text-white transition">Mengapa Kami?</a>
             </div>
-        </div>
-    </nav>
+            <a href="https://wa.me/6281371127121" target="_blank" class="bg-brand-500 hover:bg-brand-400 text-white text-sm font-bold px-5 py-2 rounded-full transition-transform hover:scale-105 flex items-center gap-2">
+                <i class="fa-brands fa-whatsapp text-lg"></i> Chat Admin
+            </a>
+        </nav>
+    </div>
 
-    <section id="home" class="relative pt-40 pb-20 px-6 text-center overflow-hidden min-h-[90vh] flex flex-col justify-center">
-        <div class="hero-glow"></div>
-        
-        <div class="relative z-10 max-w-4xl mx-auto" data-aos="zoom-in" data-aos-duration="1000">
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-8">
-                <span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span></span>
-                <span class="text-xs font-semibold tracking-widest uppercase text-gray-300">Stok Pekanbaru Terupdate</span>
+    <section id="home" class="relative min-h-screen flex items-center pt-32 pb-20 px-6 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center w-full">
+            <div data-aos="fade-right" data-aos-duration="1200">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-brand-500/30 bg-brand-500/10 mb-8">
+                    <span class="w-2 h-2 rounded-full bg-brand-400 animate-pulse"></span>
+                    <span class="text-xs font-bold text-brand-300 tracking-wider uppercase">Your Gadget Solution</span>
+                </div>
+                
+                <h1 class="font-heading text-5xl sm:text-7xl font-black leading-[1.05] mb-6 text-glow tracking-tighter">
+                    Teknologi <br>
+                    Premium.<br>
+                    <span class="text-accent">Harga Rasional.</span>
+                </h1>
+                
+                <p class="text-lg text-gray-400 mb-10 max-w-lg font-medium leading-relaxed">
+                    Eksplorasi jajaran smartphone dan laptop pilihan di Pekanbaru. Kami memastikan setiap perangkat yang Anda beli adalah investasi teknologi terbaik.
+                </p>
+                
+                <div class="flex flex-wrap gap-4">
+                    <a href="#katalog" class="bg-white text-black px-8 py-4 rounded-full font-bold text-base hover:bg-gray-200 transition-colors flex items-center gap-3">
+                        Lihat Stok <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
             </div>
-            
-            <h1 class="text-6xl md:text-8xl font-extrabold tracking-tighter leading-[1.1] mb-6 text-glow">
-                Upgrade Gadgetmu. <br>
-                <span class="text-accent">Hemat Uangmu.</span>
-            </h1>
-            
-            <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto font-medium leading-relaxed">
-                Pusat perbelanjaan perangkat pintar original dengan kualitas terseleksi. Transparansi kondisi, harga rasional, dan jaminan keamanan transaksi.
-            </p>
-            
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a href="#katalog" class="w-full sm:w-auto bg-white text-dark px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform duration-300 shadow-[0_0_30px_rgba(255,255,255,0.15)]">
-                    Eksplorasi Katalog
-                </a>
-                <a href="https://wa.me/6281371127121" target="_blank" class="w-full sm:w-auto glass-card text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition-colors flex items-center justify-center gap-2">
-                    <i class="fa-brands fa-whatsapp text-green-400"></i> Hubungi Admin
-                </a>
+
+            <div class="relative hidden lg:block h-[500px]" data-aos="fade-left" data-aos-duration="1200">
+                <div class="absolute right-0 top-10 w-3/4 h-[400px] rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl z-10 transform -rotate-6 hover:rotate-0 transition-transform duration-700">
+                    <img src="https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=800&q=80" alt="Gadget Showcase" class="w-full h-full object-cover">
+                </div>
+                <div class="absolute left-0 bottom-0 w-2/3 h-[250px] rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl z-20 transform rotate-3 hover:rotate-0 transition-transform duration-700">
+                    <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=800&q=80" alt="Laptop Showcase" class="w-full h-full object-cover">
+                </div>
+                <div class="absolute top-1/2 -left-10 z-30 glass-pill px-5 py-3 rounded-2xl flex items-center gap-4 animate-bounce" style="animation-duration: 3s;">
+                    <div class="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center text-green-400"><i class="fa-solid fa-shield-check text-xl"></i></div>
+                    <div>
+                        <p class="text-white font-bold text-sm">100% Original</p>
+                        <p class="text-gray-400 text-xs">Lolos Uji Kualitas</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <div class="marquee-container py-4">
-        <div class="marquee-content text-gray-400 font-medium text-sm tracking-widest uppercase flex gap-16">
-            <span>✦ 100% Original Unit</span>
-            <span>✦ Garansi Personal Toko</span>
-            <span>✦ Terima Tukar Tambah</span>
-            <span>✦ Siap COD Pekanbaru</span>
-            <span>✦ Pengiriman Aman Nasional</span>
-            <span>✦ 100% Original Unit</span>
-            <span>✦ Garansi Personal Toko</span>
-            <span>✦ Terima Tukar Tambah</span>
-            <span>✦ Siap COD Pekanbaru</span>
-            <span>✦ Pengiriman Aman Nasional</span>
+    <section id="bento" class="py-20 px-6 max-w-7xl mx-auto">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <h2 class="font-heading text-3xl md:text-5xl font-bold mb-4">Mengapa Farid Store?</h2>
+            <p class="text-gray-400">Dedikasi kami untuk pengalaman berbelanja terbaik Anda.</p>
         </div>
-    </div>
 
-    <section id="katalog" class="py-24 bg-dark relative z-20 min-h-screen">
-        <div class="max-w-[85rem] mx-auto px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6" data-aos="fade-up">
+        <div class="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-4 auto-rows-[200px]" data-aos="fade-up" data-aos-delay="100">
+            <div class="glass-panel rounded-[2rem] p-8 md:col-span-2 md:row-span-2 flex flex-col justify-end relative overflow-hidden group">
+                <div class="absolute top-8 right-8 w-16 h-16 rounded-full bg-white/5 flex items-center justify-center text-white text-2xl border border-white/10 group-hover:scale-110 transition"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                <h3 class="font-heading text-3xl font-bold text-white mb-2 z-10">Quality Control <br>Super Ketat.</h3>
+                <p class="text-gray-400 z-10 max-w-sm">Setiap unit baik baru maupun second dipastikan berfungsi 100% normal tanpa kendala tersembunyi.</p>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-0"></div>
+            </div>
+            
+            <div class="glass-panel rounded-[2rem] p-6 flex flex-col justify-between hover:border-brand-500/50 transition">
+                <i class="fa-solid fa-handshake text-3xl text-brand-400"></i>
                 <div>
-                    <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-3">Unit <span class="text-gray-500">Tersedia.</span></h2>
-                    <p class="text-gray-400 font-medium">Data tersinkronisasi otomatis dari sistem inventory.</p>
-                </div>
-                
-                <div class="flex overflow-x-auto hide-scroll gap-2 p-1.5 bg-surface rounded-full border border-white/10" id="filter-container">
-                    <button onclick="filterKategori('Semua', this)" class="filter-btn active bg-white text-black px-6 py-2.5 rounded-full font-bold text-sm whitespace-nowrap transition-all shadow-md">Semua</button>
-                    <button onclick="filterKategori('Apple', this)" class="filter-btn text-gray-400 hover:text-white px-6 py-2.5 rounded-full font-bold text-sm whitespace-nowrap transition-all">Apple</button>
-                    <button onclick="filterKategori('Android', this)" class="filter-btn text-gray-400 hover:text-white px-6 py-2.5 rounded-full font-bold text-sm whitespace-nowrap transition-all">Android</button>
-                    <button onclick="filterKategori('Laptop', this)" class="filter-btn text-gray-400 hover:text-white px-6 py-2.5 rounded-full font-bold text-sm whitespace-nowrap transition-all">Laptop</button>
+                    <h3 class="font-heading text-xl font-bold text-white mb-1">Tukar Tambah</h3>
+                    <p class="text-gray-400 text-sm">Upgrade gadget lama Anda dengan harga potong yang masuk akal.</p>
                 </div>
             </div>
 
-            <div id="loading-state" class="flex flex-col items-center justify-center py-20"><div class="loader mb-6"></div><p class="text-gray-500 font-semibold tracking-wide">MENGAMBIL DATA...</p></div>
-            <div id="error-state" class="hidden text-center py-20"><div class="inline-flex w-16 h-16 rounded-full bg-red-500/10 items-center justify-center text-red-500 mb-4"><i class="fa-solid fa-triangle-exclamation text-2xl"></i></div><p class="text-gray-400">Gagal terhubung ke server inventori.</p></div>
-            <div id="empty-state" class="hidden text-center py-20"><div class="inline-flex w-16 h-16 rounded-full bg-white/5 items-center justify-center text-gray-400 mb-4"><i class="fa-solid fa-box-open text-2xl"></i></div><p class="text-gray-400 font-medium text-lg">Kategori ini sedang kosong.</p></div>
+            <div class="glass-panel rounded-[2rem] p-6 flex flex-col justify-between hover:border-purple-500/50 transition">
+                <i class="fa-solid fa-truck-fast text-3xl text-purple-400"></i>
+                <div>
+                    <h3 class="font-heading text-xl font-bold text-white mb-1">Pengiriman Aman</h3>
+                    <p class="text-gray-400 text-sm">Siap melayani COD area Pekanbaru dan kirim ke seluruh nusantara.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="katalog" class="py-24 relative z-20 min-h-screen">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 border-t border-white/10 pt-20">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6" data-aos="fade-up">
+                <div>
+                    <h2 class="font-heading text-4xl md:text-6xl font-black tracking-tight mb-2">Live <span class="text-brand-500">Inventory.</span></h2>
+                    <p class="text-gray-400 font-medium">Katalog tersinkronisasi realtime dengan database toko.</p>
+                </div>
+                
+                <div class="flex overflow-x-auto hide-scroll gap-2" id="filter-container">
+                    <button onclick="filterKategori('Semua', this)" class="filter-btn active bg-white text-black px-6 py-3 rounded-2xl font-bold text-sm whitespace-nowrap transition-all shadow-lg">All Series</button>
+                    <button onclick="filterKategori('Apple', this)" class="filter-btn glass-pill text-gray-300 hover:text-white px-6 py-3 rounded-2xl font-bold text-sm whitespace-nowrap transition-all">Apple</button>
+                    <button onclick="filterKategori('Android', this)" class="filter-btn glass-pill text-gray-300 hover:text-white px-6 py-3 rounded-2xl font-bold text-sm whitespace-nowrap transition-all">Android</button>
+                    <button onclick="filterKategori('Laptop', this)" class="filter-btn glass-pill text-gray-300 hover:text-white px-6 py-3 rounded-2xl font-bold text-sm whitespace-nowrap transition-all">Mac/PC</button>
+                </div>
+            </div>
+
+            <div id="loading-state" class="flex flex-col items-center justify-center py-20"><div class="spinner mb-6"></div><p class="text-gray-500 font-bold tracking-widest text-sm">SINKRONISASI DATA...</p></div>
+            <div id="error-state" class="hidden text-center py-20"><div class="inline-flex w-16 h-16 rounded-full bg-red-500/10 items-center justify-center text-red-500 mb-4"><i class="fa-solid fa-link-slash text-2xl"></i></div><p class="text-gray-400">Gagal terhubung ke sistem inventori.</p></div>
+            <div id="empty-state" class="hidden text-center py-20"><div class="inline-flex w-16 h-16 rounded-full bg-white/5 items-center justify-center text-gray-400 mb-4"><i class="fa-solid fa-ghost text-2xl"></i></div><p class="text-gray-400 font-medium text-lg">Kategori ini sedang kosong.</p></div>
 
             <div id="product-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 hidden">
                 </div>
         </div>
     </section>
 
-    <section id="faq" class="py-24 bg-[#0a0a0a] border-t border-white/5">
-        <div class="max-w-4xl mx-auto px-6" data-aos="fade-up">
-            <h2 class="text-3xl font-extrabold mb-10 text-center tracking-tight">Informasi Penting</h2>
-            <div class="space-y-4">
-                <details class="group glass-card rounded-3xl p-6 cursor-pointer [&_summary::-webkit-details-marker]:hidden">
-                    <summary class="flex justify-between items-center font-bold text-lg select-none">
-                        Jaminan Originalitas
-                        <span class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-open:rotate-45 transition-transform duration-300"><i class="fa-solid fa-plus text-sm"></i></span>
-                    </summary>
-                    <p class="text-gray-400 mt-4 leading-relaxed font-medium">Setiap unit yang masuk ke Farid Store telah melalui tahapan Quality Control. Kami menjamin 100% perangkat original, bebas blokir, dan berfungsi sebagaimana mestinya.</p>
-                </details>
-                <details class="group glass-card rounded-3xl p-6 cursor-pointer [&_summary::-webkit-details-marker]:hidden">
-                    <summary class="flex justify-between items-center font-bold text-lg select-none">
-                        Mekanisme Tukar Tambah
-                        <span class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-open:rotate-45 transition-transform duration-300"><i class="fa-solid fa-plus text-sm"></i></span>
-                    </summary>
-                    <p class="text-gray-400 mt-4 leading-relaxed font-medium">Bisa! Fotokan perangkat lama Anda (fisik luar, informasi baterai/layar), sebutkan minus jika ada, lalu kirim ke WhatsApp kami. Tim akan memberikan estimasi nilai tukar (trade-in) terbaik.</p>
-                </details>
-            </div>
-        </div>
-    </section>
-
-    <a href="https://wa.me/6281371127121" target="_blank" class="fixed bottom-8 right-8 z-50 w-16 h-16 bg-white text-black rounded-full flex items-center justify-center text-3xl shadow-[0_10px_40px_rgba(255,255,255,0.2)] hover:scale-110 transition-transform duration-300">
-        <i class="fa-brands fa-whatsapp"></i>
+    <a href="https://wa.me/6281371127121" target="_blank" class="fixed bottom-8 right-8 z-50 w-16 h-16 bg-white text-black rounded-full flex items-center justify-center text-3xl shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:scale-110 hover:bg-brand-400 hover:text-white transition-all duration-300 group">
+        <i class="fa-brands fa-whatsapp group-hover:rotate-12 transition-transform"></i>
     </a>
 
-    <footer class="border-t border-white/5 py-10 bg-dark text-center">
-        <div class="flex items-center justify-center gap-2 mb-4 opacity-50">
-            <i class="fa-solid fa-bolt text-xl"></i>
-            <span class="font-extrabold tracking-tighter text-xl">FaridStore</span>
-        </div>
-        <p class="text-gray-500 text-sm font-medium">Pekanbaru, Riau. © 2026 All rights reserved.</p>
+    <footer class="border-t border-white/10 py-12 bg-[#020202] text-center mt-10">
+        <h2 class="font-heading font-black text-3xl text-white mb-2 opacity-50">FaridStore</h2>
+        <p class="text-gray-600 text-sm font-medium">Your Gadget Solution • Pekanbaru, Indonesia.<br>© 2026 All rights reserved.</p>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Animasi AOS
         AOS.init({ once: true, offset: 50, duration: 800 });
 
-        // Efek Blur Navbar saat scroll
+        // Navbar blur behavior on scroll
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
-            if (window.scrollY > 20) {
-                nav.classList.add('glass-nav', 'py-0');
-                nav.classList.remove('py-2');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-black/80', 'border-white/20');
+                nav.classList.remove('bg-black/40');
             } else {
-                nav.classList.remove('glass-nav', 'py-0');
-                nav.classList.add('py-2');
+                nav.classList.remove('bg-black/80', 'border-white/20');
+                nav.classList.add('bg-black/40');
             }
         });
 
-        // ⚠️ NOMOR WHATSAPP ANDA SUDAH TERTANAM DI SINI
+        // ⚠️ Nomor WhatsApp Anda
         const waNumber = "6281371127121"; 
         let globalProducts = [];
 
@@ -209,7 +213,7 @@
             const errorState = document.getElementById('error-state');
 
             try {
-                const response = await fetch('/api/products'); // Pastikan Vercel Backend nyala
+                const response = await fetch('/api/products');
                 if (!response.ok) throw new Error('API Error');
                 
                 globalProducts = await response.json();
@@ -239,33 +243,34 @@
             container.classList.remove('hidden');
 
             products.forEach((product, index) => {
-                const waText = encodeURIComponent(`Halo Farid Store, saya ingin mengamankan unit *${product.nama}* dengan harga *${product.harga}*. Apakah bisa proses sekarang?`);
+                const waText = encodeURIComponent(`Halo Farid Store, saya ingin info detail untuk unit *${product.nama}* (Rp ${product.harga}). Apakah bisa dijemput ke toko atau dikirim?`);
                 
                 const card = document.createElement('div');
-                card.className = "glass-card rounded-[2rem] p-3 flex flex-col group hover:-translate-y-1 transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.05)] hover:border-white/20";
+                card.className = "glass-panel p-2 rounded-[2rem] flex flex-col group hover:-translate-y-2 transition-transform duration-500 border border-white/5 hover:border-white/20";
                 card.setAttribute('data-aos', 'fade-up');
                 card.setAttribute('data-aos-delay', (Math.min(index * 50, 300)).toString());
 
                 card.innerHTML = `
-                    <div class="relative h-60 w-full rounded-3xl overflow-hidden bg-zinc-900 mb-4">
-                        <img src="${product.gambar}" alt="${product.nama}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90">
-                        <div class="absolute top-3 left-3 bg-black/60 backdrop-blur-md border border-white/10 text-white text-[10px] font-bold uppercase px-3 py-1.5 rounded-full">
-                            ${product.kategori_device}
+                    <div class="relative h-64 w-full rounded-[1.5rem] overflow-hidden bg-zinc-900/50 mb-5">
+                        <img src="${product.gambar}" alt="${product.nama}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 opacity-80 group-hover:opacity-100">
+                        
+                        <div class="absolute top-3 left-3 flex gap-2">
+                            <span class="bg-black/70 backdrop-blur-md border border-white/10 text-white text-[10px] font-bold tracking-wider uppercase px-3 py-1.5 rounded-full">
+                                ${product.kategori_device}
+                            </span>
                         </div>
                     </div>
                     
-                    <div class="px-3 pb-3 flex-grow flex flex-col">
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="flex h-2 w-2 rounded-full bg-green-500"></span>
-                            <span class="text-xs font-semibold text-gray-400 tracking-wide uppercase">${product.kondisi_barang}</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-6 line-clamp-2 leading-tight tracking-tight">${product.nama}</h3>
+                    <div class="px-4 pb-4 flex-grow flex flex-col">
+                        <p class="text-xs font-bold text-brand-400 tracking-wide uppercase mb-1">${product.kondisi_barang}</p>
+                        <h3 class="font-heading text-xl font-bold text-white mb-6 line-clamp-2 leading-tight">${product.nama}</h3>
                         
-                        <div class="mt-auto flex justify-between items-center">
+                        <div class="mt-auto flex justify-between items-end border-t border-white/10 pt-4">
                             <div>
-                                <div class="text-2xl font-extrabold text-white tracking-tighter">${product.harga}</div>
+                                <p class="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-0.5">Harga</p>
+                                <div class="text-xl sm:text-2xl font-black text-white tracking-tighter">${product.harga}</div>
                             </div>
-                            <a href="https://wa.me/${waNumber}?text=${waText}" target="_blank" class="w-12 h-12 bg-white text-black rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors">
+                            <a href="https://wa.me/${waNumber}?text=${waText}" target="_blank" class="w-12 h-12 bg-white/10 hover:bg-white text-white hover:text-black rounded-full flex items-center justify-center transition-colors">
                                 <i class="fa-solid fa-arrow-right -rotate-45 text-lg"></i>
                             </a>
                         </div>
@@ -275,19 +280,15 @@
             });
         }
 
-        // Filter Function for Sleek UI
         window.filterKategori = function(kategori, btnElement) {
-            // Reset style
             document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.remove('bg-white', 'text-black', 'shadow-md', 'active');
-                btn.classList.add('text-gray-400', 'hover:text-white');
+                btn.classList.remove('bg-white', 'text-black', 'shadow-lg', 'active');
+                btn.classList.add('glass-pill', 'text-gray-300', 'hover:text-white');
             });
             
-            // Set active style
-            btnElement.classList.remove('text-gray-400', 'hover:text-white');
-            btnElement.classList.add('bg-white', 'text-black', 'shadow-md', 'active');
+            btnElement.classList.remove('glass-pill', 'text-gray-300', 'hover:text-white');
+            btnElement.classList.add('bg-white', 'text-black', 'shadow-lg', 'active');
 
-            // Filter data
             if (kategori === 'Semua') {
                 renderProducts(globalProducts);
             } else {
@@ -296,7 +297,6 @@
             }
         };
 
-        // Initialize
         document.addEventListener('DOMContentLoaded', fetchProducts);
     </script>
 </body>
