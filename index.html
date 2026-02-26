@@ -84,9 +84,8 @@
         .card-sold { filter: grayscale(0.7); opacity: 0.8; }
         .card-sold:hover { filter: grayscale(0.2); opacity: 1; }
 
-        /* --- NEW: Sold Marquee & Stamp Style --- */
         .sold-marquee-container { overflow: hidden; padding: 2rem 0; background: linear-gradient(to right, transparent, rgba(239, 68, 68, 0.03), transparent); }
-        .sold-marquee-content { display: flex; gap: 1.5rem; animation: marquee-sold 180s linear infinite; width: max-content; }
+        .sold-marquee-content { display: flex; gap: 1.5rem; animation: marquee-sold 160s linear infinite; width: max-content; }
         .sold-marquee-content:hover { animation-play-state: paused; }
         @keyframes marquee-sold { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
@@ -381,7 +380,7 @@
                         <button onclick="filterKategori('Apple', event)" class="filter-btn glass-pill text-gray-400 hover:text-white px-6 py-3 rounded-2xl font-bold text-sm whitespace-nowrap transition-all">Apple</button>
                         <button onclick="filterKategori('Android', event)" class="filter-btn glass-pill text-gray-400 hover:text-white px-6 py-3 rounded-2xl font-bold text-sm whitespace-nowrap transition-all">Android</button>
                         <button onclick="filterKategori('Laptop', event)" class="filter-btn glass-pill text-gray-400 hover:text-white px-6 py-3 rounded-2xl font-bold text-sm whitespace-nowrap transition-all">Mac/PC</button>
-                        <button onclick="filterKategori('Terjual', event)" class="filter-btn glass-pill text-gray-400 hover:text-white px-6 py-3 rounded-2xl font-bold text-sm whitespace-nowrap transition-all">Terjual</button>
+                        <button onclick="filterKategori('Sold', event)" class="filter-btn glass-pill text-gray-400 hover:text-white px-6 py-3 rounded-2xl font-bold text-sm whitespace-nowrap transition-all border-red-500/20">Terjual</button>
                     </div>
                 </div>
             </div>
@@ -410,12 +409,12 @@
                         <span>Buka: 08.00 - 23.30 WIB</span>
                     </div>
                 </div>
-                <a href="http://googleusercontent.com/maps.google.com/4" target="_blank" class="inline-flex mt-10 bg-white/5 border border-white/10 px-8 py-4 rounded-2xl font-bold transition-all gap-3 items-center hover:bg-white/10">
+                <a href="https://maps.google.com" target="_blank" class="inline-flex mt-10 bg-white/5 border border-white/10 px-8 py-4 rounded-2xl font-bold transition-all gap-3 items-center hover:bg-white/10">
                     <i class="fa-solid fa-map-location-dot"></i> Buka Google Maps
                 </a>
             </div>
             <div class="flex-1 w-full h-80 rounded-[2rem] overflow-hidden grayscale contrast-125 opacity-40 border border-white/10">
-                <iframe src="http://googleusercontent.com/maps.google.com/5" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                <iframe src="https://www.google.com/maps/embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
     </section>
@@ -488,7 +487,6 @@
                 globalProducts = data.items || [];
                 
                 loading.classList.add('hidden');
-                
                 calculateInsights(globalProducts);
                 renderProducts(globalProducts);
                 renderSoldSlider(globalProducts);
@@ -503,11 +501,8 @@
         function renderSoldSlider(allItems) {
             const soldOnly = allItems.filter(p => p.status === 'sold');
             const marqueeList = document.getElementById('sold-marquee-list');
-            
             if (soldOnly.length === 0) return;
-
-            const displayItems = [...soldOnly, ...soldOnly, ...soldOnly]; 
-
+            const displayItems = [...soldOnly, ...soldOnly, ...soldOnly];
             marqueeList.innerHTML = displayItems.map(item => `
                 <div class="sold-card premium-hover">
                     <div class="stamp-sold">SOLD</div>
@@ -524,11 +519,9 @@
         }
 
         function calculateInsights(allItems) {
-            const now = new Date();
             const thisMonth = 2; 
             const thisYear = 2026;
             const lastMonth = 1;
-
             let countThisMonth = 0;
             let countLastMonth = 0;
             const brandsStats = {};
@@ -537,7 +530,6 @@
             soldOnly.forEach(item => {
                 const b = getBrandCategory(item.name);
                 brandsStats[b] = (brandsStats[b] || 0) + 1;
-
                 const dt = parseDate(item.soldAt);
                 if (dt) {
                     if (dt.m === thisMonth && dt.y === thisYear) countThisMonth++;
@@ -546,41 +538,33 @@
             });
 
             const sortedBrands = Object.keys(brandsStats).sort((a,b) => brandsStats[b] - brandsStats[a]);
-            const topBrand = sortedBrands[0] || "APPLE";
-            document.getElementById('best-seller-name').innerText = topBrand;
-
+            document.getElementById('best-seller-name').innerText = sortedBrands[0] || "APPLE";
             document.getElementById('sales-this-month').innerHTML = `${countThisMonth} <span class="text-lg font-normal text-gray-500 uppercase">Unit</span>`;
             
             const diff = countThisMonth - countLastMonth;
             const trendText = document.getElementById('sales-vs-last');
-            if (diff >= 0) {
-                trendText.innerHTML = `<span class="text-green-400 font-bold">↑ ${diff} unit</span> lebih banyak dari bulan lalu`;
-            } else {
-                trendText.innerHTML = `<span class="text-gray-400 font-bold">↓ ${Math.abs(diff)} unit</span> dari bulan lalu`;
-            }
+            trendText.innerHTML = diff >= 0 ? `<span class="text-green-400 font-bold">↑ ${diff} unit</span> lebih banyak` : `<span class="text-gray-400 font-bold">↓ ${Math.abs(diff)} unit</span> dari bulan lalu`;
 
             const recent = soldOnly.slice(-3).reverse();
-            document.getElementById('recent-sold-list').innerHTML = recent.map(item => `
-                <div class="flex items-center gap-2 animate-pulse">
-                    <i class="fa-solid fa-circle-check text-green-500"></i> ${item.name}
-                </div>
-            `).join('');
+            document.getElementById('recent-sold-list').innerHTML = recent.map(item => `<div class="flex items-center gap-2 animate-pulse"><i class="fa-solid fa-circle-check text-green-500"></i> ${item.name}</div>`).join('');
         }
 
+        // --- REVISI TOTAL: LOGIKA FILTERING ---
         function searchProducts() {
             const query = document.getElementById('searchInput').value.toLowerCase();
             const results = globalProducts.filter(p => {
                 const matchName = p.name.toLowerCase().includes(query);
                 
-                // --- LOGIKA REVISI FILTER TERJUAL ---
-                if (currentKategori === "Terjual") {
-                    // Di tab 'Terjual', tampilkan hanya yang sudah laku
+                // Logika Baru: Jika kategori 'Sold' dipilih, hanya tampilkan yang statusnya sold
+                if (currentKategori === "Sold") {
                     return matchName && p.status === 'sold';
-                } else {
-                    // Di tab lain, SEMBUNYIKAN unit laku agar tidak mengganggu buyer
-                    const matchKategori = currentKategori === "Semua" || p.kategori_device === currentKategori;
-                    return matchName && matchKategori && p.status !== 'sold';
                 }
+
+                // Jika kategori lain dipilih (Semua/Apple/Android/Laptop), JANGAN tampilkan yang sold
+                const isNotSold = p.status !== 'sold';
+                const matchKategori = currentKategori === "Semua" || p.kategori_device === currentKategori;
+                
+                return matchName && matchKategori && isNotSold;
             });
             renderProducts(results);
         }
