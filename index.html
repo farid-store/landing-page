@@ -381,6 +381,7 @@
                         <button onclick="filterKategori('Apple', event)" class="filter-btn glass-pill text-gray-400 hover:text-white px-6 py-3 rounded-2xl font-bold text-sm whitespace-nowrap transition-all">Apple</button>
                         <button onclick="filterKategori('Android', event)" class="filter-btn glass-pill text-gray-400 hover:text-white px-6 py-3 rounded-2xl font-bold text-sm whitespace-nowrap transition-all">Android</button>
                         <button onclick="filterKategori('Laptop', event)" class="filter-btn glass-pill text-gray-400 hover:text-white px-6 py-3 rounded-2xl font-bold text-sm whitespace-nowrap transition-all">Mac/PC</button>
+                        <button onclick="filterKategori('Terjual', event)" class="filter-btn glass-pill text-gray-400 hover:text-white px-6 py-3 rounded-2xl font-bold text-sm whitespace-nowrap transition-all">Terjual</button>
                     </div>
                 </div>
             </div>
@@ -454,7 +455,6 @@
         let globalProducts = [];
         let currentKategori = "Semua";
 
-        // --- REVISI: LOGIKA PENGELOMPOKAN BRAND CERDAS ---
         function getBrandCategory(itemName) {
             const lower = itemName.toLowerCase();
             if (lower.includes('iphone') || lower.includes('apple') || lower.includes('ipad') || lower.includes('ip ')) return 'APPLE';
@@ -489,10 +489,8 @@
                 
                 loading.classList.add('hidden');
                 
-                // Kalkulasi Insight Statistik & Render
                 calculateInsights(globalProducts);
                 renderProducts(globalProducts);
-                // NEW: Render Sold Slider
                 renderSoldSlider(globalProducts);
 
             } catch (error) {
@@ -502,15 +500,13 @@
             }
         }
 
-        // NEW: Fungsi khusus merender Slider Produk Terjual (Unlimited Marquee)
         function renderSoldSlider(allItems) {
             const soldOnly = allItems.filter(p => p.status === 'sold');
             const marqueeList = document.getElementById('sold-marquee-list');
             
             if (soldOnly.length === 0) return;
 
-            // Gandakan item untuk efek unlimited seamless
-            const displayItems = [...soldOnly, ...soldOnly, ...soldOnly]; // Repeat 3x for safety
+            const displayItems = [...soldOnly, ...soldOnly, ...soldOnly]; 
 
             marqueeList.innerHTML = displayItems.map(item => `
                 <div class="sold-card premium-hover">
@@ -527,10 +523,9 @@
             `).join('');
         }
 
-        // --- REVISI TOTAL: CALCULATE INSIGHTS MENGGUNAKAN LOGIKA BRAND BARU ---
         function calculateInsights(allItems) {
             const now = new Date();
-            const thisMonth = 2; // Data kamu didominasi Februari 2026
+            const thisMonth = 2; 
             const thisYear = 2026;
             const lastMonth = 1;
 
@@ -540,11 +535,9 @@
             const soldOnly = allItems.filter(p => p.status === 'sold');
 
             soldOnly.forEach(item => {
-                // Gunakan fungsi getBrandCategory Farid
                 const b = getBrandCategory(item.name);
                 brandsStats[b] = (brandsStats[b] || 0) + 1;
 
-                // Hitung Penjualan Bulanan
                 const dt = parseDate(item.soldAt);
                 if (dt) {
                     if (dt.m === thisMonth && dt.y === thisYear) countThisMonth++;
@@ -552,12 +545,10 @@
                 }
             });
 
-            // 1. UI Update: Best Seller Brand Berdasarkan Frekuensi Terbanyak
             const sortedBrands = Object.keys(brandsStats).sort((a,b) => brandsStats[b] - brandsStats[a]);
             const topBrand = sortedBrands[0] || "APPLE";
             document.getElementById('best-seller-name').innerText = topBrand;
 
-            // 2. UI Update: Total Penjualan & Trend
             document.getElementById('sales-this-month').innerHTML = `${countThisMonth} <span class="text-lg font-normal text-gray-500 uppercase">Unit</span>`;
             
             const diff = countThisMonth - countLastMonth;
@@ -568,7 +559,6 @@
                 trendText.innerHTML = `<span class="text-gray-400 font-bold">↓ ${Math.abs(diff)} unit</span> dari bulan lalu`;
             }
 
-            // 3. UI Update: Recent Sold List (3 Unit Terakhir)
             const recent = soldOnly.slice(-3).reverse();
             document.getElementById('recent-sold-list').innerHTML = recent.map(item => `
                 <div class="flex items-center gap-2 animate-pulse">
@@ -581,8 +571,16 @@
             const query = document.getElementById('searchInput').value.toLowerCase();
             const results = globalProducts.filter(p => {
                 const matchName = p.name.toLowerCase().includes(query);
-                const matchKategori = currentKategori === "Semua" || p.kategori_device === currentKategori;
-                return matchName && matchKategori;
+                
+                // --- LOGIKA REVISI FILTER TERJUAL ---
+                if (currentKategori === "Terjual") {
+                    // Di tab 'Terjual', tampilkan hanya yang sudah laku
+                    return matchName && p.status === 'sold';
+                } else {
+                    // Di tab lain, SEMBUNYIKAN unit laku agar tidak mengganggu buyer
+                    const matchKategori = currentKategori === "Semua" || p.kategori_device === currentKategori;
+                    return matchName && matchKategori && p.status !== 'sold';
+                }
             });
             renderProducts(results);
         }
@@ -601,10 +599,7 @@
             emptyState.classList.add('hidden');
             container.classList.remove('hidden');
 
-            // Sort: Prioritaskan Stok Ready di atas
-            const sorted = [...products].sort((a,b) => (a.status === 'sold' ? 1 : -1));
-
-            sorted.forEach((product) => {
+            products.forEach((product) => {
                 const isSold = product.status === 'sold';
                 const card = document.createElement('div');
                 card.className = `glass-panel p-8 rounded-[2rem] flex flex-col relative premium-hover cursor-pointer ${isSold ? 'card-sold' : ''}`;
