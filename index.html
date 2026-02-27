@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Farid Store | Premium Gadget Solution</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif']
+                    },
+                    colors: {
+                        dark: '#020202', 
+                        surface: '#0a0a0a', 
+                        brand: { 300: '#7dd3fc', 400: '#38bdf8', 500: '#0ea5e9', 600: '#0284c7' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Base Setup - Anti Bocor / Anti Mepet */
+        html, body { background-color: #020202; color: #f8fafc; overflow-x: hidden; width: 100%; position: relative; }
+        
+        /* Modern Floating Glass (Clean) */
+        .glass-pill { background: rgba(10, 10, 10, 0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.08); }
+        .glass-panel { background: linear-gradient(145deg, rgba(25,25,25,0.4) 0%, rgba(10,10,10,0.8) 100%); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.05); }
+        
+        /* Text Gradients */
+        .text-glow { background: linear-gradient(to right, #ffffff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .text-accent { background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        /* Ambient Backgrounds */
+        .ambient-glow-1 { position: absolute; top: -10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(14,165,233,0.12) 0%, rgba(0,0,0,0) 60%); filter: blur(60px); z-index: -1; animation: pulse 8s infinite alternate; }
+        .ambient-glow-2 { position: absolute; bottom: 20%; right: -10%; width: 40vw; height: 40vw; background: radial-gradient(circle, rgba(129,140,248,0.08) 0%, rgba(0,0,0,0) 60%); filter: blur(60px); z-index: -1; animation: pulse 10s infinite alternate-reverse; }
+        
+        @keyframes pulse { 0% { opacity: 0.5; transform: scale(0.9); } 100% { opacity: 1; transform: scale(1.1); } }
+
+        /* Marquee Slider Berjalan */
+        .marquee-container { overflow: hidden; white-space: nowrap; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); background: #050505; padding: 1rem 0; width: 100%; }
+        .marquee-content { display: inline-flex; gap: 4rem; animation: marquee 25s linear infinite; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* Loader */
+        .spinner { width: 40px; height: 40px; border: 3px solid rgba(255,255,255,0.1); border-radius: 50%; border-top-color: #0ea5e9; animation: spin 1s ease-in-out infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        
+        /* Hide Scrollbar */
+        .hide-scroll::-webkit-scrollbar { display: none; }
+        .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Card Hover Effect */
+        .premium-hover { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(255,255,255,0.05); }
+        .premium-hover:hover { transform: translateY(-4px); border-color: rgba(56, 189, 248, 0.3); box-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.15); }
+
+        .modal-blur { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,0.8); backdrop-filter: blur(12px); align-items: center; justify-content: center; padding: 20px; }
+        .modal-blur.active { display: flex; }
+
+        /* Label Sold Animatif */
+        .sold-badge {
+            background: linear-gradient(135deg, #ef4444 0%, #7f1d1d 100%);
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+            animation: sold-pulse 2s infinite;
+        }
+        @keyframes sold-pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.85; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .card-sold { filter: grayscale(0.7); opacity: 0.8; }
+        .card-sold:hover { filter: grayscale(0.2); opacity: 1; }
+
+        /* Sold Marquee & Stamp Style */
+        .sold-marquee-container { overflow: hidden; padding: 2rem 0; background: linear-gradient(to right, transparent, rgba(239, 68, 68, 0.03), transparent); }
+        .sold-marquee-content { display: flex; gap: 1.5rem; animation: marquee-sold 180s linear infinite; width: max-content; }
+        .sold-marquee-content:hover { animation-play-state: paused; }
+        @keyframes marquee-sold { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        .sold-card { width: 280px; flex-shrink: 0; background: rgba(15, 15, 15, 0.6); border: 1px solid rgba(255,255,255,0.03); border-radius: 1.5rem; padding: 1.5rem; position: relative; overflow: hidden; backdrop-filter: blur(10px); }
+
+        .stamp-sold { position: absolute; top: 10px; right: -15px; background: transparent; border: 3px solid #ef4444; color: #ef4444; padding: 2px 15px; font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 14px; text-transform: uppercase; transform: rotate(15deg); opacity: 0.8; border-radius: 4px; box-shadow: 0 0 10px rgba(239, 68, 68, 0.2); pointer-events: none; z-index: 5; }
+        .stamp-sold::after { content: "VERIFIED"; position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%); font-size: 8px; background: #ef4444; color: black; padding: 0 4px; }
+
+        /* Ticker Animation */
+        .ticker-container { height: 56px; position: relative; overflow: hidden; margin-top: 1rem; }
+        .ticker-item { position: absolute; width: 100%; left: 0; top: 0; opacity: 0; transform: translateY(20px) scale(0.95); animation: tickerPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+        .ticker-item.exit { animation: tickerExit 0.4s ease-in forwards; }
+        @keyframes tickerPop { 0% { opacity: 0; transform: translateY(20px) scale(0.95); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+        @keyframes tickerExit { 0% { opacity: 1; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(-20px) scale(0.95); } }
+
+        /* Service Stacked Cards */
+        .perspective-1000 { perspective: 1000px; }
+        .service-card-stack { transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); transform-origin: center right; }
+
+        /* NEW: Team Accordion Hover Effect */
+        @media (min-width: 768px) {
+            .team-accordion { flex-direction: row; height: 420px; }
+            .team-card { flex: 1; transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.3s ease; }
+            .team-card:hover { flex: 2.5; }
+        }
+        @media (max-width: 767px) {
+            .team-accordion { flex-direction: column; height: 600px; }
+            .team-card { flex: 1; transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+            .team-card:hover { flex: 2; }
+        }
+        .team-content { opacity: 0; max-height: 0; transition: opacity 0.5s ease 0.2s, max-height 0.5s ease; overflow: hidden; }
+        .team-card:hover .team-content { opacity: 1; max-height: 100px; }
+        
+        .slider-control { display: none !important; }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-500 selection:text-white">
+
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+
+    <div id="productModal" class="modal-blur" onclick="closeModal(event)">
+        <div class="glass-panel w-full max-w-xl rounded-[2.5rem] p-8 md:p-12 relative" onclick="event.stopPropagation()">
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-gray-400 hover:text-white transition-colors"><i class="fa-solid fa-xmark text-2xl"></i></button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <div class="fixed w-full top-6 z-50 px-4 sm:px-6 flex justify-center pointer-events-none">
+        <nav class="glass-pill rounded-full px-5 py-2.5 sm:px-6 sm:py-3 flex justify-between items-center w-full max-w-5xl pointer-events-auto shadow-[0_10px_40px_rgba(0,0,0,0.5)] transition-all duration-300" id="navbar">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-black font-bold text-sm">FS</div>
+                <span class="font-heading font-bold text-xl tracking-tight text-white">Farid<span class="text-gray-400">Store</span></span>
+            </div>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#katalog" class="text-sm font-semibold text-gray-300 hover:text-white transition">Inventory</a>
+                <a href="#bento" class="text-sm font-semibold text-gray-300 hover:text-white transition">Keunggulan</a>
+                <a href="#services" class="text-sm font-semibold text-gray-300 hover:text-white transition">Servis</a>
+                <a href="#team-partner" class="text-sm font-semibold text-gray-300 hover:text-white transition">Tim</a>
+            </div>
+            <a href="https://wa.me/6281371127121" target="_blank" class="bg-brand-500 hover:bg-brand-400 text-white text-sm font-bold px-4 py-2 sm:px-5 sm:py-2.5 rounded-full transition-transform hover:scale-105 flex items-center gap-2 pointer-events-auto">
+                <i class="fa-brands fa-whatsapp text-lg"></i> <span class="hidden sm:inline">Chat Admin</span>
+            </a>
+        </nav>
+    </div>
+
+    <section id="home" class="relative min-h-[90vh] flex items-center pt-32 pb-10 px-6 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center w-full">
+            <div data-aos="fade-right" data-aos-duration="1200" class="text-center lg:text-left">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-brand-500/30 bg-brand-500/10 mb-8 mx-auto lg:mx-0">
+                    <span class="w-2 h-2 rounded-full bg-brand-400 animate-pulse"></span>
+                    <span class="text-xs font-bold text-brand-300 tracking-wider uppercase">Pekanbaru Ready Stock</span>
+                </div>
+                
+                <h1 class="font-heading text-5xl md:text-6xl lg:text-7xl font-black leading-[1.05] mb-6 text-glow tracking-tighter">
+                    Teknologi <br>
+                    Premium.<br>
+                    <span class="text-accent">Harga Rasional.</span>
+                </h1>
+                
+                <p class="text-base md:text-lg text-gray-400 mb-10 max-w-xl mx-auto lg:mx-0 font-medium leading-relaxed">
+                    Eksplorasi jajaran smartphone dan laptop pilihan di Pekanbaru. Kami memastikan setiap perangkat yang Anda beli adalah investasi teknologi terbaik tanpa kompromi.
+                </p>
+                
+                <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
+                    <a href="#katalog" class="bg-white text-black px-8 py-4 rounded-full font-bold text-base hover:bg-gray-200 transition-colors flex items-center gap-3">
+                        Lihat Stok <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="relative hidden lg:block h-[500px]" data-aos="fade-left" data-aos-duration="1200">
+                <div class="absolute right-0 top-10 w-3/4 h-[400px] rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl z-10 transform -rotate-6 hover:rotate-0 transition-transform duration-700">
+                    <img src="https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=800&q=80" alt="Gadget Showcase" class="w-full h-full object-cover">
+                </div>
+                <div class="absolute left-0 bottom-0 w-2/3 h-[250px] rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl z-20 transform rotate-3 hover:rotate-0 transition-transform duration-700">
+                    <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=800&q=80" alt="Laptop Showcase" class="w-full h-full object-cover">
+                </div>
+                <div class="absolute top-1/2 -left-10 z-30 glass-pill px-5 py-3 rounded-2xl flex items-center gap-4 animate-bounce" style="animation-duration: 3s;">
+                    <div class="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center text-green-400"><i class="fa-solid fa-shield-check text-xl"></i></div>
+                    <div>
+                        <p class="text-white font-bold text-sm">100% Original</p>
+                        <p class="text-gray-400 text-xs">Lolos Uji Kualitas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="insights" class="py-10 px-6 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="glass-panel rounded-[2rem] p-8 relative overflow-hidden group premium-hover" data-aos="fade-up">
+                <div class="relative z-10">
+                    <p class="text-brand-400 font-bold text-xs uppercase tracking-widest mb-2">Best Seller Brand</p>
+                    <h3 id="best-seller-name" class="text-3xl font-black text-white">Memuat...</h3>
+                    <p class="text-gray-500 text-sm mt-2">Kategori brand paling diminati pelanggan.</p>
+                </div>
+                <i class="fa-solid fa-fire absolute -right-4 -bottom-4 text-white/5 text-9xl group-hover:text-brand-500/10 transition-colors"></i>
+            </div>
+
+            <div class="glass-panel rounded-[2rem] p-8 relative overflow-hidden group premium-hover" data-aos="fade-up" data-aos-delay="100">
+                <div class="relative z-10">
+                    <p class="text-purple-400 font-bold text-xs uppercase tracking-widest mb-2">Terjual Bulan Ini</p>
+                    <h3 id="sales-this-month" class="text-4xl font-black text-white">0 <span class="text-lg font-normal text-gray-500 uppercase">Unit</span></h3>
+                    <p id="sales-vs-last" class="text-gray-500 text-sm mt-2">Menghitung statistik...</p>
+                </div>
+                <i class="fa-solid fa-chart-line absolute -right-4 -bottom-4 text-white/5 text-9xl group-hover:text-purple-500/10 transition-colors"></i>
+            </div>
+
+            <div class="glass-panel rounded-[2rem] p-8 relative overflow-hidden group premium-hover" data-aos="fade-up" data-aos-delay="200">
+                <div class="relative z-10">
+                    <p class="text-green-400 font-bold text-xs uppercase tracking-widest mb-2">Baru Saja Terjual</p>
+                    <div id="recent-sold-list" class="space-y-2 mt-3 text-xs font-bold text-gray-300"></div>
+                </div>
+                <i class="fa-solid fa-check-double absolute -right-4 -bottom-4 text-white/5 text-9xl group-hover:text-green-500/10 transition-colors"></i>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 border-t border-white/5 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 mb-8 flex items-center justify-between">
+            <div>
+                <h3 class="text-2xl font-black text-white font-heading tracking-tight">Wall of Proof</h3>
+                <p class="text-gray-500 text-sm">Unit yang telah menemukan pemilik barunya.</p>
+            </div>
+            <div class="hidden md:block">
+                <span class="bg-red-500/10 text-red-500 border border-red-500/20 px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest">Live Updates</span>
+            </div>
+        </div>
+        <div class="sold-marquee-container">
+            <div id="sold-marquee-list" class="sold-marquee-content"></div>
+        </div>
+    </section>
+
+    <div class="marquee-container shadow-[0_0_30px_rgba(56,189,248,0.02)]">
+        <div class="marquee-content text-brand-400/80 font-bold text-sm tracking-[0.2em] uppercase items-center">
+            <span>✦ 100% Original Unit</span>
+            <span>✦ Garansi Personal Toko</span>
+            <span>✦ Terima Tukar Tambah</span>
+            <span>✦ Siap COD Pekanbaru</span>
+            <span>✦ Pengiriman Aman Nasional</span>
+            <span>✦ 100% Original Unit</span>
+            <span>✦ Garansi Personal Toko</span>
+        </div>
+    </div>
+
+    <section id="platform" class="py-16 px-6 max-w-7xl mx-auto">
+        <div class="text-center mb-10" data-aos="fade-up">
+            <h3 class="text-sm font-bold text-gray-500 tracking-widest uppercase">Official Platform Kami</h3>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4" data-aos="fade-up" data-aos-delay="100">
+            <a href="https://id.shp.ee/ieSggGu" target="_blank" class="glass-panel p-6 rounded-3xl flex flex-col items-center justify-center gap-3 premium-hover group">
+                <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-orange-500/20 transition-colors border border-white/5">
+                    <i class="fa-solid fa-bag-shopping text-2xl text-gray-400 group-hover:text-orange-500 transition-colors"></i>
+                </div>
+                <span class="text-sm font-bold text-gray-300 group-hover:text-white transition-colors">Shopee</span>
+            </a>
+            <a href="https://instagram.com/scv.farid1717_" target="_blank" class="glass-panel p-6 rounded-3xl flex flex-col items-center justify-center gap-3 premium-hover group">
+                <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-pink-500/20 transition-colors border border-white/5">
+                    <i class="fa-brands fa-instagram text-2xl text-gray-400 group-hover:text-pink-500 transition-colors"></i>
+                </div>
+                <span class="text-sm font-bold text-gray-300 group-hover:text-white transition-colors">Instagram</span>
+            </a>
+            <a href="https://www.facebook.com/marketplace/profile/100025975151176" target="_blank" class="glass-panel p-6 rounded-3xl flex flex-col items-center justify-center gap-3 premium-hover group">
+                <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-blue-500/20 transition-colors border border-white/5">
+                    <i class="fa-brands fa-facebook-f text-2xl text-gray-400 group-hover:text-blue-500 transition-colors"></i>
+                </div>
+                <span class="text-sm font-bold text-gray-300 group-hover:text-white transition-colors text-center">Facebook [1]</span>
+            </a>
+            <a href="https://www.facebook.com/marketplace/profile/100012652447480" target="_blank" class="glass-panel p-6 rounded-3xl flex flex-col items-center justify-center gap-3 premium-hover group">
+                <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-blue-500/20 transition-colors border border-white/5">
+                    <i class="fa-solid fa-store text-2xl text-gray-400 group-hover:text-blue-500 transition-colors"></i>
+                </div>
+                <span class="text-sm font-bold text-gray-300 group-hover:text-white transition-colors text-center">Facebook [2]</span>
+            </a>
+        </div>
+    </section>
+
+    <section id="bento" class="py-16 px-6 max-w-7xl mx-auto border-t border-white/5">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <h2 class="font-heading text-4xl md:text-5xl font-bold mb-4">Mengapa Farid Store?</h2>
+            <p class="text-gray-400 font-medium">Dedikasi kami untuk pengalaman berbelanja terbaik Anda.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-5 auto-rows-auto" data-aos="fade-up" data-aos-delay="100">
+            <div class="glass-panel rounded-[2rem] p-8 md:p-10 md:col-span-2 md:row-span-2 flex flex-col justify-between relative overflow-hidden group premium-hover">
+                <div class="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center text-white text-2xl border border-white/10 group-hover:scale-110 transition-transform duration-500 mb-8 z-10">
+                    <i class="fa-solid fa-magnifying-glass-chart"></i>
+                </div>
+                <div class="z-10 mt-auto">
+                    <h3 class="font-heading text-2xl md:text-3xl font-bold text-white mb-4 leading-tight">Quality Control <br>Super Ketat.</h3>
+                    <p class="text-gray-400 max-w-md text-base leading-relaxed">Setiap unit baik baru maupun second dipastikan berfungsi 100% normal tanpa kendala tersembunyi. Kepercayaan Anda adalah prioritas kami.</p>
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-tr from-brand-500/10 to-transparent z-0 pointer-events-none"></div>
+            </div>
+            
+            <div class="glass-panel rounded-[2rem] p-8 flex flex-col justify-between relative overflow-hidden group premium-hover min-h-[220px]">
+                <div class="w-14 h-14 rounded-full bg-brand-500/10 flex items-center justify-center text-brand-400 text-xl border border-brand-500/20 group-hover:scale-110 transition-transform duration-500 mb-8 z-10">
+                    <i class="fa-solid fa-handshake"></i>
+                </div>
+                <div class="z-10 mt-auto">
+                    <h3 class="font-heading text-2xl font-bold text-white mb-2">Tukar Tambah</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Upgrade gadget lama Anda dengan harga potong yang masuk akal dan adil.</p>
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-tr from-brand-400/5 to-transparent z-0 pointer-events-none"></div>
+            </div>
+
+            <div class="glass-panel rounded-[2rem] p-8 flex flex-col justify-between relative overflow-hidden group premium-hover min-h-[220px]">
+                <div class="w-14 h-14 rounded-full bg-purple-500/10 flex items-center justify-center text-purple-400 text-xl border border-purple-500/20 group-hover:scale-110 transition-transform duration-500 mb-8 z-10">
+                    <i class="fa-solid fa-truck-fast"></i>
+                </div>
+                <div class="z-10 mt-auto">
+                    <h3 class="font-heading text-2xl font-bold text-white mb-2">Pengiriman Aman</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Melayani COD area Pekanbaru dan pengiriman asuransi ke seluruh nusantara.</p>
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-tr from-purple-400/5 to-transparent z-0 pointer-events-none"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="our-story" class="py-20 px-6 max-w-7xl mx-auto border-t border-white/5 relative">
+        <div class="glass-panel rounded-[3rem] p-10 md:p-16 relative overflow-hidden group" data-aos="zoom-in">
+            <div class="absolute -right-32 -top-32 w-[500px] h-[500px] bg-brand-500/10 rounded-full blur-[100px] animate-pulse pointer-events-none"></div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 relative z-10 items-center">
+                <div>
+                    <span class="text-brand-400 font-bold text-xs uppercase tracking-[0.2em] mb-4 block">The Journey</span>
+                    <h2 class="font-heading text-4xl md:text-5xl font-black text-white mb-6 leading-tight">
+                        Berawal dari <span class="text-gray-500">Keresahan</span>,<br>
+                        Berakhir Jadi <span class="text-brand-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.4)]">Solusi.</span>
+                    </h2>
+                    <p class="text-gray-400 leading-relaxed mb-8 text-lg">
+                        Berdiri di Pekanbaru, Farid Store lahir dari satu keresahan sederhana: betapa sulitnya mencari gadget *second* yang benar-benar berkualitas tanpa rasa was-was. Kami membangun ekosistem di mana kejujuran, *quality control* ketat, dan transparansi adalah bahasa utama kami.
+                    </p>
+                    
+                    <div class="flex gap-6 border-t border-white/10 pt-8 mt-4">
+                        <div>
+                            <h4 class="text-4xl font-black text-white tracking-tighter mb-1">5+</h4>
+                            <span class="text-[10px] text-gray-500 uppercase tracking-[0.2em] font-bold">Tahun Berdiri</span>
+                        </div>
+                        <div class="w-px bg-white/10"></div>
+                        <div>
+                            <h4 class="text-4xl font-black text-white tracking-tighter mb-1">15k+</h4>
+                            <span class="text-[10px] text-gray-500 uppercase tracking-[0.2em] font-bold">Gadget Terjual</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative h-[350px] lg:h-[450px] w-full rounded-[2rem] overflow-hidden group border border-white/10 shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1556656793-08538906a9f8?w=800&q=80" alt="Farid Store History" class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-[10s] ease-out">
+                    
+                    <div class="absolute inset-0 bg-gradient-to-tr from-black/90 via-black/20 to-transparent"></div>
+                    
+                    <div class="absolute bottom-8 left-8 glass-pill px-6 py-3 rounded-2xl border border-white/10 backdrop-blur-md">
+                        <div class="flex items-center gap-3">
+                            <div class="w-3 h-3 rounded-full bg-brand-400 animate-pulse shadow-[0_0_15px_rgba(56,189,248,0.8)]"></div>
+                            <span class="text-white font-bold text-sm tracking-widest uppercase">Pekanbaru Based</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="services" class="py-20 px-6 max-w-7xl mx-auto border-t border-white/5 overflow-hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <div data-aos="fade-right">
+                <span class="text-brand-400 font-bold text-xs uppercase tracking-[0.2em] mb-4 block">Professional Repair</span>
+                <h2 class="font-heading text-4xl md:text-5xl font-black text-white leading-tight mb-6">
+                    Device Bermasalah?<br>
+                    <span class="text-gray-500">Biar Kami Bereskan.</span>
+                </h2>
+                <p class="text-gray-400 text-lg leading-relaxed mb-8">Selain menjual unit berkualitas, Farid Store juga melayani perbaikan dan maintenance untuk memastikan gadget Anda kembali bekerja optimal. Dikerjakan oleh teknisi ahli dengan jaminan sparepart terbaik.</p>
+                
+                <ul class="space-y-4 text-gray-300 font-medium mb-10">
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-500"></i> Pengecekan Transparan & Gratis</li>
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-500"></i> Garansi Servis Personal Toko</li>
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-500"></i> Konsultasi Langsung via WhatsApp</li>
+                </ul>
+
+                <a href="https://wa.me/6281371127121?text=Halo%20Farid%20Store,%20saya%20mau%20konsultasi%20mengenai%20servis%20HP%20saya" target="_blank" class="inline-flex bg-white text-black px-8 py-4 rounded-full font-bold hover:bg-gray-200 transition-colors items-center gap-3">
+                    Konsultasi Servis <i class="fa-solid fa-tools"></i>
+                </a>
+            </div>
+
+            <div class="relative h-[420px] w-full max-w-sm mx-auto perspective-1000 mt-10 lg:mt-0" data-aos="fade-left" id="serviceDeck">
+                <div class="service-card-stack absolute inset-0 w-full h-full rounded-[2.5rem] overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-black">
+                    <div class="absolute inset-0 bg-black"><img src="https://images.unsplash.com/photo-1597740985671-2a8a3b80502e?w=800&q=80" class="w-full h-full object-cover opacity-50 blur-[3px]"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+                    <div class="relative z-10 p-8 h-full flex flex-col justify-end">
+                        <div class="w-14 h-14 rounded-full bg-brand-500/20 flex items-center justify-center text-brand-400 text-2xl border border-brand-500/30 mb-5 backdrop-blur-md"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                        <h3 class="font-heading text-3xl font-black text-white mb-2">Ganti Layar / LCD</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Penggantian layar original atau grade premium dengan kalibrasi *true-tone* sempurna.</p>
+                    </div>
+                </div>
+
+                <div class="service-card-stack absolute inset-0 w-full h-full rounded-[2.5rem] overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-black">
+                    <div class="absolute inset-0 bg-black"><img src="https://images.unsplash.com/photo-1585338107529-13afc5f02586?w=800&q=80" class="w-full h-full object-cover opacity-50 blur-[3px]"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+                    <div class="relative z-10 p-8 h-full flex flex-col justify-end">
+                        <div class="w-14 h-14 rounded-full bg-green-500/20 flex items-center justify-center text-green-400 text-2xl border border-green-500/30 mb-5 backdrop-blur-md"><i class="fa-solid fa-battery-full"></i></div>
+                        <h3 class="font-heading text-3xl font-black text-white mb-2">Ganti Baterai</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Kembalikan performa dan daya tahan device Anda. Tersedia baterai berkapasitas tinggi.</p>
+                    </div>
+                </div>
+
+                <div class="service-card-stack absolute inset-0 w-full h-full rounded-[2.5rem] overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-black">
+                    <div class="absolute inset-0 bg-black"><img src="https://images.unsplash.com/photo-1526406915894-7bcd65f60845?w=800&q=80" class="w-full h-full object-cover opacity-50 blur-[3px]"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+                    <div class="relative z-10 p-8 h-full flex flex-col justify-end">
+                        <div class="w-14 h-14 rounded-full bg-red-500/20 flex items-center justify-center text-red-400 text-2xl border border-red-500/30 mb-5 backdrop-blur-md"><i class="fa-solid fa-unlock-keyhole"></i></div>
+                        <h3 class="font-heading text-3xl font-black text-white mb-2">Bypass & Software</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Layanan unlock device, bypass, flash ulang, hingga perbaikan masalah sistem software.</p>
+                    </div>
+                </div>
+
+                <div class="service-card-stack absolute inset-0 w-full h-full rounded-[2.5rem] overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-black">
+                    <div class="absolute inset-0 bg-black"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80" class="w-full h-full object-cover opacity-50 blur-[3px]"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+                    <div class="relative z-10 p-8 h-full flex flex-col justify-end">
+                        <div class="w-14 h-14 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 text-2xl border border-purple-500/30 mb-5 backdrop-blur-md"><i class="fa-solid fa-microchip"></i></div>
+                        <h3 class="font-heading text-3xl font-black text-white mb-2">Servis Mesin</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Perbaikan motherboard, mati total, kena air (water damage), dan short komponen internal.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-10 px-6 max-w-7xl mx-auto" data-aos="zoom-in">
+        <div class="glass-panel rounded-[2.5rem] p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 border-brand-500/20 relative overflow-hidden group">
+            <div class="absolute -right-20 -top-20 w-64 h-64 bg-brand-500/10 rounded-full blur-3xl group-hover:bg-brand-500/20 transition-colors"></div>
+            <div class="z-10 text-center md:text-left">
+                <h3 class="font-heading text-3xl md:text-4xl font-black mb-4">Punya HP Bekas? <span class="text-brand-400">Kami Beli!</span></h3>
+                <p class="text-gray-400 max-w-xl text-lg">Dapatkan penawaran harga terbaik untuk gadget lama Anda. Terima Tukar Tambah atau Jual Putus dengan proses cepat di Pekanbaru.</p>
+            </div>
+            <a href="https://wa.me/6281371127121?text=Halo%20Farid%20Store,%20saya%20mau%20jual/tukar%20tambah%20HP%20saya" class="z-10 bg-white text-black px-10 py-5 rounded-2xl font-black text-lg hover:scale-105 transition-transform flex items-center gap-3 whitespace-nowrap">
+                Cek Harga HP Saya <i class="fa-solid fa-calculator"></i>
+            </a>
+        </div>
+    </section>
+
+    <section id="bannerSection" class="py-16 px-6 max-w-7xl mx-auto relative z-10" data-aos="fade-up">
+        <div class="slider-control"><input type="range" id="leftSectionSize" min="0" max="100" value="69"></div>
+        <div class="glass-panel rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden flex flex-col lg:flex-row gap-8 transition-all duration-700" id="bannerContainer">
+            <div class="absolute -left-20 -top-20 w-72 h-72 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="left-section w-full lg:w-[69%] transition-all duration-700 flex flex-col justify-center z-10" id="leftSection">
+                <span class="text-brand-400 font-bold text-xs uppercase tracking-[0.2em] mb-4 block">Farid Store Reseller</span>
+                <h1 class="font-heading text-4xl md:text-5xl font-black text-white leading-tight mb-4">Bangun Bisnis Gadgetmu Sendiri Sekarang Juga!</h1>
+                <p class="text-gray-400 text-lg leading-relaxed mb-8 max-w-2xl">Ribuan orang dari seluruh Indonesia sudah bergabung bersama kami dan sukses mengembangkan bisnis gadget mereka. Farid Store hadir sebagai wadah edukasi dan menciptakan komunitas yang solid untuk membantu para pengusaha gadget di Indonesia.</p>
+                <a href="#" class="button-link bg-white text-black px-8 py-4 rounded-full font-bold hover:bg-gray-200 transition-colors w-fit flex items-center gap-3">MASIH RAGU? KLIK DISINI <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+            <div class="right-section w-full lg:w-[31%] flex gap-4 overflow-x-auto hide-scroll transition-all duration-700 items-center z-10 py-4" id="rightSection">
+                <div class="flex gap-4 min-w-max h-full items-center">
+                    
+                    <div class="banner-testimonial-card result-card glass-panel border border-brand-500/20 rounded-3xl p-6 w-[200px] h-[464px] shrink-0 flex flex-col justify-center relative overflow-hidden" id="resultCard">
+                        <div class="absolute inset-0 bg-gradient-to-br from-brand-500/10 to-transparent pointer-events-none"></div>
+                        <span class="w-2 h-2 rounded-full bg-brand-400 mb-4 animate-pulse"></span>
+                        <h2 class="font-heading text-3xl font-black text-white mb-2">The Result.</h2>
+                        <p class="text-gray-400 text-sm font-medium">After Join<br>Farid Store Reseller</p>
+                    </div>
+
+                    <div class="grid grid-cols-3 grid-rows-2 gap-4 w-[536px] h-[464px] shrink-0">
+                        <div class="banner-testimonial-card testimonial-item glass-panel rounded-3xl p-3.5 w-[168px] h-[224px] flex flex-col relative premium-hover cursor-pointer group transition-all duration-500 blur-md opacity-50 shrink-0" data-id="farid">
+                            <span class="w-2 h-2 rounded-full bg-white/20 mb-2 block group-hover:bg-brand-400 transition-colors shrink-0"></span>
+                            <div class="relative w-full aspect-square rounded-2xl overflow-hidden mb-3 border border-white/5 shrink-0 bg-black">
+                                <img src="IMG/user/riddd1.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 img-target">
+                                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-2.5"><h3 class="text-white font-bold text-xs">Farid Siddiq</h3></div>
+                            </div>
+                            <p class="text-gray-400 text-[10px] leading-relaxed mt-auto font-medium line-clamp-3">100+ Unit sold setelah 7 bulan join Farid Store reseller</p>
+                        </div>
+
+                        <div class="banner-testimonial-card testimonial-item glass-panel rounded-3xl p-3.5 w-[168px] h-[224px] flex flex-col relative premium-hover cursor-pointer group transition-all duration-500 blur-md opacity-50 shrink-0" data-id="gibran">
+                            <span class="w-2 h-2 rounded-full bg-white/20 mb-2 block group-hover:bg-brand-400 transition-colors shrink-0"></span>
+                            <div class="relative w-full aspect-square rounded-2xl overflow-hidden mb-3 border border-white/5 shrink-0 bg-black">
+                                <img src="IMG/user/gib.png" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 img-target">
+                                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-2.5"><h3 class="text-white font-bold text-xs">Alif Gibran</h3></div>
+                            </div>
+                            <p class="text-gray-400 text-[10px] leading-relaxed mt-auto font-medium line-clamp-3">100+ Unit sold setelah 7 bulan join bersama Farid Store reseller</p>
+                        </div>
+
+                        <div class="banner-testimonial-card testimonial-item glass-panel rounded-3xl p-3.5 w-[168px] h-[224px] flex flex-col relative premium-hover cursor-pointer group transition-all duration-500 blur-md opacity-50 shrink-0" data-id="bobi">
+                            <span class="w-2 h-2 rounded-full bg-white/20 mb-2 block group-hover:bg-brand-400 transition-colors shrink-0"></span>
+                            <div class="relative w-full aspect-square rounded-2xl overflow-hidden mb-3 border border-white/5 shrink-0 bg-black">
+                                <img src="IMG/user/bobi.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 img-target">
+                                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-2.5"><h3 class="text-white font-bold text-xs">Bobi Bayu</h3></div>
+                            </div>
+                            <p class="text-gray-400 text-[10px] leading-relaxed mt-auto font-medium line-clamp-3">100+ Unit sold sejak join Reseller hingga 50 juta pertama</p>
+                        </div>
+
+                        <div class="banner-testimonial-card testimonial-item glass-panel rounded-3xl p-3.5 w-[168px] h-[224px] flex flex-col relative premium-hover cursor-pointer group transition-all duration-500 blur-md opacity-50 shrink-0" data-id="nisa">
+                            <span class="w-2 h-2 rounded-full bg-white/20 mb-2 block group-hover:bg-brand-400 transition-colors shrink-0"></span>
+                            <div class="relative w-full aspect-square rounded-2xl overflow-hidden mb-3 border border-white/5 shrink-0 bg-black">
+                                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 img-target">
+                                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-2.5"><h3 class="text-white font-bold text-xs">Nisa</h3></div>
+                            </div>
+                            <p class="text-gray-400 text-[10px] leading-relaxed mt-auto font-medium line-clamp-3">Sukses membangun omset stabil dan mandiri secara finansial</p>
+                        </div>
+
+                        <div class="banner-testimonial-card testimonial-item glass-panel rounded-3xl p-3.5 w-[168px] h-[224px] flex flex-col relative premium-hover cursor-pointer group transition-all duration-500 blur-md opacity-50 shrink-0" data-id="reza">
+                            <span class="w-2 h-2 rounded-full bg-white/20 mb-2 block group-hover:bg-brand-400 transition-colors shrink-0"></span>
+                            <div class="relative w-full aspect-square rounded-2xl overflow-hidden mb-3 border border-white/5 shrink-0 bg-black">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 img-target">
+                                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-2.5"><h3 class="text-white font-bold text-xs">Reza P.</h3></div>
+                            </div>
+                            <p class="text-gray-400 text-[10px] leading-relaxed mt-auto font-medium line-clamp-3">Mampu scale-up bisnis dengan bimbingan dan support penuh dari tim.</p>
+                        </div>
+
+                        <div class="banner-testimonial-card testimonial-item glass-panel rounded-3xl p-3.5 w-[168px] h-[224px] flex flex-col relative premium-hover cursor-pointer group transition-all duration-500 blur-md opacity-50 shrink-0" data-id="dinda">
+                            <span class="w-2 h-2 rounded-full bg-white/20 mb-2 block group-hover:bg-brand-400 transition-colors shrink-0"></span>
+                            <div class="relative w-full aspect-square rounded-2xl overflow-hidden mb-3 border border-white/5 shrink-0 bg-black">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 img-target">
+                                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-2.5"><h3 class="text-white font-bold text-xs">Dinda Aulia</h3></div>
+                            </div>
+                            <p class="text-gray-400 text-[10px] leading-relaxed mt-auto font-medium line-clamp-3">Sistem dropship mempermudah saya jualan tanpa harus modal stok barang.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="absolute bottom-4 right-8 opacity-[0.03] pointer-events-none select-none">
+                <span class="font-heading font-black text-6xl tracking-widest">RESELLER</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="team-partner" class="py-20 px-6 max-w-7xl mx-auto border-t border-white/5">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <span class="text-brand-400 font-bold text-xs uppercase tracking-[0.2em] mb-4 block">Behind The Scene</span>
+            <h2 class="font-heading text-4xl md:text-5xl font-black text-white">Tim & Partner Eksekutor.</h2>
+        </div>
+
+        <div class="team-accordion flex gap-4 w-full" data-aos="fade-up" data-aos-delay="100">
+            
+            <div class="team-card relative rounded-3xl overflow-hidden cursor-pointer group border border-white/10 bg-black">
+                <img src="IMG/user/riddd1.jpg" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-90 transition-all duration-500 grayscale group-hover:grayscale-0" alt="Farid Siddiq" loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8 flex flex-col justify-end h-full">
+                    <h3 class="font-heading text-2xl font-bold text-white mb-1 whitespace-nowrap">Farid Siddiq</h3>
+                    <p class="text-brand-400 text-[10px] font-bold uppercase tracking-widest mb-2">Founder & CEO</p>
+                    <div class="team-content">
+                        <p class="text-gray-300 text-sm leading-relaxed border-t border-white/10 pt-3 mt-1">Mengawal visi dan memastikan kualitas Farid Store tetap konsisten untuk kepuasan pelanggan.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-card relative rounded-3xl overflow-hidden cursor-pointer group border border-white/10 bg-black">
+                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=800&q=80" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-90 transition-all duration-500 grayscale group-hover:grayscale-0" alt="Nisa" loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8 flex flex-col justify-end h-full">
+                    <h3 class="font-heading text-2xl font-bold text-white mb-1 whitespace-nowrap">Nisa</h3>
+                    <p class="text-purple-400 text-[10px] font-bold uppercase tracking-widest mb-2">Chief Financial Officer</p>
+                    <div class="team-content">
+                        <p class="text-gray-300 text-sm leading-relaxed border-t border-white/10 pt-3 mt-1">Mengelola arus kas, pendanaan, dan merancang strategi finansial untuk ekspansi layanan Farid Store.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-card relative rounded-3xl overflow-hidden cursor-pointer group border border-white/10 bg-black">
+                <img src="IMG/user/gib.png" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-90 transition-all duration-500 grayscale group-hover:grayscale-0" alt="Alif Gibran" loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8 flex flex-col justify-end h-full">
+                    <h3 class="font-heading text-2xl font-bold text-white mb-1 whitespace-nowrap">Alif Gibran</h3>
+                    <p class="text-green-400 text-[10px] font-bold uppercase tracking-widest mb-2">Head of Operation</p>
+                    <div class="team-content">
+                        <p class="text-gray-300 text-sm leading-relaxed border-t border-white/10 pt-3 mt-1">Mengeksekusi supply chain, logistik, dan operasional harian toko agar berjalan cepat dan akurat.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-card relative rounded-3xl overflow-hidden cursor-pointer group border border-white/10 bg-black">
+                <img src="IMG/user/bobi.jpg" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-90 transition-all duration-500 grayscale group-hover:grayscale-0" alt="Bobi Bayu" loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8 flex flex-col justify-end h-full">
+                    <h3 class="font-heading text-2xl font-bold text-white mb-1 whitespace-nowrap">Bobi Bayu</h3>
+                    <p class="text-yellow-400 text-[10px] font-bold uppercase tracking-widest mb-2">Lead Technician</p>
+                    <div class="team-content">
+                        <p class="text-gray-300 text-sm leading-relaxed border-t border-white/10 pt-3 mt-1">Spesialis motherboard dan perbaikan software. Tangan dingin di balik divisi *Professional Repair*.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="mt-24 border-t border-white/5 pt-12" data-aos="fade-up" data-aos-delay="200">
+            <p class="text-center text-xs font-bold text-gray-600 uppercase tracking-widest mb-8">Trusted by Global Ecosystem</p>
+            <div class="flex flex-wrap justify-center items-center gap-10 md:gap-16 opacity-30 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-700">
+                <div class="flex items-center gap-2 text-2xl font-black font-heading text-white hover:text-brand-300 transition-colors cursor-default"><i class="fa-brands fa-apple text-3xl"></i> iOS Ecosystem</div>
+                <div class="flex items-center gap-2 text-2xl font-black font-heading text-white hover:text-green-500 transition-colors cursor-default"><i class="fa-brands fa-android text-3xl"></i> Android Dev</div>
+                <div class="flex items-center gap-2 text-2xl font-black font-heading text-white hover:text-blue-500 transition-colors cursor-default"><i class="fa-brands fa-windows text-3xl"></i> Windows ID</div>
+                <div class="flex items-center gap-2 text-2xl font-black font-heading text-white hover:text-orange-500 transition-colors cursor-default"><i class="fa-brands fa-aws text-3xl"></i> Cloud Base</div>
+            </div>
+        </div>
+    </section>
+    <section id="katalog" class="py-24 relative z-20 min-h-screen">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 border-t border-white/10 pt-20">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8" data-aos="fade-up">
+                <div>
+                    <h2 class="font-heading text-5xl md:text-6xl font-black tracking-tight mb-3">Live <span class="text-brand-500 drop-shadow-[0_0_20px_rgba(14,165,233,0.3)]">Inventory.</span></h2>
+                    <p class="text-gray-400 font-medium tracking-wide">Katalog tersinkronisasi realtime dengan database toko.</p>
+                </div>
+                
+                <div class="flex flex-col gap-4 w-full md:w-auto">
+                    <div class="relative group">
+                        <i class="fa-solid fa-magnifying-glass absolute left-5 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-brand-400 transition-colors"></i>
+                        <input type="text" id="searchInput" onkeyup="searchProducts()" placeholder="Cari unit..." class="bg-white/5 border border-white/10 glass-pill rounded-2xl py-3.5 pl-14 pr-6 w-full md:w-80 text-sm focus:border-brand-500 focus:outline-none transition-all">
+                    </div>
+                    
+                    <div class="flex overflow-x-auto hide-scroll gap-3 pb-2 w-full md:w-auto" id="filter-container">
+                        <button onclick="filterKategori('Semua', event)" class="filter-btn active bg-white text-black px-6 py-3 rounded-2xl font-bold text-sm whitespace-nowrap transition-all shadow-lg border-transparent">All Series</button>
+                        <button onclick="filterKategori('Apple', event)" class="filter-btn glass-pill text-gray-400 hover:text-white px-6 py-3 rounded-2xl font-bold text-sm whitespace-nowrap transition-all">Apple</button>
+                        <button onclick="filterKategori('Android', event)" class="filter-btn glass-pill text-gray-400 hover:text-white px-6 py-3 rounded-2xl font-bold text-sm whitespace-nowrap transition-all">Android</button>
+                        <button onclick="filterKategori('Laptop', event)" class="filter-btn glass-pill text-gray-400 hover:text-white px-6 py-3 rounded-2xl font-bold text-sm whitespace-nowrap transition-all">Mac/PC</button>
+                        <button onclick="filterKategori('Terjual', event)" class="filter-btn glass-pill text-red-400 hover:text-red-300 px-6 py-3 rounded-2xl font-bold text-sm whitespace-nowrap transition-all border border-red-500/20 hover:border-red-500/50">Terjual</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="loading-state" class="flex flex-col items-center justify-center py-20"><div class="spinner mb-6"></div><p class="text-gray-500 font-bold tracking-widest text-sm">SINKRONISASI DATA...</p></div>
+            <div id="error-state" class="hidden text-center py-20"><div class="inline-flex w-16 h-16 rounded-full bg-red-500/10 items-center justify-center text-red-500 mb-4"><i class="fa-solid fa-link-slash text-2xl"></i></div><p class="text-gray-400">Gagal terhubung ke sistem inventori.</p></div>
+            <div id="empty-state" class="hidden text-center py-20"><div class="inline-flex w-16 h-16 rounded-full bg-white/5 items-center justify-center text-gray-400 mb-4"><i class="fa-solid fa-ghost text-2xl"></i></div><p class="text-gray-400 font-medium text-lg">Unit tidak ditemukan.</p></div>
+
+            <div id="product-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 hidden pb-10"></div>
+        </div>
+    </section>
+
+    <section id="location" class="py-20 px-6 max-w-7xl mx-auto border-t border-white/5">
+        <div class="glass-panel rounded-[2.5rem] p-10 flex flex-col md:flex-row gap-12 items-center">
+            <div class="flex-1 text-center md:text-left">
+                <h3 class="font-heading text-4xl font-bold mb-6">Lokasi COD Pekanbaru</h3>
+                <p class="text-gray-400 mb-8 leading-relaxed text-lg">Kami melayani transaksi langsung (COD) di area Pekanbaru untuk menjamin keamanan dan kenyamanan Anda mengecek unit.</p>
+                <div class="flex flex-col gap-4">
+                    <div class="flex items-center gap-4 text-gray-300">
+                        <i class="fa-solid fa-location-dot text-brand-500 text-xl"></i>
+                        <span>Pekanbaru, Riau, Indonesia</span>
+                    </div>
+                    <div class="flex items-center gap-4 text-gray-300">
+                        <i class="fa-solid fa-clock text-brand-500 text-xl"></i>
+                        <span>Buka: 08.00 - 23.30 WIB</span>
+                    </div>
+                </div>
+                <a href="https://www.google.com/maps/place/Pekanbaru,+Riau" target="_blank" class="inline-flex mt-10 bg-white/5 border border-white/10 px-8 py-4 rounded-2xl font-bold transition-all gap-3 items-center hover:bg-white/10">
+                    <i class="fa-solid fa-map-location-dot"></i> Buka Google Maps
+                </a>
+            </div>
+            <div class="flex-1 w-full h-80 rounded-[2rem] overflow-hidden grayscale contrast-125 opacity-40 border border-white/10">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127672.82563344692!2d101.35824967397042!3d0.5140837562479201!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d5ab80690ee7b1%3A0x94dde92c3823dbe4!2sPekanbaru%2C%20Pekanbaru%20City%2C%20Riau!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <a href="https://wa.me/6281371127121" target="_blank" class="fixed bottom-6 right-6 z-50 w-16 h-16 bg-white text-black rounded-full flex items-center justify-center text-3xl shadow-[0_5px_20px_rgba(255,255,255,0.2)] hover:scale-110 hover:bg-brand-400 hover:text-white transition-all duration-300 group">
+        <i class="fa-brands fa-whatsapp group-hover:rotate-12 transition-transform"></i>
+    </a>
+
+    <footer class="border-t border-white/10 py-16 bg-[#020202] text-center mt-10 relative overflow-hidden">
+        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-32 bg-brand-500/10 rounded-t-full blur-3xl pointer-events-none"></div>
+        <h2 class="font-heading font-black text-4xl text-white mb-3 tracking-widest uppercase opacity-20">FaridStore</h2>
+        <p class="text-gray-500 text-sm font-bold tracking-widest uppercase mb-6">Your Premium Gadget Solution</p>
+        <div class="flex justify-center gap-6 text-gray-600 relative z-10">
+            <a href="https://id.shp.ee/ieSggGu" target="_blank" class="hover:text-white transition-colors"><i class="fa-solid fa-bag-shopping text-xl"></i></a>
+            <a href="https://instagram.com/scv.farid1717_" target="_blank" class="hover:text-white transition-colors"><i class="fa-brands fa-instagram text-xl"></i></a>
+            <a href="https://www.facebook.com/marketplace/profile/100025975151176" target="_blank" class="hover:text-white transition-colors"><i class="fa-brands fa-facebook-f text-xl"></i></a>
+        </div>
+        <p class="text-gray-700 text-xs font-semibold tracking-widest uppercase mt-8">Pekanbaru • © 2026 All rights reserved.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: true, offset: 50, duration: 800 });
+
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-black/80', 'border-white/20');
+                nav.classList.remove('bg-black/40');
+            } else {
+                nav.classList.remove('bg-black/80', 'border-white/20');
+                nav.classList.add('bg-black/40');
+            }
+        });
+
+        // Script Services Shuffle
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.service-card-stack');
+            if (!cards.length) return;
+            let currentIndex = 0;
+            function updateCards() {
+                cards.forEach((card, i) => {
+                    let offset = (i - currentIndex + cards.length) % cards.length;
+                    if (offset === 0) {
+                        card.style.transform = 'translateZ(0px) translateY(0) translateX(0) rotate(0deg) scale(1)';
+                        card.style.zIndex = 40;
+                        card.style.opacity = 1;
+                    } else if (offset === 1) {
+                        card.style.transform = 'translateZ(-40px) translateY(20px) translateX(20px) rotate(4deg) scale(0.95)';
+                        card.style.zIndex = 30;
+                        card.style.opacity = 0.8;
+                    } else if (offset === 2) {
+                        card.style.transform = 'translateZ(-80px) translateY(40px) translateX(40px) rotate(8deg) scale(0.9)';
+                        card.style.zIndex = 20;
+                        card.style.opacity = 0.5;
+                    } else {
+                        card.style.transform = 'translateZ(-120px) translateY(60px) translateX(60px) rotate(12deg) scale(0.85)';
+                        card.style.zIndex = 10;
+                        card.style.opacity = 0;
+                    }
+                });
+            }
+            updateCards(); 
+            setInterval(() => {
+                currentIndex = (currentIndex + 1) % cards.length;
+                updateCards();
+            }, 3000); 
+        });
+
+        // Script Reseller Banner
+        document.addEventListener('DOMContentLoaded', function() {
+            const bannerContainer = document.getElementById('bannerContainer');
+            const leftSection = document.getElementById('leftSection');
+            const rightSection = document.getElementById('rightSection');
+            const testimonialItems = document.querySelectorAll('.testimonial-item');
+            const slider = document.getElementById('leftSectionSize');
+
+            const initialLeftWidth = 69;
+            const clickedLeftWidth = 35; 
+            let isExpanded = false; 
+
+            function setSectionWidths(leftPercentage) {
+                if(window.innerWidth >= 1024) { 
+                    const rightPercentage = 100 - leftPercentage;
+                    leftSection.style.flexBasis = leftPercentage + '%';
+                    rightSection.style.flexBasis = rightPercentage + '%';
+                } else {
+                    leftSection.style.flexBasis = '100%';
+                    rightSection.style.flexBasis = '100%';
+                }
+            }
+
+            setSectionWidths(initialLeftWidth);
+
+            window.addEventListener('resize', () => {
+                setSectionWidths(isExpanded ? clickedLeftWidth : initialLeftWidth);
+            });
+
+            function handleCardClick() {
+                if (!isExpanded) {
+                    setSectionWidths(clickedLeftWidth);
+                    testimonialItems.forEach(card => {
+                        card.classList.remove('blur-md', 'opacity-50');
+                        card.classList.add('opacity-100');
+                        const img = card.querySelector('.img-target');
+                        if(img) img.classList.remove('grayscale');
+                    });
+                    isExpanded = true;
+                }
+            }
+
+            if(bannerContainer) {
+                bannerContainer.addEventListener('click', function(event) {
+                    let targetCard = event.target.closest('.banner-testimonial-card');
+                    if (targetCard && !event.target.closest('.button-link')) {
+                        handleCardClick();
+                    }
+                });
+            }
+        });
+
+        const waNumber = "6281371127121"; 
+        let globalProducts = [];
+        let currentKategori = "Semua";
+
+        function getBrandCategory(itemName) {
+            const lower = itemName.toLowerCase();
+            if (lower.includes('iphone') || lower.includes('apple') || lower.includes('ipad') || lower.includes('ip ')) return 'APPLE';
+            if (lower.includes('samsung') || lower.includes('galaxy') || lower.includes('sein') || lower.includes('z flip') || lower.includes('z fold')) return 'SAMSUNG';
+            if (lower.includes('xiaomi') || lower.includes('note') || lower.includes('redmi') || lower.includes('poco') || lower.includes('mi ')) return 'XIAOMI/POCO';
+            if (lower.includes('oppo') || lower.includes('reno')) return 'OPPO';
+            if (lower.includes('vivo') || lower.includes('iqoo')) return 'VIVO';
+            if (lower.includes('realme')) return 'REALME';
+            if (lower.includes('infinix')) return 'INFINIX';
+            if (lower.includes('tecno')) return 'TECNO';
+            if (lower.includes('itel')) return 'ITEL';
+            if (lower.includes('asus') || lower.includes('rog')) return 'ASUS';
+            if (lower.includes('google') || lower.includes('pixel')) return 'GOOGLE';
+            return itemName.split(' ')[0].replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
+        }
+
+        function parseDate(dateStr) {
+            if (!dateStr || dateStr === "Imported") return null;
+            const parts = dateStr.split(' ')[0].split('/');
+            return { d: parseInt(parts[0]), m: parseInt(parts[1]), y: parseInt(parts[2]) };
+        }
+
+        async function fetchProducts() {
+            const loading = document.getElementById('loading-state');
+            const errorState = document.getElementById('error-state');
+
+            try {
+                const response = await fetch('/api/products'); 
+                const data = await response.json();
+                
+                globalProducts = data.items || [];
+                loading.classList.add('hidden');
+                
+                calculateInsights(globalProducts);
+                searchProducts();
+                renderSoldSlider(globalProducts);
+
+            } catch (error) {
+                console.error("Fetch Error:", error);
+                loading.classList.add('hidden');
+                errorState.classList.remove('hidden');
+            }
+        }
+
+        function renderSoldSlider(allItems) {
+            const soldOnly = allItems.filter(p => p.status === 'sold');
+            const marqueeList = document.getElementById('sold-marquee-list');
+            if (soldOnly.length === 0) return;
+            const displayItems = [...soldOnly, ...soldOnly, ...soldOnly];
+
+            marqueeList.innerHTML = displayItems.map(item => `
+                <div class="sold-card premium-hover">
+                    <div class="stamp-sold">SOLD</div>
+                    <div class="flex flex-col h-full">
+                        <span class="text-[9px] text-brand-400 font-black uppercase tracking-widest mb-2">${getBrandCategory(item.name)}</span>
+                        <h4 class="text-white font-bold text-sm mb-4 line-clamp-1">${item.name}</h4>
+                        <div class="mt-auto flex justify-between items-center">
+                            <span class="text-xs text-gray-500 font-medium">${item.soldAt || 'Baru Saja'}</span>
+                            <span class="text-white/20 font-black text-xs italic">Rp ${item.price.toLocaleString('id-ID')}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function calculateInsights(allItems) {
+            const now = new Date();
+            const thisMonth = 2; 
+            const thisYear = 2026;
+            const lastMonth = 1;
+
+            let countThisMonth = 0;
+            let countLastMonth = 0;
+            const brandsStats = {};
+            const soldOnly = allItems.filter(p => p.status === 'sold');
+
+            soldOnly.forEach(item => {
+                const b = getBrandCategory(item.name);
+                brandsStats[b] = (brandsStats[b] || 0) + 1;
+
+                const dt = parseDate(item.soldAt);
+                if (dt) {
+                    if (dt.m === thisMonth && dt.y === thisYear) countThisMonth++;
+                    if (dt.m === lastMonth && dt.y === thisYear) countLastMonth++;
+                }
+            });
+
+            const sortedBrands = Object.keys(brandsStats).sort((a,b) => brandsStats[b] - brandsStats[a]);
+            const topBrand = sortedBrands[0] || "APPLE";
+            document.getElementById('best-seller-name').innerText = topBrand;
+
+            document.getElementById('sales-this-month').innerHTML = `${countThisMonth} <span class="text-lg font-normal text-gray-500 uppercase">Unit</span>`;
+            
+            const diff = countThisMonth - countLastMonth;
+            const trendText = document.getElementById('sales-vs-last');
+            if (diff >= 0) {
+                trendText.innerHTML = `<span class="text-green-400 font-bold">↑ ${diff} unit</span> lebih banyak dari bulan lalu`;
+            } else {
+                trendText.innerHTML = `<span class="text-gray-400 font-bold">↓ ${Math.abs(diff)} unit</span> dari bulan lalu`;
+            }
+
+            const recentSoldItems = soldOnly.slice(-5).reverse();
+            const recentContainer = document.getElementById('recent-sold-list');
+            
+            recentContainer.className = "ticker-container"; 
+
+            if (recentSoldItems.length > 0) {
+                let currentIndex = 0;
+                
+                function showNextTickerItem() {
+                    const item = recentSoldItems[currentIndex];
+                    const el = document.createElement('div');
+                    el.className = 'ticker-item flex items-center gap-3 bg-white/5 border border-white/10 px-4 py-3 rounded-xl';
+                    el.innerHTML = `
+                        <i class="fa-solid fa-circle-check text-green-500 text-lg"></i> 
+                        <div class="flex flex-col">
+                            <span class="text-xs font-bold text-white line-clamp-1">${item.name}</span>
+                            <span class="text-[10px] text-gray-500 font-medium">${item.soldAt || 'Baru Saja'}</span>
+                        </div>
+                    `;
+                    
+                    const oldEl = recentContainer.querySelector('.ticker-item:not(.exit)');
+                    if(oldEl) {
+                        oldEl.classList.add('exit');
+                        setTimeout(() => oldEl.remove(), 400); 
+                    }
+                    
+                    recentContainer.appendChild(el);
+                    currentIndex = (currentIndex + 1) % recentSoldItems.length;
+                }
+                
+                showNextTickerItem();
+                if(window.recentSoldInterval) clearInterval(window.recentSoldInterval);
+                window.recentSoldInterval = setInterval(showNextTickerItem, 3500); 
+            } else {
+                recentContainer.innerHTML = `<span class="text-xs text-gray-500 flex h-full items-center">Belum ada data</span>`;
+            }
+        }
+
+        function searchProducts() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const results = globalProducts.filter(p => {
+                const matchName = p.name.toLowerCase().includes(query);
+                const isSold = p.status === 'sold';
+                let matchKategori = false;
+                if (currentKategori === "Terjual") {
+                    matchKategori = isSold;
+                } else {
+                    if (!isSold) {
+                        if (currentKategori === "Semua") { matchKategori = true; } 
+                        else { matchKategori = p.kategori_device === currentKategori; }
+                    }
+                }
+                return matchName && matchKategori;
+            });
+            renderProducts(results);
+        }
+
+        function renderProducts(products) {
+            const container = document.getElementById('product-container');
+            const emptyState = document.getElementById('empty-state');
+            container.innerHTML = '';
+
+            if (products.length === 0) {
+                container.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+            container.classList.remove('hidden');
+
+            const sorted = [...products].sort((a,b) => (a.status === 'sold' ? 1 : -1));
+
+            sorted.forEach((product) => {
+                const isSold = product.status === 'sold';
+                const card = document.createElement('div');
+                card.className = `glass-panel p-8 rounded-[2rem] flex flex-col relative premium-hover cursor-pointer ${isSold ? 'card-sold' : ''}`;
+                card.setAttribute('data-aos', 'fade-up');
+                card.onclick = () => openModal(product);
+
+                card.innerHTML = `
+                    <div class="flex justify-between items-center mb-8">
+                        ${isSold ? 
+                            `<span class="sold-badge text-white text-[10px] font-bold tracking-widest uppercase px-4 py-2 rounded-full">SOLD OUT</span>` :
+                            `<span class="bg-white/5 border border-white/10 text-gray-300 text-[10px] font-bold tracking-widest uppercase px-4 py-2 rounded-full">
+                                ${product.type === 'new' ? 'New Arrival' : 'Pre-loved'}
+                            </span>`
+                        }
+                        <span class="flex items-center gap-2 text-xs font-bold ${isSold ? 'text-red-500' : 'text-gray-400'}">
+                            <span class="w-2 h-2 rounded-full ${isSold ? 'bg-red-500' : 'bg-brand-500 shadow-[0_0_10px_rgba(14,165,233,0.5)]'}"></span> 
+                            ${isSold ? 'Terjual' : 'Ready Stock'}
+                        </span>
+                    </div>
+                    <h3 class="font-heading text-2xl md:text-3xl font-bold text-white mb-10 leading-snug line-clamp-2">${product.name}</h3>
+                    <div class="mt-auto pt-6 border-t border-white/10 flex justify-between items-end">
+                        <div>
+                            <p class="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-1.5">${isSold ? 'Terjual Seharga' : 'Harga Unit'}</p>
+                            <div class="${isSold ? 'text-2xl text-white/30 line-through' : 'text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-brand-300 to-brand-500'} tracking-tighter drop-shadow-sm">
+                                Rp ${product.price.toLocaleString('id-ID')}
+                            </div>
+                        </div>
+                        <div class="w-14 h-14 rounded-full bg-white/5 flex items-center justify-center text-white border border-white/10 group-hover:bg-white transition-all">
+                             <i class="fa-solid ${isSold ? 'fa-check' : 'fa-eye'}"></i>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function openModal(product) {
+            const modal = document.getElementById('productModal');
+            const content = document.getElementById('modalContent');
+            const isSold = product.status === 'sold';
+            const waText = encodeURIComponent(`Halo Farid Store, saya ingin tanya untuk unit *${product.name}* (Rp ${product.price.toLocaleString('id-ID')}). Apakah masih ada?`);
+
+            content.innerHTML = `
+                <div class="space-y-6">
+                    <div>
+                        <span class="text-brand-400 font-bold text-xs uppercase tracking-[0.2em] mb-4 block">${product.type === 'new' ? 'Brand New' : 'Used'} Condition</span>
+                        <h2 class="font-heading text-4xl font-black text-white leading-tight">${product.name}</h2>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white/5 p-4 rounded-2xl border border-white/5 text-center">
+                            <p class="text-gray-500 text-[10px] font-bold uppercase mb-1">Status</p>
+                            <p class="${isSold ? 'text-red-500' : 'text-white'} font-bold text-sm">${isSold ? 'Sudah Laku' : 'Tersedia'}</p>
+                        </div>
+                        <div class="bg-white/5 p-4 rounded-2xl border border-white/5 text-center">
+                            <p class="text-gray-500 text-[10px] font-bold uppercase mb-1">Harga Final</p>
+                            <p class="text-brand-400 font-bold text-sm">Rp ${product.price.toLocaleString('id-ID')}</p>
+                        </div>
+                    </div>
+                    <div class="bg-white/5 p-6 rounded-3xl border border-white/5">
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            ${isSold ? 'Unit ini sudah terjual ke pelanggan lain. Silahkan hubungi admin untuk ketersediaan unit sejenis atau inden.' : 'Unit ini telah melewati Quality Control ketat Farid Store. Jaminan fungsi normal 100% dan garansi toko.'}
+                        </p>
+                    </div>
+                    ${isSold ? 
+                        `<button disabled class="w-full bg-gray-800 text-gray-500 font-bold py-5 rounded-2xl cursor-not-allowed">Sold Out</button>` :
+                        `<a href="https://wa.me/${waNumber}?text=${waText}" target="_blank" class="w-full bg-brand-500 hover:bg-brand-400 text-white font-bold py-5 rounded-2xl flex items-center justify-center gap-3 transition-all transform hover:scale-[1.02]">
+                            <i class="fa-brands fa-whatsapp text-2xl"></i> Hubungi Admin
+                        </a>`
+                    }
+                </div>
+            `;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('productModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        window.filterKategori = function(kategori, event) {
+            currentKategori = kategori;
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.className = "filter-btn glass-pill text-gray-400 hover:text-white px-6 py-3 rounded-2xl font-bold text-sm whitespace-nowrap transition-all";
+            });
+            event.currentTarget.className = "filter-btn active bg-white text-black px-6 py-3 rounded-2xl font-bold text-sm whitespace-nowrap transition-all shadow-lg border-transparent";
+            searchProducts();
+        };
+
+        document.addEventListener('DOMContentLoaded', fetchProducts);
+    </script>
+</body>
+</html>
