@@ -161,6 +161,15 @@
             100% { opacity: 0; transform: translateY(-20px) scale(0.95); }
         }
 
+        /* --- Custom CSS Untuk Stacked Services Card --- */
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+        .service-card-stack {
+            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: center right;
+        }
+
         /* Hide the debug slider from original banner */
         .slider-control { display: none !important; }
     </style>
@@ -186,10 +195,10 @@
             <div class="hidden md:flex space-x-8 items-center">
                 <a href="#katalog" class="text-sm font-semibold text-gray-300 hover:text-white transition">Inventory</a>
                 <a href="#bento" class="text-sm font-semibold text-gray-300 hover:text-white transition">Keunggulan</a>
+                <a href="#services" class="text-sm font-semibold text-gray-300 hover:text-white transition">Servis</a>
                 <a href="#platform" class="text-sm font-semibold text-gray-300 hover:text-white transition">Platform</a>
-                <a href="https://wa.me/6281371127121?text=Halo%20Farid%20Store,%20saya%20mau%20jual%20HP%20saya" class="text-sm font-semibold text-brand-400 hover:text-white transition"><i class="fa-solid fa-repeat mr-1"></i> Tukar Tambah</a>
             </div>
-            <a href="https://wa.me/6281371127121" target="_blank" class="bg-brand-500 hover:bg-brand-400 text-white text-sm font-bold px-4 py-2 sm:px-5 sm:py-2.5 rounded-full transition-transform hover:scale-105 flex items-center gap-2">
+            <a href="https://wa.me/6281371127121" target="_blank" class="bg-brand-500 hover:bg-brand-400 text-white text-sm font-bold px-4 py-2 sm:px-5 sm:py-2.5 rounded-full transition-transform hover:scale-105 flex items-center gap-2 pointer-events-auto">
                 <i class="fa-brands fa-whatsapp text-lg"></i> <span class="hidden sm:inline">Chat Admin</span>
             </a>
         </nav>
@@ -378,6 +387,103 @@
         </div>
     </section>
 
+    <section id="services" class="py-20 px-6 max-w-7xl mx-auto border-t border-white/5 overflow-hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            
+            <div data-aos="fade-right">
+                <span class="text-brand-400 font-bold text-xs uppercase tracking-[0.2em] mb-4 block">Professional Repair</span>
+                <h2 class="font-heading text-4xl md:text-5xl font-black text-white leading-tight mb-6">
+                    Device Bermasalah?<br>
+                    <span class="text-gray-500">Biar Kami Bereskan.</span>
+                </h2>
+                <p class="text-gray-400 text-lg leading-relaxed mb-8">Selain menjual unit berkualitas, Farid Store juga melayani perbaikan dan maintenance untuk memastikan gadget Anda kembali bekerja optimal. Dikerjakan oleh teknisi ahli dengan jaminan sparepart terbaik.</p>
+                
+                <ul class="space-y-4 text-gray-300 font-medium mb-10">
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-500"></i> Pengecekan Transparan & Gratis</li>
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-500"></i> Garansi Servis Personal Toko</li>
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-500"></i> Konsultasi Langsung via WhatsApp</li>
+                </ul>
+
+                <a href="https://wa.me/6281371127121?text=Halo%20Farid%20Store,%20saya%20mau%20konsultasi%20mengenai%20servis%20HP%20saya" target="_blank" class="inline-flex bg-white text-black px-8 py-4 rounded-full font-bold hover:bg-gray-200 transition-colors items-center gap-3">
+                    Konsultasi Servis <i class="fa-solid fa-tools"></i>
+                </a>
+            </div>
+
+            <div class="relative h-[420px] w-full max-w-sm mx-auto perspective-1000 mt-10 lg:mt-0" data-aos="fade-left" id="serviceDeck">
+                
+                <div class="service-card-stack absolute inset-0 w-full h-full rounded-[2.5rem] overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-black">
+                    <div class="absolute inset-0 bg-black">
+                        <img src="https://images.unsplash.com/photo-1597740985671-2a8a3b80502e?w=800&q=80" class="w-full h-full object-cover opacity-50 blur-[3px]" alt="Background">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+                    <div class="relative z-10 p-8 h-full flex flex-col justify-end">
+                        <div class="w-14 h-14 rounded-full bg-brand-500/20 flex items-center justify-center text-brand-400 text-2xl border border-brand-500/30 mb-5 backdrop-blur-md">
+                            <i class="fa-solid fa-mobile-screen-button"></i>
+                        </div>
+                        <h3 class="font-heading text-3xl font-black text-white mb-2">Ganti Layar / LCD</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Penggantian layar original atau grade premium dengan kalibrasi *true-tone* sempurna.</p>
+                    </div>
+                </div>
+
+                <div class="service-card-stack absolute inset-0 w-full h-full rounded-[2.5rem] overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-black">
+                    <div class="absolute inset-0 bg-black">
+                        <img src="https://images.unsplash.com/photo-1585338107529-13afc5f02586?w=800&q=80" class="w-full h-full object-cover opacity-50 blur-[3px]" alt="Background">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+                    <div class="relative z-10 p-8 h-full flex flex-col justify-end">
+                        <div class="w-14 h-14 rounded-full bg-green-500/20 flex items-center justify-center text-green-400 text-2xl border border-green-500/30 mb-5 backdrop-blur-md">
+                            <i class="fa-solid fa-battery-full"></i>
+                        </div>
+                        <h3 class="font-heading text-3xl font-black text-white mb-2">Ganti Baterai</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Kembalikan performa dan daya tahan device Anda. Tersedia baterai berkapasitas tinggi.</p>
+                    </div>
+                </div>
+
+                <div class="service-card-stack absolute inset-0 w-full h-full rounded-[2.5rem] overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-black">
+                    <div class="absolute inset-0 bg-black">
+                        <img src="https://images.unsplash.com/photo-1526406915894-7bcd65f60845?w=800&q=80" class="w-full h-full object-cover opacity-50 blur-[3px]" alt="Background">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+                    <div class="relative z-10 p-8 h-full flex flex-col justify-end">
+                        <div class="w-14 h-14 rounded-full bg-red-500/20 flex items-center justify-center text-red-400 text-2xl border border-red-500/30 mb-5 backdrop-blur-md">
+                            <i class="fa-solid fa-unlock-keyhole"></i>
+                        </div>
+                        <h3 class="font-heading text-3xl font-black text-white mb-2">Bypass & Software</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Layanan unlock device, bypass, flash ulang, hingga perbaikan masalah sistem software.</p>
+                    </div>
+                </div>
+
+                <div class="service-card-stack absolute inset-0 w-full h-full rounded-[2.5rem] overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-black">
+                    <div class="absolute inset-0 bg-black">
+                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80" class="w-full h-full object-cover opacity-50 blur-[3px]" alt="Background">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+                    <div class="relative z-10 p-8 h-full flex flex-col justify-end">
+                        <div class="w-14 h-14 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 text-2xl border border-purple-500/30 mb-5 backdrop-blur-md">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <h3 class="font-heading text-3xl font-black text-white mb-2">Servis Mesin</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Perbaikan motherboard, mati total, kena air (water damage), dan short komponen internal.</p>
+                    </div>
+                </div>
+
+                <div class="service-card-stack absolute inset-0 w-full h-full rounded-[2.5rem] overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-black">
+                    <div class="absolute inset-0 bg-black">
+                        <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800&q=80" class="w-full h-full object-cover opacity-50 blur-[3px]" alt="Background">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+                    <div class="relative z-10 p-8 h-full flex flex-col justify-end">
+                        <div class="w-14 h-14 rounded-full bg-yellow-500/20 flex items-center justify-center text-yellow-400 text-2xl border border-yellow-500/30 mb-5 backdrop-blur-md">
+                            <i class="fa-solid fa-camera"></i>
+                        </div>
+                        <h3 class="font-heading text-3xl font-black text-white mb-2">Kamera & Speaker</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Ganti modul kamera bergetar/fokus hilang, speaker sember, hingga perbaikan mic.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
     <section class="py-10 px-6 max-w-7xl mx-auto" data-aos="zoom-in">
         <div class="glass-panel rounded-[2.5rem] p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 border-brand-500/20 relative overflow-hidden group">
             <div class="absolute -right-20 -top-20 w-64 h-64 bg-brand-500/10 rounded-full blur-3xl group-hover:bg-brand-500/20 transition-colors"></div>
@@ -569,6 +675,46 @@
                 nav.classList.remove('bg-black/80', 'border-white/20');
                 nav.classList.add('bg-black/40');
             }
+        });
+
+        // Script untuk Slider Service Card "Shuffle" Effect
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.service-card-stack');
+            if (!cards.length) return;
+            
+            let currentIndex = 0;
+            
+            function updateCards() {
+                cards.forEach((card, i) => {
+                    let offset = (i - currentIndex + cards.length) % cards.length;
+                    
+                    if (offset === 0) { // Kartu Paling Depan
+                        card.style.transform = 'translateZ(0px) translateY(0) translateX(0) rotate(0deg) scale(1)';
+                        card.style.zIndex = 40;
+                        card.style.opacity = 1;
+                    } else if (offset === 1) { // Kartu Kedua
+                        card.style.transform = 'translateZ(-40px) translateY(20px) translateX(20px) rotate(4deg) scale(0.95)';
+                        card.style.zIndex = 30;
+                        card.style.opacity = 0.8;
+                    } else if (offset === 2) { // Kartu Ketiga
+                        card.style.transform = 'translateZ(-80px) translateY(40px) translateX(40px) rotate(8deg) scale(0.9)';
+                        card.style.zIndex = 20;
+                        card.style.opacity = 0.5;
+                    } else { // Sisa Kartu Tersembunyi di belakang
+                        card.style.transform = 'translateZ(-120px) translateY(60px) translateX(60px) rotate(12deg) scale(0.85)';
+                        card.style.zIndex = 10;
+                        card.style.opacity = 0;
+                    }
+                });
+            }
+            
+            updateCards(); // Set posisi awal
+            
+            // Interval pengocokan kartu
+            setInterval(() => {
+                currentIndex = (currentIndex + 1) % cards.length;
+                updateCards();
+            }, 3000); 
         });
 
         // Script Reseller Banner
