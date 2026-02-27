@@ -107,12 +107,12 @@
         .service-card-stack { transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); transform-origin: center right; }
 
         /* NEW: Team Accordion Hover Effect */
-        @media (min-width: 768px) {
+        @media (min-width: 1024px) {
             .team-accordion { flex-direction: row; height: 420px; }
             .team-card { flex: 1; transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.3s ease; }
             .team-card:hover { flex: 2.5; }
         }
-        @media (max-width: 767px) {
+        @media (max-width: 1023px) {
             .team-accordion { flex-direction: column; height: 600px; }
             .team-card { flex: 1; transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
             .team-card:hover { flex: 2; }
@@ -137,17 +137,21 @@
 
     <div class="fixed w-full top-6 z-50 px-4 sm:px-6 flex justify-center pointer-events-none">
         <nav class="glass-pill rounded-full px-5 py-2.5 sm:px-6 sm:py-3 flex justify-between items-center w-full max-w-5xl pointer-events-auto shadow-[0_10px_40px_rgba(0,0,0,0.5)] transition-all duration-300" id="navbar">
-            <div class="flex items-center gap-3">
+            <a href="#home" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
                 <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-black font-bold text-sm">FS</div>
                 <span class="font-heading font-bold text-xl tracking-tight text-white">Farid<span class="text-gray-400">Store</span></span>
-            </div>
-            <div class="hidden md:flex space-x-8 items-center">
-                <a href="#katalog" class="text-sm font-semibold text-gray-300 hover:text-white transition">Inventory</a>
-                <a href="#bento" class="text-sm font-semibold text-gray-300 hover:text-white transition">Keunggulan</a>
+            </a>
+            
+            <div class="hidden lg:flex space-x-6 items-center">
+                <a href="#our-story" class="text-sm font-semibold text-gray-300 hover:text-white transition">Story</a>
                 <a href="#services" class="text-sm font-semibold text-gray-300 hover:text-white transition">Servis</a>
+                <a href="#bannerSection" class="text-sm font-semibold text-gray-300 hover:text-white transition">Reseller</a>
                 <a href="#team-partner" class="text-sm font-semibold text-gray-300 hover:text-white transition">Tim</a>
+                <a href="#katalog" class="text-sm font-semibold text-gray-300 hover:text-white transition">Katalog</a>
+                <a href="#location" class="text-sm font-semibold text-gray-300 hover:text-white transition">Lokasi</a>
             </div>
-            <a href="https://wa.me/6281371127121" target="_blank" class="bg-brand-500 hover:bg-brand-400 text-white text-sm font-bold px-4 py-2 sm:px-5 sm:py-2.5 rounded-full transition-transform hover:scale-105 flex items-center gap-2 pointer-events-auto">
+
+            <a href="https://wa.me/6281371127121" target="_blank" class="bg-brand-500 hover:bg-brand-400 text-white text-sm font-bold px-4 py-2 sm:px-5 sm:py-2.5 rounded-full transition-transform hover:scale-105 flex items-center gap-2">
                 <i class="fa-brands fa-whatsapp text-lg"></i> <span class="hidden sm:inline">Chat Admin</span>
             </a>
         </nav>
@@ -180,10 +184,10 @@
 
             <div class="relative hidden lg:block h-[500px]" data-aos="fade-left" data-aos-duration="1200">
                 <div class="absolute right-0 top-10 w-3/4 h-[400px] rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl z-10 transform -rotate-6 hover:rotate-0 transition-transform duration-700">
-                    <img src="https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=800&q=80" alt="Gadget Showcase" class="w-full h-full object-cover">
+                    <img src="https://images.unsplash.com/photo-1605236453806-6ff36851218e?w=800&q=80" alt="Gadget Showcase" class="w-full h-full object-cover">
                 </div>
                 <div class="absolute left-0 bottom-0 w-2/3 h-[250px] rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl z-20 transform rotate-3 hover:rotate-0 transition-transform duration-700">
-                    <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=800&q=80" alt="Laptop Showcase" class="w-full h-full object-cover">
+                    <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&q=80" alt="Laptop Showcase" class="w-full h-full object-cover">
                 </div>
                 <div class="absolute top-1/2 -left-10 z-30 glass-pill px-5 py-3 rounded-2xl flex items-center gap-4 animate-bounce" style="animation-duration: 3s;">
                     <div class="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center text-green-400"><i class="fa-solid fa-shield-check text-xl"></i></div>
@@ -356,10 +360,8 @@
                 </div>
 
                 <div class="relative h-[350px] lg:h-[450px] w-full rounded-[2rem] overflow-hidden group border border-white/10 shadow-2xl">
-                    <img src="https://images.unsplash.com/photo-1556656793-08538906a9f8?w=800&q=80" alt="Farid Store History" class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-[10s] ease-out">
-                    
+                    <img src="https://images.unsplash.com/photo-1588508065123-287b28e013da?w=800&q=80" alt="Farid Store History" class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-[10s] ease-out">
                     <div class="absolute inset-0 bg-gradient-to-tr from-black/90 via-black/20 to-transparent"></div>
-                    
                     <div class="absolute bottom-8 left-8 glass-pill px-6 py-3 rounded-2xl border border-white/10 backdrop-blur-md">
                         <div class="flex items-center gap-3">
                             <div class="w-3 h-3 rounded-full bg-brand-400 animate-pulse shadow-[0_0_15px_rgba(56,189,248,0.8)]"></div>
@@ -370,6 +372,7 @@
             </div>
         </div>
     </section>
+
     <section id="services" class="py-20 px-6 max-w-7xl mx-auto border-t border-white/5 overflow-hidden">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div data-aos="fade-right">
@@ -393,7 +396,7 @@
 
             <div class="relative h-[420px] w-full max-w-sm mx-auto perspective-1000 mt-10 lg:mt-0" data-aos="fade-left" id="serviceDeck">
                 <div class="service-card-stack absolute inset-0 w-full h-full rounded-[2.5rem] overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-black">
-                    <div class="absolute inset-0 bg-black"><img src="https://images.unsplash.com/photo-1597740985671-2a8a3b80502e?w=800&q=80" class="w-full h-full object-cover opacity-50 blur-[3px]"></div>
+                    <div class="absolute inset-0 bg-black"><img src="https://images.unsplash.com/photo-1601784551446-20c9e07cd4d4?w=800&q=80" class="w-full h-full object-cover opacity-50 blur-[3px]" alt="Phone Screen Repair"></div>
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
                     <div class="relative z-10 p-8 h-full flex flex-col justify-end">
                         <div class="w-14 h-14 rounded-full bg-brand-500/20 flex items-center justify-center text-brand-400 text-2xl border border-brand-500/30 mb-5 backdrop-blur-md"><i class="fa-solid fa-mobile-screen-button"></i></div>
@@ -403,7 +406,7 @@
                 </div>
 
                 <div class="service-card-stack absolute inset-0 w-full h-full rounded-[2.5rem] overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-black">
-                    <div class="absolute inset-0 bg-black"><img src="https://images.unsplash.com/photo-1585338107529-13afc5f02586?w=800&q=80" class="w-full h-full object-cover opacity-50 blur-[3px]"></div>
+                    <div class="absolute inset-0 bg-black"><img src="https://images.unsplash.com/photo-1600080302758-c26fa3213190?w=800&q=80" class="w-full h-full object-cover opacity-50 blur-[3px]" alt="Battery Repair"></div>
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
                     <div class="relative z-10 p-8 h-full flex flex-col justify-end">
                         <div class="w-14 h-14 rounded-full bg-green-500/20 flex items-center justify-center text-green-400 text-2xl border border-green-500/30 mb-5 backdrop-blur-md"><i class="fa-solid fa-battery-full"></i></div>
@@ -413,7 +416,7 @@
                 </div>
 
                 <div class="service-card-stack absolute inset-0 w-full h-full rounded-[2.5rem] overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-black">
-                    <div class="absolute inset-0 bg-black"><img src="https://images.unsplash.com/photo-1526406915894-7bcd65f60845?w=800&q=80" class="w-full h-full object-cover opacity-50 blur-[3px]"></div>
+                    <div class="absolute inset-0 bg-black"><img src="https://images.unsplash.com/photo-1526406915894-7bcd65f60845?w=800&q=80" class="w-full h-full object-cover opacity-50 blur-[3px]" alt="Software Unlock"></div>
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
                     <div class="relative z-10 p-8 h-full flex flex-col justify-end">
                         <div class="w-14 h-14 rounded-full bg-red-500/20 flex items-center justify-center text-red-400 text-2xl border border-red-500/30 mb-5 backdrop-blur-md"><i class="fa-solid fa-unlock-keyhole"></i></div>
@@ -423,7 +426,7 @@
                 </div>
 
                 <div class="service-card-stack absolute inset-0 w-full h-full rounded-[2.5rem] overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-black">
-                    <div class="absolute inset-0 bg-black"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80" class="w-full h-full object-cover opacity-50 blur-[3px]"></div>
+                    <div class="absolute inset-0 bg-black"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80" class="w-full h-full object-cover opacity-50 blur-[3px]" alt="Motherboard"></div>
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
                     <div class="relative z-10 p-8 h-full flex flex-col justify-end">
                         <div class="w-14 h-14 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 text-2xl border border-purple-500/30 mb-5 backdrop-blur-md"><i class="fa-solid fa-microchip"></i></div>
@@ -474,7 +477,7 @@
                         <div class="banner-testimonial-card testimonial-item glass-panel rounded-3xl p-3.5 w-[168px] h-[224px] flex flex-col relative premium-hover cursor-pointer group transition-all duration-500 blur-md opacity-50 shrink-0" data-id="farid">
                             <span class="w-2 h-2 rounded-full bg-white/20 mb-2 block group-hover:bg-brand-400 transition-colors shrink-0"></span>
                             <div class="relative w-full aspect-square rounded-2xl overflow-hidden mb-3 border border-white/5 shrink-0 bg-black">
-                                <img src="IMG/user/riddd1.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 img-target">
+                                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 img-target" alt="Farid">
                                 <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-2.5"><h3 class="text-white font-bold text-xs">Farid Siddiq</h3></div>
                             </div>
                             <p class="text-gray-400 text-[10px] leading-relaxed mt-auto font-medium line-clamp-3">100+ Unit sold setelah 7 bulan join Farid Store reseller</p>
@@ -483,7 +486,7 @@
                         <div class="banner-testimonial-card testimonial-item glass-panel rounded-3xl p-3.5 w-[168px] h-[224px] flex flex-col relative premium-hover cursor-pointer group transition-all duration-500 blur-md opacity-50 shrink-0" data-id="gibran">
                             <span class="w-2 h-2 rounded-full bg-white/20 mb-2 block group-hover:bg-brand-400 transition-colors shrink-0"></span>
                             <div class="relative w-full aspect-square rounded-2xl overflow-hidden mb-3 border border-white/5 shrink-0 bg-black">
-                                <img src="IMG/user/gib.png" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 img-target">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 img-target" alt="Gibran">
                                 <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-2.5"><h3 class="text-white font-bold text-xs">Alif Gibran</h3></div>
                             </div>
                             <p class="text-gray-400 text-[10px] leading-relaxed mt-auto font-medium line-clamp-3">100+ Unit sold setelah 7 bulan join bersama Farid Store reseller</p>
@@ -492,7 +495,7 @@
                         <div class="banner-testimonial-card testimonial-item glass-panel rounded-3xl p-3.5 w-[168px] h-[224px] flex flex-col relative premium-hover cursor-pointer group transition-all duration-500 blur-md opacity-50 shrink-0" data-id="bobi">
                             <span class="w-2 h-2 rounded-full bg-white/20 mb-2 block group-hover:bg-brand-400 transition-colors shrink-0"></span>
                             <div class="relative w-full aspect-square rounded-2xl overflow-hidden mb-3 border border-white/5 shrink-0 bg-black">
-                                <img src="IMG/user/bobi.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 img-target">
+                                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 img-target" alt="Bobi">
                                 <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-2.5"><h3 class="text-white font-bold text-xs">Bobi Bayu</h3></div>
                             </div>
                             <p class="text-gray-400 text-[10px] leading-relaxed mt-auto font-medium line-clamp-3">100+ Unit sold sejak join Reseller hingga 50 juta pertama</p>
@@ -501,7 +504,7 @@
                         <div class="banner-testimonial-card testimonial-item glass-panel rounded-3xl p-3.5 w-[168px] h-[224px] flex flex-col relative premium-hover cursor-pointer group transition-all duration-500 blur-md opacity-50 shrink-0" data-id="nisa">
                             <span class="w-2 h-2 rounded-full bg-white/20 mb-2 block group-hover:bg-brand-400 transition-colors shrink-0"></span>
                             <div class="relative w-full aspect-square rounded-2xl overflow-hidden mb-3 border border-white/5 shrink-0 bg-black">
-                                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 img-target">
+                                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 img-target" alt="Nisa">
                                 <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-2.5"><h3 class="text-white font-bold text-xs">Nisa</h3></div>
                             </div>
                             <p class="text-gray-400 text-[10px] leading-relaxed mt-auto font-medium line-clamp-3">Sukses membangun omset stabil dan mandiri secara finansial</p>
@@ -510,7 +513,7 @@
                         <div class="banner-testimonial-card testimonial-item glass-panel rounded-3xl p-3.5 w-[168px] h-[224px] flex flex-col relative premium-hover cursor-pointer group transition-all duration-500 blur-md opacity-50 shrink-0" data-id="reza">
                             <span class="w-2 h-2 rounded-full bg-white/20 mb-2 block group-hover:bg-brand-400 transition-colors shrink-0"></span>
                             <div class="relative w-full aspect-square rounded-2xl overflow-hidden mb-3 border border-white/5 shrink-0 bg-black">
-                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 img-target">
+                                <img src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?w=500&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 img-target" alt="Reza">
                                 <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-2.5"><h3 class="text-white font-bold text-xs">Reza P.</h3></div>
                             </div>
                             <p class="text-gray-400 text-[10px] leading-relaxed mt-auto font-medium line-clamp-3">Mampu scale-up bisnis dengan bimbingan dan support penuh dari tim.</p>
@@ -519,7 +522,7 @@
                         <div class="banner-testimonial-card testimonial-item glass-panel rounded-3xl p-3.5 w-[168px] h-[224px] flex flex-col relative premium-hover cursor-pointer group transition-all duration-500 blur-md opacity-50 shrink-0" data-id="dinda">
                             <span class="w-2 h-2 rounded-full bg-white/20 mb-2 block group-hover:bg-brand-400 transition-colors shrink-0"></span>
                             <div class="relative w-full aspect-square rounded-2xl overflow-hidden mb-3 border border-white/5 shrink-0 bg-black">
-                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 img-target">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 img-target" alt="Dinda">
                                 <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-2.5"><h3 class="text-white font-bold text-xs">Dinda Aulia</h3></div>
                             </div>
                             <p class="text-gray-400 text-[10px] leading-relaxed mt-auto font-medium line-clamp-3">Sistem dropship mempermudah saya jualan tanpa harus modal stok barang.</p>
@@ -542,9 +545,8 @@
         </div>
 
         <div class="team-accordion flex gap-4 w-full" data-aos="fade-up" data-aos-delay="100">
-            
             <div class="team-card relative rounded-3xl overflow-hidden cursor-pointer group border border-white/10 bg-black">
-                <img src="IMG/user/riddd1.jpg" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-90 transition-all duration-500 grayscale group-hover:grayscale-0" alt="Farid Siddiq" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&q=80" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-90 transition-all duration-500 grayscale group-hover:grayscale-0" alt="Farid Siddiq" loading="lazy">
                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
                 <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8 flex flex-col justify-end h-full">
                     <h3 class="font-heading text-2xl font-bold text-white mb-1 whitespace-nowrap">Farid Siddiq</h3>
@@ -568,7 +570,7 @@
             </div>
 
             <div class="team-card relative rounded-3xl overflow-hidden cursor-pointer group border border-white/10 bg-black">
-                <img src="IMG/user/gib.png" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-90 transition-all duration-500 grayscale group-hover:grayscale-0" alt="Alif Gibran" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-90 transition-all duration-500 grayscale group-hover:grayscale-0" alt="Alif Gibran" loading="lazy">
                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
                 <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8 flex flex-col justify-end h-full">
                     <h3 class="font-heading text-2xl font-bold text-white mb-1 whitespace-nowrap">Alif Gibran</h3>
@@ -580,7 +582,7 @@
             </div>
 
             <div class="team-card relative rounded-3xl overflow-hidden cursor-pointer group border border-white/10 bg-black">
-                <img src="IMG/user/bobi.jpg" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-90 transition-all duration-500 grayscale group-hover:grayscale-0" alt="Bobi Bayu" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=800&q=80" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-90 transition-all duration-500 grayscale group-hover:grayscale-0" alt="Bobi Bayu" loading="lazy">
                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
                 <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8 flex flex-col justify-end h-full">
                     <h3 class="font-heading text-2xl font-bold text-white mb-1 whitespace-nowrap">Bobi Bayu</h3>
@@ -590,7 +592,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
         <div class="mt-24 border-t border-white/5 pt-12" data-aos="fade-up" data-aos-delay="200">
@@ -603,6 +604,7 @@
             </div>
         </div>
     </section>
+
     <section id="katalog" class="py-24 relative z-20 min-h-screen">
         <div class="max-w-7xl mx-auto px-6 lg:px-8 border-t border-white/10 pt-20">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8" data-aos="fade-up">
@@ -683,12 +685,11 @@
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
             if (window.scrollY > 50) {
-                // Perbaikan Navbar JS Scroll
-                nav.classList.remove('glass-pill');
-                nav.classList.add('bg-black/90', 'backdrop-blur-xl', 'border', 'border-white/20');
+                nav.classList.add('bg-black/80', 'border-white/20');
+                nav.classList.remove('bg-black/40');
             } else {
-                nav.classList.remove('bg-black/90', 'backdrop-blur-xl', 'border', 'border-white/20');
-                nav.classList.add('glass-pill');
+                nav.classList.remove('bg-black/80', 'border-white/20');
+                nav.classList.add('bg-black/40');
             }
         });
 
