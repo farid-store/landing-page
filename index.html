@@ -133,6 +133,34 @@
             padding: 0 4px;
         }
 
+        /* --- NEW: Ticker Animation untuk Card "Baru Saja Terjual" --- */
+        .ticker-container {
+            height: 56px; /* Menjaga tinggi card tetap stabil */
+            position: relative;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+        .ticker-item {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+            animation: tickerPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+        .ticker-item.exit {
+            animation: tickerExit 0.4s ease-in forwards;
+        }
+        @keyframes tickerPop {
+            0% { opacity: 0; transform: translateY(20px) scale(0.95); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        @keyframes tickerExit {
+            0% { opacity: 1; transform: translateY(0) scale(1); }
+            100% { opacity: 0; transform: translateY(-20px) scale(0.95); }
+        }
+
         /* Hide the debug slider from original banner */
         .slider-control { display: none !important; }
     </style>
@@ -385,14 +413,14 @@
             <div class="right-section w-full lg:w-[31%] flex gap-4 overflow-x-auto hide-scroll transition-all duration-700 items-center z-10 py-4" id="rightSection">
                 <div class="flex gap-4 min-w-max h-full items-stretch">
                     
-                    <div class="banner-testimonial-card result-card glass-panel border border-brand-500/20 rounded-3xl p-6 w-[220px] flex flex-col justify-center relative overflow-hidden" id="resultCard">
+                    <div class="banner-testimonial-card result-card glass-panel border border-brand-500/20 rounded-3xl p-6 w-[220px] shrink-0 flex flex-col justify-center relative overflow-hidden" id="resultCard">
                         <div class="absolute inset-0 bg-gradient-to-br from-brand-500/10 to-transparent pointer-events-none"></div>
                         <span class="w-2 h-2 rounded-full bg-brand-400 mb-4 animate-pulse"></span>
                         <h2 class="font-heading text-3xl font-black text-white mb-2">The Result.</h2>
                         <p class="text-gray-400 text-sm font-medium">After Join<br>Farid Store Reseller</p>
                     </div>
 
-                    <div class="banner-testimonial-card testimonial-item glass-panel rounded-3xl p-4 w-[240px] flex flex-col relative premium-hover cursor-pointer group transition-all duration-500 blur-md opacity-50" data-id="farid">
+                    <div class="banner-testimonial-card testimonial-item glass-panel rounded-3xl p-4 w-[240px] shrink-0 flex flex-col relative premium-hover cursor-pointer group transition-all duration-500 blur-md opacity-50" data-id="farid">
                         <span class="w-2 h-2 rounded-full bg-white/20 mb-3 block group-hover:bg-brand-400 transition-colors"></span>
                         <div class="relative w-full h-32 rounded-2xl overflow-hidden mb-4 border border-white/5">
                             <img src="IMG/user/riddd1.jpg" alt="Farid Siddiq" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 img-target" loading="lazy">
@@ -403,7 +431,7 @@
                         <p class="text-gray-400 text-xs leading-relaxed mt-auto font-medium">100+ Unit sold setelah 7 bulan join Farid Store reseller</p>
                     </div>
 
-                    <div class="banner-testimonial-card testimonial-item glass-panel rounded-3xl p-4 w-[240px] flex flex-col relative premium-hover cursor-pointer group transition-all duration-500 blur-md opacity-50" data-id="gibran">
+                    <div class="banner-testimonial-card testimonial-item glass-panel rounded-3xl p-4 w-[240px] shrink-0 flex flex-col relative premium-hover cursor-pointer group transition-all duration-500 blur-md opacity-50" data-id="gibran">
                         <span class="w-2 h-2 rounded-full bg-white/20 mb-3 block group-hover:bg-brand-400 transition-colors"></span>
                         <div class="relative w-full h-32 rounded-2xl overflow-hidden mb-4 border border-white/5">
                             <img src="IMG/user/gib.png" alt="Alif Gibran" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 img-target" loading="lazy">
@@ -414,7 +442,7 @@
                         <p class="text-gray-400 text-xs leading-relaxed mt-auto font-medium">100+ Unit sold setelah 7 bulan join bersama Farid Store reseller</p>
                     </div>
 
-                    <div class="banner-testimonial-card testimonial-item glass-panel rounded-3xl p-4 w-[240px] flex flex-col relative premium-hover cursor-pointer group transition-all duration-500 blur-md opacity-50" data-id="bobi">
+                    <div class="banner-testimonial-card testimonial-item glass-panel rounded-3xl p-4 w-[240px] shrink-0 flex flex-col relative premium-hover cursor-pointer group transition-all duration-500 blur-md opacity-50" data-id="bobi">
                         <span class="w-2 h-2 rounded-full bg-white/20 mb-3 block group-hover:bg-brand-400 transition-colors"></span>
                         <div class="relative w-full h-32 rounded-2xl overflow-hidden mb-4 border border-white/5">
                             <img src="IMG/user/bobi.jpg" alt="Bobi Bayu" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 img-target" loading="lazy">
@@ -521,7 +549,7 @@
             }
         });
 
-        // ==== Script Baru untuk Reseller Banner ====
+        // Script Reseller Banner
         document.addEventListener('DOMContentLoaded', function() {
             const bannerContainer = document.getElementById('bannerContainer');
             const leftSection = document.getElementById('leftSection');
@@ -534,9 +562,8 @@
             const clickedLeftWidth = 35; 
             let isExpanded = false; 
 
-            // Adaptasi fungsi resize agar aman di versi mobile (flex-col) dan desktop (flex-row)
             function setSectionWidths(leftPercentage) {
-                if(window.innerWidth >= 1024) { // Only apply inline flex-basis width for desktop
+                if(window.innerWidth >= 1024) { 
                     const rightPercentage = 100 - leftPercentage;
                     leftSection.style.flexBasis = leftPercentage + '%';
                     rightSection.style.flexBasis = rightPercentage + '%';
@@ -551,7 +578,6 @@
 
             setSectionWidths(initialLeftWidth);
 
-            // Jaga responsivitas kalau layarnya dibesarkan/dikecilkan
             window.addEventListener('resize', () => {
                 setSectionWidths(isExpanded ? clickedLeftWidth : initialLeftWidth);
             });
@@ -559,11 +585,9 @@
             function handleCardClick() {
                 if (!isExpanded) {
                     setSectionWidths(clickedLeftWidth);
-                    // Hilangkan efek blur dan transparan pakai class Tailwind
                     testimonialItems.forEach(card => {
                         card.classList.remove('blur-md', 'opacity-50');
                         card.classList.add('opacity-100');
-                        // Hilangkan efek hitam-putih gambar di dalamnya
                         const img = card.querySelector('.img-target');
                         if(img) img.classList.remove('grayscale');
                     });
@@ -591,7 +615,6 @@
                 });
             }
         });
-        // ==== Selesai ====
 
         const waNumber = "6281371127121"; 
         let globalProducts = [];
@@ -698,12 +721,47 @@
                 trendText.innerHTML = `<span class="text-gray-400 font-bold">↓ ${Math.abs(diff)} unit</span> dari bulan lalu`;
             }
 
-            const recent = soldOnly.slice(-3).reverse();
-            document.getElementById('recent-sold-list').innerHTML = recent.map(item => `
-                <div class="flex items-center gap-2 animate-pulse">
-                    <i class="fa-solid fa-circle-check text-green-500"></i> ${item.name}
-                </div>
-            `).join('');
+            // ==== REVISI: Ticker Animation Logic ====
+            // Ambil 5 barang terakhir yang laku biar loopingnya lebih panjang
+            const recentSoldItems = soldOnly.slice(-5).reverse();
+            const recentContainer = document.getElementById('recent-sold-list');
+            
+            // Override class menjadi wadah slider
+            recentContainer.className = "ticker-container"; 
+
+            if (recentSoldItems.length > 0) {
+                let currentIndex = 0;
+                
+                function showNextTickerItem() {
+                    const item = recentSoldItems[currentIndex];
+                    
+                    const el = document.createElement('div');
+                    el.className = 'ticker-item flex items-center gap-3 bg-white/5 border border-white/10 px-4 py-3 rounded-xl';
+                    el.innerHTML = `
+                        <i class="fa-solid fa-circle-check text-green-500 text-lg"></i> 
+                        <div class="flex flex-col">
+                            <span class="text-xs font-bold text-white line-clamp-1">${item.name}</span>
+                            <span class="text-[10px] text-gray-500 font-medium">${item.soldAt || 'Baru Saja'}</span>
+                        </div>
+                    `;
+                    
+                    const oldEl = recentContainer.querySelector('.ticker-item:not(.exit)');
+                    if(oldEl) {
+                        oldEl.classList.add('exit');
+                        setTimeout(() => oldEl.remove(), 400); 
+                    }
+                    
+                    recentContainer.appendChild(el);
+                    currentIndex = (currentIndex + 1) % recentSoldItems.length;
+                }
+                
+                showNextTickerItem();
+                if(window.recentSoldInterval) clearInterval(window.recentSoldInterval);
+                window.recentSoldInterval = setInterval(showNextTickerItem, 3500); 
+            } else {
+                recentContainer.innerHTML = `<span class="text-xs text-gray-500 flex h-full items-center">Belum ada data</span>`;
+            }
+            // ==== END REVISI Ticker Logic ====
         }
 
         function searchProducts() {
@@ -835,7 +893,6 @@
             searchProducts();
         };
 
-        // Tunggu bentar sebelum fetch data produk aslinya
         document.addEventListener('DOMContentLoaded', fetchProducts);
     </script>
 </body>
