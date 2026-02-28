@@ -122,34 +122,94 @@
         
         .slider-control { display: none !important; }
         /* Gallery Focus Reveal Effect */
-        .gallery-container:hover .gallery-card:not(:hover) {
-            opacity: 0.3;
-            filter: grayscale(100%);
-            transform: scale(0.98);
-        }
-        .gallery-card {
-            transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-            overflow: hidden;
+        /* Cinematic Dual-Track Gallery */
+        .gallery-wrapper {
             position: relative;
+            width: 100vw;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            padding: 3rem 0;
+            background: radial-gradient(circle at center, rgba(14,165,233,0.03) 0%, transparent 60%);
+            overflow: hidden;
+        }
+        .gallery-track {
+            display: flex;
+            gap: 1.5rem;
+            width: max-content;
+            padding: 0 1.5rem;
+        }
+        /* Track Atas jalan ke Kiri */
+        .track-left { animation: scroll-left 35s linear infinite; }
+        /* Track Bawah jalan ke Kanan */
+        .track-right { animation: scroll-right 35s linear infinite; }
+        
+        /* Pause semua animasi kalau area galeri di hover */
+        .gallery-wrapper:hover .track-left,
+        .gallery-wrapper:hover .track-right {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-50% - 0.75rem)); }
+        }
+        @keyframes scroll-right {
+            0% { transform: translateX(calc(-50% - 0.75rem)); }
+            100% { transform: translateX(0); }
+        }
+
+        /* Card Styling & Hover Logic */
+        .gallery-wrapper:hover .g-card {
+            filter: grayscale(100%) opacity(0.3) blur(2px);
+        }
+        .g-card {
+            position: relative;
+            width: 280px; 
+            height: 190px;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            cursor: pointer;
             border: 1px solid rgba(255,255,255,0.05);
+            flex-shrink: 0;
+            background: #000;
         }
-        .gallery-image {
-            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        @media (min-width: 768px) {
+            .g-card { width: 400px; height: 260px; }
         }
-        .gallery-card:hover .gallery-image {
-            transform: scale(1.1) rotate(1deg);
+        .g-card img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.8s ease;
+            opacity: 0.8;
         }
-        .gallery-caption {
-            transform: translateY(20px);
-            opacity: 0;
-            transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1) 0.1s;
+        .g-card::before {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 60%);
+            z-index: 1; transition: opacity 0.5s;
         }
-        .gallery-card:hover .gallery-caption {
-            transform: translateY(0);
+        
+        /* THE MAGIC: Hover Effect pada spesifik Card */
+        .gallery-wrapper .g-card:hover {
+            filter: grayscale(0%) opacity(1) blur(0px);
+            transform: scale(1.1) translateY(-10px);
+            z-index: 20;
+            box-shadow: 0 20px 50px rgba(14,165,233,0.25);
+            border-color: rgba(14,165,233,0.5);
+        }
+        .g-card:hover img {
+            transform: scale(1.15) rotate(1deg);
             opacity: 1;
+        }
+        .g-content {
+            position: absolute; bottom: -20px; left: 0;
+            padding: 1.5rem; opacity: 0;
+            transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1) 0.1s;
+            z-index: 2; width: 100%;
+        }
+        .g-card:hover .g-content {
+            bottom: 0; opacity: 1;
         }
     </style>
 </head>
@@ -673,65 +733,137 @@
         </div>
     </section>
 
-    <section id="gallery" class="py-20 px-6 max-w-7xl mx-auto border-t border-white/5">
-        <div class="flex flex-col md:flex-row justify-between items-end mb-12" data-aos="fade-up">
-            <div>
-                <span class="text-brand-400 font-bold text-xs uppercase tracking-[0.2em] mb-4 block">Store Atmosphere</span>
-                <h2 class="font-heading text-4xl md:text-5xl font-black text-white leading-tight">
-                    Daily <span class="text-gray-500">Operation.</span>
-                </h2>
-            </div>
-            <p class="text-gray-400 max-w-md text-sm md:text-base mt-4 md:mt-0 text-left md:text-right">
-                Intip suasana harian di Farid Store. Dari pengecekan unit yang ketat, pelayanan pelanggan, hingga antrean harian kami.
+<section id="gallery" class="py-20 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6 text-center" data-aos="fade-up">
+            <span class="text-brand-400 font-bold text-xs uppercase tracking-[0.2em] mb-4 block">Store Atmosphere</span>
+            <h2 class="font-heading text-4xl md:text-5xl font-black text-white leading-tight mb-4">
+                Daily <span class="text-gray-500">Operation.</span>
+            </h2>
+            <p class="text-gray-400 max-w-2xl mx-auto text-sm md:text-base">
+                Intip suasana harian di Farid Store. Dari pengecekan unit yang ketat, pelayanan pelanggan, hingga proses *packing* pengiriman yang aman ke seluruh Indonesia.
             </p>
         </div>
 
-        <div class="gallery-container grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 md:gap-6 h-[800px] md:h-[600px] w-full">
-            
-            <div class="gallery-card md:col-span-2 md:row-span-2 rounded-[2rem] group" data-aos="zoom-in" data-aos-delay="0">
-                <img src="https://images.unsplash.com/photo-1601597111158-2fceff292cdc?w=800&q=80" alt="Tampak Depan Farid Store" class="gallery-image" loading="lazy">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-                <div class="absolute bottom-0 left-0 p-8 gallery-caption w-full">
-                    <div class="w-10 h-10 rounded-full bg-brand-500/20 flex items-center justify-center text-brand-400 backdrop-blur-md mb-3 border border-brand-500/30">
-                        <i class="fa-solid fa-store"></i>
+        <div class="gallery-wrapper mt-12">
+            <div class="gallery-track track-left">
+                <div class="g-card">
+                    <img src="https://images.unsplash.com/photo-1601597111158-2fceff292cdc?w=800&q=80" alt="Showroom" loading="lazy">
+                    <div class="g-content">
+                        <h3 class="font-heading text-xl font-bold text-white mb-1">Showroom Utama</h3>
+                        <p class="text-brand-400 text-xs font-bold uppercase tracking-widest">Pekanbaru Ready</p>
                     </div>
-                    <h3 class="font-heading text-2xl font-bold text-white mb-1">Showroom Utama</h3>
-                    <p class="text-gray-400 text-sm">Ratusan unit premium siap dicek langsung di tempat.</p>
                 </div>
-            </div>
-
-            <div class="gallery-card md:col-span-2 md:row-span-1 rounded-[2rem] group" data-aos="zoom-in" data-aos-delay="100">
-                <img src="https://images.unsplash.com/photo-1597872253359-f6520f9c2d15?w=800&q=80" alt="Proses Servis Farid Store" class="gallery-image" loading="lazy">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-                <div class="absolute bottom-0 left-0 p-6 gallery-caption w-full">
-                    <div class="flex items-center gap-3 mb-2">
-                        <div class="w-8 h-8 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-400 backdrop-blur-md border border-orange-500/30">
-                            <i class="fa-solid fa-microscope"></i>
-                        </div>
-                        <h3 class="font-heading text-xl font-bold text-white">Quality Control & Servis</h3>
+                <div class="g-card">
+                    <img src="https://images.unsplash.com/photo-1597872253359-f6520f9c2d15?w=800&q=80" alt="Servis" loading="lazy">
+                    <div class="g-content">
+                        <h3 class="font-heading text-xl font-bold text-white mb-1">Ruang Servis Eksekusi</h3>
+                        <p class="text-brand-400 text-xs font-bold uppercase tracking-widest">Profesional Repair</p>
                     </div>
-                    <p class="text-gray-400 text-xs">Pengecekan mendetail oleh tim teknisi kami.</p>
+                </div>
+                <div class="g-card">
+                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80" alt="Pelanggan" loading="lazy">
+                    <div class="g-content">
+                        <h3 class="font-heading text-xl font-bold text-white mb-1">Senyum Pelanggan</h3>
+                        <p class="text-brand-400 text-xs font-bold uppercase tracking-widest">Tukar Tambah</p>
+                    </div>
+                </div>
+                <div class="g-card">
+                    <img src="https://images.unsplash.com/photo-1580674285054-bed31e145f59?w=800&q=80" alt="Packing" loading="lazy">
+                    <div class="g-content">
+                        <h3 class="font-heading text-xl font-bold text-white mb-1">Keamanan Ekspedisi</h3>
+                        <p class="text-brand-400 text-xs font-bold uppercase tracking-widest">Safe Packing</p>
+                    </div>
+                </div>
+                
+                <div class="g-card">
+                    <img src="https://images.unsplash.com/photo-1601597111158-2fceff292cdc?w=800&q=80" alt="Showroom" loading="lazy">
+                    <div class="g-content">
+                        <h3 class="font-heading text-xl font-bold text-white mb-1">Showroom Utama</h3>
+                        <p class="text-brand-400 text-xs font-bold uppercase tracking-widest">Pekanbaru Ready</p>
+                    </div>
+                </div>
+                <div class="g-card">
+                    <img src="https://images.unsplash.com/photo-1597872253359-f6520f9c2d15?w=800&q=80" alt="Servis" loading="lazy">
+                    <div class="g-content">
+                        <h3 class="font-heading text-xl font-bold text-white mb-1">Ruang Servis Eksekusi</h3>
+                        <p class="text-brand-400 text-xs font-bold uppercase tracking-widest">Profesional Repair</p>
+                    </div>
+                </div>
+                <div class="g-card">
+                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80" alt="Pelanggan" loading="lazy">
+                    <div class="g-content">
+                        <h3 class="font-heading text-xl font-bold text-white mb-1">Senyum Pelanggan</h3>
+                        <p class="text-brand-400 text-xs font-bold uppercase tracking-widest">Tukar Tambah</p>
+                    </div>
+                </div>
+                <div class="g-card">
+                    <img src="https://images.unsplash.com/photo-1580674285054-bed31e145f59?w=800&q=80" alt="Packing" loading="lazy">
+                    <div class="g-content">
+                        <h3 class="font-heading text-xl font-bold text-white mb-1">Keamanan Ekspedisi</h3>
+                        <p class="text-brand-400 text-xs font-bold uppercase tracking-widest">Safe Packing</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="gallery-card md:col-span-1 md:row-span-1 rounded-[2rem] group" data-aos="zoom-in" data-aos-delay="200">
-                <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=500&q=80" alt="Pelanggan Farid Store" class="gallery-image" loading="lazy">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-                <div class="absolute bottom-0 left-0 p-6 gallery-caption w-full">
-                    <h3 class="font-heading text-lg font-bold text-white mb-1">Deal & Done!</h3>
-                    <p class="text-gray-400 text-xs">Senyum puas pelanggan.</p>
+            <div class="gallery-track track-right mt-6">
+                <div class="g-card">
+                    <img src="https://images.unsplash.com/photo-1531297172867-4f50fcc2cb26?w=800&q=80" alt="Device Check" loading="lazy">
+                    <div class="g-content">
+                        <h3 class="font-heading text-xl font-bold text-white mb-1">Quality Control 100%</h3>
+                        <p class="text-brand-400 text-xs font-bold uppercase tracking-widest">Pengecekan Hardware</p>
+                    </div>
+                </div>
+                <div class="g-card">
+                    <img src="https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=800&q=80" alt="Stock" loading="lazy">
+                    <div class="g-content">
+                        <h3 class="font-heading text-xl font-bold text-white mb-1">Update Stok Harian</h3>
+                        <p class="text-brand-400 text-xs font-bold uppercase tracking-widest">Live Inventory</p>
+                    </div>
+                </div>
+                <div class="g-card">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80" alt="Team Discussion" loading="lazy">
+                    <div class="g-content">
+                        <h3 class="font-heading text-xl font-bold text-white mb-1">Tim Eksekutor</h3>
+                        <p class="text-brand-400 text-xs font-bold uppercase tracking-widest">Solid & Fast Response</p>
+                    </div>
+                </div>
+                <div class="g-card">
+                    <img src="https://images.unsplash.com/photo-1512428559087-560fa5ceab42?w=800&q=80" alt="Dealing" loading="lazy">
+                    <div class="g-content">
+                        <h3 class="font-heading text-xl font-bold text-white mb-1">Proses Transaksi COD</h3>
+                        <p class="text-brand-400 text-xs font-bold uppercase tracking-widest">Aman & Terpercaya</p>
+                    </div>
+                </div>
+                
+                <div class="g-card">
+                    <img src="https://images.unsplash.com/photo-1531297172867-4f50fcc2cb26?w=800&q=80" alt="Device Check" loading="lazy">
+                    <div class="g-content">
+                        <h3 class="font-heading text-xl font-bold text-white mb-1">Quality Control 100%</h3>
+                        <p class="text-brand-400 text-xs font-bold uppercase tracking-widest">Pengecekan Hardware</p>
+                    </div>
+                </div>
+                <div class="g-card">
+                    <img src="https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=800&q=80" alt="Stock" loading="lazy">
+                    <div class="g-content">
+                        <h3 class="font-heading text-xl font-bold text-white mb-1">Update Stok Harian</h3>
+                        <p class="text-brand-400 text-xs font-bold uppercase tracking-widest">Live Inventory</p>
+                    </div>
+                </div>
+                <div class="g-card">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80" alt="Team Discussion" loading="lazy">
+                    <div class="g-content">
+                        <h3 class="font-heading text-xl font-bold text-white mb-1">Tim Eksekutor</h3>
+                        <p class="text-brand-400 text-xs font-bold uppercase tracking-widest">Solid & Fast Response</p>
+                    </div>
+                </div>
+                <div class="g-card">
+                    <img src="https://images.unsplash.com/photo-1512428559087-560fa5ceab42?w=800&q=80" alt="Dealing" loading="lazy">
+                    <div class="g-content">
+                        <h3 class="font-heading text-xl font-bold text-white mb-1">Proses Transaksi COD</h3>
+                        <p class="text-brand-400 text-xs font-bold uppercase tracking-widest">Aman & Terpercaya</p>
+                    </div>
                 </div>
             </div>
-
-            <div class="gallery-card md:col-span-1 md:row-span-1 rounded-[2rem] group" data-aos="zoom-in" data-aos-delay="300">
-                <img src="https://images.unsplash.com/photo-1580674285054-bed31e145f59?w=500&q=80" alt="Packing Pengiriman Farid Store" class="gallery-image" loading="lazy">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-                <div class="absolute bottom-0 left-0 p-6 gallery-caption w-full">
-                    <h3 class="font-heading text-lg font-bold text-white mb-1">Safe Packing</h3>
-                    <p class="text-gray-400 text-xs">Siap kirim ke luar kota.</p>
-                </div>
-            </div>
-
         </div>
     </section>
 
