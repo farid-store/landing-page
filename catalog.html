@@ -16,7 +16,7 @@
             --dark-gray: #2b2b2b;
             --text-gray: #444444;
             --bronze-gradient: linear-gradient(135deg, #d3b49f 0%, #f4e2d3 50%, #b88d75 100%);
-            --whatsapp-color: #25d366; /* Warna WhatsApp */
+            --whatsapp-color: #25d366; 
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -43,55 +43,35 @@
         }
 
         .inner-border {
-            position: absolute;
-            top: 10px; left: 10px; right: 10px; bottom: 10px;
-            border: 1px solid var(--rose-gold-mid);
-            pointer-events: none;
-            z-index: 10;
+            position: absolute; top: 10px; left: 10px; right: 10px; bottom: 10px;
+            border: 1px solid var(--rose-gold-mid); pointer-events: none; z-index: 10;
         }
 
         .vertical-text {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-family: 'Playfair Display', serif;
-            font-size: 45px;
-            color: rgba(0, 0, 0, 0.03);
-            white-space: nowrap;
-            letter-spacing: 6px;
-            z-index: 1;
+            position: absolute; top: 50%; transform: translateY(-50%);
+            font-family: 'Playfair Display', serif; font-size: 45px;
+            color: rgba(0, 0, 0, 0.03); white-space: nowrap; letter-spacing: 6px; z-index: 1;
             -webkit-text-stroke: 1px rgba(197, 160, 139, 0.4);
         }
         .vertical-left { left: -170px; transform: translateY(-50%) rotate(-90deg); }
         .vertical-right { right: -200px; transform: translateY(-50%) rotate(90deg); }
 
         .top-decoration {
-            position: absolute;
-            top: 0; left: 50%;
-            transform: translateX(-50%);
-            width: 280px; height: 45px;
-            background: linear-gradient(to bottom, #cfb5a3, #e8d7ca);
-            clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);
-            z-index: 1;
+            position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+            width: 280px; height: 45px; background: linear-gradient(to bottom, #cfb5a3, #e8d7ca);
+            clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%); z-index: 1;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        .header {
-            text-align: center; padding: 35px 20px 10px; position: relative; z-index: 2;
-        }
-        .header h1 {
-            font-family: 'Playfair Display', serif; font-size: 38px; color: var(--dark-gray); font-weight: 700; letter-spacing: 2px; margin-bottom: 5px;
-        }
+        
+        .header { text-align: center; padding: 35px 20px 10px; position: relative; z-index: 2; }
+        .header h1 { font-family: 'Playfair Display', serif; font-size: 38px; color: var(--dark-gray); font-weight: 700; letter-spacing: 2px; margin-bottom: 5px; }
         .header p { font-size: 15px; color: var(--text-gray); letter-spacing: 1px; }
 
-        .promo-section {
-            display: flex; align-items: center; margin: 20px 0; position: relative; z-index: 2; padding: 0 20px;
-        }
+        .promo-section { display: flex; align-items: center; margin: 20px 0; position: relative; z-index: 2; padding: 0 20px; }
         .cashback-badge {
             background: var(--bg-color); border: 1px solid var(--rose-gold-mid); padding: 10px; text-align: center; width: 85px; box-shadow: 2px 2px 8px rgba(0,0,0,0.15); position: relative; z-index: 2;
         }
-        .cashback-badge::before {
-            content: ''; position: absolute; top: -4px; left: -4px; right: -4px; bottom: -4px; border: 1px solid var(--rose-gold-light); z-index: -1;
-        }
+        .cashback-badge::before { content: ''; position: absolute; top: -4px; left: -4px; right: -4px; bottom: -4px; border: 1px solid var(--rose-gold-light); z-index: -1; }
         .cashback-badge span.small-text { font-size: 9px; display: block; letter-spacing: 1px; }
         .cashback-badge span.big-number { font-family: 'Playfair Display', serif; font-size: 34px; line-height: 1; display: inline-block; margin: 5px 0; }
         
@@ -100,7 +80,7 @@
         }
         .promo-banner p { font-size: 14px; color: var(--dark-gray); font-weight: 700; letter-spacing: 0.5px; }
 
-        /* AREA GAMBAR HERO BERTUMPUK (STACKED CARDS) - DIKEMBALIKAN SESUAI KODE ANDA */
+        /* ANIMASI SHUFFLE KARTU HERO (Rasio 1:1) */
         .hero-images {
             display: flex; justify-content: space-between; align-items: center; padding: 0 30px; margin-top: 25px; height: 220px; position: relative; z-index: 2;
         }
@@ -109,29 +89,36 @@
         }
         .hero-left img { 
             position: absolute; 
-            filter: drop-shadow(5px 5px 8px rgba(0,0,0,0.6)); 
-            border-radius: 8px; 
+            aspect-ratio: 1/1; 
+            width: 150px; 
+            object-fit: contain; 
+            border-radius: 6px;
+            filter: drop-shadow(5px 5px 8px rgba(0,0,0,0.5)); 
             transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); 
         }
         
-        .phone-1 { left: 0px; transform: rotate(-15deg); z-index: 1; max-height: 140px !important; }
-        .phone-2 { left: 35px; transform: translateY(-10px) rotate(0deg); z-index: 2; max-height: 165px !important; }
-        .phone-3 { left: 80px; transform: rotate(15deg); z-index: 3; max-height: 140px !important; }
+        .phone-1 { animation: cardShuffle 6s infinite cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+        .phone-2 { animation: cardShuffle 6s infinite cubic-bezier(0.4, 0, 0.2, 1) -2s; }
+        .phone-3 { animation: cardShuffle 6s infinite cubic-bezier(0.4, 0, 0.2, 1) -4s; }
 
-        .hero-left:hover .phone-1 { transform: translateX(-15px) rotate(-25deg); }
-        .hero-left:hover .phone-2 { transform: translateY(-20px) rotate(0deg); }
-        .hero-left:hover .phone-3 { transform: translateX(15px) rotate(25deg); }
+        @keyframes cardShuffle {
+            0%, 20%   { z-index: 3; transform: translateX(0) scale(1.05) translateY(0); opacity: 1; }
+            25%       { z-index: 3; transform: translateX(60px) scale(1) translateY(-10px); opacity: 1; }
+            33%, 53%  { z-index: 1; transform: translateX(20px) scale(0.85) translateY(10px); opacity: 0.6; }
+            66%, 86%  { z-index: 2; transform: translateX(-30px) scale(0.95) translateY(5px); opacity: 0.85; }
+            100%      { z-index: 3; transform: translateX(0) scale(1.05) translateY(0); opacity: 1; }
+        }
+
+        .hero-left:hover .phone-1 { transform: translateX(-15px) rotate(-25deg); animation-play-state: paused;}
+        .hero-left:hover .phone-2 { transform: translateY(-20px) rotate(0deg); animation-play-state: paused;}
+        .hero-left:hover .phone-3 { transform: translateX(15px) rotate(25deg); animation-play-state: paused;}
 
         .hero-right { width: 45%; height: 100%; display: flex; align-items: center; justify-content: center; }
-        .hero-right img { max-width: 100%; max-height: 140px; filter: drop-shadow(3px 5px 6px rgba(0,0,0,0.3)); }
+        .hero-right img { max-width: 100%; max-height: 140px; filter: drop-shadow(3px 5px 6px rgba(0,0,0,0.3)); border-radius: 6px;}
 
-        .services-bar {
-            background-color: var(--dark-gray); color: white; text-align: center; padding: 12px 0; margin: 20px 30px 15px; font-size: 13px; font-weight: 600; letter-spacing: 3px; position: relative; z-index: 2; box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-        }
+        .services-bar { background-color: var(--dark-gray); color: white; text-align: center; padding: 12px 0; margin: 20px 30px 15px; font-size: 13px; font-weight: 600; letter-spacing: 3px; position: relative; z-index: 2; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
 
-        .text-brands-container {
-            display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 12px 20px; padding: 0 25px; margin-bottom: 25px; position: relative; z-index: 2;
-        }
+        .text-brands-container { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 12px 20px; padding: 0 25px; margin-bottom: 25px; position: relative; z-index: 2; }
         .text-brands-container span { color: var(--dark-gray); line-height: 1; opacity: 0.9; }
         .brand-samsung { font-family: 'Arial', sans-serif; font-weight: 900; font-size: 13px; letter-spacing: 0.5px; text-transform: uppercase; }
         .brand-pixel { font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 14px; letter-spacing: -0.3px; }
@@ -147,20 +134,24 @@
         .brand-lenovo { font-family: 'Arial Black', sans-serif; font-weight: 900; font-size: 13px; font-style: italic; letter-spacing: 0.5px; }
         .brand-advan { font-family: 'Arial', sans-serif; font-weight: 900; font-size: 14px; letter-spacing: 0.5px; text-transform: uppercase; }
 
+        /* SLIDER ANIMASI SERVIS YANG BERGERAK (MARQUEE) */
         .service-wrapper { position: relative; z-index: 2; margin: 0 20px 25px; }
-        .section-title {
-            text-align: center; font-size: 16px; font-weight: 700; letter-spacing: 3px; color: var(--dark-gray); margin-bottom: 12px; display: flex; align-items: center; justify-content: center;
-        }
+        .section-title { text-align: center; font-size: 16px; font-weight: 700; letter-spacing: 3px; color: var(--dark-gray); margin-bottom: 12px; display: flex; align-items: center; justify-content: center; }
         .section-title::before, .section-title::after { content: ''; height: 1px; width: 40px; background-color: var(--text-gray); margin: 0 10px; }
-        .service-scroll { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 10px; }
-        .service-scroll::-webkit-scrollbar { height: 5px; }
-        .service-scroll::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); border-radius: 10px; }
-        .service-scroll::-webkit-scrollbar-thumb { background: var(--rose-gold-mid); border-radius: 10px; }
+        
+        .service-slider { overflow: hidden; width: 100%; position: relative; }
+        .service-track { display: flex; width: max-content; animation: scrollMarquee 25s linear infinite; }
+        .service-track:hover { animation-play-state: paused; }
+        .service-group { display: flex; gap: 12px; padding-right: 12px; }
+        @keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         
         .service-item { flex: 0 0 130px; position: relative; border-radius: 6px; overflow: hidden; border: 1px solid var(--rose-gold-mid); box-shadow: 0 4px 8px rgba(0,0,0,0.15); background: #fff; }
         .service-item img { width: 100%; height: 90px; object-fit: cover; display: block; }
         .service-item-overlay { background: var(--dark-gray); color: var(--rose-gold-light); font-size: 9px; font-weight: 700; text-align: center; padding: 6px 4px; letter-spacing: 0.5px; border-top: 1px solid var(--rose-gold-mid); }
 
+        /* =======================================================
+           REVISI UI/UX: TABEL MOBILE FRIENDLY ANTI-SCROLL SAMPING
+           ======================================================= */
         .pricelist-wrapper { position: relative; z-index: 2; margin: 0 20px; }
         .marble-board {
             background: linear-gradient(rgba(245, 245, 245, 0.95), rgba(245, 245, 245, 0.95)), url('https://images.unsplash.com/photo-1596525164887-17eb955e8884?q=80&w=800&auto=format&fit=crop') center/cover;
@@ -170,47 +161,74 @@
         .corner-tl { top: 0; left: 0; clip-path: polygon(0 0, 100% 0, 0 100%); }
         .corner-tr { top: 0; right: 0; clip-path: polygon(0 0, 100% 0, 100% 100%); }
 
-        .table-scroll-container { max-height: 370px; overflow-y: auto; padding: 0 10px; position: relative; z-index: 5; }
+        /* Kunci agar tabel tidak menembus batas layar kesamping */
+        .table-scroll-container { 
+            max-height: 370px; 
+            overflow-y: auto; 
+            overflow-x: hidden; /* Mencegah scroll menyamping */
+            padding: 0 5px; 
+            position: relative; 
+            z-index: 5; 
+        }
         .table-scroll-container::-webkit-scrollbar { width: 5px; }
         .table-scroll-container::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); border-radius: 10px; }
         .table-scroll-container::-webkit-scrollbar-thumb { background: var(--rose-gold-mid); border-radius: 10px; }
 
-        .price-table { width: 100%; border-collapse: collapse; font-size: 11px; color: var(--dark-gray); }
-        .price-table thead th {
-            position: sticky; top: 0; background: #f1efeb; border-bottom: 2px solid var(--rose-gold-mid); padding: 10px 5px; text-align: left; font-weight: 800; z-index: 2;
+        /* Tabel Responsif */
+        .price-table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            color: var(--dark-gray); 
+            table-layout: fixed; /* Memaksa kolom mengikuti persentase agar tidak tembus */
         }
-        .price-table td { border-bottom: 1px dashed rgba(0,0,0,0.15); padding: 8px 5px; font-weight: 600; }
-        .price-table tr:last-child td { border-bottom: none; }
         
-        .status-badge { padding: 3px 6px; border-radius: 4px; font-size: 9px; font-weight: 800; letter-spacing: 0.5px; }
-        .badge-ibox { background-color: var(--dark-gray); color: var(--rose-gold-light); }
-        .badge-inter { background-color: transparent; border: 1px solid var(--dark-gray); color: var(--dark-gray); }
-        .price-col { text-align: right; color: #b84c4c; font-weight: 800; font-size: 12px; }
-
-        .footer-contact {
-            background: var(--bronze-gradient); margin: 20px 30px 0; padding: 15px 15px 25px 15px; position: relative; z-index: 2; border: 1px solid rgba(255,255,255,0.4); box-shadow: 2px 8px 20px rgba(0,0,0,0.3); clip-path: polygon(0 0, 100% 0, 100% 90%, 96% 100%, 0 100%); 
-            display: flex; justify-content: space-between; align-items: center; gap: 10px;
+        .price-table thead th { 
+            position: sticky; top: 0; background: #f1efeb; 
+            border-bottom: 2px solid var(--rose-gold-mid); 
+            padding: 10px 5px; text-align: left; font-weight: 800; z-index: 2; 
+            font-size: 11px;
         }
+        
+        .price-table td { 
+            border-bottom: 1px dashed rgba(0,0,0,0.15); 
+            padding: 10px 5px; 
+            vertical-align: middle;
+            word-wrap: break-word; /* Memaksa teks nama HP panjang turun ke bawah */
+        }
+        .price-table tr:last-child td { border-bottom: none; }
 
+        /* Pengaturan Lebar Kolom yang Pas untuk Layar Sempit */
+        .col-no { width: 10%; text-align: center; font-size: 10px; color: #777;}
+        .col-unit { width: 62%; text-align: left; }
+        .col-price { width: 28%; text-align: right; }
+
+        /* Styling Nama Unit & Badge di satu kolom yang sama */
+        .unit-title { font-weight: 700; font-size: 12px; line-height: 1.3; color: #111; }
+        .unit-badge-wrapper { margin-top: 5px; display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+        
+        .status-badge { padding: 3px 6px; border-radius: 4px; font-size: 8px; font-weight: 800; letter-spacing: 0.5px; display: inline-block; white-space: nowrap; }
+        .badge-ibox { background-color: var(--dark-gray); color: var(--rose-gold-light); }
+        .badge-inter { border: 1px solid var(--dark-gray); color: var(--dark-gray); background: transparent;}
+        .badge-ready { background-color: var(--dark-gray); color: var(--rose-gold-light); }
+        .badge-promo { background-color: #b84c4c; color: white; }
+        
+        .price-col { color: #b84c4c; font-weight: 800; font-size: 12px; }
+
+        .footer-contact { background: var(--bronze-gradient); margin: 20px 30px 0; padding: 15px 15px 25px 15px; position: relative; z-index: 2; border: 1px solid rgba(255,255,255,0.4); box-shadow: 2px 8px 20px rgba(0,0,0,0.3); clip-path: polygon(0 0, 100% 0, 100% 90%, 96% 100%, 0 100%); display: flex; justify-content: space-between; align-items: center; gap: 10px; }
         .footer-left { flex: 0 0 35%; display: flex; flex-direction: column; gap: 6px; }
         .footer-left p { font-size: 11px; color: #111; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
         .footer-left i { font-size: 15px; color: #222; }
-
         .footer-divider { width: 2px; min-width: 2px; flex-shrink: 0; height: 75px; background-color: var(--dark-gray); border-radius: 2px; opacity: 0.8; }
-
         .footer-right { flex: 0 0 58%; display: flex; flex-direction: column; gap: 5px; }
         .legend-row { display: flex; font-size: 9px; color: #111; font-weight: 600; line-height: 1.2; }
         .legend-title { width: 95px; flex-shrink: 0; }
         .legend-desc { flex-grow: 1; }
+        .loading-text { text-align: center; padding: 20px !important; font-style: italic; color: #888; font-size: 11px;}
 
-        .loading-text { text-align: center; padding: 20px !important; font-style: italic; color: #888; }
-
-        /* =======================================================
-           STYLE TOMBOL WHATSAPP MENGAMBANG (POP-UP)
-           ======================================================= */
+        /* TOMBOL WHATSAPP MENGAMBANG (POP-UP) */
         .whatsapp-float {
             position: fixed;
-            bottom: -80px; /* Awalnya sembunyi di bawah */
+            bottom: -80px; 
             right: 25px;
             background-color: var(--whatsapp-color);
             color: white;
@@ -229,25 +247,18 @@
             visibility: hidden;
             transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
-
-        /* Class khusus dipicu oleh javascript jika sudah scroll bawah */
         .whatsapp-float.show-wa {
             bottom: 30px;
             opacity: 1;
             visibility: visible;
             animation: pulse-wa 2s infinite;
         }
-
         .whatsapp-float:hover {
             transform: scale(1.05);
             box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
             color: white;
         }
-
-        .whatsapp-float i {
-            font-size: 22px;
-        }
-
+        .whatsapp-float i { font-size: 22px; }
         @keyframes pulse-wa {
             0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
             70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
@@ -286,7 +297,7 @@
                 <img src="https://geotimes.id/wp-content/uploads/2017/08/HP-2-Jutaan-Terbaik-telset.jpg" class="phone-3" alt="iPhone White">
             </div>
             <div class="hero-right">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Airpods_Pro_Vector.svg/512px-Airpods_Pro_Vector.svg.png" alt="Accessories">
+                <img src="https://images.ctfassets.net/d9ybqgejqp0w/3e4ehJZ4hl2oqX0U60UkXi/d7e3c57355ff58c620646a0302f0f863/laptop-repair-feature-half.jpg?fm=webp&q=65" alt="Laptop Repair Service">
             </div>
         </div>
 
@@ -312,38 +323,28 @@
 
         <div class="service-wrapper">
             <div class="section-title">LAYANAN SERVICE</div>
-            <div class="service-scroll">
-                <div class="service-item">
-                    <img src="https://arepair.id/wp-content/uploads/2018/12/service-kaca-iphone-retak-700x467.jpg" alt="Service LCD">
-                    <div class="service-item-overlay">SERVICE LCD / KACA</div>
-                </div>
-                <div class="service-item">
-                    <img src="https://arepair.id/wp-content/uploads/2018/12/baterai-kembung-membuat-layar-ngangkat-1-700x525.jpg" alt="Service Baterai">
-                    <div class="service-item-overlay">GANTI BATERAI</div>
-                </div>
-                <div class="service-item">
-                    <img src="https://arepair.id/wp-content/uploads/2018/10/service-port-charger-iphone-700x465.jpg" alt="Service Port">
-                    <div class="service-item-overlay">SERVICE PORT</div>
-                </div>
-                <div class="service-item">
-                    <img src="https://arepair.id/wp-content/uploads/2018/12/service-kamera-iphone-700x468.jpg" alt="Service Kamera">
-                    <div class="service-item-overlay">SERVICE KAMERA</div>
-                </div>
-                <div class="service-item">
-                    <img src="https://arepair.id/wp-content/uploads/2018/12/service-speaker-iphone-1-700x467.jpg" alt="Service Speaker">
-                    <div class="service-item-overlay">SERVICE SPEAKER</div>
-                </div>
-                <div class="service-item">
-                    <img src="https://arepair.id/wp-content/uploads/2018/12/service-home-button-iphone-700x540.jpg" alt="Service Home Button">
-                    <div class="service-item-overlay">HOME BUTTON</div>
-                </div>
-                <div class="service-item">
-                    <img src="https://arepair.id/wp-content/uploads/2019/03/service-software-iphone-2-700x419.jpg" alt="Service Software">
-                    <div class="service-item-overlay">SERVICE SOFTWARE</div>
-                </div>
-                <div class="service-item">
-                    <img src="https://arepair.id/wp-content/uploads/2023/04/service-back-glass-iphone-700x467.jpg" alt="Service Backglass">
-                    <div class="service-item-overlay">GANTI BACKGLASS</div>
+            <div class="service-slider">
+                <div class="service-track">
+                    <div class="service-group">
+                        <div class="service-item"><img src="https://arepair.id/wp-content/uploads/2018/12/service-kaca-iphone-retak-700x467.jpg" alt="Service LCD"><div class="service-item-overlay">SERVICE LCD / KACA</div></div>
+                        <div class="service-item"><img src="https://arepair.id/wp-content/uploads/2018/12/baterai-kembung-membuat-layar-ngangkat-1-700x525.jpg" alt="Service Baterai"><div class="service-item-overlay">GANTI BATERAI</div></div>
+                        <div class="service-item"><img src="https://arepair.id/wp-content/uploads/2018/10/service-port-charger-iphone-700x465.jpg" alt="Service Port"><div class="service-item-overlay">SERVICE PORT</div></div>
+                        <div class="service-item"><img src="https://arepair.id/wp-content/uploads/2018/12/service-kamera-iphone-700x468.jpg" alt="Service Kamera"><div class="service-item-overlay">SERVICE KAMERA</div></div>
+                        <div class="service-item"><img src="https://arepair.id/wp-content/uploads/2018/12/service-speaker-iphone-1-700x467.jpg" alt="Service Speaker"><div class="service-item-overlay">SERVICE SPEAKER</div></div>
+                        <div class="service-item"><img src="https://arepair.id/wp-content/uploads/2018/12/service-home-button-iphone-700x540.jpg" alt="Service Home Button"><div class="service-item-overlay">HOME BUTTON</div></div>
+                        <div class="service-item"><img src="https://arepair.id/wp-content/uploads/2019/03/service-software-iphone-2-700x419.jpg" alt="Service Software"><div class="service-item-overlay">SERVICE SOFTWARE</div></div>
+                        <div class="service-item"><img src="https://arepair.id/wp-content/uploads/2023/04/service-back-glass-iphone-700x467.jpg" alt="Service Backglass"><div class="service-item-overlay">GANTI BACKGLASS</div></div>
+                    </div>
+                    <div class="service-group">
+                        <div class="service-item"><img src="https://arepair.id/wp-content/uploads/2018/12/service-kaca-iphone-retak-700x467.jpg" alt="Service LCD"><div class="service-item-overlay">SERVICE LCD / KACA</div></div>
+                        <div class="service-item"><img src="https://arepair.id/wp-content/uploads/2018/12/baterai-kembung-membuat-layar-ngangkat-1-700x525.jpg" alt="Service Baterai"><div class="service-item-overlay">GANTI BATERAI</div></div>
+                        <div class="service-item"><img src="https://arepair.id/wp-content/uploads/2018/10/service-port-charger-iphone-700x465.jpg" alt="Service Port"><div class="service-item-overlay">SERVICE PORT</div></div>
+                        <div class="service-item"><img src="https://arepair.id/wp-content/uploads/2018/12/service-kamera-iphone-700x468.jpg" alt="Service Kamera"><div class="service-item-overlay">SERVICE KAMERA</div></div>
+                        <div class="service-item"><img src="https://arepair.id/wp-content/uploads/2018/12/service-speaker-iphone-1-700x467.jpg" alt="Service Speaker"><div class="service-item-overlay">SERVICE SPEAKER</div></div>
+                        <div class="service-item"><img src="https://arepair.id/wp-content/uploads/2018/12/service-home-button-iphone-700x540.jpg" alt="Service Home Button"><div class="service-item-overlay">HOME BUTTON</div></div>
+                        <div class="service-item"><img src="https://arepair.id/wp-content/uploads/2019/03/service-software-iphone-2-700x419.jpg" alt="Service Software"><div class="service-item-overlay">SERVICE SOFTWARE</div></div>
+                        <div class="service-item"><img src="https://arepair.id/wp-content/uploads/2023/04/service-back-glass-iphone-700x467.jpg" alt="Service Backglass"><div class="service-item-overlay">GANTI BACKGLASS</div></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -358,20 +359,19 @@
                     <table class="price-table">
                         <thead>
                             <tr>
-                                <th>No</th>
-                                <th>Tipe Unit</th>
-                                <th style="text-align: center;">Status</th>
-                                <th style="text-align: right;">Harga (Ribuan)</th>
+                                <th class="col-no">No</th>
+                                <th class="col-unit">Tipe Unit & Status</th>
+                                <th class="col-price">Harga (Rb)</th>
                             </tr>
                         </thead>
                         <tbody id="pricelist-data">
                             <tr>
-                                <td colspan="4" class="loading-text"><i class="fas fa-spinner fa-spin"></i> Menghubungkan ke database Farid Store...</td>
+                                <td colspan="3" class="loading-text"><i class="fas fa-spinner fa-spin"></i> Menghubungkan ke database Farid Store...</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                </div>
+            </div>
         </div>
 
         <div class="footer-contact">
@@ -415,7 +415,7 @@
             const tableContainer = document.getElementById("pricelist-container");
             const waBtn = document.getElementById("wa-btn");
 
-            // FUNGSI CEK SCROLL UNTUK MEMUNCULKAN TOMBOL WA
+            // FUNGSI MUNCULKAN TOMBOL WA SAAT SCROLL SAMPAI BAWAH
             function checkScrollPosition() {
                 if (!tableContainer) return;
                 
@@ -446,47 +446,83 @@
                     const availableItems = data.items.filter(item => !item.soldAt && item.status !== 'sold' && item.status !== 'Terjual');
 
                     if (availableItems.length === 0) {
-                        tbody.innerHTML = '<tr><td colspan="4" class="loading-text">Mohon maaf, semua unit sedang habis / sold out.</td></tr>';
+                        tbody.innerHTML = '<tr><td colspan="3" class="loading-text">Mohon maaf, semua unit sedang habis / sold out.</td></tr>';
                         setTimeout(checkScrollPosition, 300);
                         return;
                     }
 
-                    tbody.innerHTML = '';
+                    // Objek penampung untuk logika grouping / menghitung total stok
+                    const groupedData = {};
 
-                    availableItems.forEach((item, index) => {
-                        const nameUpper = (item.name || "").toUpperCase();
+                    availableItems.forEach(item => {
+                        let cleanName = (item.name || "").replace(/\(IBOX\)|\(INTER\)/gi, '').trim();
                         
-                        let badgeHtml = '';
+                        if (!groupedData[cleanName]) {
+                            groupedData[cleanName] = {
+                                ...item,
+                                cleanName: cleanName,
+                                count: 1
+                            };
+                        } else {
+                            groupedData[cleanName].count++;
+                        }
+                    });
+
+                    const groupedItems = Object.values(groupedData);
+
+                    tbody.innerHTML = ''; 
+
+                    groupedItems.forEach((item, index) => {
+                        const lowerName = item.cleanName.toLowerCase();
+                        
+                        // 1. LOGIKA STATUS (READY / PROMO / KONDISI)
+                        let isPromo = false;
+                        if(item.status && item.status.toLowerCase() === 'old') isPromo = true;
+                        if(item.type && item.type.toLowerCase() === 'old') isPromo = true;
+
+                        let badgeStatus = isPromo 
+                            ? '<span class="status-badge badge-promo">PROMO</span>' 
+                            : '<span class="status-badge badge-ready">READY</span>';
+
+                        // Badge IBOX/INTER/Kondisi
+                        let badgeKondisi = '';
+                        const nameUpper = (item.name || "").toUpperCase();
                         if (nameUpper.includes("IBOX")) {
-                            badgeHtml = '<span class="status-badge badge-ibox">IBOX</span>';
+                            badgeKondisi = '<span class="status-badge badge-ibox">IBOX</span>';
                         } else if (nameUpper.includes("INTER")) {
-                            badgeHtml = '<span class="status-badge badge-inter">INTER</span>';
+                            badgeKondisi = '<span class="status-badge badge-inter">INTER</span>';
                         } else {
                             const conditionText = item.kondisi_barang === 'Baru (BNOB)' ? 'NEW' : '2ND';
-                            badgeHtml = `<span class="status-badge badge-inter" style="border-color:#9a765e; color:#9a765e;">${conditionText}</span>`;
+                            badgeKondisi = `<span class="status-badge badge-inter" style="border-color:#9a765e; color:#9a765e;">${conditionText}</span>`;
                         }
 
-                        let cleanName = item.name.replace(/\(IBOX\)|\(INTER\)/gi, '').trim();
-
+                        // 2. FORMAT HARGA
                         const rawPrice = parseFloat(item.price) || 0;
                         const priceInRibuan = rawPrice / 1000;
-                        const priceFormatted = priceInRibuan.toLocaleString('id-ID');
+                        const priceFormatted = priceInRibuan.toLocaleString('id-ID'); 
 
+                        // 3. BARIS TABEL RESPONSIVE (3 KOLOM)
                         const tr = document.createElement('tr');
                         tr.innerHTML = `
-                            <td>${index + 1}</td>
-                            <td>${cleanName}</td>
-                            <td style="text-align: center;">${badgeHtml}</td>
-                            <td class="price-col">${priceFormatted}</td>
+                            <td class="col-no">${index + 1}</td>
+                            <td class="col-unit">
+                                <div class="unit-title">${item.cleanName}</div>
+                                <div class="unit-badge-wrapper">
+                                    ${badgeKondisi}
+                                    ${badgeStatus}
+                                    <span style="font-size:8px; font-weight:700; color:#555;">Stok: ${item.count}</span>
+                                </div>
+                            </td>
+                            <td class="price-col col-price">${priceFormatted}</td>
                         `;
                         tbody.appendChild(tr);
                     });
 
-                    setTimeout(checkScrollPosition, 300);
+                    setTimeout(checkScrollPosition, 500);
 
                 } catch (error) {
                     console.error("Gagal menarik data API Pricelist:", error);
-                    tbody.innerHTML = '<tr><td colspan="4" class="loading-text" style="color:#b84c4c;">Gagal memuat harga. Silakan refresh halaman.</td></tr>';
+                    tbody.innerHTML = '<tr><td colspan="3" class="loading-text" style="color:#b84c4c;">Gagal memuat harga. Silakan refresh halaman.</td></tr>';
                     setTimeout(checkScrollPosition, 300);
                 }
             }
