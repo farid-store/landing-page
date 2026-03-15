@@ -103,8 +103,6 @@
         }
         .hero-left { position: relative; width: 50%; height: 100%; }
         .hero-left img { position: absolute; bottom: 0; filter: drop-shadow(5px 5px 8px rgba(0,0,0,0.4)); }
-        
-        /* Gambar hero diganti dengan vector wikimedia yang bebas blokir server */
         .phone-1 { left: 0; z-index: 3; max-height: 170px !important; }
         .phone-2 { left: 40px; z-index: 2; max-height: 190px !important; }
         .phone-3 { left: 90px; z-index: 1; max-height: 160px !important; }
@@ -115,16 +113,12 @@
             background-color: var(--dark-gray); color: white; text-align: center; padding: 12px 0; margin: 20px 30px 15px; font-size: 13px; font-weight: 600; letter-spacing: 3px; position: relative; z-index: 2; box-shadow: 0 4px 6px rgba(0,0,0,0.2);
         }
 
-        /* STYLING TIPOGRAFI BRAND LOGO */
         .text-brands-container {
             display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 12px 20px; padding: 0 25px; margin-bottom: 25px; position: relative; z-index: 2;
         }
         .text-brands-container span {
-            color: var(--dark-gray); /* Mengunci warna agar tetap elegan dengan tema */
-            line-height: 1;
-            opacity: 0.9;
+            color: var(--dark-gray); line-height: 1; opacity: 0.9;
         }
-        /* Masing-masing brand di-style mendekati aslinya */
         .brand-samsung { font-family: 'Arial', sans-serif; font-weight: 900; font-size: 13px; letter-spacing: 0.5px; text-transform: uppercase; }
         .brand-pixel { font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 14px; letter-spacing: -0.3px; }
         .brand-xiaomi { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 18px; letter-spacing: 1px; }
@@ -197,17 +191,34 @@
         .pen-img { position: absolute; bottom: 10px; left: -15px; width: 120px; transform: rotate(15deg); filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.4)); opacity: 0.8; }
         .key-img { position: absolute; bottom: -20px; right: -10px; width: 100px; transform: rotate(-10deg); filter: drop-shadow(-3px 5px 5px rgba(0,0,0,0.5)); opacity: 0.8; }
 
+        /* FOOTER DAN GARIS PEMISAH YANG DIPERBAIKI */
         .footer-contact {
-            background: var(--bronze-gradient); margin: 20px 30px 0; padding: 15px 20px 25px 20px; position: relative; z-index: 2; border: 1px solid rgba(255,255,255,0.4); box-shadow: 2px 8px 20px rgba(0,0,0,0.3); clip-path: polygon(0 0, 100% 0, 100% 90%, 96% 100%, 0 100%); display: flex; justify-content: space-between; align-items: center; gap: 15px;
+            background: var(--bronze-gradient); margin: 20px 30px 0; padding: 15px 15px 25px 15px; position: relative; z-index: 2; border: 1px solid rgba(255,255,255,0.4); box-shadow: 2px 8px 20px rgba(0,0,0,0.3); clip-path: polygon(0 0, 100% 0, 100% 90%, 96% 100%, 0 100%); 
+            display: flex; justify-content: space-between; align-items: center; gap: 10px;
         }
 
-        .footer-left { flex: 0 0 40%; display: flex; flex-direction: column; gap: 6px; }
+        .footer-left { 
+            flex: 0 0 35%; /* Disesuaikan agar ruang cukup */
+            display: flex; flex-direction: column; gap: 6px; 
+        }
         .footer-left p { font-size: 11px; color: #111; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
         .footer-left i { font-size: 15px; color: #222; }
 
-        .footer-divider { width: 2px; height: 75px; background-color: var(--dark-gray); border-radius: 2px; opacity: 0.8; }
+        /* INI SOLUSI AGAR GARISNYA MUNCUL TERUS */
+        .footer-divider { 
+            width: 2px; 
+            min-width: 2px; /* Mencegah elemen menciut jadi 0px */
+            flex-shrink: 0; /* Paksaan anti-menciut di layar kecil */
+            height: 75px; 
+            background-color: var(--dark-gray); 
+            border-radius: 2px; 
+            opacity: 0.8; 
+        }
 
-        .footer-right { flex: 0 0 55%; display: flex; flex-direction: column; gap: 5px; }
+        .footer-right { 
+            flex: 0 0 58%; /* Disesuaikan agar ruang cukup */
+            display: flex; flex-direction: column; gap: 5px; 
+        }
         .legend-row { display: flex; font-size: 9px; color: #111; font-weight: 600; line-height: 1.2; }
         .legend-title { width: 95px; flex-shrink: 0; }
         .legend-desc { flex-grow: 1; }
