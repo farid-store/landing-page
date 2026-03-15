@@ -16,6 +16,7 @@
             --dark-gray: #2b2b2b;
             --text-gray: #444444;
             --bronze-gradient: linear-gradient(135deg, #d3b49f 0%, #f4e2d3 50%, #b88d75 100%);
+            --whatsapp-color: #25d366; /* Warna hijau asli WhatsApp */
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -41,55 +42,35 @@
         }
 
         .inner-border {
-            position: absolute;
-            top: 10px; left: 10px; right: 10px; bottom: 10px;
-            border: 1px solid var(--rose-gold-mid);
-            pointer-events: none;
-            z-index: 10;
+            position: absolute; top: 10px; left: 10px; right: 10px; bottom: 10px;
+            border: 1px solid var(--rose-gold-mid); pointer-events: none; z-index: 10;
         }
 
         .vertical-text {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-family: 'Playfair Display', serif;
-            font-size: 45px;
-            color: rgba(0, 0, 0, 0.03);
-            white-space: nowrap;
-            letter-spacing: 6px;
-            z-index: 1;
+            position: absolute; top: 50%; transform: translateY(-50%);
+            font-family: 'Playfair Display', serif; font-size: 45px;
+            color: rgba(0, 0, 0, 0.03); white-space: nowrap; letter-spacing: 6px; z-index: 1;
             -webkit-text-stroke: 1px rgba(197, 160, 139, 0.4);
         }
         .vertical-left { left: -170px; transform: translateY(-50%) rotate(-90deg); }
         .vertical-right { right: -200px; transform: translateY(-50%) rotate(90deg); }
 
         .top-decoration {
-            position: absolute;
-            top: 0; left: 50%;
-            transform: translateX(-50%);
-            width: 280px; height: 45px;
-            background: linear-gradient(to bottom, #cfb5a3, #e8d7ca);
-            clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);
-            z-index: 1;
+            position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+            width: 280px; height: 45px; background: linear-gradient(to bottom, #cfb5a3, #e8d7ca);
+            clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%); z-index: 1;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        .header {
-            text-align: center; padding: 35px 20px 10px; position: relative; z-index: 2;
-        }
-        .header h1 {
-            font-family: 'Playfair Display', serif; font-size: 38px; color: var(--dark-gray); font-weight: 700; letter-spacing: 2px; margin-bottom: 5px;
-        }
+        
+        .header { text-align: center; padding: 35px 20px 10px; position: relative; z-index: 2; }
+        .header h1 { font-family: 'Playfair Display', serif; font-size: 38px; color: var(--dark-gray); font-weight: 700; letter-spacing: 2px; margin-bottom: 5px; }
         .header p { font-size: 15px; color: var(--text-gray); letter-spacing: 1px; }
 
-        .promo-section {
-            display: flex; align-items: center; margin: 20px 0; position: relative; z-index: 2; padding: 0 20px;
-        }
+        .promo-section { display: flex; align-items: center; margin: 20px 0; position: relative; z-index: 2; padding: 0 20px; }
         .cashback-badge {
             background: var(--bg-color); border: 1px solid var(--rose-gold-mid); padding: 10px; text-align: center; width: 85px; box-shadow: 2px 2px 8px rgba(0,0,0,0.15); position: relative; z-index: 2;
         }
-        .cashback-badge::before {
-            content: ''; position: absolute; top: -4px; left: -4px; right: -4px; bottom: -4px; border: 1px solid var(--rose-gold-light); z-index: -1;
-        }
+        .cashback-badge::before { content: ''; position: absolute; top: -4px; left: -4px; right: -4px; bottom: -4px; border: 1px solid var(--rose-gold-light); z-index: -1; }
         .cashback-badge span.small-text { font-size: 9px; display: block; letter-spacing: 1px; }
         .cashback-badge span.big-number { font-family: 'Playfair Display', serif; font-size: 34px; line-height: 1; display: inline-block; margin: 5px 0; }
         
@@ -98,20 +79,20 @@
         }
         .promo-banner p { font-size: 14px; color: var(--dark-gray); font-weight: 700; letter-spacing: 0.5px; }
 
-        /* =======================================================
-           ANIMASI HERO GAMBAR MENGUNGKAP/SHUFFLE UNLIMITED
-           ======================================================= */
+        /* ANIMASI SHUFFLE KARTU UNTUK GAMBAR HERO */
         .hero-images {
             display: flex; justify-content: space-between; align-items: center; padding: 0 30px; margin-top: 25px; height: 220px; position: relative; z-index: 2;
         }
         .hero-left { 
-            position: relative; width: 50%; height: 100%; display: flex; align-items: center; justify-content: center;
+            position: relative; width: 50%; height: 100%; display: flex; align-items: center; justify-content: center; 
         }
         .hero-left img { 
             position: absolute; 
-            max-height: 150px !important; 
-            border-radius: 8px;
-            filter: drop-shadow(5px 5px 8px rgba(0,0,0,0.6)); 
+            aspect-ratio: 1/1; 
+            width: 150px; 
+            object-fit: contain; 
+            border-radius: 6px;
+            filter: drop-shadow(5px 5px 8px rgba(0,0,0,0.5)); 
         }
         
         .phone-1 { animation: cardShuffle 6s infinite cubic-bezier(0.4, 0, 0.2, 1) 0s; }
@@ -127,15 +108,11 @@
         }
 
         .hero-right { width: 45%; height: 100%; display: flex; align-items: center; justify-content: center; }
-        .hero-right img { max-width: 100%; max-height: 140px; filter: drop-shadow(3px 5px 6px rgba(0,0,0,0.3)); }
+        .hero-right img { max-width: 100%; max-height: 140px; filter: drop-shadow(3px 5px 6px rgba(0,0,0,0.3)); border-radius: 6px;}
 
-        .services-bar {
-            background-color: var(--dark-gray); color: white; text-align: center; padding: 12px 0; margin: 20px 30px 15px; font-size: 13px; font-weight: 600; letter-spacing: 3px; position: relative; z-index: 2; box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-        }
+        .services-bar { background-color: var(--dark-gray); color: white; text-align: center; padding: 12px 0; margin: 20px 30px 15px; font-size: 13px; font-weight: 600; letter-spacing: 3px; position: relative; z-index: 2; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
 
-        .text-brands-container {
-            display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 12px 20px; padding: 0 25px; margin-bottom: 25px; position: relative; z-index: 2;
-        }
+        .text-brands-container { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 12px 20px; padding: 0 25px; margin-bottom: 25px; position: relative; z-index: 2; }
         .text-brands-container span { color: var(--dark-gray); line-height: 1; opacity: 0.9; }
         .brand-samsung { font-family: 'Arial', sans-serif; font-weight: 900; font-size: 13px; letter-spacing: 0.5px; text-transform: uppercase; }
         .brand-pixel { font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 14px; letter-spacing: -0.3px; }
@@ -151,13 +128,9 @@
         .brand-lenovo { font-family: 'Arial Black', sans-serif; font-weight: 900; font-size: 13px; font-style: italic; letter-spacing: 0.5px; }
         .brand-advan { font-family: 'Arial', sans-serif; font-weight: 900; font-size: 14px; letter-spacing: 0.5px; text-transform: uppercase; }
 
-        /* =======================================================
-           ANIMASI SLIDER LAYANAN SERVICE BERGERAK UNLIMITED
-           ======================================================= */
+        /* SLIDER ANIMASI SERVIS YANG BERGERAK (MARQUEE) */
         .service-wrapper { position: relative; z-index: 2; margin: 0 20px 25px; }
-        .section-title {
-            text-align: center; font-size: 16px; font-weight: 700; letter-spacing: 3px; color: var(--dark-gray); margin-bottom: 12px; display: flex; align-items: center; justify-content: center;
-        }
+        .section-title { text-align: center; font-size: 16px; font-weight: 700; letter-spacing: 3px; color: var(--dark-gray); margin-bottom: 12px; display: flex; align-items: center; justify-content: center; }
         .section-title::before, .section-title::after { content: ''; height: 1px; width: 40px; background-color: var(--text-gray); margin: 0 10px; }
         
         .service-slider { overflow: hidden; width: 100%; position: relative; }
@@ -188,9 +161,7 @@
         .table-scroll-container::-webkit-scrollbar-thumb { background: var(--rose-gold-mid); border-radius: 10px; }
 
         .price-table { width: 100%; border-collapse: collapse; font-size: 10px; color: var(--dark-gray); }
-        .price-table thead th {
-            position: sticky; top: 0; background: #f1efeb; border-bottom: 2px solid var(--rose-gold-mid); padding: 8px 4px; text-align: left; font-weight: 800; z-index: 2; white-space: nowrap;
-        }
+        .price-table thead th { position: sticky; top: 0; background: #f1efeb; border-bottom: 2px solid var(--rose-gold-mid); padding: 8px 4px; text-align: left; font-weight: 800; z-index: 2; white-space: nowrap; }
         .price-table td { border-bottom: 1px dashed rgba(0,0,0,0.15); padding: 8px 4px; font-weight: 600; }
         .price-table tr:last-child td { border-bottom: none; }
         
@@ -203,28 +174,55 @@
         
         .price-col { text-align: right; color: #b84c4c; font-weight: 800; font-size: 11px; white-space: nowrap; }
 
-        .table-accessories { position: absolute; bottom: 0; width: 100%; height: 100%; pointer-events: none; z-index: 6; }
-        .pen-img { position: absolute; bottom: 10px; left: -15px; width: 120px; transform: rotate(15deg); filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.4)); opacity: 0.8; }
-        .key-img { position: absolute; bottom: -20px; right: -10px; width: 100px; transform: rotate(-10deg); filter: drop-shadow(-3px 5px 5px rgba(0,0,0,0.5)); opacity: 0.8; }
-
-        .footer-contact {
-            background: var(--bronze-gradient); margin: 20px 30px 0; padding: 15px 15px 25px 15px; position: relative; z-index: 2; border: 1px solid rgba(255,255,255,0.4); box-shadow: 2px 8px 20px rgba(0,0,0,0.3); clip-path: polygon(0 0, 100% 0, 100% 90%, 96% 100%, 0 100%); 
-            display: flex; justify-content: space-between; align-items: center; gap: 10px;
-        }
-
+        .footer-contact { background: var(--bronze-gradient); margin: 20px 30px 0; padding: 15px 15px 25px 15px; position: relative; z-index: 2; border: 1px solid rgba(255,255,255,0.4); box-shadow: 2px 8px 20px rgba(0,0,0,0.3); clip-path: polygon(0 0, 100% 0, 100% 90%, 96% 100%, 0 100%); display: flex; justify-content: space-between; align-items: center; gap: 10px; }
         .footer-left { flex: 0 0 35%; display: flex; flex-direction: column; gap: 6px; }
         .footer-left p { font-size: 11px; color: #111; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
         .footer-left i { font-size: 15px; color: #222; }
-
         .footer-divider { width: 2px; min-width: 2px; flex-shrink: 0; height: 75px; background-color: var(--dark-gray); border-radius: 2px; opacity: 0.8; }
-
         .footer-right { flex: 0 0 58%; display: flex; flex-direction: column; gap: 5px; }
         .legend-row { display: flex; font-size: 9px; color: #111; font-weight: 600; line-height: 1.2; }
         .legend-title { width: 95px; flex-shrink: 0; }
         .legend-desc { flex-grow: 1; }
-
-        /* Loader Animation untuk tabel */
         .loading-text { text-align: center; padding: 20px !important; font-style: italic; color: #888; }
+
+        /* =======================================================
+           STYLE UNTUK FLOATING WHATSAPP BUTTON (MENGGANTIKAN AKSESORIS)
+           ======================================================= */
+        .whatsapp-float {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--whatsapp-color);
+            color: white;
+            border-radius: 50px;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 12px;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            z-index: 100;
+            transition: all 0.3s ease;
+            animation: pulse-wa 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        .whatsapp-float i {
+            font-size: 20px;
+        }
+
+        @keyframes pulse-wa {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
     </style>
 </head>
 <body>
@@ -258,7 +256,7 @@
                 <img src="https://geotimes.id/wp-content/uploads/2017/08/HP-2-Jutaan-Terbaik-telset.jpg" class="phone-3" alt="iPhone White">
             </div>
             <div class="hero-right">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Airpods_Pro_Vector.svg/512px-Airpods_Pro_Vector.svg.png" alt="Accessories">
+                <img src="https://images.ctfassets.net/d9ybqgejqp0w/3e4ehJZ4hl2oqX0U60UkXi/d7e3c57355ff58c620646a0302f0f863/laptop-repair-feature-half.jpg?fm=webp&q=65" alt="Laptop Repair Service">
             </div>
         </div>
 
@@ -336,10 +334,9 @@
                     </table>
                 </div>
                 
-                <div class="table-accessories">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Montblanc_Meisterst%C3%BCck_149.png/320px-Montblanc_Meisterst%C3%BCck_149.png" class="pen-img" alt="Pen">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Car_keys_and_remote.png/320px-Car_keys_and_remote.png" class="key-img" alt="Car Key">
-                </div>
+                <a href="https://wa.me/6281233014523?text=Halo%20Farid%20Store,%20saya%20ingin%20bertanya%20seputar%20pricelist%20atau%20service." target="_blank" class="whatsapp-float">
+                    <i class="fab fa-whatsapp"></i> Hubungi Kami
+                </a>
             </div>
         </div>
 
@@ -424,7 +421,7 @@
                     groupedItems.forEach((item, index) => {
                         const lowerName = item.cleanName.toLowerCase();
                         
-                        // 1. LOGIKA BRAND OTOMATIS (LOGIC ANDA DIPERTAHANKAN 100%)
+                        // 1. LOGIKA BRAND OTOMATIS
                         let brand = 'LAINNYA';
                         if (lowerName.includes('iphone') || lowerName.includes('apple') || lowerName.includes('ipad') || lowerName.includes('ip ')) brand = 'APPLE';
                         else if (lowerName.includes('samsung') || lowerName.includes('galaxy') || lowerName.includes('sein') || lowerName.includes('z flip') || lowerName.includes('z fold')) brand = 'SAMSUNG';
@@ -440,7 +437,6 @@
 
                         // 2. LOGIKA STATUS (READY / PROMO)
                         let isPromo = false;
-                        // Logika yang Anda tentukan: jika status/type adalah "old", jadikan PROMO
                         if(item.status && item.status.toLowerCase() === 'old') isPromo = true;
                         if(item.type && item.type.toLowerCase() === 'old') isPromo = true;
 
