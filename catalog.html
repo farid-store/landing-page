@@ -103,6 +103,7 @@
         }
         .hero-left { position: relative; width: 50%; height: 100%; }
         .hero-left img { position: absolute; bottom: 0; filter: drop-shadow(5px 5px 8px rgba(0,0,0,0.4)); }
+        
         .phone-1 { left: 0; z-index: 3; max-height: 170px !important; }
         .phone-2 { left: 40px; z-index: 2; max-height: 190px !important; }
         .phone-3 { left: 90px; z-index: 1; max-height: 160px !important; }
@@ -116,9 +117,7 @@
         .text-brands-container {
             display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 12px 20px; padding: 0 25px; margin-bottom: 25px; position: relative; z-index: 2;
         }
-        .text-brands-container span {
-            color: var(--dark-gray); line-height: 1; opacity: 0.9;
-        }
+        .text-brands-container span { color: var(--dark-gray); line-height: 1; opacity: 0.9; }
         .brand-samsung { font-family: 'Arial', sans-serif; font-weight: 900; font-size: 13px; letter-spacing: 0.5px; text-transform: uppercase; }
         .brand-pixel { font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 14px; letter-spacing: -0.3px; }
         .brand-xiaomi { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 18px; letter-spacing: 1px; }
@@ -133,40 +132,26 @@
         .brand-lenovo { font-family: 'Arial Black', sans-serif; font-weight: 900; font-size: 13px; font-style: italic; letter-spacing: 0.5px; }
         .brand-advan { font-family: 'Arial', sans-serif; font-weight: 900; font-size: 14px; letter-spacing: 0.5px; text-transform: uppercase; }
 
-        .service-wrapper {
-            position: relative; z-index: 2; margin: 0 20px 25px;
-        }
+        .service-wrapper { position: relative; z-index: 2; margin: 0 20px 25px; }
         .section-title {
             text-align: center; font-size: 16px; font-weight: 700; letter-spacing: 3px; color: var(--dark-gray); margin-bottom: 12px; display: flex; align-items: center; justify-content: center;
         }
-        .section-title::before, .section-title::after {
-            content: ''; height: 1px; width: 40px; background-color: var(--text-gray); margin: 0 10px;
-        }
-        .service-scroll {
-            display: flex; gap: 12px; overflow-x: auto; padding-bottom: 10px;
-        }
+        .section-title::before, .section-title::after { content: ''; height: 1px; width: 40px; background-color: var(--text-gray); margin: 0 10px; }
+        .service-scroll { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 10px; }
         .service-scroll::-webkit-scrollbar { height: 5px; }
         .service-scroll::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); border-radius: 10px; }
         .service-scroll::-webkit-scrollbar-thumb { background: var(--rose-gold-mid); border-radius: 10px; }
         
-        .service-item {
-            flex: 0 0 130px; position: relative; border-radius: 6px; overflow: hidden; border: 1px solid var(--rose-gold-mid); box-shadow: 0 4px 8px rgba(0,0,0,0.15); background: #fff;
-        }
-        .service-item img {
-            width: 100%; height: 90px; object-fit: cover; display: block;
-        }
-        .service-item-overlay {
-            background: var(--dark-gray); color: var(--rose-gold-light); font-size: 9px; font-weight: 700; text-align: center; padding: 6px 4px; letter-spacing: 0.5px; border-top: 1px solid var(--rose-gold-mid);
-        }
+        .service-item { flex: 0 0 130px; position: relative; border-radius: 6px; overflow: hidden; border: 1px solid var(--rose-gold-mid); box-shadow: 0 4px 8px rgba(0,0,0,0.15); background: #fff; }
+        .service-item img { width: 100%; height: 90px; object-fit: cover; display: block; }
+        .service-item-overlay { background: var(--dark-gray); color: var(--rose-gold-light); font-size: 9px; font-weight: 700; text-align: center; padding: 6px 4px; letter-spacing: 0.5px; border-top: 1px solid var(--rose-gold-mid); }
 
         .pricelist-wrapper { position: relative; z-index: 2; margin: 0 20px; }
         .marble-board {
             background: linear-gradient(rgba(245, 245, 245, 0.95), rgba(245, 245, 245, 0.95)), url('https://images.unsplash.com/photo-1596525164887-17eb955e8884?q=80&w=800&auto=format&fit=crop') center/cover;
             height: 400px; border: 1px solid rgba(0,0,0,0.15); position: relative; box-shadow: inset 0 0 30px rgba(0,0,0,0.08), 0 5px 15px rgba(0,0,0,0.1); padding: 15px 10px;
         }
-        .corner-ornament {
-            position: absolute; width: 25px; height: 25px; background: var(--bronze-gradient); z-index: 10; box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-        }
+        .corner-ornament { position: absolute; width: 25px; height: 25px; background: var(--bronze-gradient); z-index: 10; box-shadow: 1px 1px 3px rgba(0,0,0,0.3); }
         .corner-tl { top: 0; left: 0; clip-path: polygon(0 0, 100% 0, 0 100%); }
         .corner-tr { top: 0; right: 0; clip-path: polygon(0 0, 100% 0, 100% 100%); }
 
@@ -191,38 +176,24 @@
         .pen-img { position: absolute; bottom: 10px; left: -15px; width: 120px; transform: rotate(15deg); filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.4)); opacity: 0.8; }
         .key-img { position: absolute; bottom: -20px; right: -10px; width: 100px; transform: rotate(-10deg); filter: drop-shadow(-3px 5px 5px rgba(0,0,0,0.5)); opacity: 0.8; }
 
-        /* FOOTER DAN GARIS PEMISAH YANG DIPERBAIKI */
         .footer-contact {
             background: var(--bronze-gradient); margin: 20px 30px 0; padding: 15px 15px 25px 15px; position: relative; z-index: 2; border: 1px solid rgba(255,255,255,0.4); box-shadow: 2px 8px 20px rgba(0,0,0,0.3); clip-path: polygon(0 0, 100% 0, 100% 90%, 96% 100%, 0 100%); 
             display: flex; justify-content: space-between; align-items: center; gap: 10px;
         }
 
-        .footer-left { 
-            flex: 0 0 35%; /* Disesuaikan agar ruang cukup */
-            display: flex; flex-direction: column; gap: 6px; 
-        }
+        .footer-left { flex: 0 0 35%; display: flex; flex-direction: column; gap: 6px; }
         .footer-left p { font-size: 11px; color: #111; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
         .footer-left i { font-size: 15px; color: #222; }
 
-        /* INI SOLUSI AGAR GARISNYA MUNCUL TERUS */
-        .footer-divider { 
-            width: 2px; 
-            min-width: 2px; /* Mencegah elemen menciut jadi 0px */
-            flex-shrink: 0; /* Paksaan anti-menciut di layar kecil */
-            height: 75px; 
-            background-color: var(--dark-gray); 
-            border-radius: 2px; 
-            opacity: 0.8; 
-        }
+        .footer-divider { width: 2px; min-width: 2px; flex-shrink: 0; height: 75px; background-color: var(--dark-gray); border-radius: 2px; opacity: 0.8; }
 
-        .footer-right { 
-            flex: 0 0 58%; /* Disesuaikan agar ruang cukup */
-            display: flex; flex-direction: column; gap: 5px; 
-        }
+        .footer-right { flex: 0 0 58%; display: flex; flex-direction: column; gap: 5px; }
         .legend-row { display: flex; font-size: 9px; color: #111; font-weight: 600; line-height: 1.2; }
         .legend-title { width: 95px; flex-shrink: 0; }
         .legend-desc { flex-grow: 1; }
 
+        /* Loader Animation untuk tabel */
+        .loading-text { text-align: center; padding: 20px !important; font-style: italic; color: #888; }
     </style>
 </head>
 <body>
@@ -334,33 +305,10 @@
                                 <th style="text-align: right;">Harga (Ribuan)</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr><td>1</td><td>IPHONE 17 256 (BLUE)</td><td style="text-align: center;"><span class="status-badge badge-ibox">IBOX</span></td><td class="price-col">15.800</td></tr>
-                            <tr><td>2</td><td>IPHONE 16 PRO 128 (WHITE)</td><td style="text-align: center;"><span class="status-badge badge-ibox">IBOX</span></td><td class="price-col">15.600</td></tr>
-                            <tr><td>3</td><td>IPHONE 15 PRO MAX 256 (NAVY)</td><td style="text-align: center;"><span class="status-badge badge-ibox">IBOX</span></td><td class="price-col">14.600</td></tr>
-                            <tr><td>4</td><td>IPHONE 16 128 (BLUE)</td><td style="text-align: center;"><span class="status-badge badge-ibox">IBOX</span></td><td class="price-col">12.300</td></tr>
-                            <tr><td>5</td><td>IPHONE 14 PRO MAX 128 (PURPLE)</td><td style="text-align: center;"><span class="status-badge badge-ibox">IBOX</span></td><td class="price-col">12.300</td></tr>
-                            <tr><td>6</td><td>IPHONE 14 PRO 1TB (PURPLE)</td><td style="text-align: center;"><span class="status-badge badge-inter">INTER</span></td><td class="price-col">10.500</td></tr>
-                            <tr><td>7</td><td>IPHONE 15 256 (PINK)</td><td style="text-align: center;"><span class="status-badge badge-ibox">IBOX</span></td><td class="price-col">10.500</td></tr>
-                            <tr><td>8</td><td>IPHONE 15 128 (BLACK)</td><td style="text-align: center;"><span class="status-badge badge-ibox">IBOX</span></td><td class="price-col">9.400</td></tr>
-                            <tr><td>9</td><td>IPHONE 13 PRO 128 (WHITE)</td><td style="text-align: center;"><span class="status-badge badge-ibox">IBOX</span></td><td class="price-col">9.000</td></tr>
-                            <tr><td>10</td><td>IPHONE 13 PRO 128 (GREEN)</td><td style="text-align: center;"><span class="status-badge badge-ibox">IBOX</span></td><td class="price-col">9.000</td></tr>
-                            <tr><td>11</td><td>IPHONE 14 PLUS 128 (BLACK)</td><td style="text-align: center;"><span class="status-badge badge-ibox">IBOX</span></td><td class="price-col">8.500</td></tr>
-                            <tr><td>12</td><td>IPHONE 14 128 (BLUE)</td><td style="text-align: center;"><span class="status-badge badge-ibox">IBOX</span></td><td class="price-col">7.900</td></tr>
-                            <tr><td>13</td><td>IPHONE 12 PRO 256 (GOLD)</td><td style="text-align: center;"><span class="status-badge badge-ibox">IBOX</span></td><td class="price-col">7.300</td></tr>
-                            <tr><td>14</td><td>IPHONE 13 128</td><td style="text-align: center;"><span class="status-badge badge-ibox">IBOX</span></td><td class="price-col">7.000</td></tr>
-                            <tr><td>15</td><td>IPHONE 13 256 (WHITE)</td><td style="text-align: center;"><span class="status-badge badge-ibox">IBOX</span></td><td class="price-col">7.000</td></tr>
-                            <tr><td>16</td><td>IPHONE 13 256 (WHITE)</td><td style="text-align: center;"><span class="status-badge badge-inter">INTER</span></td><td class="price-col">6.000</td></tr>
-                            <tr><td>17</td><td>IPHONE 13 256 (PINK)</td><td style="text-align: center;"><span class="status-badge badge-inter">INTER</span></td><td class="price-col">6.000</td></tr>
-                            <tr><td>18</td><td>IPHONE 12 128 (BLACK)</td><td style="text-align: center;"><span class="status-badge badge-ibox">IBOX</span></td><td class="price-col">5.900</td></tr>
-                            <tr><td>19</td><td>IPHONE 11 128 (WHITE)</td><td style="text-align: center;"><span class="status-badge badge-ibox">IBOX</span></td><td class="price-col">5.300</td></tr>
-                            <tr><td>20</td><td>IPHONE 11 64 (BLACK)</td><td style="text-align: center;"><span class="status-badge badge-ibox">IBOX</span></td><td class="price-col">4.500</td></tr>
-                            <tr><td>21</td><td>IPHONE XR 256 (BLACK)</td><td style="text-align: center;"><span class="status-badge badge-inter">INTER</span></td><td class="price-col">3.500</td></tr>
-                            <tr><td>22</td><td>IPHONE XR 64 (BLACK)</td><td style="text-align: center;"><span class="status-badge badge-ibox">IBOX</span></td><td class="price-col">3.300</td></tr>
-                            <tr><td>23</td><td>IPHONE 11 64</td><td style="text-align: center;"><span class="status-badge badge-inter">INTER</span></td><td class="price-col">3.300</td></tr>
-                            <tr><td>24</td><td>IPHONE SE 2 64 (BLACK)</td><td style="text-align: center;"><span class="status-badge badge-ibox">IBOX</span></td><td class="price-col">2.500</td></tr>
-                            <tr><td>25</td><td>IPHONE XR 64</td><td style="text-align: center;"><span class="status-badge badge-inter">INTER</span></td><td class="price-col">2.500</td></tr>
-                            <tr><td>26</td><td>IPHONE X (WHITE)</td><td style="text-align: center;"><span class="status-badge badge-inter">INTER</span></td><td class="price-col">2.300</td></tr>
+                        <tbody id="pricelist-data">
+                            <tr>
+                                <td colspan="4" class="loading-text"><i class="fas fa-spinner fa-spin"></i> Menghubungkan ke database Farid Store...</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -403,5 +351,77 @@
         </div>
     </div>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const tbody = document.getElementById("pricelist-data");
+
+            async function fetchPricelist() {
+                try {
+                    // Pastikan route '/api/products' sesuai dengan lokasi file API Anda di Vercel/Node.js
+                    const response = await fetch('/api/products');
+                    
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    
+                    const data = await response.json();
+                    
+                    // Filter: Hanya ambil unit yang BELUM terjual. 
+                    // Asumsi: Jika ada 'soldAt' atau statusnya 'sold' / 'Terjual', maka disembunyikan.
+                    const availableItems = data.items.filter(item => !item.soldAt && item.status !== 'sold' && item.status !== 'Terjual');
+
+                    if (availableItems.length === 0) {
+                        tbody.innerHTML = '<tr><td colspan="4" class="loading-text">Mohon maaf, semua unit sedang habis / sold out.</td></tr>';
+                        return;
+                    }
+
+                    // Bersihkan teks "Loading..."
+                    tbody.innerHTML = '';
+
+                    // Looping data yang tersedia dan buat baris tabel
+                    availableItems.forEach((item, index) => {
+                        const nameUpper = (item.name || "").toUpperCase();
+                        
+                        // Cek kondisi badge
+                        let badgeHtml = '';
+                        if (nameUpper.includes("IBOX")) {
+                            badgeHtml = '<span class="status-badge badge-ibox">IBOX</span>';
+                        } else if (nameUpper.includes("INTER")) {
+                            badgeHtml = '<span class="status-badge badge-inter">INTER</span>';
+                        } else {
+                            // Badge alternatif berdasarkan kondisi barang dari backend
+                            const conditionText = item.kondisi_barang === 'Baru (BNOB)' ? 'NEW' : '2ND';
+                            badgeHtml = `<span class="status-badge badge-inter" style="border-color:#9a765e; color:#9a765e;">${conditionText}</span>`;
+                        }
+
+                        // Hapus kata iBox/Inter dari nama agar tidak dobel dengan Badge (Opsional, tergantung selera)
+                        let cleanName = item.name.replace(/\(IBOX\)|\(INTER\)/gi, '').trim();
+
+                        // Format Harga (Dibagi 1000 agar menjadi satuan ribuan, sesuai format manual sebelumnya)
+                        const rawPrice = parseFloat(item.price) || 0;
+                        const priceInRibuan = rawPrice / 1000;
+                        const priceFormatted = priceInRibuan.toLocaleString('id-ID'); // contoh: 15.800
+
+                        // Buat elemen tr (baris)
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
+                            <td>${index + 1}</td>
+                            <td>${cleanName}</td>
+                            <td style="text-align: center;">${badgeHtml}</td>
+                            <td class="price-col">${priceFormatted}</td>
+                        `;
+                        tbody.appendChild(tr);
+                    });
+
+                } catch (error) {
+                    console.error("Gagal menarik data API Pricelist:", error);
+                    tbody.innerHTML = '<tr><td colspan="4" class="loading-text" style="color:#b84c4c;">Gagal memuat harga. Silakan refresh halaman.</td></tr>';
+                }
+            }
+
+            // Jalankan fungsi saat web selesai dimuat
+            fetchPricelist();
+        });
+    </script>
 </body>
 </html>
