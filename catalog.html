@@ -80,7 +80,7 @@
         }
         .promo-banner p { font-size: 14px; color: var(--dark-gray); font-weight: 700; letter-spacing: 0.5px; }
 
-        /* HERO SHOWCASE ELEGAN (FLOATING CARDS) */
+        /* HERO SHOWCASE ELEGAN (FLOATING CARDS) DENGAN GAMBAR USER */
         .hero-images {
             display: flex; justify-content: space-between; align-items: center; padding: 0 30px; margin-top: 25px; height: 220px; position: relative; z-index: 2;
         }
@@ -136,17 +136,14 @@
         .brand-advan { font-family: 'Arial', sans-serif; font-weight: 900; font-size: 14px; letter-spacing: 0.5px; text-transform: uppercase; }
 
         /* =======================================================
-           PERBAIKAN FINAL: SLIDER ANIMASI SERVIS ANTI LOMPAT
+           PERBAIKAN FINAL: SLIDER ANIMASI SERVIS UNLIMITED
            ======================================================= */
         .service-wrapper { position: relative; z-index: 2; margin: 0 20px 25px; }
-        .section-title {
-            text-align: center; font-size: 16px; font-weight: 700; letter-spacing: 3px; color: var(--dark-gray); margin-bottom: 12px; display: flex; align-items: center; justify-content: center;
-        }
+        .section-title { text-align: center; font-size: 16px; font-weight: 700; letter-spacing: 3px; color: var(--dark-gray); margin-bottom: 12px; display: flex; align-items: center; justify-content: center; }
         .section-title::before, .section-title::after { content: ''; height: 1px; width: 40px; background-color: var(--text-gray); margin: 0 10px; }
         
-        /* Pembungkus utama disetel block (BUKAN flex) agar track di dalamnya bebas melebar */
         .service-slider { 
-            display: block; 
+            display: flex; 
             overflow: hidden; 
             width: 100%; 
             position: relative; 
@@ -154,10 +151,12 @@
         
         .service-track { 
             display: flex; 
+            flex-shrink: 0; 
             width: max-content; 
-            animation: scrollMarquee 30s linear infinite; 
+            animation: scrollMarquee 40s linear infinite; 
         }
-        .service-track:hover { animation-play-state: paused; }
+        
+        .service-slider:hover .service-track { animation-play-state: paused; }
         
         .service-group { 
             display: flex; 
@@ -168,7 +167,7 @@
         
         @keyframes scrollMarquee { 
             0% { transform: translateX(0); } 
-            100% { transform: translateX(-50%); } 
+            100% { transform: translateX(-100%); } 
         }
         
         .service-item { flex: 0 0 130px; position: relative; border-radius: 6px; overflow: hidden; border: 1px solid var(--rose-gold-mid); box-shadow: 0 4px 8px rgba(0,0,0,0.15); background: #fff; }
@@ -333,6 +332,8 @@
                         <div class="service-item"><img src="https://arepair.id/wp-content/uploads/2019/03/service-software-iphone-2-700x419.jpg" alt="Service Software"><div class="service-item-overlay">SERVICE SOFTWARE</div></div>
                         <div class="service-item"><img src="https://arepair.id/wp-content/uploads/2023/04/service-back-glass-iphone-700x467.jpg" alt="Service Backglass"><div class="service-item-overlay">GANTI BACKGLASS</div></div>
                     </div>
+                </div>
+                <div class="service-track">
                     <div class="service-group">
                         <div class="service-item"><img src="https://arepair.id/wp-content/uploads/2018/12/service-kaca-iphone-retak-700x467.jpg" alt="Service LCD"><div class="service-item-overlay">SERVICE LCD / KACA</div></div>
                         <div class="service-item"><img src="https://arepair.id/wp-content/uploads/2018/12/baterai-kembung-membuat-layar-ngangkat-1-700x525.jpg" alt="Service Baterai"><div class="service-item-overlay">GANTI BATERAI</div></div>
@@ -403,7 +404,7 @@
         </div>
     </div>
 
-    <a href="https://wa.me/6281233014523?text=Halo%20Farid%20Store,%20saya%20tertarik%20dengan%20produk%20di%20pricelist." target="_blank" class="whatsapp-float" id="wa-btn">
+    <a href="https://wa.me/6281233014523?text=Halo%20Farid%20Store,%20saya%20ingin%20pesan%20produk%20di%20pricelist." target="_blank" class="whatsapp-float" id="wa-btn">
         <i class="fab fa-whatsapp"></i> Pesan Sekarang
     </a>
 
@@ -472,7 +473,6 @@
                     groupedItems.forEach((item, index) => {
                         const lowerName = item.cleanName.toLowerCase();
                         
-                        // 1. LOGIKA BRAND
                         let brand = 'LAINNYA';
                         if (lowerName.includes('iphone') || lowerName.includes('apple') || lowerName.includes('ipad') || lowerName.includes('ip ')) brand = 'APPLE';
                         else if (lowerName.includes('samsung') || lowerName.includes('galaxy') || lowerName.includes('sein') || lowerName.includes('z flip') || lowerName.includes('z fold')) brand = 'SAMSUNG';
@@ -486,7 +486,7 @@
                         else if (lowerName.includes('asus') || lowerName.includes('rog')) brand = 'ASUS';
                         else if (lowerName.includes('google') || lowerName.includes('pixel')) brand = 'GOOGLE';
 
-                        // 2. LOGIKA STATUS (HANYA READY DAN PROMO)
+                        // LOGIKA STATUS: Jika "old" jadikan PROMO, defaultnya READY
                         let isPromo = false;
                         if(item.status && item.status.toLowerCase() === 'old') isPromo = true;
                         if(item.type && item.type.toLowerCase() === 'old') isPromo = true;
@@ -495,7 +495,6 @@
                             ? '<span class="status-badge badge-promo">PROMO</span>' 
                             : '<span class="status-badge badge-ready">READY</span>';
 
-                        // 3. LOGIKA IBOX / INTER
                         let badgeKondisi = '';
                         const nameUpper = (item.name || "").toUpperCase();
                         if (nameUpper.includes("IBOX")) {
@@ -504,12 +503,10 @@
                             badgeKondisi = '<span class="status-badge badge-inter">INTER</span>';
                         }
 
-                        // 4. FORMAT HARGA
                         const rawPrice = parseFloat(item.price) || 0;
                         const priceInRibuan = rawPrice / 1000;
                         const priceFormatted = priceInRibuan.toLocaleString('id-ID'); 
 
-                        // 5. RENDER TABEL (3 Kolom Mobile-Friendly)
                         const tr = document.createElement('tr');
                         tr.innerHTML = `
                             <td class="col-no">${index + 1}</td>
