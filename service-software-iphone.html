@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Service Software iPhone | Farid Store</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif']
+                    },
+                    colors: {
+                        dark: '#020202', 
+                        surface: '#0a0a0a', 
+                        brand: { 300: '#7dd3fc', 400: '#38bdf8', 500: '#0ea5e9', 600: '#0284c7' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Base Setup */
+        html, body { background-color: #020202; color: #f8fafc; overflow-x: hidden; width: 100%; position: relative; }
+        
+        /* Modern Floating Glass */
+        .glass-pill { background: rgba(10, 10, 10, 0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.08); }
+        .glass-panel { background: linear-gradient(145deg, rgba(25,25,25,0.4) 0%, rgba(10,10,10,0.8) 100%); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.05); }
+        
+        /* Text Gradients */
+        .text-glow { background: linear-gradient(to right, #ffffff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        /* Ambient Backgrounds (Indigo Accent for Software/System) */
+        .ambient-glow-1 { position: absolute; top: -5%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(99,102,241,0.15) 0%, rgba(0,0,0,0) 60%); filter: blur(60px); z-index: -1; animation: pulse 8s infinite alternate; }
+        .ambient-glow-2 { position: absolute; top: 40%; right: -10%; width: 40vw; height: 40vw; background: radial-gradient(circle, rgba(79,70,229,0.08) 0%, rgba(0,0,0,0) 60%); filter: blur(60px); z-index: -1; animation: pulse 10s infinite alternate-reverse; }
+        @keyframes pulse { 0% { opacity: 0.5; transform: scale(0.9); } 100% { opacity: 1; transform: scale(1.1); } }
+
+        /* Card Hover Effect */
+        .premium-hover { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(255,255,255,0.05); }
+        .premium-hover:hover { transform: translateY(-4px); border-color: rgba(99, 102, 241, 0.3); box-shadow: 0 10px 30px -10px rgba(99, 102, 241, 0.15); }
+    </style>
+</head>
+<body class="antialiased selection:bg-indigo-500 selection:text-white">
+
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+
+    <div class="fixed w-full top-6 z-50 px-4 sm:px-6 flex justify-center pointer-events-none">
+        <nav class="glass-pill rounded-full px-5 py-2.5 sm:px-6 sm:py-3 flex justify-between items-center w-full max-w-6xl pointer-events-auto shadow-[0_10px_40px_rgba(0,0,0,0.5)] transition-all duration-300" id="navbar">
+            <a href="service.html" class="flex items-center gap-3 group">
+                <div class="w-8 h-8 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white font-bold text-sm group-hover:bg-white group-hover:text-black transition-all"><i class="fa-solid fa-arrow-left"></i></div>
+                <span class="font-heading font-bold text-sm tracking-tight text-gray-400 group-hover:text-white transition-colors hidden sm:block">Kembali ke Menu Servis</span>
+            </a>
+            
+            <div class="hidden md:flex gap-4 xl:gap-7 items-center">
+                <a href="#informasi" class="text-sm font-semibold text-gray-300 hover:text-white transition">Ciri Kerusakan</a>
+                <a href="#faq" class="text-sm font-semibold text-gray-300 hover:text-white transition">FAQ Layanan</a>
+                <a href="#pricelist" class="text-sm font-semibold text-gray-300 hover:text-white transition">Price List</a>
+            </div>
+
+            <a href="https://wa.me/6281371127121" target="_blank" class="bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-bold px-4 py-2 sm:px-5 sm:py-2.5 rounded-full transition-transform hover:scale-105 flex items-center gap-2 pointer-events-auto shrink-0">
+                <i class="fa-brands fa-whatsapp text-lg"></i> <span class="hidden sm:inline">Chat Admin</span>
+            </a>
+        </nav>
+    </div>
+
+    <section class="relative pt-40 pb-16 px-6 max-w-6xl mx-auto border-b border-white/5">
+        <div class="flex flex-col md:flex-row gap-12 items-center">
+            <div class="w-full md:w-1/2" data-aos="fade-right">
+                <div class="flex items-center gap-2 text-indigo-400 text-xs font-bold uppercase tracking-widest mb-4">
+                    <i class="fa-solid fa-terminal text-lg"></i> iOS System Repair
+                </div>
+                <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-6 text-glow">
+                    Service Software <br>iPhone.
+                </h1>
+                <p class="text-gray-400 leading-relaxed mb-8">
+                    Layanan perbaikan khusus untuk Anda yang mengalami kerusakan atau masalah pada iOS (Operating System). Atasi iPhone mentok di logo Apple, *Storage Bug*, hingga *DFU Mode* dengan aman di Farid Store.
+                </p>
+                <div class="flex flex-wrap gap-3">
+                    <span class="glass-pill px-4 py-2 rounded-xl text-xs font-bold text-gray-300 border-white/10"><i class="fa-solid fa-stopwatch text-indigo-400 mr-1"></i> Selesai Dalam 1 Jam</span>
+                    <span class="glass-pill px-4 py-2 rounded-xl text-xs font-bold text-gray-300 border-white/10"><i class="fa-solid fa-cloud-arrow-up text-indigo-400 mr-1"></i> Opsi Backup Data</span>
+                </div>
+            </div>
+            
+            <div class="w-full md:w-1/2 relative" data-aos="fade-left">
+                <div class="relative rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl h-80 w-full group bg-black">
+                    <img src="https://arepair.id/wp-content/uploads/2019/03/software-iphone-700x467.jpg" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 opacity-60" alt="Service Software iPhone">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-black/90 to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 right-6">
+                        <div class="glass-pill px-4 py-3 rounded-2xl flex items-center justify-between border-white/10">
+                            <div>
+                                <p class="text-white text-xs font-bold mb-0.5">Penanganan Akurat</p>
+                                <p class="text-gray-400 text-[10px]">Tuntaskan masalah software bawaan tanpa panik.</p>
+                            </div>
+                            <div class="w-8 h-8 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center"><i class="fa-solid fa-laptop-code"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="informasi" class="py-20 px-6 max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            
+            <div class="glass-panel p-8 rounded-[2rem] relative overflow-hidden group lg:col-span-2" data-aos="fade-up" data-aos-delay="50">
+                <div class="absolute -right-20 -top-20 w-48 h-48 bg-indigo-500/10 rounded-full blur-3xl"></div>
+                <div class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center text-indigo-400 text-2xl border border-white/10 mb-6 relative z-10">
+                    <i class="fa-brands fa-apple"></i>
+                </div>
+                <h3 class="font-heading text-2xl font-bold text-white mb-4 relative z-10">Apa Itu Service Software iPhone?</h3>
+                <p class="text-gray-400 text-sm leading-relaxed relative z-10">
+                    iOS adalah nyawa dari iPhone Anda. Terkadang, sistem operasi ini mengalami kendala *crash* atau *bug* yang umumnya disebabkan oleh <i>human error</i> atau memori penuh yang tidak disadari. Farid Store hadir untuk melakukan instalasi ulang, *flashing*, dan pemulihan sistem agar iPhone Anda bisa digunakan dengan normal kembali tanpa lag.
+                </p>
+            </div>
+
+            <div class="glass-panel p-8 rounded-[2rem] relative overflow-hidden group" data-aos="fade-up" data-aos-delay="100">
+                <div class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center text-gray-300 text-2xl border border-white/10 mb-6">
+                    <i class="fa-solid fa-bug"></i>
+                </div>
+                <h3 class="font-heading text-xl font-bold text-white mb-4">Ciri Kerusakan Sistem</h3>
+                <ul class="space-y-3">
+                    <li class="flex items-start gap-3 text-xs md:text-sm text-gray-400">
+                        <i class="fa-solid fa-triangle-exclamation text-indigo-400 mt-0.5"></i> Stuck Logo Apple (Mentok logo)
+                    </li>
+                    <li class="flex items-start gap-3 text-xs md:text-sm text-gray-400">
+                        <i class="fa-solid fa-triangle-exclamation text-indigo-400 mt-0.5"></i> iPhone tidak bisa masuk Home
+                    </li>
+                    <li class="flex items-start gap-3 text-xs md:text-sm text-gray-400">
+                        <i class="fa-solid fa-triangle-exclamation text-indigo-400 mt-0.5"></i> iPhone stuck di DFU / Recovery Mode
+                    </li>
+                    <li class="flex items-start gap-3 text-xs md:text-sm text-gray-400">
+                        <i class="fa-solid fa-triangle-exclamation text-indigo-400 mt-0.5"></i> Storage Bug (File dihapus tapi memori tetap penuh)
+                    </li>
+                    <li class="flex items-start gap-3 text-xs md:text-sm text-gray-400">
+                        <i class="fa-solid fa-triangle-exclamation text-indigo-400 mt-0.5"></i> Gagal simpan foto atau media
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="faq" class="py-10 px-6 max-w-6xl mx-auto border-t border-white/5 pt-16">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <span class="text-indigo-400 font-bold text-xs uppercase tracking-[0.2em] mb-2 block">Tanya Jawab</span>
+            <h2 class="font-heading text-3xl md:text-4xl font-black text-white mb-4">FAQ Layanan Software</h2>
+            <p class="text-gray-400 text-sm max-w-2xl mx-auto">Pertanyaan yang sering diajukan seputar perbaikan perangkat lunak iPhone.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6" data-aos="fade-up" data-aos-delay="100">
+            
+            <div class="glass-panel p-6 rounded-3xl flex items-start gap-4">
+                <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-indigo-400 shrink-0"><i class="fa-solid fa-clock"></i></div>
+                <div>
+                    <h4 class="font-bold text-white text-base mb-2">Berapa lama pengerjaannya?</h4>
+                    <p class="text-gray-400 text-xs leading-relaxed">Sangat cepat! Proses perbaikan software / *flashing* memakan waktu mulai dari 45 menit sampai dengan maksimal 1 Jam (bisa ditunggu).</p>
+                </div>
+            </div>
+
+            <div class="glass-panel p-6 rounded-3xl flex items-start gap-4">
+                <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-green-400 shrink-0"><i class="fa-solid fa-money-bill-wave"></i></div>
+                <div>
+                    <h4 class="font-bold text-white text-base mb-2">Bagaimana jika perbaikan gagal?</h4>
+                    <p class="text-gray-400 text-xs leading-relaxed"><i>Not at all!</i> Apabila pengerjaan perbaikan software gagal, Anda tidak akan dikenakan biaya apapun. Bahkan biaya pengecekan pun 100% GRATIS.</p>
+                </div>
+            </div>
+
+            <div class="glass-panel p-6 rounded-3xl flex items-start gap-4">
+                <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-yellow-400 shrink-0"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+                <div>
+                    <h4 class="font-bold text-white text-base mb-2">Sudah coba perbaiki sendiri tapi gagal?</h4>
+                    <p class="text-gray-400 text-xs leading-relaxed">Ada banyak faktor yang menyebabkan kegagalan. Biarkan tim spesialis Farid Store mendiagnosa masalah sistem iPhone Anda secara akurat dengan <i>tools</i> yang tepat.</p>
+                </div>
+            </div>
+
+            <div class="glass-panel p-6 rounded-3xl flex items-start gap-4">
+                <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-red-400 shrink-0"><i class="fa-solid fa-database"></i></div>
+                <div>
+                    <h4 class="font-bold text-white text-base mb-2">Apakah data saya akan hilang?</h4>
+                    <p class="text-gray-400 text-xs leading-relaxed">Versi pendek: Ya. Versi panjang: Ya dan Tidak. Selama kondisi iPhone Anda masih dalam keadaan HIDUP/Menyala, kami bisa membantu melakukan *back-up* sebelum instalasi (Khusus Foto, Video, Document, Note).</p>
+                    <p class="text-indigo-400 text-[10px] mt-2 italic">*Disclaimer: Kami adalah spesialis reparasi, bukan spesialis back-up data. Kami berusaha maksimal, namun tidak menjamin 100% data bisa terselamatkan sepenuhnya jika sistem sudah terlalu *corrupt*.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="pricelist" class="py-16 px-6 max-w-6xl mx-auto">
+        <div class="text-center mb-12" data-aos="fade-up">
+            <span class="text-indigo-400 font-bold text-xs uppercase tracking-[0.2em] mb-2 block">Price List</span>
+            <h2 class="font-heading text-3xl md:text-4xl font-black text-white">Harga Service Software iPhone</h2>
+            <div class="w-20 h-1 bg-indigo-500 mx-auto mt-6 rounded-full"></div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" data-aos="fade-up" data-aos-delay="100">
+            
+            <div class="glass-panel p-5 rounded-2xl flex flex-col items-center justify-center text-center premium-hover relative">
+                <div class="h-16 w-16 mb-3"><img src="https://arepair.id/wp-content/uploads/2018/12/iphone-x-3-transparent-1.png" alt="IPHONE X" class="w-full h-full object-contain"></div>
+                <h4 class="font-bold text-white text-xs mb-2">IPHONE X</h4>
+                <div class="text-indigo-400 font-black text-sm mb-3">Rp 250.000</div>
+                <a href="https://wa.me/6281371127121?text=Halo,%20tanya%20service%20Software%20iPhone%20X" target="_blank" class="w-full py-2 rounded-xl bg-white/10 hover:bg-indigo-500 text-white text-[10px] font-bold transition-all">Pilih Layanan</a>
+            </div>
+
+            <div class="glass-panel p-5 rounded-2xl flex flex-col items-center justify-center text-center premium-hover relative">
+                <div class="h-16 w-16 mb-3"><img src="https://arepair.id/wp-content/uploads/2018/12/iphone-8-plus2-transparent-1.png" alt="IPHONE 8 / 8 PLUS" class="w-full h-full object-contain"></div>
+                <h4 class="font-bold text-white text-xs mb-2">IPHONE 8 / 8 PLUS</h4>
+                <div class="text-indigo-400 font-black text-sm mb-3">Rp 250.000</div>
+                <a href="https://wa.me/6281371127121?text=Halo,%20tanya%20service%20Software%20iPhone%208" target="_blank" class="w-full py-2 rounded-xl bg-white/10 hover:bg-indigo-500 text-white text-[10px] font-bold transition-all">Pilih Layanan</a>
+            </div>
+
+            <div class="glass-panel p-5 rounded-2xl flex flex-col items-center justify-center text-center premium-hover relative">
+                <div class="h-16 w-16 mb-3"><img src="https://arepair.id/wp-content/uploads/2018/12/iphone-7-transparent-1.png" alt="IPHONE 7 / 7 PLUS" class="w-full h-full object-contain"></div>
+                <h4 class="font-bold text-white text-xs mb-2">IPHONE 7 / 7 PLUS</h4>
+                <div class="text-indigo-400 font-black text-sm mb-3">Rp 200.000</div>
+                <a href="https://wa.me/6281371127121?text=Halo,%20tanya%20service%20Software%20iPhone%207" target="_blank" class="w-full py-2 rounded-xl bg-white/10 hover:bg-indigo-500 text-white text-[10px] font-bold transition-all">Pilih Layanan</a>
+            </div>
+
+            <div class="glass-panel p-5 rounded-2xl flex flex-col items-center justify-center text-center premium-hover relative">
+                <div class="h-16 w-16 mb-3"><img src="https://arepair.id/wp-content/uploads/2018/12/iphone-6s-plus-transparent.png" alt="IPHONE 6S / 6S PLUS" class="w-full h-full object-contain"></div>
+                <h4 class="font-bold text-white text-xs mb-2">IPHONE 6S / 6S PLUS</h4>
+                <div class="text-indigo-400 font-black text-sm mb-3">Rp 150.000</div>
+                <a href="https://wa.me/6281371127121?text=Halo,%20tanya%20service%20Software%20iPhone%206s" target="_blank" class="w-full py-2 rounded-xl bg-white/10 hover:bg-indigo-500 text-white text-[10px] font-bold transition-all">Pilih Layanan</a>
+            </div>
+
+            <div class="glass-panel p-5 rounded-2xl flex flex-col items-center justify-center text-center premium-hover relative">
+                <div class="h-16 w-16 mb-3"><img src="https://arepair.id/wp-content/uploads/2018/12/iphone-5s-transparent-1.png" alt="IPHONE SE Gen 1" class="w-full h-full object-contain"></div>
+                <h4 class="font-bold text-white text-xs mb-2">IPHONE SE (Gen 1)</h4>
+                <div class="text-indigo-400 font-black text-sm mb-3">Rp 150.000</div>
+                <a href="https://wa.me/6281371127121?text=Halo,%20tanya%20service%20Software%20iPhone%20SE" target="_blank" class="w-full py-2 rounded-xl bg-white/10 hover:bg-indigo-500 text-white text-[10px] font-bold transition-all">Pilih Layanan</a>
+            </div>
+
+            <div class="glass-panel p-5 rounded-2xl flex flex-col items-center justify-center text-center premium-hover relative">
+                <div class="h-16 w-16 mb-3"><img src="https://arepair.id/wp-content/uploads/2018/12/iphone-6-plus-transparent-1.png" alt="IPHONE 6 / 6 PLUS" class="w-full h-full object-contain"></div>
+                <h4 class="font-bold text-white text-xs mb-2">IPHONE 6 / 6 PLUS</h4>
+                <div class="text-indigo-400 font-black text-sm mb-3">Rp 150.000</div>
+                <a href="https://wa.me/6281371127121?text=Halo,%20tanya%20service%20Software%20iPhone%206" target="_blank" class="w-full py-2 rounded-xl bg-white/10 hover:bg-indigo-500 text-white text-[10px] font-bold transition-all">Pilih Layanan</a>
+            </div>
+
+            <div class="glass-panel p-5 rounded-2xl flex flex-col items-center justify-center text-center premium-hover relative">
+                <div class="h-16 w-16 mb-3"><img src="https://arepair.id/wp-content/uploads/2018/12/iphone-5s-transparent-1.png" alt="IPHONE 5S / 5C" class="w-full h-full object-contain"></div>
+                <h4 class="font-bold text-white text-xs mb-2">IPHONE 5S / 5C</h4>
+                <div class="text-indigo-400 font-black text-sm mb-3">Rp 100.000</div>
+                <a href="https://wa.me/6281371127121?text=Halo,%20tanya%20service%20Software%20iPhone%205s" target="_blank" class="w-full py-2 rounded-xl bg-white/10 hover:bg-indigo-500 text-white text-[10px] font-bold transition-all">Pilih Layanan</a>
+            </div>
+
+            <div class="glass-panel p-5 rounded-2xl flex flex-col items-center justify-center text-center premium-hover relative">
+                <div class="h-16 w-16 mb-3"><img src="https://arepair.id/wp-content/uploads/2018/12/iphone-5-transparent-1.png" alt="IPHONE 5" class="w-full h-full object-contain"></div>
+                <h4 class="font-bold text-white text-xs mb-2">IPHONE 5</h4>
+                <div class="text-indigo-400 font-black text-sm mb-3">Rp 100.000</div>
+                <a href="https://wa.me/6281371127121?text=Halo,%20tanya%20service%20Software%20iPhone%205" target="_blank" class="w-full py-2 rounded-xl bg-white/10 hover:bg-indigo-500 text-white text-[10px] font-bold transition-all">Pilih Layanan</a>
+            </div>
+
+            <div class="glass-panel p-5 rounded-2xl flex flex-col items-center justify-center text-center premium-hover relative">
+                <div class="h-16 w-16 mb-3"><img src="https://arepair.id/wp-content/uploads/2018/12/iphone-4s-1.png" alt="IPHONE 4/4S" class="w-full h-full object-contain"></div>
+                <h4 class="font-bold text-white text-xs mb-2">IPHONE 4 / 4S</h4>
+                <div class="text-indigo-400 font-black text-sm mb-3">Rp 100.000</div>
+                <a href="https://wa.me/6281371127121?text=Halo,%20tanya%20service%20Software%20iPhone%204" target="_blank" class="w-full py-2 rounded-xl bg-white/10 hover:bg-indigo-500 text-white text-[10px] font-bold transition-all">Pilih Layanan</a>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="px-6 max-w-4xl mx-auto mb-20 text-center" data-aos="fade-up">
+        <div class="inline-flex flex-col items-center justify-center bg-gray-800/30 border border-gray-700/50 rounded-3xl p-6 md:p-8 shadow-xl">
+            <i class="fa-solid fa-check-circle text-4xl text-indigo-400 mb-4"></i>
+            <h3 class="text-white font-bold text-xl mb-2">No Additional Fee!</h3>
+            <p class="text-gray-400 text-sm mb-2">Semua biaya service software iPhone di atas sudah <span class="font-bold text-white">Up-to-Date</span> dan tidak ada biaya embel-embel apapun lagi.</p>
+            <p class="text-indigo-400 text-sm font-bold italic">"No surprise fees ever."</p>
+        </div>
+    </section>
+
+    <a href="https://wa.me/6281371127121" target="_blank" class="fixed bottom-6 right-6 z-50 w-16 h-16 bg-white text-black rounded-full flex items-center justify-center text-3xl shadow-[0_5px_20px_rgba(255,255,255,0.2)] hover:scale-110 hover:bg-indigo-500 hover:text-white transition-all duration-300 group">
+        <i class="fa-brands fa-whatsapp group-hover:rotate-12 transition-transform"></i>
+    </a>
+
+    <footer class="border-t border-white/10 py-16 bg-[#020202] text-center mt-10 relative overflow-hidden">
+        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-32 bg-indigo-500/10 rounded-t-full blur-3xl pointer-events-none"></div>
+        <h2 class="font-heading font-black text-4xl text-white mb-3 tracking-widest uppercase opacity-20">FaridStore</h2>
+        <p class="text-gray-500 text-sm font-bold tracking-widest uppercase mb-6">Professional Device Repair</p>
+        <p class="text-gray-700 text-xs font-semibold tracking-widest uppercase mt-8">Pekanbaru • © 2026 All rights reserved.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: true, offset: 50, duration: 800 });
+
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-black/80', 'border-white/20');
+                nav.classList.remove('bg-black/40');
+            } else {
+                nav.classList.remove('bg-black/80', 'border-white/20');
+                nav.classList.add('bg-black/40');
+            }
+        });
+    </script>
+</body>
+</html>

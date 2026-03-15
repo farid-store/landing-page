@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Service Back Glass iPhone | Farid Store</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif']
+                    },
+                    colors: {
+                        dark: '#020202', 
+                        surface: '#0a0a0a', 
+                        brand: { 300: '#7dd3fc', 400: '#38bdf8', 500: '#0ea5e9', 600: '#0284c7' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Base Setup */
+        html, body { background-color: #020202; color: #f8fafc; overflow-x: hidden; width: 100%; position: relative; }
+        
+        /* Modern Floating Glass */
+        .glass-pill { background: rgba(10, 10, 10, 0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.08); }
+        .glass-panel { background: linear-gradient(145deg, rgba(25,25,25,0.4) 0%, rgba(10,10,10,0.8) 100%); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.05); }
+        
+        /* Text Gradients */
+        .text-glow { background: linear-gradient(to right, #ffffff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        /* Ambient Backgrounds (Pink/Rose Accent for Backglass) */
+        .ambient-glow-1 { position: absolute; top: -5%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(236,72,153,0.12) 0%, rgba(0,0,0,0) 60%); filter: blur(60px); z-index: -1; animation: pulse 8s infinite alternate; }
+        .ambient-glow-2 { position: absolute; top: 40%; right: -10%; width: 40vw; height: 40vw; background: radial-gradient(circle, rgba(14,165,233,0.08) 0%, rgba(0,0,0,0) 60%); filter: blur(60px); z-index: -1; animation: pulse 10s infinite alternate-reverse; }
+        @keyframes pulse { 0% { opacity: 0.5; transform: scale(0.9); } 100% { opacity: 1; transform: scale(1.1); } }
+
+        /* Card Hover Effect */
+        .premium-hover { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(255,255,255,0.05); }
+        .premium-hover:hover { transform: translateY(-4px); border-color: rgba(236, 72, 153, 0.3); box-shadow: 0 10px 30px -10px rgba(236, 72, 153, 0.15); }
+    </style>
+</head>
+<body class="antialiased selection:bg-pink-500 selection:text-white">
+
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+
+    <div class="fixed w-full top-6 z-50 px-4 sm:px-6 flex justify-center pointer-events-none">
+        <nav class="glass-pill rounded-full px-5 py-2.5 sm:px-6 sm:py-3 flex justify-between items-center w-full max-w-6xl pointer-events-auto shadow-[0_10px_40px_rgba(0,0,0,0.5)] transition-all duration-300" id="navbar">
+            <a href="service.html" class="flex items-center gap-3 group">
+                <div class="w-8 h-8 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white font-bold text-sm group-hover:bg-white group-hover:text-black transition-all"><i class="fa-solid fa-arrow-left"></i></div>
+                <span class="font-heading font-bold text-sm tracking-tight text-gray-400 group-hover:text-white transition-colors hidden sm:block">Kembali ke Menu Servis</span>
+            </a>
+            
+            <div class="hidden md:flex gap-4 xl:gap-7 items-center">
+                <a href="#informasi" class="text-sm font-semibold text-gray-300 hover:text-white transition">Info Layanan</a>
+                <a href="#proses" class="text-sm font-semibold text-gray-300 hover:text-white transition">Proses</a>
+                <a href="#pricelist" class="text-sm font-semibold text-gray-300 hover:text-white transition">Price List</a>
+            </div>
+
+            <a href="https://wa.me/6281371127121" target="_blank" class="bg-pink-600 hover:bg-pink-500 text-white text-sm font-bold px-4 py-2 sm:px-5 sm:py-2.5 rounded-full transition-transform hover:scale-105 flex items-center gap-2 pointer-events-auto shrink-0">
+                <i class="fa-brands fa-whatsapp text-lg"></i> <span class="hidden sm:inline">Chat Admin</span>
+            </a>
+        </nav>
+    </div>
+
+    <section class="relative pt-40 pb-16 px-6 max-w-6xl mx-auto border-b border-white/5">
+        <div class="flex flex-col md:flex-row gap-12 items-center">
+            <div class="w-full md:w-1/2" data-aos="fade-right">
+                <div class="flex items-center gap-2 text-pink-400 text-xs font-bold uppercase tracking-widest mb-4">
+                    <i class="fa-solid fa-layer-group text-lg"></i> iPhone Body Repair
+                </div>
+                <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-6 text-glow">
+                    Service Back <br>Glass iPhone.
+                </h1>
+                <p class="text-gray-400 leading-relaxed mb-8">
+                    Kaca belakang iPhone Anda retak atau pecah? Layanan ini memungkinkan Anda untuk memperbaikinya dengan mudah, cepat, dan rapi tanpa harus mengganti seluruh housing (body) iPhone.
+                </p>
+                <div class="flex flex-wrap gap-3">
+                    <span class="glass-pill px-4 py-2 rounded-xl text-xs font-bold text-gray-300 border-white/10"><i class="fa-solid fa-stopwatch text-pink-400 mr-1"></i> Selesai Dalam 1-2 Jam</span>
+                    <span class="glass-pill px-4 py-2 rounded-xl text-xs font-bold text-gray-300 border-white/10"><i class="fa-solid fa-tags text-pink-400 mr-1"></i> Lebih Hemat</span>
+                </div>
+            </div>
+            
+            <div class="w-full md:w-1/2 relative" data-aos="fade-left">
+                <div class="relative rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl h-80 w-full group bg-black">
+                    <img src="https://arepair.id/wp-content/uploads/2023/04/service-back-glass-iphone-700x467.jpg" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 opacity-60" alt="Service Back Glass iPhone">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-black/90 to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 right-6">
+                        <div class="glass-pill px-4 py-3 rounded-2xl flex items-center justify-between border-white/10">
+                            <div>
+                                <p class="text-white text-xs font-bold mb-0.5">Metode Eksekusi Modern</p>
+                                <p class="text-gray-400 text-[10px]">Aman untuk komponen internal dan *wireless charging*.</p>
+                            </div>
+                            <div class="w-8 h-8 rounded-full bg-pink-500/20 text-pink-400 flex items-center justify-center"><i class="fa-solid fa-check-double"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="informasi" class="py-20 px-6 max-w-6xl mx-auto">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <span class="text-pink-400 font-bold text-xs uppercase tracking-[0.2em] mb-2 block">Informasi Layanan</span>
+            <h2 class="font-heading text-3xl md:text-4xl font-black text-white mb-4">Apa Itu Service Back Glass?</h2>
+            <p class="text-gray-400 text-sm max-w-xl mx-auto">Kenali layanan penggantian kaca belakang iPhone dan perbedaannya dengan penggantian housing secara keseluruhan.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <div class="glass-panel p-8 md:p-10 rounded-[2rem] relative overflow-hidden group" data-aos="fade-up" data-aos-delay="50">
+                <div class="absolute -right-20 -top-20 w-48 h-48 bg-pink-500/10 rounded-full blur-3xl"></div>
+                <div class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center text-pink-400 text-2xl border border-white/10 mb-6 relative z-10">
+                    <i class="fa-solid fa-mobile-button"></i>
+                </div>
+                <h3 class="font-heading text-2xl font-bold text-white mb-4 relative z-10">Fokus Pada Kaca Belakang</h3>
+                <p class="text-gray-400 text-sm leading-relaxed relative z-10">
+                    Layanan ini adalah solusi profesional yang Farid Store tawarkan khusus untuk masalah kaca belakang (back glass) iPhone yang retak atau pecah. Teknisi kami yang berpengalaman akan mengangkat pecahan kaca lama dan menggantinya dengan kaca baru yang sangat presisi, rapi, dan kuat.
+                </p>
+            </div>
+
+            <div class="glass-panel p-8 md:p-10 rounded-[2rem] relative overflow-hidden group" data-aos="fade-up" data-aos-delay="100">
+                <div class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center text-blue-400 text-2xl border border-white/10 mb-6">
+                    <i class="fa-solid fa-code-compare"></i>
+                </div>
+                <h3 class="font-heading text-2xl font-bold text-white mb-4">Back Glass vs Ganti Housing</h3>
+                <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                    Service back glass <strong>tidak sama</strong> dengan service ganti housing.
+                </p>
+                <ul class="space-y-3">
+                    <li class="flex items-start gap-3 text-sm text-gray-300">
+                        <i class="fa-solid fa-circle-check text-pink-400 mt-0.5 text-xs"></i> <span class="font-bold">Back Glass:</span> Jika yang retak/pecah HANYA kaca bagian belakangnya saja. Rangka besi/aluminium (frame) masih lurus.
+                    </li>
+                    <li class="flex items-start gap-3 text-sm text-gray-300">
+                        <i class="fa-solid fa-circle-check text-pink-400 mt-0.5 text-xs"></i> <span class="font-bold">Housing:</span> Jika seluruh bodi/frame iPhone Anda penyok parah, bengkok, atau melengkung, maka Anda harus mengganti housing keseluruhan.
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="proses" class="py-10 px-6 max-w-6xl mx-auto border-t border-white/5 pt-20">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <span class="text-pink-400 font-bold text-xs uppercase tracking-[0.2em] mb-2 block">Standard Operating Procedure</span>
+            <h2 class="font-heading text-3xl md:text-4xl font-black text-white mb-4">Proses Pengerjaan Profesional</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative before:absolute before:inset-0 before:ml-8 md:before:ml-0 md:before:mt-12 md:before:w-full md:before:h-0.5 md:before:bg-white/5 before:hidden md:before:block">
+            
+            <div class="relative z-10 glass-panel p-8 rounded-[2rem] text-center premium-hover" data-aos="fade-up" data-aos-delay="0">
+                <div class="w-12 h-12 rounded-full bg-pink-500 text-white font-black flex items-center justify-center text-xl mx-auto mb-6 shadow-[0_0_20px_rgba(236,72,153,0.4)]">1</div>
+                <h3 class="font-heading text-xl font-bold text-white mb-3">Diagnosa</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Teknisi kami memeriksa iPhone Anda untuk memastikan apakah cukup ganti kaca belakang atau harus full housing.</p>
+            </div>
+
+            <div class="relative z-10 glass-panel p-8 rounded-[2rem] text-center premium-hover" data-aos="fade-up" data-aos-delay="100">
+                <div class="w-12 h-12 rounded-full bg-pink-500 text-white font-black flex items-center justify-center text-xl mx-auto mb-6 shadow-[0_0_20px_rgba(236,72,153,0.4)]">2</div>
+                <h3 class="font-heading text-xl font-bold text-white mb-3">Penggantian</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Pecahan kaca belakang diangkat (biasanya dengan bantuan laser untuk presisi) dan diganti dengan kaca baru dengan lem khusus.</p>
+            </div>
+
+            <div class="relative z-10 glass-panel p-8 rounded-[2rem] text-center premium-hover" data-aos="fade-up" data-aos-delay="200">
+                <div class="w-12 h-12 rounded-full bg-pink-500 text-white font-black flex items-center justify-center text-xl mx-auto mb-6 shadow-[0_0_20px_rgba(236,72,153,0.4)]">3</div>
+                <h3 class="font-heading text-xl font-bold text-white mb-3">Pengujian</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Setelah terpasang rapi, teknisi menguji fitur *wireless charging* dan fungsi lainnya untuk memastikan semuanya normal.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="px-6 max-w-6xl mx-auto mb-10 mt-16 relative z-10" data-aos="zoom-in">
+        <div class="bg-gradient-to-r from-pink-600/20 to-purple-600/20 border border-pink-500/30 rounded-3xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 backdrop-blur-xl shadow-[0_10px_40px_rgba(236,72,153,0.1)]">
+            <div class="flex items-center gap-5">
+                <div class="w-14 h-14 rounded-full bg-pink-500 flex items-center justify-center text-white text-2xl shrink-0 shadow-lg">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                </div>
+                <div>
+                    <h3 class="text-white font-black text-xl mb-1">Selesai Dalam 1-2 Jam!</h3>
+                    <p class="text-pink-100 text-sm">Gratis biaya pemasangan. Pengerjaan cepat, rapi, dan <span class="font-bold text-white">bisa dilihat langsung di depan Anda.</span></p>
+                </div>
+            </div>
+            <div class="shrink-0 text-center md:text-right">
+                <a href="#pricelist" class="inline-block bg-white text-black font-bold text-xs uppercase tracking-widest px-6 py-3 rounded-full mb-1 hover:bg-gray-200 transition-colors">Lihat Harga</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricelist" class="py-10 px-6 max-w-6xl mx-auto">
+        <div class="text-center mb-12" data-aos="fade-up">
+            <span class="text-pink-400 font-bold text-xs uppercase tracking-[0.2em] mb-2 block">Price List</span>
+            <h2 class="font-heading text-3xl md:text-4xl font-black text-white">Harga Service Back Glass iPhone</h2>
+            <div class="w-20 h-1 bg-pink-500 mx-auto mt-6 rounded-full"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" data-aos="fade-up" data-aos-delay="100">
+            
+            <div class="glass-panel p-4 rounded-[1.5rem] flex items-center gap-4 premium-hover"><div class="w-16 h-16 shrink-0 bg-white/5 border border-white/5 rounded-xl p-2 flex items-center justify-center"><img src="https://arepair.id/wp-content/uploads/2024/10/iPhone-15-Pro-Max-1.png" alt="IPHONE 15 PRO MAX" class="w-full h-full object-contain"></div><div class="flex-1"><h4 class="font-bold text-white text-sm">IPHONE 15 PRO MAX</h4><p class="text-gray-500 text-[10px] line-clamp-1 mt-0.5">Ganti backglass iPhone 15 pro max</p><div class="text-pink-400 font-black text-sm mt-1.5">Rp 750.000</div></div><a href="https://wa.me/6281371127121?text=Halo,%20tanya%20service%20Back%20Glass%20iPhone%2015%20Pro%20Max" target="_blank" class="w-10 h-10 rounded-full bg-white/5 text-gray-300 flex items-center justify-center hover:bg-pink-500 hover:text-white transition-colors shrink-0"><i class="fa-brands fa-whatsapp text-lg"></i></a></div>
+            <div class="glass-panel p-4 rounded-[1.5rem] flex items-center gap-4 premium-hover"><div class="w-16 h-16 shrink-0 bg-white/5 border border-white/5 rounded-xl p-2 flex items-center justify-center"><img src="https://arepair.id/wp-content/uploads/2024/10/iPhone-15-Pro-1.png" alt="IPHONE 15 PRO" class="w-full h-full object-contain"></div><div class="flex-1"><h4 class="font-bold text-white text-sm">IPHONE 15 PRO</h4><p class="text-gray-500 text-[10px] line-clamp-1 mt-0.5">Ganti backglass iPhone 15 pro</p><div class="text-pink-400 font-black text-sm mt-1.5">Rp 750.000</div></div><a href="https://wa.me/6281371127121?text=Halo,%20tanya%20service%20Back%20Glass%20iPhone%2015%20Pro" target="_blank" class="w-10 h-10 rounded-full bg-white/5 text-gray-300 flex items-center justify-center hover:bg-pink-500 hover:text-white transition-colors shrink-0"><i class="fa-brands fa-whatsapp text-lg"></i></a></div>
+            <div class="glass-panel p-4 rounded-[1.5rem] flex items-center gap-4 premium-hover"><div class="w-16 h-16 shrink-0 bg-white/5 border border-white/5 rounded-xl p-2 flex items-center justify-center"><img src="https://arepair.id/wp-content/uploads/2024/10/iPhone-15-1.png" alt="IPHONE 15 PLUS" class="w-full h-full object-contain"></div><div class="flex-1"><h4 class="font-bold text-white text-sm">IPHONE 15 PLUS</h4><p class="text-gray-500 text-[10px] line-clamp-1 mt-0.5">Ganti backglass iPhone 15 plus</p><div class="text-pink-400 font-black text-sm mt-1.5">Rp 750.000</div></div><a href="https://wa.me/6281371127121?text=Halo,%20tanya%20service%20Back%20Glass%20iPhone%2015%20Plus" target="_blank" class="w-10 h-10 rounded-full bg-white/5 text-gray-300 flex items-center justify-center hover:bg-pink-500 hover:text-white transition-colors shrink-0"><i class="fa-brands fa-whatsapp text-lg"></i></a></div>
+            <div class="glass-panel p-4 rounded-[1.5rem] flex items-center gap-4 premium-hover"><div class="w-16 h-16 shrink-0 bg-white/5 border border-white/5 rounded-xl p-2 flex items-center justify-center"><img src="https://arepair.id/wp-content/uploads/2024/10/iPhone-15-1.png" alt="IPHONE 15" class="w-full h-full object-contain"></div><div class="flex-1"><h4 class="font-bold text-white text-sm">IPHONE 15</h4><p class="text-gray-500 text-[10px] line-clamp-1 mt-0.5">Ganti backglass iPhone 15</p><div class="text-pink-400 font-black text-sm mt-1.5">Rp 750.000</div></div><a href="https://wa.me/6281371127121?text=Halo,%20tanya%20service%20Back%20Glass%20iPhone%2015" target="_blank" class="w-10 h-10 rounded-full bg-white/5 text-gray-300 flex items-center justify-center hover:bg-pink-500 hover:text-white transition-colors shrink-0"><i class="fa-brands fa-whatsapp text-lg"></i></a></div>
+
+            <div class="glass-panel p-4 rounded-[1.5rem] flex items-center gap-4 premium-hover"><div class="w-16 h-16 shrink-0 bg-white/5 border border-white/5 rounded-xl p-2 flex items-center justify-center"><img src="https://arepair.id/wp-content/uploads/2023/04/iphone-14-pro-max.png" alt="IPHONE 14 PRO MAX" class="w-full h-full object-contain"></div><div class="flex-1"><h4 class="font-bold text-white text-sm">IPHONE 14 PRO MAX</h4><p class="text-gray-500 text-[10px] line-clamp-1 mt-0.5">Ganti kaca belakang iPhone 14 pro max</p><div class="text-pink-400 font-black text-sm mt-1.5">Rp 614.000</div></div><a href="https://wa.me/6281371127121?text=Halo,%20tanya%20service%20Back%20Glass%20iPhone%2014%20Pro%20Max" target="_blank" class="w-10 h-10 rounded-full bg-white/5 text-gray-300 flex items-center justify-center hover:bg-pink-500 hover:text-white transition-colors shrink-0"><i class="fa-brands fa-whatsapp text-lg"></i></a></div>
+            <div class="glass-panel p-4 rounded-[1.5rem] flex items-center gap-4 premium-hover"><div class="w-16 h-16 shrink-0 bg-white/5 border border-white/5 rounded-xl p-2 flex items-center justify-center"><img src="https://arepair.id/wp-content/uploads/2023/04/iphone-14-pro.png" alt="IPHONE 14 PRO" class="w-full h-full object-contain"></div><div class="flex-1"><h4 class="font-bold text-white text-sm">IPHONE 14 PRO</h4><p class="text-gray-500 text-[10px] line-clamp-1 mt-0.5">Ganti kaca belakang iPhone 14 pro</p><div class="text-pink-400 font-black text-sm mt-1.5">Rp 554.000</div></div><a href="https://wa.me/6281371127121?text=Halo,%20tanya%20service%20Back%20Glass%20iPhone%2014%20Pro" target="_blank" class="w-10 h-10 rounded-full bg-white/5 text-gray-300 flex items-center justify-center hover:bg-pink-500 hover:text-white transition-colors shrink-0"><i class="fa-brands fa-whatsapp text-lg"></i></a></div>
+            <div class="glass-panel p-4 rounded-[1.5rem] flex items-center gap-4 premium-hover"><div class="w-16 h-16 shrink-0 bg-white/5 border border-white/5 rounded-xl p-2 flex items-center justify-center"><img src="https://arepair.id/wp-content/uploads/2023/04/iphone-14.png" alt="IPHONE 14 PLUS" class="w-full h-full object-contain"></div><div class="flex-1"><h4 class="font-bold text-white text-sm">IPHONE 14 PLUS</h4><p class="text-gray-500 text-[10px] line-clamp-1 mt-0.5">Ganti kaca belakang iPhone 14 plus</p><div class="text-pink-400 font-black text-sm mt-1.5">Rp 714.000</div></div><a href="https://wa.me/6281371127121?text=Halo,%20tanya%20service%20Back%20Glass%20iPhone%2014%20Plus" target="_blank" class="w-10 h-10 rounded-full bg-white/5 text-gray-300 flex items-center justify-center hover:bg-pink-500 hover:text-white transition-colors shrink-0"><i class="fa-brands fa-whatsapp text-lg"></i></a></div>
+            <div class="glass-panel p-4 rounded-[1.5rem] flex items-center gap-4 premium-hover"><div class="w-16 h-16 shrink-0 bg-white/5 border border-white/5 rounded-xl p-2 flex items-center justify-center"><img src="https://arepair.id/wp-content/uploads/2023/04/iphone-14.png" alt="IPHONE 14" class="w-full h-full object-contain"></div><div class="flex-1"><h4 class="font-bold text-white text-sm">IPHONE 14</h4><p class="text-gray-500 text-[10px] line-clamp-1 mt-0.5">Ganti kaca belakang iPhone 14</p><div class="text-pink-400 font-black text-sm mt-1.5">Rp 554.000</div></div><a href="https://wa.me/6281371127121?text=Halo,%20tanya%20service%20Back%20Glass%20iPhone%2014" target="_blank" class="w-10 h-10 rounded-full bg-white/5 text-gray-300 flex items-center justify-center hover:bg-pink-500 hover:text-white transition-colors shrink-0"><i class="fa-brands fa-whatsapp text-lg"></i></a></div>
+
+            <div class="glass-panel p-4 rounded-[1.5rem] flex items-center gap-4 premium-hover"><div class="w-16 h-16 shrink-0 bg-white/5 border border-white/5 rounded-xl p-2 flex items-center justify-center"><img src="https://arepair.id/wp-content/uploads/2021/11/iPhone-13-pro-max-2.png" alt="IPHONE 13 PRO MAX" class="w-full h-full object-contain"></div><div class="flex-1"><h4 class="font-bold text-white text-sm">IPHONE 13 PRO MAX</h4><p class="text-gray-500 text-[10px] line-clamp-1 mt-0.5">Ganti back glass iPhone 13 pro max</p><div class="text-pink-400 font-black text-sm mt-1.5">Rp 524.000</div></div><a href="https://wa.me/6281371127121?text=Halo,%20tanya%20service%20Back%20Glass%20iPhone%2013%20Pro%20Max" target="_blank" class="w-10 h-10 rounded-full bg-white/5 text-gray-300 flex items-center justify-center hover:bg-pink-500 hover:text-white transition-colors shrink-0"><i class="fa-brands fa-whatsapp text-lg"></i></a></div>
+            <div class="glass-panel p-4 rounded-[1.5rem] flex items-center gap-4 premium-hover"><div class="w-16 h-16 shrink-0 bg-white/5 border border-white/5 rounded-xl p-2 flex items-center justify-center"><img src="https://arepair.id/wp-content/uploads/2021/11/iPhone-13-pro-2.png" alt="IPHONE 13 PRO" class="w-full h-full object-contain"></div><div class="flex-1"><h4 class="font-bold text-white text-sm">IPHONE 13 PRO</h4><p class="text-gray-500 text-[10px] line-clamp-1 mt-0.5">Ganti back glass iPhone 13 pro</p><div class="text-pink-400 font-black text-sm mt-1.5">Rp 524.000</div></div><a href="https://wa.me/6281371127121?text=Halo,%20tanya%20service%20Back%20Glass%20iPhone%2013%20Pro" target="_blank" class="w-10 h-10 rounded-full bg-white/5 text-gray-300 flex items-center justify-center hover:bg-pink-500 hover:text-white transition-colors shrink-0"><i class="fa-brands fa-whatsapp text-lg"></i></a></div>
+            <div class="glass-panel p-4 rounded-[1.5rem] flex items-center gap-4 premium-hover"><div class="w-16 h-16 shrink-0 bg-white/5 border border-white/5 rounded-xl p-2 flex items-center justify-center"><img src="https://arepair.id/wp-content/uploads/2023/10/iphone-13-mini.png" alt="IPHONE 13 MINI" class="w-full h-full object-contain"></div><div class="flex-1"><h4 class="font-bold text-white text-sm">IPHONE 13 MINI</h4><p class="text-gray-500 text-[10px] line-clamp-1 mt-0.5">Ganti back glass iPhone 13 mini</p><div class="text-pink-400 font-black text-sm mt-1.5">Rp 494.000</div></div><a href="https://wa.me/6281371127121?text=Halo,%20tanya%20service%20Back%20Glass%20iPhone%2013%20Mini" target="_blank" class="w-10 h-10 rounded-full bg-white/5 text-gray-300 flex items-center justify-center hover:bg-pink-500 hover:text-white transition-colors shrink-0"><i class="fa-brands fa-whatsapp text-lg"></i></a></div>
+            <div class="glass-panel p-4 rounded-[1.5rem] flex items-center gap-4 premium-hover"><div class="w-16 h-16 shrink-0 bg-white/5 border border-white/5 rounded-xl p-2 flex items-center justify-center"><img src="https://arepair.id/wp-content/uploads/2023/03/iphone-13.png" alt="IPHONE 13" class="w-full h-full object-contain"></div><div class="flex-1"><h4 class="font-bold text-white text-sm">IPHONE 13</h4><p class="text-gray-500 text-[10px] line-clamp-1 mt-0.5">Ganti back glass iPhone 13</p><div class="text-pink-400 font-black text-sm mt-1.5">Rp 494.000</div></div><a href="https://wa.me/6281371127121?text=Halo,%20tanya%20service%20Back%20Glass%20iPhone%2013" target="_blank" class="w-10 h-10 rounded-full bg-white/5 text-gray-300 flex items-center justify-center hover:bg-pink-500 hover:text-white transition-colors shrink-0"><i class="fa-brands fa-whatsapp text-lg"></i></a></div>
+
+            <div class="glass-panel p-4 rounded-[1.5rem] flex items-center gap-4 premium-hover"><div class="w-16 h-16 shrink-0 bg-white/5 border border-white/5 rounded-xl p-2 flex items-center justify-center"><img src="https://arepair.id/wp-content/uploads/2021/11/iPhone-12-pro-max-2.png" alt="IPHONE 12 PRO MAX" class="w-full h-full object-contain"></div><div class="flex-1"><h4 class="font-bold text-white text-sm">IPHONE 12 PRO MAX</h4><p class="text-gray-500 text-[10px] line-clamp-1 mt-0.5">Ganti back glass iPhone 12 pro max</p><div class="text-pink-400 font-black text-sm mt-1.5">Rp 474.000</div></div><a href="https://wa.me/6281371127121?text=Halo,%20tanya%20service%20Back%20Glass%20iPhone%2012%20Pro%20Max" target="_blank" class="w-10 h-10 rounded-full bg-white/5 text-gray-300 flex items-center justify-center hover:bg-pink-500 hover:text-white transition-colors shrink-0"><i class="fa-brands fa-whatsapp text-lg"></i></a></div>
+            <div class="glass-panel p-4 rounded-[1.5rem] flex items-center gap-4 premium-hover"><div class="w-16 h-16 shrink-0 bg-white/5 border border-white/5 rounded-xl p-2 flex items-center justify-center"><img src="https://arepair.id/wp-content/uploads/2021/11/iPhone-12-pro-2.png" alt="IPHONE 12 PRO" class="w-full h-full object-contain"></div><div class="flex-1"><h4 class="font-bold text-white text-sm">IPHONE 12 PRO</h4><p class="text-gray-500 text-[10px] line-clamp-1 mt-0.5">Ganti back glass iPhone 12 pro</p><div class="text-pink-400 font-black text-sm mt-1.5">Rp 474.000</div></div><a href="https://wa.me/6281371127121?text=Halo,%20tanya%20service%20Back%20Glass%20iPhone%2012%20Pro" target="_blank" class="w-10 h-10 rounded-full bg-white/5 text-gray-300 flex items-center justify-center hover:bg-pink-500 hover:text-white transition-colors shrink-0"><i class="fa-brands fa-whatsapp text-lg"></i></a></div>
+            <div class="glass-panel p-4 rounded-[1.5rem] flex items-center gap-4 premium-hover"><div class="w-16 h-16 shrink-0 bg-white/5 border border-white/5 rounded-xl p-2 flex items-center justify-center"><img src="https://arepair.id/wp-content/uploads/2021/11/iPhone-12-2.png" alt="IPHONE 12 / 12 MINI" class="w-full h-full object-contain"></div><div class="flex-1"><h4 class="font-bold text-white text-sm">IPHONE 12 / 12 MINI</h4><p class="text-gray-500 text-[10px] line-clamp-1 mt-0.5">Ganti kaca belakang iPhone 12 & 12 mini</p><div class="text-pink-400 font-black text-sm mt-1.5">Rp 454.000</div></div><a href="https://wa.me/6281371127121?text=Halo,%20tanya%20service%20Back%20Glass%20iPhone%2012" target="_blank" class="w-10 h-10 rounded-full bg-white/5 text-gray-300 flex items-center justify-center hover:bg-pink-500 hover:text-white transition-colors shrink-0"><i class="fa-brands fa-whatsapp text-lg"></i></a></div>
+
+            <div class="glass-panel p-4 rounded-[1.5rem] flex items-center gap-4 premium-hover"><div class="w-16 h-16 shrink-0 bg-white/5 border border-white/5 rounded-xl p-2 flex items-center justify-center"><img src="https://arepair.id/wp-content/uploads/2020/05/iphone-11-pro-max.png" alt="IPHONE 11 PRO MAX" class="w-full h-full object-contain"></div><div class="flex-1"><h4 class="font-bold text-white text-sm">IPHONE 11 PRO MAX</h4><p class="text-gray-500 text-[10px] line-clamp-1 mt-0.5">Ganti kaca belakang iPhone 11 pro max</p><div class="text-pink-400 font-black text-sm mt-1.5">Rp 414.000</div></div><a href="https://wa.me/6281371127121?text=Halo,%20tanya%20service%20Back%20Glass%20iPhone%2011%20Pro%20Max" target="_blank" class="w-10 h-10 rounded-full bg-white/5 text-gray-300 flex items-center justify-center hover:bg-pink-500 hover:text-white transition-colors shrink-0"><i class="fa-brands fa-whatsapp text-lg"></i></a></div>
+            <div class="glass-panel p-4 rounded-[1.5rem] flex items-center gap-4 premium-hover"><div class="w-16 h-16 shrink-0 bg-white/5 border border-white/5 rounded-xl p-2 flex items-center justify-center"><img src="https://arepair.id/wp-content/uploads/2020/05/iphone-11-pro.png" alt="IPHONE 11 PRO" class="w-full h-full object-contain"></div><div class="flex-1"><h4 class="font-bold text-white text-sm">IPHONE 11 PRO</h4><p class="text-gray-500 text-[10px] line-clamp-1 mt-0.5">Ganti kaca belakang iPhone 11 pro</p><div class="text-pink-400 font-black text-sm mt-1.5">Rp 414.000</div></div><a href="https://wa.me/6281371127121?text=Halo,%20tanya%20service%20Back%20Glass%20iPhone%2011%20Pro" target="_blank" class="w-10 h-10 rounded-full bg-white/5 text-gray-300 flex items-center justify-center hover:bg-pink-500 hover:text-white transition-colors shrink-0"><i class="fa-brands fa-whatsapp text-lg"></i></a></div>
+            <div class="glass-panel p-4 rounded-[1.5rem] flex items-center gap-4 premium-hover"><div class="w-16 h-16 shrink-0 bg-white/5 border border-white/5 rounded-xl p-2 flex items-center justify-center"><img src="https://arepair.id/wp-content/uploads/2020/09/iPhone-11.png" alt="IPHONE 11" class="w-full h-full object-contain"></div><div class="flex-1"><h4 class="font-bold text-white text-sm">IPHONE 11</h4><p class="text-gray-500 text-[10px] line-clamp-1 mt-0.5">Ganti kaca belakang iPhone 11</p><div class="text-pink-400 font-black text-sm mt-1.5">Rp 354.000</div></div><a href="https://wa.me/6281371127121?text=Halo,%20tanya%20service%20Back%20Glass%20iPhone%2011" target="_blank" class="w-10 h-10 rounded-full bg-white/5 text-gray-300 flex items-center justify-center hover:bg-pink-500 hover:text-white transition-colors shrink-0"><i class="fa-brands fa-whatsapp text-lg"></i></a></div>
+
+            <div class="glass-panel p-4 rounded-[1.5rem] flex items-center gap-4 premium-hover"><div class="w-16 h-16 shrink-0 bg-white/5 border border-white/5 rounded-xl p-2 flex items-center justify-center"><img src="https://arepair.id/wp-content/uploads/2023/03/iphone-xs.png" alt="IPHONE XS / XS MAX" class="w-full h-full object-contain"></div><div class="flex-1"><h4 class="font-bold text-white text-sm">IPHONE XS / XS MAX</h4><p class="text-gray-500 text-[10px] line-clamp-1 mt-0.5">Ganti kaca belakang iPhone XS/XS Max</p><div class="text-pink-400 font-black text-sm mt-1.5">Rp 324.000</div></div><a href="https://wa.me/6281371127121?text=Halo,%20tanya%20service%20Back%20Glass%20iPhone%20XS/XS%20Max" target="_blank" class="w-10 h-10 rounded-full bg-white/5 text-gray-300 flex items-center justify-center hover:bg-pink-500 hover:text-white transition-colors shrink-0"><i class="fa-brands fa-whatsapp text-lg"></i></a></div>
+            <div class="glass-panel p-4 rounded-[1.5rem] flex items-center gap-4 premium-hover"><div class="w-16 h-16 shrink-0 bg-white/5 border border-white/5 rounded-xl p-2 flex items-center justify-center"><img src="https://arepair.id/wp-content/uploads/2023/03/iphone-xr.png" alt="IPHONE XR" class="w-full h-full object-contain"></div><div class="flex-1"><h4 class="font-bold text-white text-sm">IPHONE XR</h4><p class="text-gray-500 text-[10px] line-clamp-1 mt-0.5">Ganti kaca belakang iPhone XR</p><div class="text-pink-400 font-black text-sm mt-1.5">Rp 324.000</div></div><a href="https://wa.me/6281371127121?text=Halo,%20tanya%20service%20Back%20Glass%20iPhone%20XR" target="_blank" class="w-10 h-10 rounded-full bg-white/5 text-gray-300 flex items-center justify-center hover:bg-pink-500 hover:text-white transition-colors shrink-0"><i class="fa-brands fa-whatsapp text-lg"></i></a></div>
+            <div class="glass-panel p-4 rounded-[1.5rem] flex items-center gap-4 premium-hover"><div class="w-16 h-16 shrink-0 bg-white/5 border border-white/5 rounded-xl p-2 flex items-center justify-center"><img src="https://arepair.id/wp-content/uploads/2018/12/iphone-x-3-transparent-1.png" alt="IPHONE X" class="w-full h-full object-contain"></div><div class="flex-1"><h4 class="font-bold text-white text-sm">IPHONE X</h4><p class="text-gray-500 text-[10px] line-clamp-1 mt-0.5">Ganti kaca belakang iPhone X</p><div class="text-pink-400 font-black text-sm mt-1.5">Rp 324.000</div></div><a href="https://wa.me/6281371127121?text=Halo,%20tanya%20service%20Back%20Glass%20iPhone%20X" target="_blank" class="w-10 h-10 rounded-full bg-white/5 text-gray-300 flex items-center justify-center hover:bg-pink-500 hover:text-white transition-colors shrink-0"><i class="fa-brands fa-whatsapp text-lg"></i></a></div>
+
+            <div class="glass-panel p-4 rounded-[1.5rem] flex items-center gap-4 premium-hover"><div class="w-16 h-16 shrink-0 bg-white/5 border border-white/5 rounded-xl p-2 flex items-center justify-center"><img src="https://arepair.id/wp-content/uploads/2020/01/iphone8-silver-1.png" alt="IPHONE 8 PLUS" class="w-full h-full object-contain"></div><div class="flex-1"><h4 class="font-bold text-white text-sm">IPHONE 8 PLUS</h4><p class="text-gray-500 text-[10px] line-clamp-1 mt-0.5">Ganti kaca belakang iPhone 8 plus</p><div class="text-pink-400 font-black text-sm mt-1.5">Rp 304.000</div></div><a href="https://wa.me/6281371127121?text=Halo,%20tanya%20service%20Back%20Glass%20iPhone%208%20Plus" target="_blank" class="w-10 h-10 rounded-full bg-white/5 text-gray-300 flex items-center justify-center hover:bg-pink-500 hover:text-white transition-colors shrink-0"><i class="fa-brands fa-whatsapp text-lg"></i></a></div>
+            <div class="glass-panel p-4 rounded-[1.5rem] flex items-center gap-4 premium-hover"><div class="w-16 h-16 shrink-0 bg-white/5 border border-white/5 rounded-xl p-2 flex items-center justify-center"><img src="https://arepair.id/wp-content/uploads/2020/01/iphone8-silver-1.png" alt="IPHONE 8" class="w-full h-full object-contain"></div><div class="flex-1"><h4 class="font-bold text-white text-sm">IPHONE 8</h4><p class="text-gray-500 text-[10px] line-clamp-1 mt-0.5">Ganti kaca belakang iPhone 8</p><div class="text-pink-400 font-black text-sm mt-1.5">Rp 304.000</div></div><a href="https://wa.me/6281371127121?text=Halo,%20tanya%20service%20Back%20Glass%20iPhone%208" target="_blank" class="w-10 h-10 rounded-full bg-white/5 text-gray-300 flex items-center justify-center hover:bg-pink-500 hover:text-white transition-colors shrink-0"><i class="fa-brands fa-whatsapp text-lg"></i></a></div>
+
+        </div>
+    </section>
+
+    <section class="py-10 px-6 max-w-4xl mx-auto mb-20" data-aos="zoom-in">
+        <div class="glass-panel rounded-[2.5rem] p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 border-white/10 relative overflow-hidden group">
+            <div class="absolute -right-20 -top-20 w-64 h-64 bg-pink-500/10 rounded-full blur-3xl transition-colors"></div>
+            <div class="z-10 text-center md:text-left">
+                <h3 class="font-heading text-2xl md:text-3xl font-black mb-3">Tipe iPhone Anda Tidak Ada di List?</h3>
+                <p class="text-gray-400 text-sm max-w-sm">Hubungi admin untuk memastikan ketersediaan kaca belakang untuk warna dan seri iPhone Anda.</p>
+            </div>
+            <a href="https://wa.me/6281371127121?text=Halo%20Farid%20Store,%20saya%20mau%20tanya%20estimasi%20harga%20ganti%20Back%20Glass%20untuk%20iPhone%20tipe..." target="_blank" class="z-10 bg-pink-600 hover:bg-pink-500 text-white px-8 py-4 rounded-2xl font-bold text-sm hover:scale-105 transition-transform flex items-center gap-3 whitespace-nowrap shadow-[0_0_20px_rgba(236,72,153,0.4)]">
+                Tanya Admin <i class="fa-brands fa-whatsapp text-lg"></i>
+            </a>
+        </div>
+    </section>
+
+    <a href="https://wa.me/6281371127121" target="_blank" class="fixed bottom-6 right-6 z-50 w-16 h-16 bg-white text-black rounded-full flex items-center justify-center text-3xl shadow-[0_5px_20px_rgba(255,255,255,0.2)] hover:scale-110 hover:bg-pink-500 hover:text-white transition-all duration-300 group">
+        <i class="fa-brands fa-whatsapp group-hover:rotate-12 transition-transform"></i>
+    </a>
+
+    <footer class="border-t border-white/10 py-16 bg-[#020202] text-center mt-10 relative overflow-hidden">
+        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-32 bg-pink-500/10 rounded-t-full blur-3xl pointer-events-none"></div>
+        <h2 class="font-heading font-black text-4xl text-white mb-3 tracking-widest uppercase opacity-20">FaridStore</h2>
+        <p class="text-gray-500 text-sm font-bold tracking-widest uppercase mb-6">Professional Device Repair</p>
+        <p class="text-gray-700 text-xs font-semibold tracking-widest uppercase mt-8">Pekanbaru • © 2026 All rights reserved.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: true, offset: 50, duration: 800 });
+
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-black/80', 'border-white/20');
+                nav.classList.remove('bg-black/40');
+            } else {
+                nav.classList.remove('bg-black/80', 'border-white/20');
+                nav.classList.add('bg-black/40');
+            }
+        });
+    </script>
+</body>
+</html>

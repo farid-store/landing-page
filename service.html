@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Professional Repair | Farid Store</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif']
+                    },
+                    colors: {
+                        dark: '#020202', 
+                        surface: '#0a0a0a', 
+                        brand: { 300: '#7dd3fc', 400: '#38bdf8', 500: '#0ea5e9', 600: '#0284c7' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Base Setup */
+        html, body { background-color: #020202; color: #f8fafc; overflow-x: hidden; width: 100%; position: relative; }
+        
+        /* Modern Floating Glass */
+        .glass-pill { background: rgba(10, 10, 10, 0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.08); }
+        .glass-panel { background: linear-gradient(145deg, rgba(25,25,25,0.4) 0%, rgba(10,10,10,0.8) 100%); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.05); }
+        
+        /* Text Gradients */
+        .text-glow { background: linear-gradient(to right, #ffffff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .text-accent { background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        /* Ambient Backgrounds */
+        .ambient-glow-1 { position: absolute; top: -10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(14,165,233,0.12) 0%, rgba(0,0,0,0) 60%); filter: blur(60px); z-index: -1; animation: pulse 8s infinite alternate; }
+        .ambient-glow-2 { position: absolute; bottom: 20%; right: -10%; width: 40vw; height: 40vw; background: radial-gradient(circle, rgba(129,140,248,0.08) 0%, rgba(0,0,0,0) 60%); filter: blur(60px); z-index: -1; animation: pulse 10s infinite alternate-reverse; }
+        @keyframes pulse { 0% { opacity: 0.5; transform: scale(0.9); } 100% { opacity: 1; transform: scale(1.1); } }
+
+        /* Card Hover Effect */
+        .premium-hover { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(255,255,255,0.05); }
+        .premium-hover:hover { transform: translateY(-4px); border-color: rgba(56, 189, 248, 0.3); box-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.15); }
+
+        /* Animasi Transisi Tab */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-up { animation: fadeUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+        
+        /* Custom Scrollbar untuk Tab Menu di Mobile */
+        .tab-scroll::-webkit-scrollbar { height: 0px; }
+        .tab-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-500 selection:text-white">
+
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+
+    <div class="fixed w-full top-6 z-50 px-4 sm:px-6 flex justify-center pointer-events-none">
+        <nav class="glass-pill rounded-full px-5 py-2.5 sm:px-6 sm:py-3 flex justify-between items-center w-full max-w-6xl pointer-events-auto shadow-[0_10px_40px_rgba(0,0,0,0.5)] transition-all duration-300" id="navbar">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-black font-bold text-sm group-hover:bg-brand-500 group-hover:text-white transition-colors"><i class="fa-solid fa-arrow-left"></i></div>
+                <span class="font-heading font-bold text-lg tracking-tight text-gray-400 group-hover:text-white transition-colors hidden sm:block">Kembali ke Store</span>
+            </a>
+            
+            <div class="hidden md:flex gap-4 xl:gap-7 items-center">
+                <a href="#layanan-detail" class="text-sm font-semibold text-gray-300 hover:text-white transition">Katalog Servis</a>
+                <a href="#bento-servis" class="text-sm font-semibold text-gray-300 hover:text-white transition">Mengapa Kami?</a>
+            </div>
+
+            <a href="https://wa.me/6281371127121" target="_blank" class="bg-brand-500 hover:bg-brand-400 text-white text-sm font-bold px-4 py-2 sm:px-5 sm:py-2.5 rounded-full transition-transform hover:scale-105 flex items-center gap-2 pointer-events-auto shrink-0">
+                <i class="fa-brands fa-whatsapp text-lg"></i> <span class="hidden sm:inline">Konsultasi Teknisi</span>
+            </a>
+        </nav>
+    </div>
+
+    <section id="hero-servis" class="relative min-h-[85vh] flex items-center pt-32 pb-10 px-6 max-w-7xl mx-auto border-b border-white/5">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center w-full">
+            <div data-aos="fade-right" data-aos-duration="1200" class="text-center lg:text-left">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-brand-500/30 bg-brand-500/10 mb-8 mx-auto lg:mx-0">
+                    <span class="w-2 h-2 rounded-full bg-brand-400 animate-pulse"></span>
+                    <span class="text-xs font-bold text-brand-300 tracking-wider uppercase">Farid Store Repair Center</span>
+                </div>
+                
+                <h1 class="font-heading text-5xl md:text-6xl lg:text-7xl font-black leading-[1.05] mb-6 text-glow tracking-tighter">
+                    Device Bermasalah?<br>
+                    <span class="text-gray-500">Biar Kami</span><br>
+                    <span class="text-accent">Yang Bereskan.</span>
+                </h1>
+                
+                <p class="text-base md:text-lg text-gray-400 mb-10 max-w-xl mx-auto lg:mx-0 font-medium leading-relaxed">
+                    Spesialis perbaikan Smartphone, iPad, dan Laptop di Pekanbaru. Dari ganti baterai, perbaikan layar, hingga mati total (mati mesin). Pengecekan transparan, sparepart berkualitas, dan bergaransi.
+                </p>
+                
+                <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
+                    <a href="#layanan-detail" class="bg-white text-black px-8 py-4 rounded-full font-bold text-base hover:bg-gray-200 transition-colors flex items-center gap-3">
+                        Pilih Device Kamu <i class="fa-solid fa-arrow-down"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="relative hidden lg:block h-[500px]" data-aos="fade-left" data-aos-duration="1200">
+                <div class="absolute right-0 top-10 w-3/4 h-[400px] rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl z-10 transform -rotate-3 hover:rotate-0 transition-transform duration-700">
+                    <img src="https://images.unsplash.com/photo-1597740985671-2a8a3b80502e?w=800&q=80" alt="Repair Board" class="w-full h-full object-cover">
+                </div>
+                <div class="absolute left-0 bottom-10 w-2/3 h-[250px] rounded-[2rem] overflow-hidden border border-brand-500/20 shadow-[0_0_40px_rgba(14,165,233,0.15)] z-20 transform rotate-3 hover:rotate-0 transition-transform duration-700">
+                    <img src="https://images.unsplash.com/photo-1585338107529-13afc5f02586?w=800&q=80" alt="Battery Repair" class="w-full h-full object-cover">
+                </div>
+                <div class="absolute top-1/4 -left-5 z-30 glass-pill px-5 py-3 rounded-2xl flex items-center gap-4 shadow-xl backdrop-blur-xl animate-bounce" style="animation-duration: 4s;">
+                    <div class="w-10 h-10 rounded-full bg-brand-500/20 flex items-center justify-center text-brand-400"><i class="fa-solid fa-microchip text-xl"></i></div>
+                    <div>
+                        <p class="text-white font-bold text-sm">Teknisi Ahli</p>
+                        <p class="text-gray-400 text-xs">Pengerjaan Rapi & Aman</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="layanan-detail" class="py-24 px-6 max-w-7xl mx-auto min-h-screen">
+        <div class="text-center mb-12" data-aos="fade-up">
+            <span class="text-brand-400 font-bold text-xs uppercase tracking-[0.2em] mb-4 block">Select Device</span>
+            <h2 class="font-heading text-4xl md:text-5xl font-black text-white">Device & Kerusakan.</h2>
+            <p class="text-gray-400 mt-4 max-w-2xl mx-auto">Silahkan pilih layanan perbaikan di bawah ini:</p>
+        </div>
+
+        <div class="flex justify-start md:justify-center gap-3 overflow-x-auto tab-scroll pb-4 mb-12 w-full" data-aos="fade-up" data-aos-delay="100">
+            <button onclick="switchDevice('iphone')" id="btn-iphone" class="device-tab active shrink-0 px-8 py-4 rounded-full bg-brand-500 text-white font-bold transition-all shadow-[0_0_20px_rgba(14,165,233,0.3)] flex items-center gap-3">
+                <i class="fa-brands fa-apple text-xl"></i> iPhone
+            </button>
+            <button onclick="switchDevice('android')" id="btn-android" class="device-tab shrink-0 px-8 py-4 rounded-full glass-pill text-gray-400 hover:text-white transition-all flex items-center gap-3">
+                <i class="fa-brands fa-android text-xl"></i> Android
+            </button>
+            <button onclick="switchDevice('ipad')" id="btn-ipad" class="device-tab shrink-0 px-8 py-4 rounded-full glass-pill text-gray-400 hover:text-white transition-all flex items-center gap-3">
+                <i class="fa-solid fa-tablet-screen-button text-xl"></i> iPad
+            </button>
+            <button onclick="switchDevice('macbook')" id="btn-macbook" class="device-tab shrink-0 px-8 py-4 rounded-full glass-pill text-gray-400 hover:text-white transition-all flex items-center gap-3">
+                <i class="fa-solid fa-laptop text-xl"></i> MacBook
+            </button>
+            <button onclick="switchDevice('iwatch')" id="btn-iwatch" class="device-tab shrink-0 px-8 py-4 rounded-full glass-pill text-gray-400 hover:text-white transition-all flex items-center gap-3">
+                <i class="fa-regular fa-clock text-xl"></i> iWatch
+            </button>
+        </div>
+
+        <div id="content-iphone" class="tab-content block animate-fade-up">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                
+                <div class="glass-panel rounded-3xl relative overflow-hidden group premium-hover flex flex-col h-full">
+                    <div class="h-44 w-full relative overflow-hidden bg-black">
+                        <img src="https://arepair.id/wp-content/uploads/2018/09/iphone-rusak-1-700x466.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80" alt="Service Layar iPhone">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow relative z-10 -mt-6">
+                        <h3 class="font-heading text-xl font-bold text-white mb-2">Service Layar iPhone</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6 flex-grow">Perbaikan layar atau LCD iPhone yang retak.</p>
+                        <a href="service-lcd-iphone.html" class="inline-flex justify-center items-center gap-2 bg-white/5 hover:bg-brand-500 text-white border border-white/10 px-5 py-3 rounded-2xl font-bold text-xs transition-all w-full uppercase tracking-wider">
+                            Read More <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-3xl relative overflow-hidden group premium-hover flex flex-col h-full">
+                    <div class="h-44 w-full relative overflow-hidden bg-black">
+                        <img src="https://arepair.id/wp-content/uploads/2018/12/baterai-kembung-membuat-layar-ngangkat-1-700x525.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80" alt="Service Baterai iPhone">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow relative z-10 -mt-6">
+                        <h3 class="font-heading text-xl font-bold text-white mb-2">Service Baterai iPhone</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6 flex-grow">Layanan perbaikan ganti baterai iPhone yang drop dan layar ngangkat</p>
+                        <a href="service-baterai-iphone.html" class="inline-flex justify-center items-center gap-2 bg-white/5 hover:bg-brand-500 text-white border border-white/10 px-5 py-3 rounded-2xl font-bold text-xs transition-all w-full uppercase tracking-wider">
+                            Read More <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-3xl relative overflow-hidden group premium-hover flex flex-col h-full">
+                    <div class="h-44 w-full relative overflow-hidden bg-black">
+                        <img src="https://arepair.id/wp-content/uploads/2018/12/service-home-button-iphone-700x540.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80" alt="Service Home Button iPhone">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow relative z-10 -mt-6">
+                        <h3 class="font-heading text-xl font-bold text-white mb-2">Service Home Button iPhone</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6 flex-grow">Home button Anda rusak? ganti home button Anda sekarang</p>
+                        <a href="service-home-button-iphone.html" class="inline-flex justify-center items-center gap-2 bg-white/5 hover:bg-brand-500 text-white border border-white/10 px-5 py-3 rounded-2xl font-bold text-xs transition-all w-full uppercase tracking-wider">
+                            Read More <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-3xl relative overflow-hidden group premium-hover flex flex-col h-full">
+                    <div class="h-44 w-full relative overflow-hidden bg-black">
+                        <img src="https://arepair.id/wp-content/uploads/2018/12/service-kamera-iphone-700x468.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80" alt="Service Kamera iPhone">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow relative z-10 -mt-6">
+                        <h3 class="font-heading text-xl font-bold text-white mb-2">Service Kamera iPhone</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6 flex-grow">Layanan perbaikan kamera iPhone yang kameranya blur, bergetar atau blank</p>
+                        <a href="service-kamera-iphone.html" class="inline-flex justify-center items-center gap-2 bg-white/5 hover:bg-brand-500 text-white border border-white/10 px-5 py-3 rounded-2xl font-bold text-xs transition-all w-full uppercase tracking-wider">
+                            Read More <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-3xl relative overflow-hidden group premium-hover flex flex-col h-full">
+                    <div class="h-44 w-full relative overflow-hidden bg-black">
+                        <img src="https://arepair.id/wp-content/uploads/2018/10/service-port-charger-iphone-700x465.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80" alt="Service Port Charger">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow relative z-10 -mt-6">
+                        <h3 class="font-heading text-xl font-bold text-white mb-2">Service Port Charger</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6 flex-grow">Layanan pergantian port charger/connector iPhone untuk iPhone yang tidak bisa charging</p>
+                        <a href="service-port-charger-iphone.html" class="inline-flex justify-center items-center gap-2 bg-white/5 hover:bg-brand-500 text-white border border-white/10 px-5 py-3 rounded-2xl font-bold text-xs transition-all w-full uppercase tracking-wider">
+                            Read More <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-3xl relative overflow-hidden group premium-hover flex flex-col h-full">
+                    <div class="h-44 w-full relative overflow-hidden bg-black">
+                        <img src="https://arepair.id/wp-content/uploads/2023/04/service-back-glass-iphone-700x467.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80" alt="Service Ganti Back Glass iPhone">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow relative z-10 -mt-6">
+                        <h3 class="font-heading text-xl font-bold text-white mb-2">Service Ganti Back Glass</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6 flex-grow">Layanan penggantian kaca belakang iPhone yang retak atau pecah</p>
+                        <a href="service-backglass-iphone.html" class="inline-flex justify-center items-center gap-2 bg-white/5 hover:bg-brand-500 text-white border border-white/10 px-5 py-3 rounded-2xl font-bold text-xs transition-all w-full uppercase tracking-wider">
+                            Read More <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-3xl relative overflow-hidden group premium-hover flex flex-col h-full">
+                    <div class="h-44 w-full relative overflow-hidden bg-black">
+                        <img src="https://arepair.id/wp-content/uploads/2018/12/service-speaker-iphone-1-700x467.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80" alt="Service Speaker iPhone">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow relative z-10 -mt-6">
+                        <h3 class="font-heading text-xl font-bold text-white mb-2">Service Speaker iPhone</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6 flex-grow">Tidak bisa mendengar suara lawan bicara atau sebaliknya? perbaiki speaker Anda sekarang</p>
+                        <a href="service-speaker-iphone.html" class="inline-flex justify-center items-center gap-2 bg-white/5 hover:bg-brand-500 text-white border border-white/10 px-5 py-3 rounded-2xl font-bold text-xs transition-all w-full uppercase tracking-wider">
+                            Read More <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-3xl relative overflow-hidden group premium-hover flex flex-col h-full">
+                    <div class="h-44 w-full relative overflow-hidden bg-black">
+                        <img src="https://arepair.id/wp-content/uploads/2019/03/service-software-iphone-2-700x419.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80" alt="Service Software iPhone">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow relative z-10 -mt-6">
+                        <h3 class="font-heading text-xl font-bold text-white mb-2">Service Software iPhone</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6 flex-grow">Punya masalah dengan iOS iPhone? Tidak bisa menyimpan file atau hang logo? pelajari selengkapnya di sini</p>
+                        <a href="service-software-iphone.html" class="inline-flex justify-center items-center gap-2 bg-white/5 hover:bg-brand-500 text-white border border-white/10 px-5 py-3 rounded-2xl font-bold text-xs transition-all w-full uppercase tracking-wider">
+                            Read More <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-3xl relative overflow-hidden group flex flex-col h-full opacity-60 grayscale">
+                    <div class="h-44 w-full relative overflow-hidden bg-black">
+                        <img src="https://arepair.id/wp-content/uploads/2018/12/service-power-button-iphone-700x467.jpg" class="w-full h-full object-cover opacity-50" alt="Service Tombol Power/Volume">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow relative z-10 -mt-6">
+                        <h3 class="font-heading text-xl font-bold text-white mb-2">Service Tombol Power/Volume</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6 flex-grow">Tombol power atau tombol volume Anda tidak berfungsi? perbaiki sekarang</p>
+                        <button disabled class="inline-flex justify-center items-center gap-2 bg-gray-900/50 text-gray-500 border border-white/5 px-5 py-3 rounded-2xl font-bold text-xs w-full uppercase tracking-wider cursor-not-allowed">
+                            Coming Soon <i class="fa-solid fa-lock"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-3xl relative overflow-hidden group flex flex-col h-full opacity-60 grayscale">
+                    <div class="h-44 w-full relative overflow-hidden bg-black">
+                        <img src="https://arepair.id/wp-content/uploads/2018/12/service-kaca-iphone-retak-700x467.jpg" class="w-full h-full object-cover opacity-50" alt="Service Kaca iPhone Retak">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow relative z-10 -mt-6">
+                        <h3 class="font-heading text-xl font-bold text-white mb-2">Service Kaca iPhone Retak</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6 flex-grow">Layanan ganti kaca iPhone yang retak tanpa mengganti LCD (Hanya berlaku untuk iPhone 11-15 pro max)</p>
+                        <button disabled class="inline-flex justify-center items-center gap-2 bg-gray-900/50 text-gray-500 border border-white/5 px-5 py-3 rounded-2xl font-bold text-xs w-full uppercase tracking-wider cursor-not-allowed">
+                            Coming Soon <i class="fa-solid fa-lock"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-3xl relative overflow-hidden group flex flex-col h-full opacity-60 grayscale">
+                    <div class="h-44 w-full relative overflow-hidden bg-black">
+                        <img src="https://arepair.id/wp-content/uploads/2018/12/service-iphone-mati-total-700x467.jpg" class="w-full h-full object-cover opacity-50" alt="Service iPhone Mati Total">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow relative z-10 -mt-6">
+                        <h3 class="font-heading text-xl font-bold text-white mb-2">Service iPhone Mati Total</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6 flex-grow">Layanan perbaikan iPhone yang mati total</p>
+                        <button disabled class="inline-flex justify-center items-center gap-2 bg-gray-900/50 text-gray-500 border border-white/5 px-5 py-3 rounded-2xl font-bold text-xs w-full uppercase tracking-wider cursor-not-allowed">
+                            Coming Soon <i class="fa-solid fa-lock"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-3xl relative overflow-hidden group flex flex-col h-full opacity-60 grayscale">
+                    <div class="h-44 w-full relative overflow-hidden bg-black">
+                        <img src="https://arepair.id/wp-content/uploads/2018/12/service-iphone-ic-touchscreen-700x467.jpg" class="w-full h-full object-cover opacity-50" alt="Service IC Touchscreen iPhone">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow relative z-10 -mt-6">
+                        <h3 class="font-heading text-xl font-bold text-white mb-2">Service IC Touchscreen iPhone</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6 flex-grow">Touchscreen tidak berfungsi meskipun sudah mengganti LCD? perbaiki IC touchscreen Anda sekarang</p>
+                        <button disabled class="inline-flex justify-center items-center gap-2 bg-gray-900/50 text-gray-500 border border-white/5 px-5 py-3 rounded-2xl font-bold text-xs w-full uppercase tracking-wider cursor-not-allowed">
+                            Coming Soon <i class="fa-solid fa-lock"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-3xl relative overflow-hidden group flex flex-col h-full opacity-60 grayscale">
+                    <div class="h-44 w-full relative overflow-hidden bg-black">
+                        <img src="https://arepair.id/wp-content/uploads/2018/12/service-iphone-ic-charging-700x525.jpg" class="w-full h-full object-cover opacity-50" alt="Service IC Charging/U2 iPhone">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow relative z-10 -mt-6">
+                        <h3 class="font-heading text-xl font-bold text-white mb-2">Service IC Charging/U2 iPhone</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6 flex-grow">Layanan reparasi IC charging atau IC U2 untuk iPhone yang tidak bisa mengisi daya (charging)</p>
+                        <button disabled class="inline-flex justify-center items-center gap-2 bg-gray-900/50 text-gray-500 border border-white/5 px-5 py-3 rounded-2xl font-bold text-xs w-full uppercase tracking-wider cursor-not-allowed">
+                            Coming Soon <i class="fa-solid fa-lock"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-3xl relative overflow-hidden group flex flex-col h-full opacity-60 grayscale">
+                    <div class="h-44 w-full relative overflow-hidden bg-black">
+                        <img src="https://arepair.id/wp-content/uploads/2018/12/service-iphone-tidak-bisa-connect-wifi-700x467.jpg" class="w-full h-full object-cover opacity-50" alt="iPhone Tidak bisa Connect WiFi atau Lemah">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow relative z-10 -mt-6">
+                        <h3 class="font-heading text-xl font-bold text-white mb-2">iPhone WiFi Lemah/Error</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6 flex-grow">Layanan perbaikan untuk iPhone opsi Wi-Fi greyed out (abu-abu) tidak bisa digeser atau sinyal WiFi lemah</p>
+                        <button disabled class="inline-flex justify-center items-center gap-2 bg-gray-900/50 text-gray-500 border border-white/5 px-5 py-3 rounded-2xl font-bold text-xs w-full uppercase tracking-wider cursor-not-allowed">
+                            Coming Soon <i class="fa-solid fa-lock"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-3xl relative overflow-hidden group flex flex-col h-full opacity-60 grayscale">
+                    <div class="h-44 w-full relative overflow-hidden bg-black">
+                        <img src="https://arepair.id/wp-content/uploads/2018/10/service-iphone-stuck-itunes-700x520.jpg" class="w-full h-full object-cover opacity-50" alt="iPhone Stuck iTunes">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow relative z-10 -mt-6">
+                        <h3 class="font-heading text-xl font-bold text-white mb-2">iPhone Stuck iTunes</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6 flex-grow">iPhone Anda stuck iTunes? perbaiki sekarang</p>
+                        <button disabled class="inline-flex justify-center items-center gap-2 bg-gray-900/50 text-gray-500 border border-white/5 px-5 py-3 rounded-2xl font-bold text-xs w-full uppercase tracking-wider cursor-not-allowed">
+                            Coming Soon <i class="fa-solid fa-lock"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-3xl relative overflow-hidden group flex flex-col h-full opacity-60 grayscale">
+                    <div class="h-44 w-full relative overflow-hidden bg-black">
+                        <img src="https://arepair.id/wp-content/uploads/2018/12/service-iphone-mati-total-kena-air-700x484.jpg" class="w-full h-full object-cover opacity-50" alt="iPhone Mati Total Kena Air">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow relative z-10 -mt-6">
+                        <h3 class="font-heading text-xl font-bold text-white mb-2">iPhone Mati Total Kena Air</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6 flex-grow">Layanan perbaikan untuk iPhone yang mati total terkena air</p>
+                        <button disabled class="inline-flex justify-center items-center gap-2 bg-gray-900/50 text-gray-500 border border-white/5 px-5 py-3 rounded-2xl font-bold text-xs w-full uppercase tracking-wider cursor-not-allowed">
+                            Coming Soon <i class="fa-solid fa-lock"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-3xl relative overflow-hidden group flex flex-col h-full opacity-60 grayscale">
+                    <div class="h-44 w-full relative overflow-hidden bg-black">
+                        <img src="https://arepair.id/wp-content/uploads/2018/12/service-iphone-ic-nand-700x525.jpg" class="w-full h-full object-cover opacity-50" alt="iPhone Error 9">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow relative z-10 -mt-6">
+                        <h3 class="font-heading text-xl font-bold text-white mb-2">iPhone Error 9</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6 flex-grow">Layanan perbaikan iPhone error 9, 4013, 2009, 40 dan 4005</p>
+                        <button disabled class="inline-flex justify-center items-center gap-2 bg-gray-900/50 text-gray-500 border border-white/5 px-5 py-3 rounded-2xl font-bold text-xs w-full uppercase tracking-wider cursor-not-allowed">
+                            Coming Soon <i class="fa-solid fa-lock"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-3xl relative overflow-hidden group flex flex-col h-full opacity-60 grayscale">
+                    <div class="h-44 w-full relative overflow-hidden bg-black">
+                        <img src="https://arepair.id/wp-content/uploads/2019/03/service-ic-sinyal-iphone-700x525.jpg" class="w-full h-full object-cover opacity-50" alt="Service IC Baseband/Sinyal iPhone">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow relative z-10 -mt-6">
+                        <h3 class="font-heading text-xl font-bold text-white mb-2">Service IC Baseband/Sinyal iPhone</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6 flex-grow">Sinyal iPhone searching terus? itu artinya IC baseband sudah rusak</p>
+                        <button disabled class="inline-flex justify-center items-center gap-2 bg-gray-900/50 text-gray-500 border border-white/5 px-5 py-3 rounded-2xl font-bold text-xs w-full uppercase tracking-wider cursor-not-allowed">
+                            Coming Soon <i class="fa-solid fa-lock"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-3xl relative overflow-hidden group flex flex-col h-full opacity-60 grayscale">
+                    <div class="h-44 w-full relative overflow-hidden bg-black">
+                        <img src="https://arepair.id/wp-content/uploads/2019/08/service-iphone-ic-audio2-700x466.png" class="w-full h-full object-cover opacity-50" alt="Service IC Audio iPhone">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow relative z-10 -mt-6">
+                        <h3 class="font-heading text-xl font-bold text-white mb-2">Service IC Audio iPhone</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6 flex-grow">Layanan perbaikan IC audio pada iPhone (khususnya untuk iPhone 7 dan iPhone 7 plus)</p>
+                        <button disabled class="inline-flex justify-center items-center gap-2 bg-gray-900/50 text-gray-500 border border-white/5 px-5 py-3 rounded-2xl font-bold text-xs w-full uppercase tracking-wider cursor-not-allowed">
+                            Coming Soon <i class="fa-solid fa-lock"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-3xl relative overflow-hidden group flex flex-col h-full opacity-60 grayscale">
+                    <div class="h-44 w-full relative overflow-hidden bg-black">
+                        <img src="https://arepair.id/wp-content/uploads/2019/08/service-ic-display-iphone2-700x438.png" class="w-full h-full object-cover opacity-50" alt="Service IC Display iPhone">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow relative z-10 -mt-6">
+                        <h3 class="font-heading text-xl font-bold text-white mb-2">Service IC Display iPhone</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6 flex-grow">iPhone black screen walaupun sudah hard reset? itu artinya kerusakannya ada pada IC display</p>
+                        <button disabled class="inline-flex justify-center items-center gap-2 bg-gray-900/50 text-gray-500 border border-white/5 px-5 py-3 rounded-2xl font-bold text-xs w-full uppercase tracking-wider cursor-not-allowed">
+                            Coming Soon <i class="fa-solid fa-lock"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-3xl relative overflow-hidden group flex flex-col h-full opacity-60 grayscale">
+                    <div class="h-44 w-full relative overflow-hidden bg-black">
+                        <img src="https://arepair.id/wp-content/uploads/2019/08/service-ic-backlight-iphone-700x525.png" class="w-full h-full object-cover opacity-50" alt="Service IC Lampu/Backlight">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow relative z-10 -mt-6">
+                        <h3 class="font-heading text-xl font-bold text-white mb-2">Service IC Lampu/Backlight</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6 flex-grow">Layar iPhone blank hitam terus walaupun dalam kondisi on?bisa jadi kerusakannya ada pada IC lampu</p>
+                        <button disabled class="inline-flex justify-center items-center gap-2 bg-gray-900/50 text-gray-500 border border-white/5 px-5 py-3 rounded-2xl font-bold text-xs w-full uppercase tracking-wider cursor-not-allowed">
+                            Coming Soon <i class="fa-solid fa-lock"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-3xl relative overflow-hidden group flex flex-col h-full opacity-60 grayscale">
+                    <div class="h-44 w-full relative overflow-hidden bg-black">
+                        <img src="https://arepair.id/wp-content/uploads/2020/03/service-kaca-kamera-iphone2-700x467.jpg" class="w-full h-full object-cover opacity-50" alt="Ganti Kaca Kamera iPhone">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow relative z-10 -mt-6">
+                        <h3 class="font-heading text-xl font-bold text-white mb-2">Ganti Kaca Kamera iPhone</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6 flex-grow">Layanan penggantian kaca kamera iPhone yang pecah tanpa harus mengganti kamera</p>
+                        <button disabled class="inline-flex justify-center items-center gap-2 bg-gray-900/50 text-gray-500 border border-white/5 px-5 py-3 rounded-2xl font-bold text-xs w-full uppercase tracking-wider cursor-not-allowed">
+                            Coming Soon <i class="fa-solid fa-lock"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-3xl relative overflow-hidden group flex flex-col h-full opacity-60 grayscale">
+                    <div class="h-44 w-full relative overflow-hidden bg-black">
+                        <img src="https://arepair.id/wp-content/uploads/2022/05/face-id-iphone-1-700x445.png" class="w-full h-full object-cover opacity-50" alt="Service Face ID iPhone">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow relative z-10 -mt-6">
+                        <h3 class="font-heading text-xl font-bold text-white mb-2">Service Face ID iPhone</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6 flex-grow">Layanan perbaikan sensor wajah di iPhone agar dapat fitur ini dapat kembali digunakan</p>
+                        <button disabled class="inline-flex justify-center items-center gap-2 bg-gray-900/50 text-gray-500 border border-white/5 px-5 py-3 rounded-2xl font-bold text-xs w-full uppercase tracking-wider cursor-not-allowed">
+                            Coming Soon <i class="fa-solid fa-lock"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-3xl relative overflow-hidden group flex flex-col h-full opacity-60 grayscale">
+                    <div class="h-44 w-full relative overflow-hidden bg-black">
+                        <img src="https://arepair.id/wp-content/uploads/2023/04/service-housing-iphone-1-700x467.jpg" class="w-full h-full object-cover opacity-50" alt="Service Housing iPhone">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow relative z-10 -mt-6">
+                        <h3 class="font-heading text-xl font-bold text-white mb-2">Service Housing iPhone</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6 flex-grow">Layanan penggantian housing iPhone yang penyok, bengkok atau patah</p>
+                        <button disabled class="inline-flex justify-center items-center gap-2 bg-gray-900/50 text-gray-500 border border-white/5 px-5 py-3 rounded-2xl font-bold text-xs w-full uppercase tracking-wider cursor-not-allowed">
+                            Coming Soon <i class="fa-solid fa-lock"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-3xl relative overflow-hidden group flex flex-col h-full opacity-60 grayscale">
+                    <div class="h-44 w-full relative overflow-hidden bg-black">
+                        <img src="https://arepair.id/wp-content/uploads/2023/09/swap-mesin-iphone-700x392.jpg" class="w-full h-full object-cover opacity-50" alt="Swap Mesin/Board iPhone">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow relative z-10 -mt-6">
+                        <h3 class="font-heading text-xl font-bold text-white mb-2">Swap Mesin/Board iPhone</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6 flex-grow">Layanan swap logic board iPhone, solusi praktis untuk iPhone yang sulit untuk diperbaiki</p>
+                        <button disabled class="inline-flex justify-center items-center gap-2 bg-gray-900/50 text-gray-500 border border-white/5 px-5 py-3 rounded-2xl font-bold text-xs w-full uppercase tracking-wider cursor-not-allowed">
+                            Coming Soon <i class="fa-solid fa-lock"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-3xl relative overflow-hidden group flex flex-col h-full opacity-60 grayscale">
+                    <div class="h-44 w-full relative overflow-hidden bg-black">
+                        <img src="https://arepair.id/wp-content/uploads/2023/10/upgrade-storage-iphone-1-700x393.jpg" class="w-full h-full object-cover opacity-50" alt="Upgrade Storage iPhone">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow relative z-10 -mt-6">
+                        <h3 class="font-heading text-xl font-bold text-white mb-2">Upgrade Storage iPhone</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6 flex-grow">Layanan upgrade memory internal atau kapasitas penyimpanan iPhone</p>
+                        <button disabled class="inline-flex justify-center items-center gap-2 bg-gray-900/50 text-gray-500 border border-white/5 px-5 py-3 rounded-2xl font-bold text-xs w-full uppercase tracking-wider cursor-not-allowed">
+                            Coming Soon <i class="fa-solid fa-lock"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-3xl relative overflow-hidden group flex flex-col h-full opacity-60 grayscale">
+                    <div class="h-44 w-full relative overflow-hidden bg-black">
+                        <img src="https://arepair.id/wp-content/uploads/2024/08/service-iphone-green-screen-1-700x392.jpg" class="w-full h-full object-cover opacity-50" alt="Service Layar Green Screen iPhone">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow relative z-10 -mt-6">
+                        <h3 class="font-heading text-xl font-bold text-white mb-2">Service Layar Green Screen iPhone</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6 flex-grow">Layanan perbaikan layar iPhone yang mengalami kendala green screen</p>
+                        <button disabled class="inline-flex justify-center items-center gap-2 bg-gray-900/50 text-gray-500 border border-white/5 px-5 py-3 rounded-2xl font-bold text-xs w-full uppercase tracking-wider cursor-not-allowed">
+                            Coming Soon <i class="fa-solid fa-lock"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-3xl relative overflow-hidden group flex flex-col h-full opacity-60 grayscale">
+                    <div class="h-44 w-full relative overflow-hidden bg-black">
+                        <img src="https://arepair.id/wp-content/uploads/2024/08/service-iphone-white-screen-2-1-700x393.jpg" class="w-full h-full object-cover opacity-50" alt="Service iPhone White Screen">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow relative z-10 -mt-6">
+                        <h3 class="font-heading text-xl font-bold text-white mb-2">Service iPhone White Screen</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6 flex-grow">Layanan perbaikan layar iPhone yang mengalami bug white screen</p>
+                        <button disabled class="inline-flex justify-center items-center gap-2 bg-gray-900/50 text-gray-500 border border-white/5 px-5 py-3 rounded-2xl font-bold text-xs w-full uppercase tracking-wider cursor-not-allowed">
+                            Coming Soon <i class="fa-solid fa-lock"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="content-android" class="tab-content hidden animate-fade-up">
+            <div class="flex flex-col items-center justify-center py-20 bg-white/5 rounded-[2rem] border border-white/10 text-center">
+                <i class="fa-brands fa-android text-6xl text-green-500/50 mb-4"></i>
+                <h3 class="text-2xl font-bold text-white mb-2">Layanan Android</h3>
+                <p class="text-gray-400">Silakan hubungi WhatsApp kami untuk konsultasi kendala Android Anda.</p>
+            </div>
+        </div>
+
+        <div id="content-ipad" class="tab-content hidden animate-fade-up">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <div class="glass-panel rounded-3xl relative overflow-hidden group flex flex-col h-full opacity-60 grayscale">
+                    <div class="h-44 w-full relative overflow-hidden bg-black">
+                        <img src="https://arepair.id/wp-content/uploads/2018/11/layar-ipad-pro-pecah-700x525.jpg" class="w-full h-full object-cover opacity-50" alt="Service Layar iPad Pecah">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow relative z-10 -mt-6">
+                        <h3 class="font-heading text-xl font-bold text-white mb-2">Service Layar iPad Pecah</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6 flex-grow">Layanan perbaikan ganti kaca atau ganti layar/touchscreen iPad</p>
+                        <button disabled class="inline-flex justify-center items-center gap-2 bg-gray-900/50 text-gray-500 border border-white/5 px-5 py-3 rounded-2xl font-bold text-xs w-full uppercase tracking-wider cursor-not-allowed">
+                            Coming Soon <i class="fa-solid fa-lock"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-3xl relative overflow-hidden group flex flex-col h-full opacity-60 grayscale">
+                    <div class="h-44 w-full relative overflow-hidden bg-black">
+                        <img src="https://arepair.id/wp-content/uploads/2018/11/service-lcd-ipad-700x467.jpg" class="w-full h-full object-cover opacity-50" alt="Ganti LCD iPad">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow relative z-10 -mt-6">
+                        <h3 class="font-heading text-xl font-bold text-white mb-2">Ganti LCD iPad</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6 flex-grow">LCD iPad Anda rusak? tidak ada display pada layar atau bergaris? ganti LCD iPad sekarang</p>
+                        <button disabled class="inline-flex justify-center items-center gap-2 bg-gray-900/50 text-gray-500 border border-white/5 px-5 py-3 rounded-2xl font-bold text-xs w-full uppercase tracking-wider cursor-not-allowed">
+                            Coming Soon <i class="fa-solid fa-lock"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-3xl relative overflow-hidden group flex flex-col h-full opacity-60 grayscale">
+                    <div class="h-44 w-full relative overflow-hidden bg-black">
+                        <img src="https://arepair.id/wp-content/uploads/2018/11/service-baterai-ipad-700x467.jpg" class="w-full h-full object-cover opacity-50" alt="Service Ganti baterai iPad">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow relative z-10 -mt-6">
+                        <h3 class="font-heading text-xl font-bold text-white mb-2">Service Ganti baterai iPad</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6 flex-grow">Layanan perbaikan ganti baterai iPad</p>
+                        <button disabled class="inline-flex justify-center items-center gap-2 bg-gray-900/50 text-gray-500 border border-white/5 px-5 py-3 rounded-2xl font-bold text-xs w-full uppercase tracking-wider cursor-not-allowed">
+                            Coming Soon <i class="fa-solid fa-lock"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-3xl relative overflow-hidden group flex flex-col h-full opacity-60 grayscale">
+                    <div class="h-44 w-full relative overflow-hidden bg-black">
+                        <img src="https://arepair.id/wp-content/uploads/2019/10/service-ipad-mati-total2-700x467.png" class="w-full h-full object-cover opacity-50" alt="Service iPad Mati Total">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow relative z-10 -mt-6">
+                        <h3 class="font-heading text-xl font-bold text-white mb-2">Service iPad Mati Total</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6 flex-grow">Layanan reparasi untuk iPad yang mati total</p>
+                        <button disabled class="inline-flex justify-center items-center gap-2 bg-gray-900/50 text-gray-500 border border-white/5 px-5 py-3 rounded-2xl font-bold text-xs w-full uppercase tracking-wider cursor-not-allowed">
+                            Coming Soon <i class="fa-solid fa-lock"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-3xl relative overflow-hidden group flex flex-col h-full opacity-60 grayscale">
+                    <div class="h-44 w-full relative overflow-hidden bg-black">
+                        <img src="https://arepair.id/wp-content/uploads/2022/02/service-tombol-home-ipad-700x467.jpg" class="w-full h-full object-cover opacity-50" alt="Service Tombol Home iPad">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow relative z-10 -mt-6">
+                        <h3 class="font-heading text-xl font-bold text-white mb-2">Service Tombol Home iPad</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6 flex-grow">Layanan reparasi untuk tombol home iPad yang tidak merespon/rusak.</p>
+                        <button disabled class="inline-flex justify-center items-center gap-2 bg-gray-900/50 text-gray-500 border border-white/5 px-5 py-3 rounded-2xl font-bold text-xs w-full uppercase tracking-wider cursor-not-allowed">
+                            Coming Soon <i class="fa-solid fa-lock"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-3xl relative overflow-hidden group flex flex-col h-full opacity-60 grayscale">
+                    <div class="h-44 w-full relative overflow-hidden bg-black">
+                        <img src="https://arepair.id/wp-content/uploads/2020/10/service-speaker-ipad-700x394.png" class="w-full h-full object-cover opacity-50" alt="Service Speaker iPad">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow relative z-10 -mt-6">
+                        <h3 class="font-heading text-xl font-bold text-white mb-2">Service Speaker iPad</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6 flex-grow">Layanan replacement speaker iPad</p>
+                        <button disabled class="inline-flex justify-center items-center gap-2 bg-gray-900/50 text-gray-500 border border-white/5 px-5 py-3 rounded-2xl font-bold text-xs w-full uppercase tracking-wider cursor-not-allowed">
+                            Coming Soon <i class="fa-solid fa-lock"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="content-macbook" class="tab-content hidden animate-fade-up">
+            <div class="flex flex-col items-center justify-center py-20 bg-white/5 rounded-[2rem] border border-white/10 text-center">
+                <i class="fa-solid fa-laptop text-6xl text-gray-500/50 mb-4"></i>
+                <h3 class="text-2xl font-bold text-white mb-2">Layanan MacBook</h3>
+                <p class="text-gray-400">Silakan hubungi WhatsApp kami untuk konsultasi kendala MacBook Anda.</p>
+            </div>
+        </div>
+
+        <div id="content-iwatch" class="tab-content hidden animate-fade-up">
+            
+            <div class="glass-panel p-8 rounded-[2rem] mb-12 flex flex-col md:flex-row gap-8 items-center">
+                <div class="w-full md:w-1/4 h-32 rounded-xl overflow-hidden border border-white/10 shrink-0">
+                    <img src="https://arepair.id/wp-content/uploads/2024/03/apple-watch.jpg" alt="Service Apple Watch" class="w-full h-full object-cover">
+                </div>
+                <div class="w-full md:w-3/4">
+                    <h3 class="font-heading text-2xl font-bold text-white mb-2">Service Apple Watch (All Series)</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">Kami memperbaiki hampir semua jenis kerusakan pada Apple Watch Anda. Pengerjaan relatif cepat (1-3 Hari), teknisi berpengalaman, dan <span class="text-white font-bold">Gratis Biaya Pengecekan</span>.</p>
+                    <div class="flex gap-2">
+                        <span class="text-[10px] font-bold text-brand-400 bg-brand-500/10 border border-brand-500/20 px-3 py-1.5 rounded-full">All Series (Seri 1 - 9, SE)</span>
+                        <span class="text-[10px] font-bold text-green-400 bg-green-500/10 border border-green-500/20 px-3 py-1.5 rounded-full">Fast Repair 1-3 Hari</span>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="font-heading text-2xl font-black text-brand-400 mb-6 border-b border-white/10 pb-4 flex items-center gap-3">
+                <i class="fa-solid fa-layer-group text-xl"></i> 1. Harga Service Kaca (Glass Only)
+            </h3>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-16">
+                
+                <div class="glass-panel rounded-2xl p-5 relative group premium-hover flex flex-col"><div class="h-24 w-24 mx-auto mb-4"><img src="https://arepair.id/wp-content/uploads/2022/06/apple-watch-seri-1.png" class="w-full h-full object-contain"></div><h4 class="font-heading font-bold text-white text-sm mb-1 text-center">Seri 1</h4><div class="text-brand-400 font-black text-lg text-center mb-2">Rp 540.000</div><p class="text-gray-500 text-[10px] text-center mb-4 flex-grow">Ganti Kaca</p><a href="https://wa.me/6281371127121?text=Halo%20Admin,%20saya%20mau%20tanya%20service%20kaca%20Apple%20Watch%20Seri%201" class="bg-white/10 hover:bg-brand-500 text-white text-[10px] font-bold py-2 rounded-xl text-center transition-all w-full">Chat Admin</a></div>
+                <div class="glass-panel rounded-2xl p-5 relative group premium-hover flex flex-col"><div class="h-24 w-24 mx-auto mb-4"><img src="https://arepair.id/wp-content/uploads/2022/06/apple-watch-seri-2.png" class="w-full h-full object-contain"></div><h4 class="font-heading font-bold text-white text-sm mb-1 text-center">Seri 2 (38mm)</h4><div class="text-brand-400 font-black text-lg text-center mb-2">Rp 610.000</div><p class="text-gray-500 text-[10px] text-center mb-4 flex-grow">Ganti Kaca</p><a href="https://wa.me/6281371127121?text=Halo%20Admin,%20saya%20mau%20tanya%20service%20kaca%20Apple%20Watch%20Seri%202%2038mm" class="bg-white/10 hover:bg-brand-500 text-white text-[10px] font-bold py-2 rounded-xl text-center transition-all w-full">Chat Admin</a></div>
+                <div class="glass-panel rounded-2xl p-5 relative group premium-hover flex flex-col"><div class="h-24 w-24 mx-auto mb-4"><img src="https://arepair.id/wp-content/uploads/2022/06/apple-watch-seri-2.png" class="w-full h-full object-contain"></div><h4 class="font-heading font-bold text-white text-sm mb-1 text-center">Seri 2 (42mm)</h4><div class="text-brand-400 font-black text-lg text-center mb-2">Rp 610.000</div><p class="text-gray-500 text-[10px] text-center mb-4 flex-grow">Ganti Kaca</p><a href="https://wa.me/6281371127121?text=Halo%20Admin,%20saya%20mau%20tanya%20service%20kaca%20Apple%20Watch%20Seri%202%2042mm" class="bg-white/10 hover:bg-brand-500 text-white text-[10px] font-bold py-2 rounded-xl text-center transition-all w-full">Chat Admin</a></div>
+                <div class="glass-panel rounded-2xl p-5 relative group premium-hover flex flex-col"><div class="h-24 w-24 mx-auto mb-4"><img src="https://arepair.id/wp-content/uploads/2022/06/apple-watch-seri-3.png" class="w-full h-full object-contain"></div><h4 class="font-heading font-bold text-white text-sm mb-1 text-center">Seri 3 (38mm)</h4><div class="text-brand-400 font-black text-lg text-center mb-2">Rp 699.000</div><p class="text-gray-500 text-[10px] text-center mb-4 flex-grow">Ganti Kaca</p><a href="https://wa.me/6281371127121?text=Halo%20Admin,%20saya%20mau%20tanya%20service%20kaca%20Apple%20Watch%20Seri%203%2038mm" class="bg-white/10 hover:bg-brand-500 text-white text-[10px] font-bold py-2 rounded-xl text-center transition-all w-full">Chat Admin</a></div>
+                <div class="glass-panel rounded-2xl p-5 relative group premium-hover flex flex-col"><div class="h-24 w-24 mx-auto mb-4"><img src="https://arepair.id/wp-content/uploads/2022/06/apple-watch-seri-3.png" class="w-full h-full object-contain"></div><h4 class="font-heading font-bold text-white text-sm mb-1 text-center">Seri 3 (42mm)</h4><div class="text-brand-400 font-black text-lg text-center mb-2">Rp 699.000</div><p class="text-gray-500 text-[10px] text-center mb-4 flex-grow">Ganti Kaca</p><a href="https://wa.me/6281371127121?text=Halo%20Admin,%20saya%20mau%20tanya%20service%20kaca%20Apple%20Watch%20Seri%203%2042mm" class="bg-white/10 hover:bg-brand-500 text-white text-[10px] font-bold py-2 rounded-xl text-center transition-all w-full">Chat Admin</a></div>
+                <div class="glass-panel rounded-2xl p-5 relative group premium-hover flex flex-col"><div class="h-24 w-24 mx-auto mb-4"><img src="https://arepair.id/wp-content/uploads/2022/06/apple-watch-seri-4.png" class="w-full h-full object-contain"></div><h4 class="font-heading font-bold text-white text-sm mb-1 text-center">Seri 4 (40mm)</h4><div class="text-brand-400 font-black text-lg text-center mb-2">Rp 839.000</div><p class="text-gray-500 text-[10px] text-center mb-4 flex-grow">Ganti Kaca</p><a href="https://wa.me/6281371127121?text=Halo%20Admin,%20saya%20mau%20tanya%20service%20kaca%20Apple%20Watch%20Seri%204%2040mm" class="bg-white/10 hover:bg-brand-500 text-white text-[10px] font-bold py-2 rounded-xl text-center transition-all w-full">Chat Admin</a></div>
+                <div class="glass-panel rounded-2xl p-5 relative group premium-hover flex flex-col"><div class="h-24 w-24 mx-auto mb-4"><img src="https://arepair.id/wp-content/uploads/2022/06/apple-watch-seri-4.png" class="w-full h-full object-contain"></div><h4 class="font-heading font-bold text-white text-sm mb-1 text-center">Seri 4 (44mm)</h4><div class="text-brand-400 font-black text-lg text-center mb-2">Rp 839.000</div><p class="text-gray-500 text-[10px] text-center mb-4 flex-grow">Ganti Kaca</p><a href="https://wa.me/6281371127121?text=Halo%20Admin,%20saya%20mau%20tanya%20service%20kaca%20Apple%20Watch%20Seri%204%2044mm" class="bg-white/10 hover:bg-brand-500 text-white text-[10px] font-bold py-2 rounded-xl text-center transition-all w-full">Chat Admin</a></div>
+                <div class="glass-panel rounded-2xl p-5 relative group premium-hover flex flex-col"><div class="h-24 w-24 mx-auto mb-4"><img src="https://arepair.id/wp-content/uploads/2022/06/apple-watch-seri-5.png" class="w-full h-full object-contain"></div><h4 class="font-heading font-bold text-white text-sm mb-1 text-center">Seri 5 (40mm)</h4><div class="text-brand-400 font-black text-lg text-center mb-2">Rp 989.000</div><p class="text-gray-500 text-[10px] text-center mb-4 flex-grow">Ganti Kaca</p><a href="https://wa.me/6281371127121?text=Halo%20Admin,%20saya%20mau%20tanya%20service%20kaca%20Apple%20Watch%20Seri%205%2040mm" class="bg-white/10 hover:bg-brand-500 text-white text-[10px] font-bold py-2 rounded-xl text-center transition-all w-full">Chat Admin</a></div>
+                <div class="glass-panel rounded-2xl p-5 relative group premium-hover flex flex-col"><div class="h-24 w-24 mx-auto mb-4"><img src="https://arepair.id/wp-content/uploads/2022/06/apple-watch-seri-5.png" class="w-full h-full object-contain"></div><h4 class="font-heading font-bold text-white text-sm mb-1 text-center">Seri 5 (44mm)</h4><div class="text-brand-400 font-black text-lg text-center mb-2">Rp 989.000</div><p class="text-gray-500 text-[10px] text-center mb-4 flex-grow">Ganti Kaca</p><a href="https://wa.me/6281371127121?text=Halo%20Admin,%20saya%20mau%20tanya%20service%20kaca%20Apple%20Watch%20Seri%205%2044mm" class="bg-white/10 hover:bg-brand-500 text-white text-[10px] font-bold py-2 rounded-xl text-center transition-all w-full">Chat Admin</a></div>
+                <div class="glass-panel rounded-2xl p-5 relative group premium-hover flex flex-col"><div class="h-24 w-24 mx-auto mb-4"><img src="https://arepair.id/wp-content/uploads/2025/08/Apple-Watch-SE-Gen-1.png" class="w-full h-full object-contain"></div><h4 class="font-heading font-bold text-white text-sm mb-1 text-center">SE Gen 1 (40mm)</h4><div class="text-brand-400 font-black text-lg text-center mb-2">Rp 989.000</div><p class="text-gray-500 text-[10px] text-center mb-4 flex-grow">Ganti Kaca</p><a href="https://wa.me/6281371127121?text=Halo%20Admin,%20saya%20mau%20tanya%20service%20kaca%20Apple%20Watch%20SE%20Gen%201%2040mm" class="bg-white/10 hover:bg-brand-500 text-white text-[10px] font-bold py-2 rounded-xl text-center transition-all w-full">Chat Admin</a></div>
+                <div class="glass-panel rounded-2xl p-5 relative group premium-hover flex flex-col"><div class="h-24 w-24 mx-auto mb-4"><img src="https://arepair.id/wp-content/uploads/2025/08/Apple-Watch-SE-Gen-1.png" class="w-full h-full object-contain"></div><h4 class="font-heading font-bold text-white text-sm mb-1 text-center">SE Gen 1 (44mm)</h4><div class="text-brand-400 font-black text-lg text-center mb-2">Rp 989.000</div><p class="text-gray-500 text-[10px] text-center mb-4 flex-grow">Ganti Kaca</p><a href="https://wa.me/6281371127121?text=Halo%20Admin,%20saya%20mau%20tanya%20service%20kaca%20Apple%20Watch%20SE%20Gen%201%2044mm" class="bg-white/10 hover:bg-brand-500 text-white text-[10px] font-bold py-2 rounded-xl text-center transition-all w-full">Chat Admin</a></div>
+                <div class="glass-panel rounded-2xl p-5 relative group premium-hover flex flex-col"><div class="h-24 w-24 mx-auto mb-4"><img src="https://arepair.id/wp-content/uploads/2025/08/Apple-Watch-SE-Gen-2-1.png" class="w-full h-full object-contain"></div><h4 class="font-heading font-bold text-white text-sm mb-1 text-center">SE Gen 2 (40mm)</h4><div class="text-brand-400 font-black text-lg text-center mb-2">Rp 989.000</div><p class="text-gray-500 text-[10px] text-center mb-4 flex-grow">Ganti Kaca</p><a href="https://wa.me/6281371127121?text=Halo%20Admin,%20saya%20mau%20tanya%20service%20kaca%20Apple%20Watch%20SE%20Gen%202%2040mm" class="bg-white/10 hover:bg-brand-500 text-white text-[10px] font-bold py-2 rounded-xl text-center transition-all w-full">Chat Admin</a></div>
+                <div class="glass-panel rounded-2xl p-5 relative group premium-hover flex flex-col"><div class="h-24 w-24 mx-auto mb-4"><img src="https://arepair.id/wp-content/uploads/2025/08/Apple-Watch-SE-Gen-2-1.png" class="w-full h-full object-contain"></div><h4 class="font-heading font-bold text-white text-sm mb-1 text-center">SE Gen 2 (44mm)</h4><div class="text-brand-400 font-black text-lg text-center mb-2">Rp 989.000</div><p class="text-gray-500 text-[10px] text-center mb-4 flex-grow">Ganti Kaca</p><a href="https://wa.me/6281371127121?text=Halo%20Admin,%20saya%20mau%20tanya%20service%20kaca%20Apple%20Watch%20SE%20Gen%202%2044mm" class="bg-white/10 hover:bg-brand-500 text-white text-[10px] font-bold py-2 rounded-xl text-center transition-all w-full">Chat Admin</a></div>
+                <div class="glass-panel rounded-2xl p-5 relative group premium-hover flex flex-col"><div class="h-24 w-24 mx-auto mb-4"><img src="https://arepair.id/wp-content/uploads/2022/06/apple-watch-seri-6.png" class="w-full h-full object-contain"></div><h4 class="font-heading font-bold text-white text-sm mb-1 text-center">Seri 6 (40mm)</h4><div class="text-brand-400 font-black text-lg text-center mb-2">Rp 1.199.000</div><p class="text-gray-500 text-[10px] text-center mb-4 flex-grow">Ganti Kaca</p><a href="https://wa.me/6281371127121?text=Halo%20Admin,%20saya%20mau%20tanya%20service%20kaca%20Apple%20Watch%20Seri%206%2040mm" class="bg-white/10 hover:bg-brand-500 text-white text-[10px] font-bold py-2 rounded-xl text-center transition-all w-full">Chat Admin</a></div>
+                <div class="glass-panel rounded-2xl p-5 relative group premium-hover flex flex-col"><div class="h-24 w-24 mx-auto mb-4"><img src="https://arepair.id/wp-content/uploads/2022/06/apple-watch-seri-6.png" class="w-full h-full object-contain"></div><h4 class="font-heading font-bold text-white text-sm mb-1 text-center">Seri 6 (44mm)</h4><div class="text-brand-400 font-black text-lg text-center mb-2">Rp 1.199.000</div><p class="text-gray-500 text-[10px] text-center mb-4 flex-grow">Ganti Kaca</p><a href="https://wa.me/6281371127121?text=Halo%20Admin,%20saya%20mau%20tanya%20service%20kaca%20Apple%20Watch%20Seri%206%2044mm" class="bg-white/10 hover:bg-brand-500 text-white text-[10px] font-bold py-2 rounded-xl text-center transition-all w-full">Chat Admin</a></div>
+                <div class="glass-panel rounded-2xl p-5 relative group premium-hover flex flex-col"><div class="h-24 w-24 mx-auto mb-4"><img src="https://arepair.id/wp-content/uploads/2024/12/Apple-Watch-7-series.png" class="w-full h-full object-contain"></div><h4 class="font-heading font-bold text-white text-sm mb-1 text-center">Seri 7 (41mm)</h4><div class="text-brand-400 font-black text-lg text-center mb-2">Rp 1.249.000</div><p class="text-gray-500 text-[10px] text-center mb-4 flex-grow">Ganti Kaca</p><a href="https://wa.me/6281371127121?text=Halo%20Admin,%20saya%20mau%20tanya%20service%20kaca%20Apple%20Watch%20Seri%207%2041mm" class="bg-white/10 hover:bg-brand-500 text-white text-[10px] font-bold py-2 rounded-xl text-center transition-all w-full">Chat Admin</a></div>
+                <div class="glass-panel rounded-2xl p-5 relative group premium-hover flex flex-col"><div class="h-24 w-24 mx-auto mb-4"><img src="https://arepair.id/wp-content/uploads/2024/12/Apple-Watch-7-series.png" class="w-full h-full object-contain"></div><h4 class="font-heading font-bold text-white text-sm mb-1 text-center">Seri 7 (45mm)</h4><div class="text-brand-400 font-black text-lg text-center mb-2">Rp 1.249.000</div><p class="text-gray-500 text-[10px] text-center mb-4 flex-grow">Ganti Kaca</p><a href="https://wa.me/6281371127121?text=Halo%20Admin,%20saya%20mau%20tanya%20service%20kaca%20Apple%20Watch%20Seri%207%2045mm" class="bg-white/10 hover:bg-brand-500 text-white text-[10px] font-bold py-2 rounded-xl text-center transition-all w-full">Chat Admin</a></div>
+                <div class="glass-panel rounded-2xl p-5 relative group premium-hover flex flex-col"><div class="h-24 w-24 mx-auto mb-4"><img src="https://arepair.id/wp-content/uploads/2024/12/Apple-Watch-8-series-1-1.png" class="w-full h-full object-contain"></div><h4 class="font-heading font-bold text-white text-sm mb-1 text-center">Seri 8 (41mm)</h4><div class="text-brand-400 font-black text-lg text-center mb-2">Rp 1.238.000</div><p class="text-gray-500 text-[10px] text-center mb-4 flex-grow">Ganti Kaca</p><a href="https://wa.me/6281371127121?text=Halo%20Admin,%20saya%20mau%20tanya%20service%20kaca%20Apple%20Watch%20Seri%208%2041mm" class="bg-white/10 hover:bg-brand-500 text-white text-[10px] font-bold py-2 rounded-xl text-center transition-all w-full">Chat Admin</a></div>
+                <div class="glass-panel rounded-2xl p-5 relative group premium-hover flex flex-col"><div class="h-24 w-24 mx-auto mb-4"><img src="https://arepair.id/wp-content/uploads/2024/12/Apple-Watch-8-series-1-1.png" class="w-full h-full object-contain"></div><h4 class="font-heading font-bold text-white text-sm mb-1 text-center">Seri 8 (45mm)</h4><div class="text-brand-400 font-black text-lg text-center mb-2">Rp 1.238.000</div><p class="text-gray-500 text-[10px] text-center mb-4 flex-grow">Ganti Kaca</p><a href="https://wa.me/6281371127121?text=Halo%20Admin,%20saya%20mau%20tanya%20service%20kaca%20Apple%20Watch%20Seri%208%2045mm" class="bg-white/10 hover:bg-brand-500 text-white text-[10px] font-bold py-2 rounded-xl text-center transition-all w-full">Chat Admin</a></div>
+                <div class="glass-panel rounded-2xl p-5 relative group premium-hover flex flex-col"><div class="h-24 w-24 mx-auto mb-4"><img src="https://arepair.id/wp-content/uploads/2024/12/apple-watch-9-series-1.png" class="w-full h-full object-contain"></div><h4 class="font-heading font-bold text-white text-sm mb-1 text-center">Seri 9 (41mm)</h4><div class="text-brand-400 font-black text-lg text-center mb-2">Rp 1.593.000</div><p class="text-gray-500 text-[10px] text-center mb-4 flex-grow">Ganti Kaca</p><a href="https://wa.me/6281371127121?text=Halo%20Admin,%20saya%20mau%20tanya%20service%20kaca%20Apple%20Watch%20Seri%209%2041mm" class="bg-white/10 hover:bg-brand-500 text-white text-[10px] font-bold py-2 rounded-xl text-center transition-all w-full">Chat Admin</a></div>
+                <div class="glass-panel rounded-2xl p-5 relative group premium-hover flex flex-col"><div class="h-24 w-24 mx-auto mb-4"><img src="https://arepair.id/wp-content/uploads/2024/12/apple-watch-9-series-1.png" class="w-full h-full object-contain"></div><h4 class="font-heading font-bold text-white text-sm mb-1 text-center">Seri 9 (45mm)</h4><div class="text-brand-400 font-black text-lg text-center mb-2">Rp 1.593.000</div><p class="text-gray-500 text-[10px] text-center mb-4 flex-grow">Ganti Kaca</p><a href="https://wa.me/6281371127121?text=Halo%20Admin,%20saya%20mau%20tanya%20service%20kaca%20Apple%20Watch%20Seri%209%2045mm" class="bg-white/10 hover:bg-brand-500 text-white text-[10px] font-bold py-2 rounded-xl text-center transition-all w-full">Chat Admin</a></div>
+
+            </div>
+
+            <h3 class="font-heading text-2xl font-black text-brand-400 mb-6 border-b border-white/10 pb-4 flex items-center gap-3">
+                <i class="fa-solid fa-mobile-screen-button text-xl"></i> 2. Harga Service Layar/LCD (Fullset)
+            </h3>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                
+                <div class="glass-panel rounded-2xl p-5 relative group premium-hover flex flex-col"><div class="h-24 w-24 mx-auto mb-4"><img src="https://arepair.id/wp-content/uploads/2022/06/apple-watch-seri-1.png" class="w-full h-full object-contain"></div><h4 class="font-heading font-bold text-white text-sm mb-1 text-center">Seri 1 (38mm)</h4><div class="text-brand-400 font-black text-lg text-center mb-2">Rp 600.000</div><p class="text-gray-500 text-[10px] text-center mb-4 flex-grow">Ganti LCD Fullset</p><a href="https://wa.me/6281371127121?text=Halo%20Admin,%20saya%20mau%20tanya%20service%20LCD%20Apple%20Watch%20Seri%201%2038mm" class="bg-white/10 hover:bg-brand-500 text-white text-[10px] font-bold py-2 rounded-xl text-center transition-all w-full">Chat Admin</a></div>
+                <div class="glass-panel rounded-2xl p-5 relative group premium-hover flex flex-col"><div class="h-24 w-24 mx-auto mb-4"><img src="https://arepair.id/wp-content/uploads/2022/06/apple-watch-seri-1.png" class="w-full h-full object-contain"></div><h4 class="font-heading font-bold text-white text-sm mb-1 text-center">Seri 1 (42mm)</h4><div class="text-brand-400 font-black text-lg text-center mb-2">Rp 650.000</div><p class="text-gray-500 text-[10px] text-center mb-4 flex-grow">Ganti LCD Fullset</p><a href="https://wa.me/6281371127121?text=Halo%20Admin,%20saya%20mau%20tanya%20service%20LCD%20Apple%20Watch%20Seri%201%2042mm" class="bg-white/10 hover:bg-brand-500 text-white text-[10px] font-bold py-2 rounded-xl text-center transition-all w-full">Chat Admin</a></div>
+                <div class="glass-panel rounded-2xl p-5 relative group premium-hover flex flex-col"><div class="h-24 w-24 mx-auto mb-4"><img src="https://arepair.id/wp-content/uploads/2022/06/apple-watch-seri-2.png" class="w-full h-full object-contain"></div><h4 class="font-heading font-bold text-white text-sm mb-1 text-center">Seri 2 (38mm)</h4><div class="text-brand-400 font-black text-lg text-center mb-2">Rp 1.299.000</div><p class="text-gray-500 text-[10px] text-center mb-4 flex-grow">Ganti LCD Fullset</p><a href="https://wa.me/6281371127121?text=Halo%20Admin,%20saya%20mau%20tanya%20service%20LCD%20Apple%20Watch%20Seri%202%2038mm" class="bg-white/10 hover:bg-brand-500 text-white text-[10px] font-bold py-2 rounded-xl text-center transition-all w-full">Chat Admin</a></div>
+                <div class="glass-panel rounded-2xl p-5 relative group premium-hover flex flex-col"><div class="h-24 w-24 mx-auto mb-4"><img src="https://arepair.id/wp-content/uploads/2022/06/apple-watch-seri-2.png" class="w-full h-full object-contain"></div><h4 class="font-heading font-bold text-white text-sm mb-1 text-center">Seri 2 (42mm)</h4><div class="text-brand-400 font-black text-lg text-center mb-2">Rp 1.399.000</div><p class="text-gray-500 text-[10px] text-center mb-4 flex-grow">Ganti LCD Fullset</p><a href="https://wa.me/6281371127121?text=Halo%20Admin,%20saya%20mau%20tanya%20service%20LCD%20Apple%20Watch%20Seri%202%2042mm" class="bg-white/10 hover:bg-brand-500 text-white text-[10px] font-bold py-2 rounded-xl text-center transition-all w-full">Chat Admin</a></div>
+                <div class="glass-panel rounded-2xl p-5 relative group premium-hover flex flex-col"><div class="h-24 w-24 mx-auto mb-4"><img src="https://arepair.id/wp-content/uploads/2022/06/apple-watch-seri-3.png" class="w-full h-full object-contain"></div><h4 class="font-heading font-bold text-white text-sm mb-1 text-center">Seri 3 (38mm) LTE</h4><div class="text-brand-400 font-black text-lg text-center mb-2">Rp 1.449.000</div><p class="text-gray-500 text-[10px] text-center mb-4 flex-grow">Ganti LCD Fullset</p><a href="https://wa.me/6281371127121?text=Halo%20Admin,%20saya%20mau%20tanya%20service%20LCD%20Apple%20Watch%20Seri%203%2038mm%20LTE" class="bg-white/10 hover:bg-brand-500 text-white text-[10px] font-bold py-2 rounded-xl text-center transition-all w-full">Chat Admin</a></div>
+                <div class="glass-panel rounded-2xl p-5 relative group premium-hover flex flex-col"><div class="h-24 w-24 mx-auto mb-4"><img src="https://arepair.id/wp-content/uploads/2022/06/apple-watch-seri-3.png" class="w-full h-full object-contain"></div><h4 class="font-heading font-bold text-white text-sm mb-1 text-center">Seri 3 (38mm) GPS</h4><div class="text-brand-400 font-black text-lg text-center mb-2">Rp 1.449.000</div><p class="text-gray-500 text-[10px] text-center mb-4 flex-grow">Ganti LCD Fullset</p><a href="https://wa.me/6281371127121?text=Halo%20Admin,%20saya%20mau%20tanya%20service%20LCD%20Apple%20Watch%20Seri%203%2038mm%20GPS" class="bg-white/10 hover:bg-brand-500 text-white text-[10px] font-bold py-2 rounded-xl text-center transition-all w-full">Chat Admin</a></div>
+                <div class="glass-panel rounded-2xl p-5 relative group premium-hover flex flex-col"><div class="h-24 w-24 mx-auto mb-4"><img src="https://arepair.id/wp-content/uploads/2022/06/apple-watch-seri-3.png" class="w-full h-full object-contain"></div><h4 class="font-heading font-bold text-white text-sm mb-1 text-center">Seri 3 (42mm) LTE</h4><div class="text-brand-400 font-black text-lg text-center mb-2">Rp 1.449.000</div><p class="text-gray-500 text-[10px] text-center mb-4 flex-grow">Ganti LCD Fullset</p><a href="https://wa.me/6281371127121?text=Halo%20Admin,%20saya%20mau%20tanya%20service%20LCD%20Apple%20Watch%20Seri%203%2042mm%20LTE" class="bg-white/10 hover:bg-brand-500 text-white text-[10px] font-bold py-2 rounded-xl text-center transition-all w-full">Chat Admin</a></div>
+                <div class="glass-panel rounded-2xl p-5 relative group premium-hover flex flex-col"><div class="h-24 w-24 mx-auto mb-4"><img src="https://arepair.id/wp-content/uploads/2022/06/apple-watch-seri-3.png" class="w-full h-full object-contain"></div><h4 class="font-heading font-bold text-white text-sm mb-1 text-center">Seri 3 (42mm) GPS</h4><div class="text-brand-400 font-black text-lg text-center mb-2">Rp 1.449.000</div><p class="text-gray-500 text-[10px] text-center mb-4 flex-grow">Ganti LCD Fullset</p><a href="https://wa.me/6281371127121?text=Halo%20Admin,%20saya%20mau%20tanya%20service%20LCD%20Apple%20Watch%20Seri%203%2042mm%20GPS" class="bg-white/10 hover:bg-brand-500 text-white text-[10px] font-bold py-2 rounded-xl text-center transition-all w-full">Chat Admin</a></div>
+                <div class="glass-panel rounded-2xl p-5 relative group premium-hover flex flex-col"><div class="h-24 w-24 mx-auto mb-4"><img src="https://arepair.id/wp-content/uploads/2022/06/apple-watch-seri-4.png" class="w-full h-full object-contain"></div><h4 class="font-heading font-bold text-white text-sm mb-1 text-center">Seri 4 (40mm)</h4><div class="text-brand-400 font-black text-lg text-center mb-2">Rp 1.449.000</div><p class="text-gray-500 text-[10px] text-center mb-4 flex-grow">Ganti LCD Fullset</p><a href="https://wa.me/6281371127121?text=Halo%20Admin,%20saya%20mau%20tanya%20service%20LCD%20Apple%20Watch%20Seri%204%2040mm" class="bg-white/10 hover:bg-brand-500 text-white text-[10px] font-bold py-2 rounded-xl text-center transition-all w-full">Chat Admin</a></div>
+                <div class="glass-panel rounded-2xl p-5 relative group premium-hover flex flex-col"><div class="h-24 w-24 mx-auto mb-4"><img src="https://arepair.id/wp-content/uploads/2022/06/apple-watch-seri-4.png" class="w-full h-full object-contain"></div><h4 class="font-heading font-bold text-white text-sm mb-1 text-center">Seri 4 (44mm)</h4><div class="text-brand-400 font-black text-lg text-center mb-2">Rp 1.599.000</div><p class="text-gray-500 text-[10px] text-center mb-4 flex-grow">Ganti LCD Fullset</p><a href="https://wa.me/6281371127121?text=Halo%20Admin,%20saya%20mau%20tanya%20service%20LCD%20Apple%20Watch%20Seri%204%2044mm" class="bg-white/10 hover:bg-brand-500 text-white text-[10px] font-bold py-2 rounded-xl text-center transition-all w-full">Chat Admin</a></div>
+                <div class="glass-panel rounded-2xl p-5 relative group premium-hover flex flex-col"><div class="h-24 w-24 mx-auto mb-4"><img src="https://arepair.id/wp-content/uploads/2022/06/apple-watch-seri-5.png" class="w-full h-full object-contain"></div><h4 class="font-heading font-bold text-white text-sm mb-1 text-center">Seri 5 (40mm)</h4><div class="text-brand-400 font-black text-lg text-center mb-2">Rp 1.849.000</div><p class="text-gray-500 text-[10px] text-center mb-4 flex-grow">Ganti LCD Fullset</p><a href="https://wa.me/6281371127121?text=Halo%20Admin,%20saya%20mau%20tanya%20service%20LCD%20Apple%20Watch%20Seri%205%2040mm" class="bg-white/10 hover:bg-brand-500 text-white text-[10px] font-bold py-2 rounded-xl text-center transition-all w-full">Chat Admin</a></div>
+                <div class="glass-panel rounded-2xl p-5 relative group premium-hover flex flex-col"><div class="h-24 w-24 mx-auto mb-4"><img src="https://arepair.id/wp-content/uploads/2022/06/apple-watch-seri-5.png" class="w-full h-full object-contain"></div><h4 class="font-heading font-bold text-white text-sm mb-1 text-center">Seri 5 (44mm)</h4><div class="text-brand-400 font-black text-lg text-center mb-2">Rp 1.999.000</div><p class="text-gray-500 text-[10px] text-center mb-4 flex-grow">Ganti LCD Fullset</p><a href="https://wa.me/6281371127121?text=Halo%20Admin,%20saya%20mau%20tanya%20service%20LCD%20Apple%20Watch%20Seri%205%2044mm" class="bg-white/10 hover:bg-brand-500 text-white text-[10px] font-bold py-2 rounded-xl text-center transition-all w-full">Chat Admin</a></div>
+                <div class="glass-panel rounded-2xl p-5 relative group premium-hover flex flex-col"><div class="h-24 w-24 mx-auto mb-4"><img src="https://arepair.id/wp-content/uploads/2022/06/apple-watch-seri-6.png" class="w-full h-full object-contain"></div><h4 class="font-heading font-bold text-white text-sm mb-1 text-center">Seri 6 (40mm)</h4><div class="text-brand-400 font-black text-lg text-center mb-2">Rp 1.619.000</div><p class="text-gray-500 text-[10px] text-center mb-4 flex-grow">Ganti LCD Fullset</p><a href="https://wa.me/6281371127121?text=Halo%20Admin,%20saya%20mau%20tanya%20service%20LCD%20Apple%20Watch%20Seri%206%2040mm" class="bg-white/10 hover:bg-brand-500 text-white text-[10px] font-bold py-2 rounded-xl text-center transition-all w-full">Chat Admin</a></div>
+                <div class="glass-panel rounded-2xl p-5 relative group premium-hover flex flex-col"><div class="h-24 w-24 mx-auto mb-4"><img src="https://arepair.id/wp-content/uploads/2022/06/apple-watch-seri-6.png" class="w-full h-full object-contain"></div><h4 class="font-heading font-bold text-white text-sm mb-1 text-center">Seri 6 (44mm)</h4><div class="text-brand-400 font-black text-lg text-center mb-2">Rp 1.949.000</div><p class="text-gray-500 text-[10px] text-center mb-4 flex-grow">Ganti LCD Fullset</p><a href="https://wa.me/6281371127121?text=Halo%20Admin,%20saya%20mau%20tanya%20service%20LCD%20Apple%20Watch%20Seri%206%2044mm" class="bg-white/10 hover:bg-brand-500 text-white text-[10px] font-bold py-2 rounded-xl text-center transition-all w-full">Chat Admin</a></div>
+                <div class="glass-panel rounded-2xl p-5 relative group premium-hover flex flex-col"><div class="h-24 w-24 mx-auto mb-4"><img src="https://arepair.id/wp-content/uploads/2025/09/Apple-Watch-7.png" class="w-full h-full object-contain"></div><h4 class="font-heading font-bold text-white text-sm mb-1 text-center">Seri 7 (41mm)</h4><div class="text-brand-400 font-black text-lg text-center mb-2">Rp 1.915.000</div><p class="text-gray-500 text-[10px] text-center mb-4 flex-grow">Ganti LCD Fullset</p><a href="https://wa.me/6281371127121?text=Halo%20Admin,%20saya%20mau%20tanya%20service%20LCD%20Apple%20Watch%20Seri%207%2041mm" class="bg-white/10 hover:bg-brand-500 text-white text-[10px] font-bold py-2 rounded-xl text-center transition-all w-full">Chat Admin</a></div>
+                <div class="glass-panel rounded-2xl p-5 relative group premium-hover flex flex-col"><div class="h-24 w-24 mx-auto mb-4"><img src="https://arepair.id/wp-content/uploads/2025/09/Apple-Watch-7.png" class="w-full h-full object-contain"></div><h4 class="font-heading font-bold text-white text-sm mb-1 text-center">Seri 7 (45mm)</h4><div class="text-brand-400 font-black text-lg text-center mb-2">Rp 1.915.000</div><p class="text-gray-500 text-[10px] text-center mb-4 flex-grow">Ganti LCD Fullset</p><a href="https://wa.me/6281371127121?text=Halo%20Admin,%20saya%20mau%20tanya%20service%20LCD%20Apple%20Watch%20Seri%207%2045mm" class="bg-white/10 hover:bg-brand-500 text-white text-[10px] font-bold py-2 rounded-xl text-center transition-all w-full">Chat Admin</a></div>
+                <div class="glass-panel rounded-2xl p-5 relative group premium-hover flex flex-col"><div class="h-24 w-24 mx-auto mb-4"><img src="https://arepair.id/wp-content/uploads/2025/09/Apple-Watch-8.png" class="w-full h-full object-contain"></div><h4 class="font-heading font-bold text-white text-sm mb-1 text-center">Seri 8 (41mm)</h4><div class="text-brand-400 font-black text-lg text-center mb-2">Rp 2.749.000</div><p class="text-gray-500 text-[10px] text-center mb-4 flex-grow">Ganti LCD Fullset</p><a href="https://wa.me/6281371127121?text=Halo%20Admin,%20saya%20mau%20tanya%20service%20LCD%20Apple%20Watch%20Seri%208%2041mm" class="bg-white/10 hover:bg-brand-500 text-white text-[10px] font-bold py-2 rounded-xl text-center transition-all w-full">Chat Admin</a></div>
+                <div class="glass-panel rounded-2xl p-5 relative group premium-hover flex flex-col"><div class="h-24 w-24 mx-auto mb-4"><img src="https://arepair.id/wp-content/uploads/2025/09/Apple-Watch-8.png" class="w-full h-full object-contain"></div><h4 class="font-heading font-bold text-white text-sm mb-1 text-center">Seri 8 (45mm)</h4><div class="text-brand-400 font-black text-lg text-center mb-2">Rp 2.749.000</div><p class="text-gray-500 text-[10px] text-center mb-4 flex-grow">Ganti LCD Fullset</p><a href="https://wa.me/6281371127121?text=Halo%20Admin,%20saya%20mau%20tanya%20service%20LCD%20Apple%20Watch%20Seri%208%2045mm" class="bg-white/10 hover:bg-brand-500 text-white text-[10px] font-bold py-2 rounded-xl text-center transition-all w-full">Chat Admin</a></div>
+                <div class="glass-panel rounded-2xl p-5 relative group premium-hover flex flex-col"><div class="h-24 w-24 mx-auto mb-4"><img src="https://arepair.id/wp-content/uploads/2022/06/apple-watch-SE-series.png" class="w-full h-full object-contain"></div><h4 class="font-heading font-bold text-white text-sm mb-1 text-center">SE Series (40mm)</h4><div class="text-brand-400 font-black text-lg text-center mb-2">Rp 1.799.000</div><p class="text-gray-500 text-[10px] text-center mb-4 flex-grow">Ganti LCD Fullset</p><a href="https://wa.me/6281371127121?text=Halo%20Admin,%20saya%20mau%20tanya%20service%20LCD%20Apple%20Watch%20SE%20Series%2040mm" class="bg-white/10 hover:bg-brand-500 text-white text-[10px] font-bold py-2 rounded-xl text-center transition-all w-full">Chat Admin</a></div>
+                <div class="glass-panel rounded-2xl p-5 relative group premium-hover flex flex-col"><div class="h-24 w-24 mx-auto mb-4"><img src="https://arepair.id/wp-content/uploads/2022/06/apple-watch-SE-series.png" class="w-full h-full object-contain"></div><h4 class="font-heading font-bold text-white text-sm mb-1 text-center">SE Series (44mm)</h4><div class="text-brand-400 font-black text-lg text-center mb-2">Rp 2.014.000</div><p class="text-gray-500 text-[10px] text-center mb-4 flex-grow">Ganti LCD Fullset</p><a href="https://wa.me/6281371127121?text=Halo%20Admin,%20saya%20mau%20tanya%20service%20LCD%20Apple%20Watch%20SE%20Series%2044mm" class="bg-white/10 hover:bg-brand-500 text-white text-[10px] font-bold py-2 rounded-xl text-center transition-all w-full">Chat Admin</a></div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section id="bento-servis" class="py-16 px-6 max-w-7xl mx-auto border-t border-white/5">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <h2 class="font-heading text-4xl md:text-5xl font-bold mb-4">Kenapa Servis di Farid Store?</h2>
+            <p class="text-gray-400 font-medium">Kami mengutamakan keselamatan data dan umur panjang device Anda.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-5 auto-rows-auto" data-aos="fade-up" data-aos-delay="100">
+            <div class="glass-panel rounded-[2rem] p-8 md:p-10 md:col-span-2 md:row-span-2 flex flex-col justify-between relative overflow-hidden group premium-hover">
+                <div class="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center text-white text-2xl border border-white/10 group-hover:scale-110 transition-transform duration-500 mb-8 z-10">
+                    <i class="fa-solid fa-microscope"></i>
+                </div>
+                <div class="z-10 mt-auto">
+                    <h3 class="font-heading text-2xl md:text-3xl font-bold text-white mb-4 leading-tight">Pengecekan <br>Transparan & Gratis.</h3>
+                    <p class="text-gray-400 max-w-md text-base leading-relaxed">Kami tidak akan mengeksekusi sebelum Anda menyetujui diagnosa dan estimasi biaya. Pengecekan awal tidak dipungut biaya sepeserpun alias GRATIS.</p>
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-tr from-brand-500/10 to-transparent z-0 pointer-events-none"></div>
+            </div>
+            
+            <div class="glass-panel rounded-[2rem] p-8 flex flex-col justify-between relative overflow-hidden group premium-hover min-h-[220px]">
+                <div class="w-14 h-14 rounded-full bg-brand-500/10 flex items-center justify-center text-brand-400 text-xl border border-brand-500/20 group-hover:scale-110 transition-transform duration-500 mb-8 z-10">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div class="z-10 mt-auto">
+                    <h3 class="font-heading text-2xl font-bold text-white mb-2">Garansi Servis</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Semua pengerjaan perbaikan dan penggantian sparepart dilindungi garansi personal toko untuk kenyamanan Anda.</p>
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-tr from-brand-400/5 to-transparent z-0 pointer-events-none"></div>
+            </div>
+
+            <div class="glass-panel rounded-[2rem] p-8 flex flex-col justify-between relative overflow-hidden group premium-hover min-h-[220px]">
+                <div class="w-14 h-14 rounded-full bg-purple-500/10 flex items-center justify-center text-purple-400 text-xl border border-purple-500/20 group-hover:scale-110 transition-transform duration-500 mb-8 z-10">
+                    <i class="fa-solid fa-gears"></i>
+                </div>
+                <div class="z-10 mt-auto">
+                    <h3 class="font-heading text-2xl font-bold text-white mb-2">Part Original / Premium</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Tersedia opsi sparepart Original Copotan maupun Grade Premium (OEM) menyesuaikan budget Anda.</p>
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-tr from-purple-400/5 to-transparent z-0 pointer-events-none"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-10 px-6 max-w-7xl mx-auto mb-20" data-aos="zoom-in">
+        <div class="glass-panel rounded-[2.5rem] p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 border-brand-500/20 relative overflow-hidden group">
+            <div class="absolute -right-20 -top-20 w-64 h-64 bg-brand-500/10 rounded-full blur-3xl group-hover:bg-brand-500/20 transition-colors"></div>
+            <div class="z-10 text-center md:text-left">
+                <h3 class="font-heading text-3xl md:text-4xl font-black mb-4">Masih Bingung Kenapa <br><span class="text-brand-400">Device Kamu Rusak?</span></h3>
+                <p class="text-gray-400 max-w-xl text-lg">Jangan dibiarkan terlalu lama, bisa merembet ke komponen lain. Ceritakan kendala device kamu ke tim teknisi kami sekarang via WhatsApp.</p>
+            </div>
+            <a href="https://wa.me/6281371127121?text=Halo%20Farid%20Store,%20saya%20mau%20konsultasi%20mengenai%20servis%20HP/Laptop%20saya" target="_blank" class="z-10 bg-white text-black px-10 py-5 rounded-2xl font-black text-lg hover:scale-105 transition-transform flex items-center gap-3 whitespace-nowrap">
+                Chat Teknisi Kami <i class="fa-solid fa-headset"></i>
+            </a>
+        </div>
+    </section>
+
+    <a href="https://wa.me/6281371127121" target="_blank" class="fixed bottom-6 right-6 z-50 w-16 h-16 bg-white text-black rounded-full flex items-center justify-center text-3xl shadow-[0_5px_20px_rgba(255,255,255,0.2)] hover:scale-110 hover:bg-brand-400 hover:text-white transition-all duration-300 group">
+        <i class="fa-brands fa-whatsapp group-hover:rotate-12 transition-transform"></i>
+    </a>
+
+    <footer class="border-t border-white/10 py-16 bg-[#020202] text-center mt-10 relative overflow-hidden">
+        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-32 bg-brand-500/10 rounded-t-full blur-3xl pointer-events-none"></div>
+        <h2 class="font-heading font-black text-4xl text-white mb-3 tracking-widest uppercase opacity-20">FaridStore</h2>
+        <p class="text-gray-500 text-sm font-bold tracking-widest uppercase mb-6">Professional Device Repair</p>
+        <div class="flex justify-center gap-6 text-gray-600 relative z-10">
+            <a href="https://id.shp.ee/ieSggGu" target="_blank" class="hover:text-white transition-colors"><i class="fa-solid fa-bag-shopping text-xl"></i></a>
+            <a href="https://instagram.com/scv.farid1717_" target="_blank" class="hover:text-white transition-colors"><i class="fa-brands fa-instagram text-xl"></i></a>
+            <a href="https://www.facebook.com/marketplace/profile/100025975151176" target="_blank" class="hover:text-white transition-colors"><i class="fa-brands fa-facebook-f text-xl"></i></a>
+        </div>
+        <p class="text-gray-700 text-xs font-semibold tracking-widest uppercase mt-8">Pekanbaru • © 2026 All rights reserved.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: true, offset: 50, duration: 800 });
+
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-black/80', 'border-white/20');
+                nav.classList.remove('bg-black/40');
+            } else {
+                nav.classList.remove('bg-black/80', 'border-white/20');
+                nav.classList.add('bg-black/40');
+            }
+        });
+
+        function switchDevice(deviceId) {
+            const allContents = document.querySelectorAll('.tab-content');
+            allContents.forEach(content => {
+                content.classList.add('hidden');
+                content.classList.remove('block', 'animate-fade-up');
+            });
+
+            const allBtns = document.querySelectorAll('.device-tab');
+            allBtns.forEach(btn => {
+                btn.classList.remove('bg-brand-500', 'text-white', 'shadow-[0_0_20px_rgba(14,165,233,0.3)]');
+                btn.classList.add('glass-pill', 'text-gray-400');
+            });
+
+            const targetContent = document.getElementById('content-' + deviceId);
+            targetContent.classList.remove('hidden');
+            targetContent.classList.add('block');
+            
+            setTimeout(() => {
+                targetContent.classList.add('animate-fade-up');
+            }, 10);
+
+            const targetBtn = document.getElementById('btn-' + deviceId);
+            targetBtn.classList.remove('glass-pill', 'text-gray-400');
+            targetBtn.classList.add('bg-brand-500', 'text-white', 'shadow-[0_0_20px_rgba(14,165,233,0.3)]');
+        }
+    </script>
+</body>
+</html>
