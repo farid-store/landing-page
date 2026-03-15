@@ -98,29 +98,33 @@
         }
         .promo-banner p { font-size: 14px; color: var(--dark-gray); font-weight: 700; letter-spacing: 0.5px; }
 
-        /* AREA GAMBAR HERO BERTUMPUK (STACKED CARDS) */
+        /* =======================================================
+           ANIMASI HERO GAMBAR MENGUNGKAP/SHUFFLE UNLIMITED
+           ======================================================= */
         .hero-images {
             display: flex; justify-content: space-between; align-items: center; padding: 0 30px; margin-top: 25px; height: 220px; position: relative; z-index: 2;
         }
         .hero-left { 
-            position: relative; width: 50%; height: 100%; display: flex; align-items: center; 
+            position: relative; width: 50%; height: 100%; display: flex; align-items: center; justify-content: center;
         }
         .hero-left img { 
             position: absolute; 
+            max-height: 150px !important; 
+            border-radius: 8px;
             filter: drop-shadow(5px 5px 8px rgba(0,0,0,0.6)); 
-            border-radius: 8px; /* Sudut melengkung halus untuk efek kartu */
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Animasi mulus saat di-hover */
         }
         
-        /* Posisi awal kartu */
-        .phone-1 { left: 0px; transform: rotate(-15deg); z-index: 1; max-height: 140px !important; }
-        .phone-2 { left: 35px; transform: translateY(-10px) rotate(0deg); z-index: 2; max-height: 165px !important; }
-        .phone-3 { left: 80px; transform: rotate(15deg); z-index: 3; max-height: 140px !important; }
+        .phone-1 { animation: cardShuffle 6s infinite cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+        .phone-2 { animation: cardShuffle 6s infinite cubic-bezier(0.4, 0, 0.2, 1) -2s; }
+        .phone-3 { animation: cardShuffle 6s infinite cubic-bezier(0.4, 0, 0.2, 1) -4s; }
 
-        /* Efek menyebar saat area gambar disentuh / dilewati kursor */
-        .hero-left:hover .phone-1 { transform: translateX(-15px) rotate(-25deg); }
-        .hero-left:hover .phone-2 { transform: translateY(-20px) rotate(0deg); }
-        .hero-left:hover .phone-3 { transform: translateX(15px) rotate(25deg); }
+        @keyframes cardShuffle {
+            0%, 20%   { z-index: 3; transform: translateX(0) scale(1.05) translateY(0); opacity: 1; }
+            25%       { z-index: 3; transform: translateX(60px) scale(1) translateY(-10px); opacity: 1; }
+            33%, 53%  { z-index: 1; transform: translateX(20px) scale(0.85) translateY(10px); opacity: 0.6; }
+            66%, 86%  { z-index: 2; transform: translateX(-30px) scale(0.95) translateY(5px); opacity: 0.85; }
+            100%      { z-index: 3; transform: translateX(0) scale(1.05) translateY(0); opacity: 1; }
+        }
 
         .hero-right { width: 45%; height: 100%; display: flex; align-items: center; justify-content: center; }
         .hero-right img { max-width: 100%; max-height: 140px; filter: drop-shadow(3px 5px 6px rgba(0,0,0,0.3)); }
@@ -147,15 +151,23 @@
         .brand-lenovo { font-family: 'Arial Black', sans-serif; font-weight: 900; font-size: 13px; font-style: italic; letter-spacing: 0.5px; }
         .brand-advan { font-family: 'Arial', sans-serif; font-weight: 900; font-size: 14px; letter-spacing: 0.5px; text-transform: uppercase; }
 
+        /* =======================================================
+           ANIMASI SLIDER LAYANAN SERVICE BERGERAK UNLIMITED
+           ======================================================= */
         .service-wrapper { position: relative; z-index: 2; margin: 0 20px 25px; }
         .section-title {
             text-align: center; font-size: 16px; font-weight: 700; letter-spacing: 3px; color: var(--dark-gray); margin-bottom: 12px; display: flex; align-items: center; justify-content: center;
         }
         .section-title::before, .section-title::after { content: ''; height: 1px; width: 40px; background-color: var(--text-gray); margin: 0 10px; }
-        .service-scroll { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 10px; }
-        .service-scroll::-webkit-scrollbar { height: 5px; }
-        .service-scroll::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); border-radius: 10px; }
-        .service-scroll::-webkit-scrollbar-thumb { background: var(--rose-gold-mid); border-radius: 10px; }
+        
+        .service-slider { overflow: hidden; width: 100%; position: relative; }
+        .service-track { display: flex; width: max-content; animation: scrollMarquee 25s linear infinite; }
+        .service-track:hover { animation-play-state: paused; }
+        .service-group { display: flex; gap: 12px; padding-right: 12px; }
+        @keyframes scrollMarquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
         
         .service-item { flex: 0 0 130px; position: relative; border-radius: 6px; overflow: hidden; border: 1px solid var(--rose-gold-mid); box-shadow: 0 4px 8px rgba(0,0,0,0.15); background: #fff; }
         .service-item img { width: 100%; height: 90px; object-fit: cover; display: block; }
@@ -211,6 +223,7 @@
         .legend-title { width: 95px; flex-shrink: 0; }
         .legend-desc { flex-grow: 1; }
 
+        /* Loader Animation untuk tabel */
         .loading-text { text-align: center; padding: 20px !important; font-style: italic; color: #888; }
     </style>
 </head>
@@ -271,38 +284,28 @@
 
         <div class="service-wrapper">
             <div class="section-title">LAYANAN SERVICE</div>
-            <div class="service-scroll">
-                <div class="service-item">
-                    <img src="https://arepair.id/wp-content/uploads/2018/12/service-kaca-iphone-retak-700x467.jpg" alt="Service LCD">
-                    <div class="service-item-overlay">SERVICE LCD / KACA</div>
-                </div>
-                <div class="service-item">
-                    <img src="https://arepair.id/wp-content/uploads/2018/12/baterai-kembung-membuat-layar-ngangkat-1-700x525.jpg" alt="Service Baterai">
-                    <div class="service-item-overlay">GANTI BATERAI</div>
-                </div>
-                <div class="service-item">
-                    <img src="https://arepair.id/wp-content/uploads/2018/10/service-port-charger-iphone-700x465.jpg" alt="Service Port">
-                    <div class="service-item-overlay">SERVICE PORT</div>
-                </div>
-                <div class="service-item">
-                    <img src="https://arepair.id/wp-content/uploads/2018/12/service-kamera-iphone-700x468.jpg" alt="Service Kamera">
-                    <div class="service-item-overlay">SERVICE KAMERA</div>
-                </div>
-                <div class="service-item">
-                    <img src="https://arepair.id/wp-content/uploads/2018/12/service-speaker-iphone-1-700x467.jpg" alt="Service Speaker">
-                    <div class="service-item-overlay">SERVICE SPEAKER</div>
-                </div>
-                <div class="service-item">
-                    <img src="https://arepair.id/wp-content/uploads/2018/12/service-home-button-iphone-700x540.jpg" alt="Service Home Button">
-                    <div class="service-item-overlay">HOME BUTTON</div>
-                </div>
-                <div class="service-item">
-                    <img src="https://arepair.id/wp-content/uploads/2019/03/service-software-iphone-2-700x419.jpg" alt="Service Software">
-                    <div class="service-item-overlay">SERVICE SOFTWARE</div>
-                </div>
-                <div class="service-item">
-                    <img src="https://arepair.id/wp-content/uploads/2023/04/service-back-glass-iphone-700x467.jpg" alt="Service Backglass">
-                    <div class="service-item-overlay">GANTI BACKGLASS</div>
+            <div class="service-slider">
+                <div class="service-track">
+                    <div class="service-group">
+                        <div class="service-item"><img src="https://arepair.id/wp-content/uploads/2018/12/service-kaca-iphone-retak-700x467.jpg" alt="Service LCD"><div class="service-item-overlay">SERVICE LCD / KACA</div></div>
+                        <div class="service-item"><img src="https://arepair.id/wp-content/uploads/2018/12/baterai-kembung-membuat-layar-ngangkat-1-700x525.jpg" alt="Service Baterai"><div class="service-item-overlay">GANTI BATERAI</div></div>
+                        <div class="service-item"><img src="https://arepair.id/wp-content/uploads/2018/10/service-port-charger-iphone-700x465.jpg" alt="Service Port"><div class="service-item-overlay">SERVICE PORT</div></div>
+                        <div class="service-item"><img src="https://arepair.id/wp-content/uploads/2018/12/service-kamera-iphone-700x468.jpg" alt="Service Kamera"><div class="service-item-overlay">SERVICE KAMERA</div></div>
+                        <div class="service-item"><img src="https://arepair.id/wp-content/uploads/2018/12/service-speaker-iphone-1-700x467.jpg" alt="Service Speaker"><div class="service-item-overlay">SERVICE SPEAKER</div></div>
+                        <div class="service-item"><img src="https://arepair.id/wp-content/uploads/2018/12/service-home-button-iphone-700x540.jpg" alt="Service Home Button"><div class="service-item-overlay">HOME BUTTON</div></div>
+                        <div class="service-item"><img src="https://arepair.id/wp-content/uploads/2019/03/service-software-iphone-2-700x419.jpg" alt="Service Software"><div class="service-item-overlay">SERVICE SOFTWARE</div></div>
+                        <div class="service-item"><img src="https://arepair.id/wp-content/uploads/2023/04/service-back-glass-iphone-700x467.jpg" alt="Service Backglass"><div class="service-item-overlay">GANTI BACKGLASS</div></div>
+                    </div>
+                    <div class="service-group">
+                        <div class="service-item"><img src="https://arepair.id/wp-content/uploads/2018/12/service-kaca-iphone-retak-700x467.jpg" alt="Service LCD"><div class="service-item-overlay">SERVICE LCD / KACA</div></div>
+                        <div class="service-item"><img src="https://arepair.id/wp-content/uploads/2018/12/baterai-kembung-membuat-layar-ngangkat-1-700x525.jpg" alt="Service Baterai"><div class="service-item-overlay">GANTI BATERAI</div></div>
+                        <div class="service-item"><img src="https://arepair.id/wp-content/uploads/2018/10/service-port-charger-iphone-700x465.jpg" alt="Service Port"><div class="service-item-overlay">SERVICE PORT</div></div>
+                        <div class="service-item"><img src="https://arepair.id/wp-content/uploads/2018/12/service-kamera-iphone-700x468.jpg" alt="Service Kamera"><div class="service-item-overlay">SERVICE KAMERA</div></div>
+                        <div class="service-item"><img src="https://arepair.id/wp-content/uploads/2018/12/service-speaker-iphone-1-700x467.jpg" alt="Service Speaker"><div class="service-item-overlay">SERVICE SPEAKER</div></div>
+                        <div class="service-item"><img src="https://arepair.id/wp-content/uploads/2018/12/service-home-button-iphone-700x540.jpg" alt="Service Home Button"><div class="service-item-overlay">HOME BUTTON</div></div>
+                        <div class="service-item"><img src="https://arepair.id/wp-content/uploads/2019/03/service-software-iphone-2-700x419.jpg" alt="Service Software"><div class="service-item-overlay">SERVICE SOFTWARE</div></div>
+                        <div class="service-item"><img src="https://arepair.id/wp-content/uploads/2023/04/service-back-glass-iphone-700x467.jpg" alt="Service Backglass"><div class="service-item-overlay">GANTI BACKGLASS</div></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -421,7 +424,7 @@
                     groupedItems.forEach((item, index) => {
                         const lowerName = item.cleanName.toLowerCase();
                         
-                        // 1. LOGIKA BRAND OTOMATIS
+                        // 1. LOGIKA BRAND OTOMATIS (LOGIC ANDA DIPERTAHANKAN 100%)
                         let brand = 'LAINNYA';
                         if (lowerName.includes('iphone') || lowerName.includes('apple') || lowerName.includes('ipad') || lowerName.includes('ip ')) brand = 'APPLE';
                         else if (lowerName.includes('samsung') || lowerName.includes('galaxy') || lowerName.includes('sein') || lowerName.includes('z flip') || lowerName.includes('z fold')) brand = 'SAMSUNG';
@@ -436,16 +439,10 @@
                         else if (lowerName.includes('google') || lowerName.includes('pixel')) brand = 'GOOGLE';
 
                         // 2. LOGIKA STATUS (READY / PROMO)
-                        // Cek apakah item ini ditandai sebagai promo/stok lama dari database API
                         let isPromo = false;
-                        if(item.status && item.status.toLowerCase().includes('promo')) isPromo = true;
-                        if(item.type && item.type.toLowerCase().includes('promo')) isPromo = true;
-                        
-                        // Cek menggunakan tanggal input (jika tersedia), misalkan stok lebih dari 60 hari = PROMO
-                        if(item.entryDate) {
-                            const daysInStock = (new Date() - new Date(item.entryDate)) / (1000 * 3600 * 24);
-                            if(daysInStock > 60) isPromo = true;
-                        }
+                        // Logika yang Anda tentukan: jika status/type adalah "old", jadikan PROMO
+                        if(item.status && item.status.toLowerCase() === 'old') isPromo = true;
+                        if(item.type && item.type.toLowerCase() === 'old') isPromo = true;
 
                         let badgeHtml = isPromo 
                             ? '<span class="status-badge badge-promo">PROMO</span>' 
