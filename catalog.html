@@ -16,7 +16,7 @@
             --dark-gray: #2b2b2b;
             --text-gray: #444444;
             --bronze-gradient: linear-gradient(135deg, #d3b49f 0%, #f4e2d3 50%, #b88d75 100%);
-            --whatsapp-color: #25d366; /* Warna hijau asli WhatsApp */
+            --whatsapp-color: #25d366;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -27,6 +27,7 @@
             justify-content: center;
             padding: 20px;
             font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
         }
 
         .brochure-container {
@@ -79,36 +80,32 @@
         }
         .promo-banner p { font-size: 14px; color: var(--dark-gray); font-weight: 700; letter-spacing: 0.5px; }
 
-        /* ANIMASI SHUFFLE KARTU UNTUK GAMBAR HERO */
-        .hero-images {
-            display: flex; justify-content: space-between; align-items: center; padding: 0 30px; margin-top: 25px; height: 220px; position: relative; z-index: 2;
+        /* ==========================================================
+           REVISI TOTAL: HERO SHOWCASE (ELEGAN & PROFESIONAL)
+           ========================================================== */
+        .hero-showcase {
+            display: flex; justify-content: center; align-items: center; 
+            height: 220px; position: relative; z-index: 2; margin-top: 15px;
         }
-        .hero-left { 
-            position: relative; width: 50%; height: 100%; display: flex; align-items: center; justify-content: center; 
+        .hero-wrapper {
+            position: absolute;
         }
-        .hero-left img { 
-            position: absolute; 
-            aspect-ratio: 1/1; 
-            width: 150px; 
-            object-fit: contain; 
-            border-radius: 6px;
-            filter: drop-shadow(5px 5px 8px rgba(0,0,0,0.5)); 
-        }
-        
-        .phone-1 { animation: cardShuffle 6s infinite cubic-bezier(0.4, 0, 0.2, 1) 0s; }
-        .phone-2 { animation: cardShuffle 6s infinite cubic-bezier(0.4, 0, 0.2, 1) -2s; }
-        .phone-3 { animation: cardShuffle 6s infinite cubic-bezier(0.4, 0, 0.2, 1) -4s; }
+        .wrap-left { z-index: 1; transform: translateX(-90px); }
+        .wrap-right { z-index: 2; transform: translateX(100px); }
+        .wrap-center { z-index: 3; }
 
-        @keyframes cardShuffle {
-            0%, 20%   { z-index: 3; transform: translateX(0) scale(1.05) translateY(0); opacity: 1; }
-            25%       { z-index: 3; transform: translateX(60px) scale(1) translateY(-10px); opacity: 1; }
-            33%, 53%  { z-index: 1; transform: translateX(20px) scale(0.85) translateY(10px); opacity: 0.6; }
-            66%, 86%  { z-index: 2; transform: translateX(-30px) scale(0.95) translateY(5px); opacity: 0.85; }
-            100%      { z-index: 3; transform: translateX(0) scale(1.05) translateY(0); opacity: 1; }
+        .hero-device {
+            filter: drop-shadow(0 15px 20px rgba(0,0,0,0.35));
+            animation: floatDevice 4s ease-in-out infinite;
         }
+        .wrap-left .hero-device { height: 140px; animation-delay: 1s; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.25)); }
+        .wrap-right .hero-device { height: 110px; animation-delay: 2s; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.25)); }
+        .wrap-center .hero-device { height: 180px; animation-delay: 0s; }
 
-        .hero-right { width: 45%; height: 100%; display: flex; align-items: center; justify-content: center; }
-        .hero-right img { max-width: 100%; max-height: 140px; filter: drop-shadow(3px 5px 6px rgba(0,0,0,0.3)); border-radius: 6px;}
+        @keyframes floatDevice {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
 
         .services-bar { background-color: var(--dark-gray); color: white; text-align: center; padding: 12px 0; margin: 20px 30px 15px; font-size: 13px; font-weight: 600; letter-spacing: 3px; position: relative; z-index: 2; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
 
@@ -185,27 +182,35 @@
         .legend-desc { flex-grow: 1; }
         .loading-text { text-align: center; padding: 20px !important; font-style: italic; color: #888; }
 
-        /* =======================================================
-           STYLE UNTUK FLOATING WHATSAPP BUTTON (MENGGANTIKAN AKSESORIS)
-           ======================================================= */
+        /* ==========================================================
+           TOMBOL WHATSAPP MENGAMBANG (POP UP SAAT SCROLL BAWAH)
+           ========================================================== */
         .whatsapp-float {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
+            position: fixed;
+            bottom: -80px; /* Posisi awal tersembunyi di bawah layar */
+            right: 25px;
             background-color: var(--whatsapp-color);
             color: white;
             border-radius: 50px;
-            padding: 10px 20px;
+            padding: 12px 20px;
             display: flex;
             align-items: center;
             gap: 8px;
             text-decoration: none;
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
-            font-size: 12px;
+            font-size: 13px;
             box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-            z-index: 100;
-            transition: all 0.3s ease;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Efek membal (bouncy) */
+        }
+        /* Kelas ini akan ditambahkan oleh Javascript */
+        .whatsapp-float.show-wa {
+            bottom: 30px;
+            opacity: 1;
+            visibility: visible;
             animation: pulse-wa 2s infinite;
         }
 
@@ -215,7 +220,7 @@
         }
 
         .whatsapp-float i {
-            font-size: 20px;
+            font-size: 22px;
         }
 
         @keyframes pulse-wa {
@@ -249,14 +254,15 @@
             </div>
         </div>
 
-        <div class="hero-images">
-            <div class="hero-left">
-                <img src="https://cdn.pixabay.com/photo/2020/08/22/01/34/cellphones-5507342_1280.jpg" class="phone-1" alt="iPhone Dark">
-                <img src="https://static.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/p2/113/2024/01/27/2022-05-02_054813jpg-20220928015310-3640475915.jpg" class="phone-2" alt="Samsung">
-                <img src="https://geotimes.id/wp-content/uploads/2017/08/HP-2-Jutaan-Terbaik-telset.jpg" class="phone-3" alt="iPhone White">
+        <div class="hero-showcase">
+            <div class="hero-wrapper wrap-left">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Samsung_Galaxy_S22_Ultra_rear.svg/512px-Samsung_Galaxy_S22_Ultra_rear.svg.png" class="hero-device" alt="Samsung">
             </div>
-            <div class="hero-right">
-                <img src="https://images.ctfassets.net/d9ybqgejqp0w/3e4ehJZ4hl2oqX0U60UkXi/d7e3c57355ff58c620646a0302f0f863/laptop-repair-feature-half.jpg?fm=webp&q=65" alt="Laptop Repair Service">
+            <div class="hero-wrapper wrap-right">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Airpods_Pro_Vector.svg/512px-Airpods_Pro_Vector.svg.png" class="hero-device" alt="AirPods">
+            </div>
+            <div class="hero-wrapper wrap-center">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/IPhone_14_Pro_Max_Vector.svg/512px-IPhone_14_Pro_Max_Vector.svg.png" class="hero-device" alt="iPhone">
             </div>
         </div>
 
@@ -314,7 +320,7 @@
                 <div class="corner-ornament corner-tl"></div>
                 <div class="corner-ornament corner-tr"></div>
                 
-                <div class="table-scroll-container">
+                <div class="table-scroll-container" id="pricelist-container">
                     <table class="price-table">
                         <thead>
                             <tr>
@@ -333,11 +339,7 @@
                         </tbody>
                     </table>
                 </div>
-                
-                <a href="https://wa.me/6281233014523?text=Halo%20Farid%20Store,%20saya%20ingin%20bertanya%20seputar%20pricelist%20atau%20service." target="_blank" class="whatsapp-float">
-                    <i class="fab fa-whatsapp"></i> Hubungi Kami
-                </a>
-            </div>
+                </div>
         </div>
 
         <div class="footer-contact">
@@ -371,9 +373,36 @@
         </div>
     </div>
 
+    <a href="https://wa.me/6281233014523?text=Halo%20Farid%20Store,%20saya%20tertarik%20dengan%20produk/service%20di%20pricelist%20Anda." target="_blank" class="whatsapp-float" id="wa-btn">
+        <i class="fab fa-whatsapp"></i> Hubungi Kami
+    </a>
+
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const tbody = document.getElementById("pricelist-data");
+            const tableContainer = document.getElementById("pricelist-container");
+            const waBtn = document.getElementById("wa-btn");
+
+            // FUNGSI UNTUK MENGATUR MUNCULNYA TOMBOL WHATSAPP
+            function checkScrollPosition() {
+                if (!tableContainer) return;
+                
+                // Menghitung seberapa jauh user men-scroll tabel
+                // Toleransi 50px dari bawah agar tombol muncul sebelum benar-benar termentok
+                const isReachedBottom = tableContainer.scrollHeight - tableContainer.scrollTop <= tableContainer.clientHeight + 50;
+                
+                // Atau jika data di tabel sangat sedikit (tidak ada scrollbar sama sekali)
+                const isNoScrollNeeded = tableContainer.scrollHeight <= tableContainer.clientHeight;
+
+                if (isReachedBottom || isNoScrollNeeded) {
+                    waBtn.classList.add('show-wa');
+                } else {
+                    waBtn.classList.remove('show-wa');
+                }
+            }
+
+            // Memasang pendeteksi saat pengguna menscroll tabel
+            tableContainer.addEventListener('scroll', checkScrollPosition);
 
             async function fetchPricelist() {
                 try {
@@ -390,6 +419,8 @@
 
                     if (availableItems.length === 0) {
                         tbody.innerHTML = '<tr><td colspan="6" class="loading-text">Mohon maaf, semua unit sedang habis / sold out.</td></tr>';
+                        // Cek scroll jika tabel kosong
+                        setTimeout(checkScrollPosition, 300);
                         return;
                     }
 
@@ -449,7 +480,7 @@
                         const priceInRibuan = rawPrice / 1000;
                         const priceFormatted = priceInRibuan.toLocaleString('id-ID'); 
 
-                        // 4. MEMASUKKAN BARIS KE TABEL (6 Kolom)
+                        // 4. MEMASUKKAN BARIS KE TABEL
                         const tr = document.createElement('tr');
                         tr.innerHTML = `
                             <td>${index + 1}</td>
@@ -462,9 +493,13 @@
                         tbody.appendChild(tr);
                     });
 
+                    // Setelah data selesai dimasukkan ke HTML, cek ulang ukuran scroll tabel
+                    setTimeout(checkScrollPosition, 500);
+
                 } catch (error) {
                     console.error("Gagal menarik data API Pricelist:", error);
                     tbody.innerHTML = '<tr><td colspan="6" class="loading-text" style="color:#b84c4c;">Gagal memuat harga. Silakan refresh halaman.</td></tr>';
+                    setTimeout(checkScrollPosition, 300);
                 }
             }
 
