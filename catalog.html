@@ -13,8 +13,8 @@
             --rose-gold-light: #e6cebc;
             --rose-gold-mid: #c5a08b;
             --rose-gold-dark: #9a765e;
-            --dark-gray: #333333;
-            --text-gray: #555555;
+            --dark-gray: #2b2b2b;
+            --text-gray: #444444;
             --bronze-gradient: linear-gradient(135deg, #d3b49f 0%, #f4e2d3 50%, #b88d75 100%);
         }
 
@@ -25,72 +25,66 @@
         }
 
         body {
-            background-color: #2c2c2c; /* Warna background luar gelap agar brosur menonjol */
+            background-color: #1a1a1a;
             display: flex;
             justify-content: center;
             padding: 20px;
             font-family: 'Montserrat', sans-serif;
         }
 
-        /* Container Utama Brosur */
         .brochure-container {
             width: 100%;
             max-width: 550px;
             background-color: var(--bg-color);
+            background-image: linear-gradient(to bottom, #dfdcd7, #e8e6e1);
             position: relative;
             border: 2px solid var(--rose-gold-mid);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
             overflow: hidden;
             padding-bottom: 30px;
         }
 
-        /* Garis Tepi Metalik Dalam */
         .inner-border {
             position: absolute;
-            top: 10px;
-            left: 10px;
-            right: 10px;
-            bottom: 10px;
+            top: 10px; left: 10px; right: 10px; bottom: 10px;
             border: 1px solid var(--rose-gold-mid);
             pointer-events: none;
             z-index: 10;
         }
 
-        /* Teks Vertikal di Sisi Kiri & Kanan */
         .vertical-text {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
             font-family: 'Playfair Display', serif;
-            font-size: 40px;
-            color: rgba(0, 0, 0, 0.04);
+            font-size: 45px;
+            color: rgba(0, 0, 0, 0.03);
             white-space: nowrap;
-            letter-spacing: 5px;
+            letter-spacing: 6px;
             z-index: 1;
-            -webkit-text-stroke: 1px rgba(197, 160, 139, 0.3);
+            -webkit-text-stroke: 1px rgba(197, 160, 139, 0.4);
         }
 
         .vertical-left {
-            left: -160px;
+            left: -170px;
             transform: translateY(-50%) rotate(-90deg);
         }
 
         .vertical-right {
-            right: -180px;
+            right: -200px;
             transform: translateY(-50%) rotate(90deg);
         }
 
-        /* Bagian Header */
         .header {
             text-align: center;
-            padding: 30px 20px 10px;
+            padding: 35px 20px 10px;
             position: relative;
             z-index: 2;
         }
 
         .header h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 36px;
+            font-size: 38px;
             color: var(--dark-gray);
             font-weight: 700;
             letter-spacing: 2px;
@@ -98,26 +92,22 @@
         }
 
         .header p {
-            font-size: 14px;
+            font-size: 15px;
             color: var(--text-gray);
             letter-spacing: 1px;
         }
 
-        /* Hiasan Atas (Pita V) */
         .top-decoration {
             position: absolute;
-            top: 0;
-            left: 50%;
+            top: 0; left: 50%;
             transform: translateX(-50%);
-            width: 250px;
-            height: 40px;
-            background: linear-gradient(to bottom, #d0b8a8, #e3d2c6);
-            clip-path: polygon(0 0, 100% 0, 80% 100%, 20% 100%);
+            width: 280px; height: 45px;
+            background: linear-gradient(to bottom, #cfb5a3, #e8d7ca);
+            clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);
             z-index: 1;
-            opacity: 0.5;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        /* Bagian Promo & Cashback */
         .promo-section {
             display: flex;
             align-items: center;
@@ -132,28 +122,29 @@
             border: 1px solid var(--rose-gold-mid);
             padding: 10px;
             text-align: center;
-            width: 80px;
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+            width: 85px;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.15);
             position: relative;
+            z-index: 2;
         }
 
         .cashback-badge::before {
             content: '';
             position: absolute;
-            top: -3px; left: -3px; right: -3px; bottom: -3px;
+            top: -4px; left: -4px; right: -4px; bottom: -4px;
             border: 1px solid var(--rose-gold-light);
             z-index: -1;
         }
 
         .cashback-badge span.small-text {
-            font-size: 8px;
+            font-size: 9px;
             display: block;
             letter-spacing: 1px;
         }
 
         .cashback-badge span.big-number {
             font-family: 'Playfair Display', serif;
-            font-size: 32px;
+            font-size: 34px;
             line-height: 1;
             display: inline-block;
             margin: 5px 0;
@@ -161,77 +152,95 @@
 
         .promo-banner {
             flex-grow: 1;
-            background: rgba(197, 160, 139, 0.2);
-            padding: 10px;
-            margin-left: -10px;
-            padding-left: 20px;
+            background: rgba(197, 160, 139, 0.25);
+            padding: 12px 10px 12px 25px;
+            margin-left: -15px;
             border-top: 1px solid var(--rose-gold-mid);
             border-bottom: 1px solid var(--rose-gold-mid);
         }
 
         .promo-banner p {
-            font-size: 13px;
+            font-size: 14px;
             color: var(--dark-gray);
-            font-weight: 600;
+            font-weight: 700;
             letter-spacing: 0.5px;
         }
 
-        /* Gambar Produk Hero (Placeholder) */
         .hero-images {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             padding: 0 30px;
-            margin-top: 20px;
-            height: 200px;
+            margin-top: 25px;
+            height: 220px;
             position: relative;
             z-index: 2;
         }
 
-        .hero-images img {
-            max-height: 100%;
-            object-fit: contain;
-            filter: drop-shadow(5px 5px 10px rgba(0,0,0,0.3));
+        .hero-left {
+            position: relative;
+            width: 50%;
+            height: 100%;
         }
 
-        /* Bar Jual Beli */
+        .hero-left img {
+            position: absolute;
+            bottom: 0;
+            max-height: 180px;
+            filter: drop-shadow(5px 5px 8px rgba(0,0,0,0.4));
+        }
+
+        .phone-1 { left: 0; z-index: 3; max-height: 170px !important; }
+        .phone-2 { left: 40px; z-index: 2; max-height: 190px !important; }
+        .phone-3 { left: 90px; z-index: 1; max-height: 160px !important; }
+
+        .hero-right {
+            width: 45%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-right img {
+            max-width: 100%;
+            max-height: 160px;
+            filter: drop-shadow(3px 5px 6px rgba(0,0,0,0.3));
+        }
+
         .services-bar {
             background-color: var(--dark-gray);
             color: white;
             text-align: center;
-            padding: 10px 0;
-            margin: 20px 30px 10px;
-            font-size: 14px;
-            font-weight: 500;
-            letter-spacing: 2px;
+            padding: 12px 0;
+            margin: 20px 30px 15px;
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: 3px;
             position: relative;
             z-index: 2;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
         }
 
-        /* Logo Brand */
         .brands-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 15px;
+            align-items: center;
+            gap: 15px 20px;
             padding: 0 30px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             position: relative;
             z-index: 2;
         }
 
-        .brands-container span {
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--dark-gray);
-            display: flex;
-            align-items: center;
+        .brands-container img {
+            height: 18px; /* Ukuran standar logo */
+            object-fit: contain;
+            /* Membuat logo berwarna gelap/monokrom menyatu dengan desain */
+            filter: brightness(0) opacity(0.85); 
         }
 
-        .brands-container i {
-            margin-right: 4px;
-        }
-
-        /* Bagian Pricelist & Marmer */
         .pricelist-wrapper {
             position: relative;
             z-index: 2;
@@ -241,10 +250,10 @@
         .pricelist-title {
             text-align: center;
             font-size: 18px;
-            font-weight: 600;
-            letter-spacing: 2px;
+            font-weight: 700;
+            letter-spacing: 3px;
             color: var(--dark-gray);
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -253,83 +262,108 @@
         .pricelist-title::before, .pricelist-title::after {
             content: '';
             height: 1px;
-            width: 50px;
+            width: 60px;
             background-color: var(--text-gray);
-            margin: 0 10px;
+            margin: 0 15px;
         }
 
         .marble-board {
-            background-color: #f9f9f9;
-            /* Placeholder tekstur marmer, ganti URL ini dengan gambar marmer asli Anda */
-            background-image: url('https://www.transparenttextures.com/patterns/white-marble.png');
-            height: 350px;
-            border: 1px solid rgba(0,0,0,0.1);
+            /* Background tekstur marmer dari Unsplash dicampur overlay putih */
+            background: linear-gradient(rgba(245, 245, 245, 0.9), rgba(245, 245, 245, 0.9)), 
+                        url('https://images.unsplash.com/photo-1596525164887-17eb955e8884?q=80&w=800&auto=format&fit=crop') center/cover;
+            height: 380px;
+            border: 1px solid rgba(0,0,0,0.15);
             position: relative;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
+            box-shadow: inset 0 0 30px rgba(0,0,0,0.08), 0 5px 15px rgba(0,0,0,0.1);
+            padding: 25px 20px;
         }
 
-        /* Ornamen Sudut Marmer */
         .corner-ornament {
             position: absolute;
-            width: 20px;
-            height: 20px;
+            width: 25px;
+            height: 25px;
             background: var(--bronze-gradient);
+            box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
         }
         .corner-tl { top: 0; left: 0; clip-path: polygon(0 0, 100% 0, 0 100%); }
         .corner-tr { top: 0; right: 0; clip-path: polygon(0 0, 100% 0, 100% 100%); }
 
-        /* Aksesoris di atas meja (Pena & Kunci - Placeholder) */
-        .table-accessories {
-            position: absolute;
-            bottom: 10px;
+        /* Tabel Data HP */
+        .price-table {
             width: 100%;
-            pointer-events: none;
-        }
-        .pen-placeholder {
-            position: absolute;
-            bottom: 20px;
-            left: -10px;
-            width: 5px;
-            height: 80px;
-            background: linear-gradient(to right, #888, #ccc, #888);
-            transform: rotate(20deg);
-            border-radius: 10px;
-        }
-        .key-placeholder {
-            position: absolute;
-            bottom: 20px;
-            right: 10px;
-            font-size: 40px;
-            color: #333;
-            transform: rotate(-30deg);
+            border-collapse: collapse;
+            font-size: 13px;
+            color: var(--dark-gray);
         }
 
-        /* Footer Kontak */
+        .price-table th {
+            border-bottom: 2px solid var(--rose-gold-mid);
+            padding: 8px 5px;
+            text-align: left;
+            font-weight: 700;
+        }
+
+        .price-table td {
+            border-bottom: 1px dashed rgba(0,0,0,0.2);
+            padding: 8px 5px;
+        }
+
+        .price-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Dekorasi Aksesoris Meja (Pena & Kunci) */
+        .table-accessories {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .pen-img {
+            position: absolute;
+            bottom: 10px;
+            left: -15px;
+            width: 120px;
+            transform: rotate(15deg);
+            filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.4));
+        }
+
+        .key-img {
+            position: absolute;
+            bottom: -20px;
+            right: -10px;
+            width: 100px;
+            transform: rotate(-10deg);
+            filter: drop-shadow(-3px 5px 5px rgba(0,0,0,0.5));
+        }
+
         .footer-contact {
             background: var(--bronze-gradient);
             margin: 20px 30px 0;
-            padding: 15px 20px;
+            padding: 15px 25px;
             position: relative;
             z-index: 2;
-            border: 1px solid rgba(255,255,255,0.3);
-            box-shadow: 2px 5px 15px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.4);
+            box-shadow: 2px 8px 20px rgba(0,0,0,0.3);
             clip-path: polygon(0 0, 100% 0, 100% 85%, 95% 100%, 0 100%);
         }
 
         .footer-contact p {
             font-size: 13px;
-            color: #222;
-            font-weight: 500;
-            margin-bottom: 5px;
+            color: #111;
+            font-weight: 600;
+            margin-bottom: 6px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .footer-contact i {
-            font-size: 16px;
+            font-size: 18px;
+            color: #222;
         }
-
     </style>
 </head>
 <body>
@@ -358,8 +392,14 @@
         </div>
 
         <div class="hero-images">
-            <img src="https://dummyimage.com/150x200/cccccc/000000.png&text=Gambar+HP+Kiri" alt="Smartphones">
-            <img src="https://dummyimage.com/150x200/cccccc/000000.png&text=Aksesoris+Kanan" alt="Accessories">
+            <div class="hero-left">
+                <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-black-titanium-select?wid=400&hei=400&fmt=png-alpha" class="phone-1" alt="iPhone">
+                <img src="https://images.samsung.com/is/image/samsung/p6pim/id/2401/gallery/id-galaxy-s24-s928-sm-s928bztqxid-539573322?$650_519_PNG$" class="phone-2" alt="Samsung">
+                <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-white-select-202309?wid=400&hei=400&fmt=png-alpha" class="phone-3" alt="White Phone">
+            </div>
+            <div class="hero-right">
+                <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MME73?wid=400&hei=400&fmt=png-alpha" alt="Accessories">
+            </div>
         </div>
 
         <div class="services-bar">
@@ -367,19 +407,19 @@
         </div>
 
         <div class="brands-container">
-            <span><b>SAMSUNG</b></span>
-            <span>Google Pixel</span>
-            <span><b>mi</b></span>
-            <span>oppo</span>
-            <span>vivo</span>
-            <span><i class="fab fa-apple"></i></span>
-            <span>realme</span>
-            <span>Infinix</span>
-            <span>TECNO</span>
-            <span>itel</span>
-            <span>iQOO</span>
-            <span>Lenovo</span>
-            <span>ADVAN</span>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg" alt="Samsung" style="height: 14px;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Google_Pixel_logo.svg" alt="Google Pixel" style="height: 16px;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Xiaomi_logo.svg" alt="Xiaomi" style="height: 22px;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/OPPO_Logo.svg" alt="Oppo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Vivo_mobile_logo.png" alt="Vivo" style="height: 16px;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple" style="height: 20px;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/07/Realme_logo.svg" alt="Realme">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Infinix_Mobile_Logo.svg" alt="Infinix" style="height: 20px;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Tecno_Logo.svg" alt="Tecno">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Itel_logo.svg" alt="itel" style="height: 24px;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/37/IQOO_logo.svg" alt="iQOO">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/Lenovo_logo_2015.svg" alt="Lenovo" style="height: 14px;">
+            <span style="font-family: Arial, sans-serif; font-weight: 900; font-size: 16px; color: #111;">ADVAN</span>
         </div>
 
         <div class="pricelist-wrapper">
@@ -388,9 +428,36 @@
                 <div class="corner-ornament corner-tl"></div>
                 <div class="corner-ornament corner-tr"></div>
                 
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th>Tipe HP</th>
+                            <th>Kondisi</th>
+                            <th style="text-align: right;">Harga</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Samsung Galaxy S23 Ultra</td>
+                            <td>Mulus / Fullset</td>
+                            <td style="text-align: right;">Rp --.---.---</td>
+                        </tr>
+                        <tr>
+                            <td>iPhone 14 Pro Max 256GB</td>
+                            <td>Lecet Pemakaian</td>
+                            <td style="text-align: right;">Rp --.---.---</td>
+                        </tr>
+                        <tr>
+                            <td>Google Pixel 7 Pro</td>
+                            <td>Mulus / Batangan</td>
+                            <td style="text-align: right;">Rp --.---.---</td>
+                        </tr>
+                        </tbody>
+                </table>
+                
                 <div class="table-accessories">
-                    <div class="pen-placeholder"></div>
-                    <i class="fas fa-car-side key-placeholder"></i> 
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Montblanc_Meisterst%C3%BCck_149.png/320px-Montblanc_Meisterst%C3%BCck_149.png" class="pen-img" alt="Pen">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Car_keys_and_remote.png/320px-Car_keys_and_remote.png" class="key-img" alt="Car Key">
                 </div>
             </div>
         </div>
