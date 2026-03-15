@@ -80,41 +80,30 @@
         }
         .promo-banner p { font-size: 14px; color: var(--dark-gray); font-weight: 700; letter-spacing: 0.5px; }
 
-        /* HERO SHOWCASE ELEGAN (FLOATING CARDS) DENGAN GAMBAR USER */
-        .hero-images {
-            display: flex; justify-content: space-between; align-items: center; padding: 0 30px; margin-top: 25px; height: 220px; position: relative; z-index: 2;
+        /* HERO SHOWCASE - PROFESSIONAL GRID STYLE */
+        .hero-showcase {
+            display: flex; gap: 12px; padding: 0 25px; margin-top: 25px;
+            position: relative; z-index: 2; height: 180px;
         }
-        .hero-left { 
-            position: relative; width: 50%; height: 100%; display: flex; align-items: center; justify-content: center;
+        .hero-col-left {
+            flex: 1.2; height: 100%;
         }
-        
-        .hero-left .img-wrapper {
-            position: absolute;
-            animation: floatDevice 4s ease-in-out infinite;
+        .hero-col-right {
+            flex: 1; display: flex; flex-direction: column; gap: 10px; height: 100%;
         }
-        
-        .wrapper-1 { transform: translateX(-40px) rotate(-10deg); z-index: 1; animation-delay: 0s; }
-        .wrapper-2 { transform: translateY(-5px) rotate(0deg); z-index: 3; animation-delay: 1.5s; }
-        .wrapper-3 { transform: translateX(40px) rotate(10deg); z-index: 2; animation-delay: 3s; }
-
-        .hero-left img { 
-            width: 100px; height: 130px; object-fit: cover; 
-            border-radius: 10px; border: 2px solid var(--rose-gold-mid);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5); 
+        .hero-img-main {
+            width: 100%; height: 100%; object-fit: cover; border-radius: 8px;
+            border: 2px solid var(--rose-gold-mid); box-shadow: 0 6px 15px rgba(0,0,0,0.25);
         }
-        .wrapper-2 img { width: 115px; height: 150px; box-shadow: 0 15px 25px rgba(0,0,0,0.6); border: 3px solid var(--rose-gold-light); }
-
-        @keyframes floatDevice {
-            0%, 100% { margin-top: 0; }
-            50% { margin-top: -12px; }
+        .hero-img-sub {
+            width: 100%; height: 85px; object-fit: cover; border-radius: 6px;
+            border: 1px solid var(--rose-gold-mid); box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         }
-
-        .hero-right { width: 45%; height: 100%; display: flex; align-items: center; justify-content: center; }
-        .hero-right img { 
-            max-width: 100%; max-height: 140px; 
-            border-radius: 10px; border: 2px solid var(--rose-gold-mid);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4); 
-            animation: floatDevice 4s ease-in-out infinite 1s;
+        .hero-sub-row {
+            display: flex; gap: 10px; height: 85px;
+        }
+        .hero-sub-row img {
+            width: 50%; height: 100%;
         }
 
         .services-bar { background-color: var(--dark-gray); color: white; text-align: center; padding: 12px 0; margin: 20px 30px 15px; font-size: 13px; font-weight: 600; letter-spacing: 3px; position: relative; z-index: 2; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
@@ -135,46 +124,37 @@
         .brand-lenovo { font-family: 'Arial Black', sans-serif; font-weight: 900; font-size: 13px; font-style: italic; letter-spacing: 0.5px; }
         .brand-advan { font-family: 'Arial', sans-serif; font-weight: 900; font-size: 14px; letter-spacing: 0.5px; text-transform: uppercase; }
 
-        /* =======================================================
-           PERBAIKAN FINAL: SLIDER ANIMASI SERVIS UNLIMITED
-           ======================================================= */
         .service-wrapper { position: relative; z-index: 2; margin: 0 20px 25px; }
         .section-title { text-align: center; font-size: 16px; font-weight: 700; letter-spacing: 3px; color: var(--dark-gray); margin-bottom: 12px; display: flex; align-items: center; justify-content: center; }
         .section-title::before, .section-title::after { content: ''; height: 1px; width: 40px; background-color: var(--text-gray); margin: 0 10px; }
         
-        .service-slider { 
-            display: flex; 
-            overflow: hidden; 
-            width: 100%; 
-            position: relative; 
-        }
+        .service-slider { overflow: hidden; width: 100%; position: relative; display: flex; }
         
         .service-track { 
             display: flex; 
-            flex-shrink: 0; 
             width: max-content; 
-            animation: scrollMarquee 40s linear infinite; 
+            flex-wrap: nowrap;
+            animation: scrollMarquee 25s linear infinite; 
         }
-        
-        .service-slider:hover .service-track { animation-play-state: paused; }
+        .service-track:hover { animation-play-state: paused; }
         
         .service-group { 
             display: flex; 
-            flex-wrap: nowrap; 
             gap: 12px; 
             padding-right: 12px; 
+            flex-shrink: 0;
+            flex-wrap: nowrap;
         }
         
         @keyframes scrollMarquee { 
             0% { transform: translateX(0); } 
-            100% { transform: translateX(-100%); } 
+            100% { transform: translateX(-50%); } 
         }
         
         .service-item { flex: 0 0 130px; position: relative; border-radius: 6px; overflow: hidden; border: 1px solid var(--rose-gold-mid); box-shadow: 0 4px 8px rgba(0,0,0,0.15); background: #fff; }
         .service-item img { width: 100%; height: 90px; object-fit: cover; display: block; }
         .service-item-overlay { background: var(--dark-gray); color: var(--rose-gold-light); font-size: 9px; font-weight: 700; text-align: center; padding: 6px 4px; letter-spacing: 0.5px; border-top: 1px solid var(--rose-gold-mid); }
 
-        /* TABEL MOBILE FRIENDLY (3 Kolom) */
         .pricelist-wrapper { position: relative; z-index: 2; margin: 0 20px; }
         .marble-board {
             background: linear-gradient(rgba(245, 245, 245, 0.95), rgba(245, 245, 245, 0.95)), url('https://images.unsplash.com/photo-1596525164887-17eb955e8884?q=80&w=800&auto=format&fit=crop') center/cover;
@@ -220,33 +200,11 @@
         .legend-desc { flex-grow: 1; }
         .loading-text { text-align: center; padding: 20px !important; font-style: italic; color: #888; font-size: 11px;}
 
-        /* TOMBOL WHATSAPP MENGAMBANG (POP-UP) */
         .whatsapp-float {
-            position: fixed;
-            bottom: -80px; 
-            right: 25px;
-            background-color: var(--whatsapp-color);
-            color: white;
-            border-radius: 50px;
-            padding: 12px 20px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: 13px;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            position: fixed; bottom: -80px; right: 25px; background-color: var(--whatsapp-color); color: white; border-radius: 50px; padding: 12px 20px; display: flex; align-items: center; gap: 8px; text-decoration: none; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); z-index: 1000; opacity: 0; visibility: hidden; transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
         .whatsapp-float.show-wa {
-            bottom: 30px;
-            opacity: 1;
-            visibility: visible;
-            animation: pulse-wa 2s infinite;
+            bottom: 30px; opacity: 1; visibility: visible; animation: pulse-wa 2s infinite;
         }
         .whatsapp-float:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6); color: white; }
         .whatsapp-float i { font-size: 22px; }
@@ -281,20 +239,16 @@
             </div>
         </div>
 
-        <div class="hero-images">
-            <div class="hero-left">
-                <div class="img-wrapper wrapper-1">
-                    <img src="https://cdn.pixabay.com/photo/2020/08/22/01/34/cellphones-5507342_1280.jpg" alt="Gadget Dark">
-                </div>
-                <div class="img-wrapper wrapper-3">
-                    <img src="https://geotimes.id/wp-content/uploads/2017/08/HP-2-Jutaan-Terbaik-telset.jpg" alt="Gadget Light">
-                </div>
-                <div class="img-wrapper wrapper-2">
-                    <img src="https://static.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/p2/113/2024/01/27/2022-05-02_054813jpg-20220928015310-3640475915.jpg" alt="Gadget Samsung">
-                </div>
+        <div class="hero-showcase">
+            <div class="hero-col-left">
+                <img src="https://images.ctfassets.net/d9ybqgejqp0w/3e4ehJZ4hl2oqX0U60UkXi/d7e3c57355ff58c620646a0302f0f863/laptop-repair-feature-half.jpg?fm=webp&q=65" alt="Laptop Repair Service" class="hero-img-main">
             </div>
-            <div class="hero-right">
-                <img src="https://images.ctfassets.net/d9ybqgejqp0w/3e4ehJZ4hl2oqX0U60UkXi/d7e3c57355ff58c620646a0302f0f863/laptop-repair-feature-half.jpg?fm=webp&q=65" alt="Laptop Repair Service">
+            <div class="hero-col-right">
+                <img src="https://static.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/p2/113/2024/01/27/2022-05-02_054813jpg-20220928015310-3640475915.jpg" alt="Gadget Samsung" class="hero-img-sub">
+                <div class="hero-sub-row">
+                    <img src="https://cdn.pixabay.com/photo/2020/08/22/01/34/cellphones-5507342_1280.jpg" alt="Gadget Dark" class="hero-img-sub">
+                    <img src="https://geotimes.id/wp-content/uploads/2017/08/HP-2-Jutaan-Terbaik-telset.jpg" alt="Gadget Light" class="hero-img-sub">
+                </div>
             </div>
         </div>
 
@@ -332,8 +286,6 @@
                         <div class="service-item"><img src="https://arepair.id/wp-content/uploads/2019/03/service-software-iphone-2-700x419.jpg" alt="Service Software"><div class="service-item-overlay">SERVICE SOFTWARE</div></div>
                         <div class="service-item"><img src="https://arepair.id/wp-content/uploads/2023/04/service-back-glass-iphone-700x467.jpg" alt="Service Backglass"><div class="service-item-overlay">GANTI BACKGLASS</div></div>
                     </div>
-                </div>
-                <div class="service-track">
                     <div class="service-group">
                         <div class="service-item"><img src="https://arepair.id/wp-content/uploads/2018/12/service-kaca-iphone-retak-700x467.jpg" alt="Service LCD"><div class="service-item-overlay">SERVICE LCD / KACA</div></div>
                         <div class="service-item"><img src="https://arepair.id/wp-content/uploads/2018/12/baterai-kembung-membuat-layar-ngangkat-1-700x525.jpg" alt="Service Baterai"><div class="service-item-overlay">GANTI BATERAI</div></div>
@@ -414,7 +366,6 @@
             const tableContainer = document.getElementById("pricelist-container");
             const waBtn = document.getElementById("wa-btn");
 
-            // FUNGSI MUNCULKAN TOMBOL WA SAAT SCROLL SAMPAI BAWAH
             function checkScrollPosition() {
                 if (!tableContainer) return;
                 
