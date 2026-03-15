@@ -80,7 +80,7 @@
         }
         .promo-banner p { font-size: 14px; color: var(--dark-gray); font-weight: 700; letter-spacing: 0.5px; }
 
-        /* HERO SHOWCASE ELEGAN (FLOATING CARDS) DENGAN GAMBAR USER */
+        /* HERO SHOWCASE ELEGAN (FLOATING CARDS) */
         .hero-images {
             display: flex; justify-content: space-between; align-items: center; padding: 0 30px; margin-top: 25px; height: 220px; position: relative; z-index: 2;
         }
@@ -136,31 +136,38 @@
         .brand-advan { font-family: 'Arial', sans-serif; font-weight: 900; font-size: 14px; letter-spacing: 0.5px; text-transform: uppercase; }
 
         /* =======================================================
-           PERBAIKAN: SLIDER ANIMASI SERVIS YANG BERGERAK UNLIMITED
-           DENGAN MAX-CONTENT AGAR TIDAK PUTUS DI MOBILE
+           PERBAIKAN FINAL: SLIDER ANIMASI SERVIS ANTI LOMPAT
            ======================================================= */
         .service-wrapper { position: relative; z-index: 2; margin: 0 20px 25px; }
-        .section-title { text-align: center; font-size: 16px; font-weight: 700; letter-spacing: 3px; color: var(--dark-gray); margin-bottom: 12px; display: flex; align-items: center; justify-content: center; }
+        .section-title {
+            text-align: center; font-size: 16px; font-weight: 700; letter-spacing: 3px; color: var(--dark-gray); margin-bottom: 12px; display: flex; align-items: center; justify-content: center;
+        }
         .section-title::before, .section-title::after { content: ''; height: 1px; width: 40px; background-color: var(--text-gray); margin: 0 10px; }
         
-        .service-slider { overflow: hidden; width: 100%; position: relative; display: flex; }
+        /* Pembungkus utama disetel block (BUKAN flex) agar track di dalamnya bebas melebar */
+        .service-slider { 
+            display: block; 
+            overflow: hidden; 
+            width: 100%; 
+            position: relative; 
+        }
         
         .service-track { 
             display: flex; 
-            width: max-content; /* KUNCI UTAMA ANTI PUTUS */
-            animation: scrollMarquee 25s linear infinite; 
+            width: max-content; 
+            animation: scrollMarquee 30s linear infinite; 
         }
         .service-track:hover { animation-play-state: paused; }
         
         .service-group { 
             display: flex; 
+            flex-wrap: nowrap; 
             gap: 12px; 
-            padding-right: 12px; /* Jarak pas antara grup 1 dan grup 2 */
+            padding-right: 12px; 
         }
         
         @keyframes scrollMarquee { 
             0% { transform: translateX(0); } 
-            /* Digeser 50% karena service-track memuat persis 2 grup */
             100% { transform: translateX(-50%); } 
         }
         
@@ -396,7 +403,7 @@
         </div>
     </div>
 
-    <a href="https://wa.me/6281233014523?text=Halo%20Farid%20Store,%20saya%20ingin%20pesan%20produk%20di%20pricelist." target="_blank" class="whatsapp-float" id="wa-btn">
+    <a href="https://wa.me/6281233014523?text=Halo%20Farid%20Store,%20saya%20tertarik%20dengan%20produk%20di%20pricelist." target="_blank" class="whatsapp-float" id="wa-btn">
         <i class="fab fa-whatsapp"></i> Pesan Sekarang
     </a>
 
@@ -465,6 +472,7 @@
                     groupedItems.forEach((item, index) => {
                         const lowerName = item.cleanName.toLowerCase();
                         
+                        // 1. LOGIKA BRAND
                         let brand = 'LAINNYA';
                         if (lowerName.includes('iphone') || lowerName.includes('apple') || lowerName.includes('ipad') || lowerName.includes('ip ')) brand = 'APPLE';
                         else if (lowerName.includes('samsung') || lowerName.includes('galaxy') || lowerName.includes('sein') || lowerName.includes('z flip') || lowerName.includes('z fold')) brand = 'SAMSUNG';
@@ -478,7 +486,7 @@
                         else if (lowerName.includes('asus') || lowerName.includes('rog')) brand = 'ASUS';
                         else if (lowerName.includes('google') || lowerName.includes('pixel')) brand = 'GOOGLE';
 
-                        // LOGIKA STATUS: Jika "old" jadikan PROMO, defaultnya READY
+                        // 2. LOGIKA STATUS (HANYA READY DAN PROMO)
                         let isPromo = false;
                         if(item.status && item.status.toLowerCase() === 'old') isPromo = true;
                         if(item.type && item.type.toLowerCase() === 'old') isPromo = true;
@@ -487,6 +495,7 @@
                             ? '<span class="status-badge badge-promo">PROMO</span>' 
                             : '<span class="status-badge badge-ready">READY</span>';
 
+                        // 3. LOGIKA IBOX / INTER
                         let badgeKondisi = '';
                         const nameUpper = (item.name || "").toUpperCase();
                         if (nameUpper.includes("IBOX")) {
@@ -495,10 +504,12 @@
                             badgeKondisi = '<span class="status-badge badge-inter">INTER</span>';
                         }
 
+                        // 4. FORMAT HARGA
                         const rawPrice = parseFloat(item.price) || 0;
                         const priceInRibuan = rawPrice / 1000;
                         const priceFormatted = priceInRibuan.toLocaleString('id-ID'); 
 
+                        // 5. RENDER TABEL (3 Kolom Mobile-Friendly)
                         const tr = document.createElement('tr');
                         tr.innerHTML = `
                             <td class="col-no">${index + 1}</td>
