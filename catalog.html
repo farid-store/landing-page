@@ -80,41 +80,49 @@
         }
         .promo-banner p { font-size: 14px; color: var(--dark-gray); font-weight: 700; letter-spacing: 0.5px; }
 
-        /* ANIMASI SHUFFLE KARTU HERO (Rasio 1:1) */
+        /* ==========================================================
+           HERO SHOWCASE ELEGAN (FLOATING CARDS) DENGAN GAMBAR USER
+           ========================================================== */
         .hero-images {
             display: flex; justify-content: space-between; align-items: center; padding: 0 30px; margin-top: 25px; height: 220px; position: relative; z-index: 2;
         }
         .hero-left { 
-            position: relative; width: 50%; height: 100%; display: flex; align-items: center; 
-        }
-        .hero-left img { 
-            position: absolute; 
-            aspect-ratio: 1/1; 
-            width: 150px; 
-            object-fit: contain; 
-            border-radius: 6px;
-            filter: drop-shadow(5px 5px 8px rgba(0,0,0,0.5)); 
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); 
+            position: relative; width: 50%; height: 100%; display: flex; align-items: center; justify-content: center;
         }
         
-        .phone-1 { animation: cardShuffle 6s infinite cubic-bezier(0.4, 0, 0.2, 1) 0s; }
-        .phone-2 { animation: cardShuffle 6s infinite cubic-bezier(0.4, 0, 0.2, 1) -2s; }
-        .phone-3 { animation: cardShuffle 6s infinite cubic-bezier(0.4, 0, 0.2, 1) -4s; }
+        /* Pembungkus gambar untuk mengatur animasi naik turun */
+        .hero-left .img-wrapper {
+            position: absolute;
+            animation: floatDevice 4s ease-in-out infinite;
+        }
+        
+        /* Posisi masing-masing kartu */
+        .wrapper-1 { transform: translateX(-40px) rotate(-10deg); z-index: 1; animation-delay: 0s; }
+        .wrapper-2 { transform: translateY(-5px) rotate(0deg); z-index: 3; animation-delay: 1.5s; }
+        .wrapper-3 { transform: translateX(40px) rotate(10deg); z-index: 2; animation-delay: 3s; }
 
-        @keyframes cardShuffle {
-            0%, 20%   { z-index: 3; transform: translateX(0) scale(1.05) translateY(0); opacity: 1; }
-            25%       { z-index: 3; transform: translateX(60px) scale(1) translateY(-10px); opacity: 1; }
-            33%, 53%  { z-index: 1; transform: translateX(20px) scale(0.85) translateY(10px); opacity: 0.6; }
-            66%, 86%  { z-index: 2; transform: translateX(-30px) scale(0.95) translateY(5px); opacity: 0.85; }
-            100%      { z-index: 3; transform: translateX(0) scale(1.05) translateY(0); opacity: 1; }
+        /* Style gambar di dalam kartu */
+        .hero-left img { 
+            width: 100px; height: 130px; object-fit: cover; 
+            border-radius: 10px; border: 2px solid var(--rose-gold-mid);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5); 
+        }
+        /* Kartu tengah dibuat sedikit lebih besar agar menonjol */
+        .wrapper-2 img { width: 115px; height: 150px; box-shadow: 0 15px 25px rgba(0,0,0,0.6); border: 3px solid var(--rose-gold-light); }
+
+        @keyframes floatDevice {
+            0%, 100% { margin-top: 0; }
+            50% { margin-top: -12px; }
         }
 
-        .hero-left:hover .phone-1 { transform: translateX(-15px) rotate(-25deg); animation-play-state: paused;}
-        .hero-left:hover .phone-2 { transform: translateY(-20px) rotate(0deg); animation-play-state: paused;}
-        .hero-left:hover .phone-3 { transform: translateX(15px) rotate(25deg); animation-play-state: paused;}
-
         .hero-right { width: 45%; height: 100%; display: flex; align-items: center; justify-content: center; }
-        .hero-right img { max-width: 100%; max-height: 140px; filter: drop-shadow(3px 5px 6px rgba(0,0,0,0.3)); border-radius: 6px;}
+        /* Gambar Aksesoris dikanan juga dibuat elegan dan melayang */
+        .hero-right img { 
+            max-width: 100%; max-height: 140px; 
+            border-radius: 10px; border: 2px solid var(--rose-gold-mid);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4); 
+            animation: floatDevice 4s ease-in-out infinite 1s;
+        }
 
         .services-bar { background-color: var(--dark-gray); color: white; text-align: center; padding: 12px 0; margin: 20px 30px 15px; font-size: 13px; font-weight: 600; letter-spacing: 3px; position: relative; z-index: 2; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
 
@@ -149,9 +157,7 @@
         .service-item img { width: 100%; height: 90px; object-fit: cover; display: block; }
         .service-item-overlay { background: var(--dark-gray); color: var(--rose-gold-light); font-size: 9px; font-weight: 700; text-align: center; padding: 6px 4px; letter-spacing: 0.5px; border-top: 1px solid var(--rose-gold-mid); }
 
-        /* =======================================================
-           REVISI UI/UX: TABEL MOBILE FRIENDLY ANTI-SCROLL SAMPING
-           ======================================================= */
+        /* TABEL MOBILE FRIENDLY (3 Kolom) */
         .pricelist-wrapper { position: relative; z-index: 2; margin: 0 20px; }
         .marble-board {
             background: linear-gradient(rgba(245, 245, 245, 0.95), rgba(245, 245, 245, 0.95)), url('https://images.unsplash.com/photo-1596525164887-17eb955e8884?q=80&w=800&auto=format&fit=crop') center/cover;
@@ -161,48 +167,20 @@
         .corner-tl { top: 0; left: 0; clip-path: polygon(0 0, 100% 0, 0 100%); }
         .corner-tr { top: 0; right: 0; clip-path: polygon(0 0, 100% 0, 100% 100%); }
 
-        /* Kunci agar tabel tidak menembus batas layar kesamping */
-        .table-scroll-container { 
-            max-height: 370px; 
-            overflow-y: auto; 
-            overflow-x: hidden; /* Mencegah scroll menyamping */
-            padding: 0 5px; 
-            position: relative; 
-            z-index: 5; 
-        }
+        .table-scroll-container { max-height: 370px; overflow-y: auto; overflow-x: hidden; padding: 0 5px; position: relative; z-index: 5; }
         .table-scroll-container::-webkit-scrollbar { width: 5px; }
         .table-scroll-container::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); border-radius: 10px; }
         .table-scroll-container::-webkit-scrollbar-thumb { background: var(--rose-gold-mid); border-radius: 10px; }
 
-        /* Tabel Responsif */
-        .price-table { 
-            width: 100%; 
-            border-collapse: collapse; 
-            color: var(--dark-gray); 
-            table-layout: fixed; /* Memaksa kolom mengikuti persentase agar tidak tembus */
-        }
-        
-        .price-table thead th { 
-            position: sticky; top: 0; background: #f1efeb; 
-            border-bottom: 2px solid var(--rose-gold-mid); 
-            padding: 10px 5px; text-align: left; font-weight: 800; z-index: 2; 
-            font-size: 11px;
-        }
-        
-        .price-table td { 
-            border-bottom: 1px dashed rgba(0,0,0,0.15); 
-            padding: 10px 5px; 
-            vertical-align: middle;
-            word-wrap: break-word; /* Memaksa teks nama HP panjang turun ke bawah */
-        }
+        .price-table { width: 100%; border-collapse: collapse; color: var(--dark-gray); table-layout: fixed; }
+        .price-table thead th { position: sticky; top: 0; background: #f1efeb; border-bottom: 2px solid var(--rose-gold-mid); padding: 10px 5px; text-align: left; font-weight: 800; z-index: 2; font-size: 11px; }
+        .price-table td { border-bottom: 1px dashed rgba(0,0,0,0.15); padding: 10px 5px; vertical-align: middle; word-wrap: break-word; }
         .price-table tr:last-child td { border-bottom: none; }
 
-        /* Pengaturan Lebar Kolom yang Pas untuk Layar Sempit */
         .col-no { width: 10%; text-align: center; font-size: 10px; color: #777;}
         .col-unit { width: 62%; text-align: left; }
         .col-price { width: 28%; text-align: right; }
 
-        /* Styling Nama Unit & Badge di satu kolom yang sama */
         .unit-title { font-weight: 700; font-size: 12px; line-height: 1.3; color: #111; }
         .unit-badge-wrapper { margin-top: 5px; display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
         
@@ -253,11 +231,7 @@
             visibility: visible;
             animation: pulse-wa 2s infinite;
         }
-        .whatsapp-float:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
-            color: white;
-        }
+        .whatsapp-float:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6); color: white; }
         .whatsapp-float i { font-size: 22px; }
         @keyframes pulse-wa {
             0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
@@ -292,9 +266,15 @@
 
         <div class="hero-images">
             <div class="hero-left">
-                <img src="https://cdn.pixabay.com/photo/2020/08/22/01/34/cellphones-5507342_1280.jpg" class="phone-1" alt="iPhone Dark">
-                <img src="https://static.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/p2/113/2024/01/27/2022-05-02_054813jpg-20220928015310-3640475915.jpg" class="phone-2" alt="Samsung">
-                <img src="https://geotimes.id/wp-content/uploads/2017/08/HP-2-Jutaan-Terbaik-telset.jpg" class="phone-3" alt="iPhone White">
+                <div class="img-wrapper wrapper-1">
+                    <img src="https://cdn.pixabay.com/photo/2020/08/22/01/34/cellphones-5507342_1280.jpg" alt="Gadget Dark">
+                </div>
+                <div class="img-wrapper wrapper-3">
+                    <img src="https://geotimes.id/wp-content/uploads/2017/08/HP-2-Jutaan-Terbaik-telset.jpg" alt="Gadget Light">
+                </div>
+                <div class="img-wrapper wrapper-2">
+                    <img src="https://static.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/p2/113/2024/01/27/2022-05-02_054813jpg-20220928015310-3640475915.jpg" alt="Gadget Samsung">
+                </div>
             </div>
             <div class="hero-right">
                 <img src="https://images.ctfassets.net/d9ybqgejqp0w/3e4ehJZ4hl2oqX0U60UkXi/d7e3c57355ff58c620646a0302f0f863/laptop-repair-feature-half.jpg?fm=webp&q=65" alt="Laptop Repair Service">
@@ -415,13 +395,11 @@
             const tableContainer = document.getElementById("pricelist-container");
             const waBtn = document.getElementById("wa-btn");
 
-            // FUNGSI MUNCULKAN TOMBOL WA SAAT SCROLL SAMPAI BAWAH
+            // CEK SCROLL UNTUK TOMBOL WHATSAPP
             function checkScrollPosition() {
                 if (!tableContainer) return;
-                
                 const isReachedBottom = tableContainer.scrollHeight - tableContainer.scrollTop <= tableContainer.clientHeight + 50;
                 const isNoScrollNeeded = tableContainer.scrollHeight <= tableContainer.clientHeight;
-
                 if (isReachedBottom || isNoScrollNeeded) {
                     waBtn.classList.add('show-wa');
                 } else {
@@ -429,20 +407,16 @@
                 }
             }
 
-            if(tableContainer) {
-                tableContainer.addEventListener('scroll', checkScrollPosition);
-            }
+            if(tableContainer) tableContainer.addEventListener('scroll', checkScrollPosition);
 
             async function fetchPricelist() {
                 try {
                     const response = await fetch('/api/products');
                     
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                     const data = await response.json();
                     
+                    // Filter: Hanya yang belum terjual
                     const availableItems = data.items.filter(item => !item.soldAt && item.status !== 'sold' && item.status !== 'Terjual');
 
                     if (availableItems.length === 0) {
@@ -451,31 +425,38 @@
                         return;
                     }
 
-                    // Objek penampung untuk logika grouping / menghitung total stok
+                    // Grouping & Hitung Total Stok
                     const groupedData = {};
-
                     availableItems.forEach(item => {
                         let cleanName = (item.name || "").replace(/\(IBOX\)|\(INTER\)/gi, '').trim();
-                        
                         if (!groupedData[cleanName]) {
-                            groupedData[cleanName] = {
-                                ...item,
-                                cleanName: cleanName,
-                                count: 1
-                            };
+                            groupedData[cleanName] = { ...item, cleanName: cleanName, count: 1 };
                         } else {
                             groupedData[cleanName].count++;
                         }
                     });
 
                     const groupedItems = Object.values(groupedData);
-
                     tbody.innerHTML = ''; 
 
                     groupedItems.forEach((item, index) => {
                         const lowerName = item.cleanName.toLowerCase();
                         
-                        // 1. LOGIKA STATUS (READY / PROMO / KONDISI)
+                        // 1. LOGIKA BRAND OTOMATIS (Milik Anda)
+                        let brand = 'LAINNYA';
+                        if (lowerName.includes('iphone') || lowerName.includes('apple') || lowerName.includes('ipad') || lowerName.includes('ip ')) brand = 'APPLE';
+                        else if (lowerName.includes('samsung') || lowerName.includes('galaxy') || lowerName.includes('sein') || lowerName.includes('z flip') || lowerName.includes('z fold')) brand = 'SAMSUNG';
+                        else if (lowerName.includes('xiaomi') || lowerName.includes('note') || lowerName.includes('redmi') || lowerName.includes('poco') || lowerName.includes('mi ')) brand = 'XIAOMI/POCO';
+                        else if (lowerName.includes('oppo') || lowerName.includes('reno')) brand = 'OPPO';
+                        else if (lowerName.includes('vivo') || lowerName.includes('iqoo')) brand = 'VIVO';
+                        else if (lowerName.includes('realme')) brand = 'REALME';
+                        else if (lowerName.includes('infinix')) brand = 'INFINIX';
+                        else if (lowerName.includes('tecno')) brand = 'TECNO';
+                        else if (lowerName.includes('itel')) brand = 'ITEL';
+                        else if (lowerName.includes('asus') || lowerName.includes('rog')) brand = 'ASUS';
+                        else if (lowerName.includes('google') || lowerName.includes('pixel')) brand = 'GOOGLE';
+
+                        // 2. LOGIKA STATUS PROMO/READY (Milik Anda)
                         let isPromo = false;
                         if(item.status && item.status.toLowerCase() === 'old') isPromo = true;
                         if(item.type && item.type.toLowerCase() === 'old') isPromo = true;
@@ -484,28 +465,26 @@
                             ? '<span class="status-badge badge-promo">PROMO</span>' 
                             : '<span class="status-badge badge-ready">READY</span>';
 
-                        // Badge IBOX/INTER/Kondisi
                         let badgeKondisi = '';
                         const nameUpper = (item.name || "").toUpperCase();
-                        if (nameUpper.includes("IBOX")) {
-                            badgeKondisi = '<span class="status-badge badge-ibox">IBOX</span>';
-                        } else if (nameUpper.includes("INTER")) {
-                            badgeKondisi = '<span class="status-badge badge-inter">INTER</span>';
-                        } else {
+                        if (nameUpper.includes("IBOX")) badgeKondisi = '<span class="status-badge badge-ibox">IBOX</span>';
+                        else if (nameUpper.includes("INTER")) badgeKondisi = '<span class="status-badge badge-inter">INTER</span>';
+                        else {
                             const conditionText = item.kondisi_barang === 'Baru (BNOB)' ? 'NEW' : '2ND';
                             badgeKondisi = `<span class="status-badge badge-inter" style="border-color:#9a765e; color:#9a765e;">${conditionText}</span>`;
                         }
 
-                        // 2. FORMAT HARGA
+                        // 3. FORMAT HARGA
                         const rawPrice = parseFloat(item.price) || 0;
                         const priceInRibuan = rawPrice / 1000;
                         const priceFormatted = priceInRibuan.toLocaleString('id-ID'); 
 
-                        // 3. BARIS TABEL RESPONSIVE (3 KOLOM)
+                        // 4. MEMASUKKAN BARIS KE TABEL 3 KOLOM MOBILE-FRIENDLY
                         const tr = document.createElement('tr');
                         tr.innerHTML = `
                             <td class="col-no">${index + 1}</td>
                             <td class="col-unit">
+                                <div style="font-size:8px; color:var(--rose-gold-dark); font-weight:800; margin-bottom:2px;">${brand}</div>
                                 <div class="unit-title">${item.cleanName}</div>
                                 <div class="unit-badge-wrapper">
                                     ${badgeKondisi}
