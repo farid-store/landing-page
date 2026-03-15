@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Farid Store Pricelist</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@400;500;600;700;800;900&family=Poppins:ital,wght@0,500;0,700;0,800;1,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -103,20 +103,41 @@
         }
         .hero-left { position: relative; width: 50%; height: 100%; }
         .hero-left img { position: absolute; bottom: 0; filter: drop-shadow(5px 5px 8px rgba(0,0,0,0.4)); }
+        
+        /* Gambar hero diganti dengan vector wikimedia yang bebas blokir server */
         .phone-1 { left: 0; z-index: 3; max-height: 170px !important; }
         .phone-2 { left: 40px; z-index: 2; max-height: 190px !important; }
         .phone-3 { left: 90px; z-index: 1; max-height: 160px !important; }
         .hero-right { width: 45%; height: 100%; display: flex; align-items: center; justify-content: center; }
-        .hero-right img { max-width: 100%; max-height: 160px; filter: drop-shadow(3px 5px 6px rgba(0,0,0,0.3)); }
+        .hero-right img { max-width: 100%; max-height: 140px; filter: drop-shadow(3px 5px 6px rgba(0,0,0,0.3)); }
 
         .services-bar {
             background-color: var(--dark-gray); color: white; text-align: center; padding: 12px 0; margin: 20px 30px 15px; font-size: 13px; font-weight: 600; letter-spacing: 3px; position: relative; z-index: 2; box-shadow: 0 4px 6px rgba(0,0,0,0.2);
         }
 
-        .brands-container {
-            display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 15px 20px; padding: 0 30px; margin-bottom: 25px; position: relative; z-index: 2;
+        /* STYLING TIPOGRAFI BRAND LOGO */
+        .text-brands-container {
+            display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 12px 20px; padding: 0 25px; margin-bottom: 25px; position: relative; z-index: 2;
         }
-        .brands-container img { height: 18px; object-fit: contain; filter: brightness(0) opacity(0.85); }
+        .text-brands-container span {
+            color: var(--dark-gray); /* Mengunci warna agar tetap elegan dengan tema */
+            line-height: 1;
+            opacity: 0.9;
+        }
+        /* Masing-masing brand di-style mendekati aslinya */
+        .brand-samsung { font-family: 'Arial', sans-serif; font-weight: 900; font-size: 13px; letter-spacing: 0.5px; text-transform: uppercase; }
+        .brand-pixel { font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 14px; letter-spacing: -0.3px; }
+        .brand-xiaomi { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 18px; letter-spacing: 1px; }
+        .brand-oppo { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 14px; letter-spacing: 1.5px; text-transform: uppercase; }
+        .brand-vivo { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 16px; font-style: italic; letter-spacing: -0.5px; text-transform: lowercase; }
+        .brand-apple { font-size: 18px; }
+        .brand-realme { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 15px; text-transform: lowercase; }
+        .brand-infinix { font-family: 'Arial', sans-serif; font-weight: 900; font-size: 13px; letter-spacing: 0.5px; text-transform: uppercase; }
+        .brand-tecno { font-family: 'Arial', sans-serif; font-weight: 900; font-size: 14px; letter-spacing: 0.5px; text-transform: uppercase; }
+        .brand-itel { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 16px; text-transform: lowercase; }
+        .brand-iqoo { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 14px; font-style: italic; letter-spacing: -0.5px; }
+        .brand-lenovo { font-family: 'Arial Black', sans-serif; font-weight: 900; font-size: 13px; font-style: italic; letter-spacing: 0.5px; }
+        .brand-advan { font-family: 'Arial', sans-serif; font-weight: 900; font-size: 14px; letter-spacing: 0.5px; text-transform: uppercase; }
 
         .service-wrapper {
             position: relative; z-index: 2; margin: 0 20px 25px;
@@ -128,39 +149,20 @@
             content: ''; height: 1px; width: 40px; background-color: var(--text-gray); margin: 0 10px;
         }
         .service-scroll {
-            display: flex;
-            gap: 12px;
-            overflow-x: auto;
-            padding-bottom: 10px;
+            display: flex; gap: 12px; overflow-x: auto; padding-bottom: 10px;
         }
         .service-scroll::-webkit-scrollbar { height: 5px; }
         .service-scroll::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); border-radius: 10px; }
         .service-scroll::-webkit-scrollbar-thumb { background: var(--rose-gold-mid); border-radius: 10px; }
         
         .service-item {
-            flex: 0 0 130px;
-            position: relative;
-            border-radius: 6px;
-            overflow: hidden;
-            border: 1px solid var(--rose-gold-mid);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-            background: #fff;
+            flex: 0 0 130px; position: relative; border-radius: 6px; overflow: hidden; border: 1px solid var(--rose-gold-mid); box-shadow: 0 4px 8px rgba(0,0,0,0.15); background: #fff;
         }
         .service-item img {
-            width: 100%;
-            height: 90px;
-            object-fit: cover;
-            display: block;
+            width: 100%; height: 90px; object-fit: cover; display: block;
         }
         .service-item-overlay {
-            background: var(--dark-gray);
-            color: var(--rose-gold-light);
-            font-size: 9px;
-            font-weight: 700;
-            text-align: center;
-            padding: 6px 4px;
-            letter-spacing: 0.5px;
-            border-top: 1px solid var(--rose-gold-mid);
+            background: var(--dark-gray); color: var(--rose-gold-light); font-size: 9px; font-weight: 700; text-align: center; padding: 6px 4px; letter-spacing: 0.5px; border-top: 1px solid var(--rose-gold-mid);
         }
 
         .pricelist-wrapper { position: relative; z-index: 2; margin: 0 20px; }
@@ -196,61 +198,17 @@
         .key-img { position: absolute; bottom: -20px; right: -10px; width: 100px; transform: rotate(-10deg); filter: drop-shadow(-3px 5px 5px rgba(0,0,0,0.5)); opacity: 0.8; }
 
         .footer-contact {
-            background: var(--bronze-gradient);
-            margin: 20px 30px 0;
-            padding: 15px 20px 25px 20px;
-            position: relative;
-            z-index: 2;
-            border: 1px solid rgba(255,255,255,0.4);
-            box-shadow: 2px 8px 20px rgba(0,0,0,0.3);
-            clip-path: polygon(0 0, 100% 0, 100% 90%, 96% 100%, 0 100%);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 15px;
+            background: var(--bronze-gradient); margin: 20px 30px 0; padding: 15px 20px 25px 20px; position: relative; z-index: 2; border: 1px solid rgba(255,255,255,0.4); box-shadow: 2px 8px 20px rgba(0,0,0,0.3); clip-path: polygon(0 0, 100% 0, 100% 90%, 96% 100%, 0 100%); display: flex; justify-content: space-between; align-items: center; gap: 15px;
         }
 
-        .footer-left {
-            flex: 0 0 40%;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .footer-left p {
-            font-size: 11px;
-            color: #111;
-            font-weight: 600;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
+        .footer-left { flex: 0 0 40%; display: flex; flex-direction: column; gap: 6px; }
+        .footer-left p { font-size: 11px; color: #111; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
         .footer-left i { font-size: 15px; color: #222; }
 
-        .footer-divider {
-            width: 2px;
-            height: 75px; 
-            background-color: var(--dark-gray);
-            border-radius: 2px;
-            opacity: 0.8;
-        }
+        .footer-divider { width: 2px; height: 75px; background-color: var(--dark-gray); border-radius: 2px; opacity: 0.8; }
 
-        .footer-right {
-            flex: 0 0 55%;
-            display: flex;
-            flex-direction: column;
-            gap: 5px; 
-        }
-
-        .legend-row {
-            display: flex;
-            font-size: 9px;
-            color: #111;
-            font-weight: 600;
-            line-height: 1.2;
-        }
-
+        .footer-right { flex: 0 0 55%; display: flex; flex-direction: column; gap: 5px; }
+        .legend-row { display: flex; font-size: 9px; color: #111; font-weight: 600; line-height: 1.2; }
         .legend-title { width: 95px; flex-shrink: 0; }
         .legend-desc { flex-grow: 1; }
 
@@ -282,12 +240,12 @@
 
         <div class="hero-images">
             <div class="hero-left">
-                <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-black-titanium-select?wid=400&hei=400&fmt=png-alpha" class="phone-1" alt="iPhone">
-                <img src="https://images.samsung.com/is/image/samsung/p6pim/id/2401/gallery/id-galaxy-s24-s928-sm-s928bztqxid-539573322?$650_519_PNG$" class="phone-2" alt="Samsung">
-                <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-white-select-202309?wid=400&hei=400&fmt=png-alpha" class="phone-3" alt="White Phone">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/IPhone_14_Pro_Max_Vector.svg/512px-IPhone_14_Pro_Max_Vector.svg.png" class="phone-1" alt="iPhone Dark">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Samsung_Galaxy_S22_Ultra_rear.svg/512px-Samsung_Galaxy_S22_Ultra_rear.svg.png" class="phone-2" alt="Samsung">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/IPhone_13_Pro_Max.svg/512px-IPhone_13_Pro_Max.svg.png" class="phone-3" alt="iPhone White">
             </div>
             <div class="hero-right">
-                <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MME73?wid=400&hei=400&fmt=png-alpha" alt="Accessories">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Airpods_Pro_Vector.svg/512px-Airpods_Pro_Vector.svg.png" alt="Accessories">
             </div>
         </div>
 
@@ -295,20 +253,20 @@
             JUAL | BELI | TUKAR TAMBAH | SERVICE
         </div>
 
-        <div class="brands-container">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg" alt="Samsung">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Google_Pixel_logo.svg" alt="Google Pixel">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Xiaomi_logo.svg" alt="Xiaomi">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/OPPO_Logo.svg" alt="Oppo">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Vivo_mobile_logo.png" alt="Vivo">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/0/07/Realme_logo.svg" alt="Realme">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Infinix_Mobile_Logo.svg" alt="Infinix">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Tecno_Logo.svg" alt="Tecno">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Itel_logo.svg" alt="itel">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/3/37/IQOO_logo.svg" alt="iQOO">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/Lenovo_logo_2015.svg" alt="Lenovo">
-            <span style="font-family: Arial, sans-serif; font-weight: 900; font-size: 16px; color: #111;">ADVAN</span>
+        <div class="text-brands-container">
+            <span class="brand-samsung">Samsung</span>
+            <span class="brand-pixel">Google Pixel</span>
+            <span class="brand-xiaomi">mi</span>
+            <span class="brand-oppo">oppo</span>
+            <span class="brand-vivo">vivo</span>
+            <span class="brand-apple"><i class="fab fa-apple"></i></span>
+            <span class="brand-realme">realme</span>
+            <span class="brand-infinix">Infinix</span>
+            <span class="brand-tecno">TECNO</span>
+            <span class="brand-itel">itel</span>
+            <span class="brand-iqoo">iQOO</span>
+            <span class="brand-lenovo">Lenovo</span>
+            <span class="brand-advan">ADVAN</span>
         </div>
 
         <div class="service-wrapper">
@@ -346,7 +304,6 @@
                     <img src="https://arepair.id/wp-content/uploads/2023/04/service-back-glass-iphone-700x467.jpg" alt="Service Backglass">
                     <div class="service-item-overlay">GANTI BACKGLASS</div>
                 </div>
-                
             </div>
         </div>
 
