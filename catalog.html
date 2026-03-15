@@ -41,34 +41,55 @@
         }
 
         .inner-border {
-            position: absolute; top: 10px; left: 10px; right: 10px; bottom: 10px;
-            border: 1px solid var(--rose-gold-mid); pointer-events: none; z-index: 10;
+            position: absolute;
+            top: 10px; left: 10px; right: 10px; bottom: 10px;
+            border: 1px solid var(--rose-gold-mid);
+            pointer-events: none;
+            z-index: 10;
         }
 
         .vertical-text {
-            position: absolute; top: 50%; transform: translateY(-50%);
-            font-family: 'Playfair Display', serif; font-size: 45px;
-            color: rgba(0, 0, 0, 0.03); white-space: nowrap; letter-spacing: 6px;
-            z-index: 1; -webkit-text-stroke: 1px rgba(197, 160, 139, 0.4);
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: 'Playfair Display', serif;
+            font-size: 45px;
+            color: rgba(0, 0, 0, 0.03);
+            white-space: nowrap;
+            letter-spacing: 6px;
+            z-index: 1;
+            -webkit-text-stroke: 1px rgba(197, 160, 139, 0.4);
         }
         .vertical-left { left: -170px; transform: translateY(-50%) rotate(-90deg); }
         .vertical-right { right: -200px; transform: translateY(-50%) rotate(90deg); }
 
         .top-decoration {
-            position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-            width: 280px; height: 45px; background: linear-gradient(to bottom, #cfb5a3, #e8d7ca);
-            clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%); z-index: 1; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: absolute;
+            top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 280px; height: 45px;
+            background: linear-gradient(to bottom, #cfb5a3, #e8d7ca);
+            clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);
+            z-index: 1;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        
-        .header { text-align: center; padding: 35px 20px 10px; position: relative; z-index: 2; }
-        .header h1 { font-family: 'Playfair Display', serif; font-size: 38px; color: var(--dark-gray); font-weight: 700; letter-spacing: 2px; margin-bottom: 5px; }
+        .header {
+            text-align: center; padding: 35px 20px 10px; position: relative; z-index: 2;
+        }
+        .header h1 {
+            font-family: 'Playfair Display', serif; font-size: 38px; color: var(--dark-gray); font-weight: 700; letter-spacing: 2px; margin-bottom: 5px;
+        }
         .header p { font-size: 15px; color: var(--text-gray); letter-spacing: 1px; }
 
-        .promo-section { display: flex; align-items: center; margin: 20px 0; position: relative; z-index: 2; padding: 0 20px; }
+        .promo-section {
+            display: flex; align-items: center; margin: 20px 0; position: relative; z-index: 2; padding: 0 20px;
+        }
         .cashback-badge {
             background: var(--bg-color); border: 1px solid var(--rose-gold-mid); padding: 10px; text-align: center; width: 85px; box-shadow: 2px 2px 8px rgba(0,0,0,0.15); position: relative; z-index: 2;
         }
-        .cashback-badge::before { content: ''; position: absolute; top: -4px; left: -4px; right: -4px; bottom: -4px; border: 1px solid var(--rose-gold-light); z-index: -1; }
+        .cashback-badge::before {
+            content: ''; position: absolute; top: -4px; left: -4px; right: -4px; bottom: -4px; border: 1px solid var(--rose-gold-light); z-index: -1;
+        }
         .cashback-badge span.small-text { font-size: 9px; display: block; letter-spacing: 1px; }
         .cashback-badge span.big-number { font-family: 'Playfair Display', serif; font-size: 34px; line-height: 1; display: inline-block; margin: 5px 0; }
         
@@ -77,33 +98,32 @@
         }
         .promo-banner p { font-size: 14px; color: var(--dark-gray); font-weight: 700; letter-spacing: 0.5px; }
 
-        /* ====================================================
-           GAYA BARU: HERO STACKED CARDS
-           ==================================================== */
-        .hero-stacked-wrapper {
-            position: relative;
-            width: 100%; height: 210px;
-            display: flex; justify-content: center; align-items: center;
-            z-index: 2; margin-top: 15px;
+        /* AREA GAMBAR HERO BERTUMPUK (STACKED CARDS) */
+        .hero-images {
+            display: flex; justify-content: space-between; align-items: center; padding: 0 30px; margin-top: 25px; height: 220px; position: relative; z-index: 2;
         }
-        .hero-stacked-wrapper img {
-            position: absolute;
-            max-height: 170px;
-            border-radius: 12px;
-            box-shadow: -5px 10px 25px rgba(0,0,0,0.4);
-            border: 1px solid rgba(255,255,255,0.4);
-            background-color: var(--bg-color);
-            transition: transform 0.4s ease, z-index 0.4s;
-            cursor: pointer;
+        .hero-left { 
+            position: relative; width: 50%; height: 100%; display: flex; align-items: center; 
         }
-        /* Efek hover, gambar naik ke atas */
-        .hero-stacked-wrapper img:hover {
-            z-index: 10 !important;
-            transform: scale(1.1) translateY(-15px) !important;
+        .hero-left img { 
+            position: absolute; 
+            filter: drop-shadow(5px 5px 8px rgba(0,0,0,0.6)); 
+            border-radius: 8px; /* Sudut melengkung halus untuk efek kartu */
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Animasi mulus saat di-hover */
         }
-        .card-1 { transform: translateX(-60px) rotate(-15deg); z-index: 1; }
-        .card-2 { transform: translateX(0px) rotate(0deg); z-index: 3; max-height: 190px !important; } /* Center card is bigger */
-        .card-3 { transform: translateX(60px) rotate(15deg); z-index: 2; }
+        
+        /* Posisi awal kartu */
+        .phone-1 { left: 0px; transform: rotate(-15deg); z-index: 1; max-height: 140px !important; }
+        .phone-2 { left: 35px; transform: translateY(-10px) rotate(0deg); z-index: 2; max-height: 165px !important; }
+        .phone-3 { left: 80px; transform: rotate(15deg); z-index: 3; max-height: 140px !important; }
+
+        /* Efek menyebar saat area gambar disentuh / dilewati kursor */
+        .hero-left:hover .phone-1 { transform: translateX(-15px) rotate(-25deg); }
+        .hero-left:hover .phone-2 { transform: translateY(-20px) rotate(0deg); }
+        .hero-left:hover .phone-3 { transform: translateX(15px) rotate(25deg); }
+
+        .hero-right { width: 45%; height: 100%; display: flex; align-items: center; justify-content: center; }
+        .hero-right img { max-width: 100%; max-height: 140px; filter: drop-shadow(3px 5px 6px rgba(0,0,0,0.3)); }
 
         .services-bar {
             background-color: var(--dark-gray); color: white; text-align: center; padding: 12px 0; margin: 20px 30px 15px; font-size: 13px; font-weight: 600; letter-spacing: 3px; position: relative; z-index: 2; box-shadow: 0 4px 6px rgba(0,0,0,0.2);
@@ -132,7 +152,6 @@
             text-align: center; font-size: 16px; font-weight: 700; letter-spacing: 3px; color: var(--dark-gray); margin-bottom: 12px; display: flex; align-items: center; justify-content: center;
         }
         .section-title::before, .section-title::after { content: ''; height: 1px; width: 40px; background-color: var(--text-gray); margin: 0 10px; }
-        
         .service-scroll { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 10px; }
         .service-scroll::-webkit-scrollbar { height: 5px; }
         .service-scroll::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); border-radius: 10px; }
@@ -156,24 +175,21 @@
         .table-scroll-container::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); border-radius: 10px; }
         .table-scroll-container::-webkit-scrollbar-thumb { background: var(--rose-gold-mid); border-radius: 10px; }
 
-        /* Tabel diperbarui untuk 5 kolom */
-        .price-table { width: 100%; border-collapse: collapse; font-size: 10.5px; color: var(--dark-gray); }
+        .price-table { width: 100%; border-collapse: collapse; font-size: 10px; color: var(--dark-gray); }
         .price-table thead th {
-            position: sticky; top: 0; background: #f1efeb; border-bottom: 2px solid var(--rose-gold-mid); 
-            padding: 8px 4px; text-align: left; font-weight: 800; z-index: 2;
+            position: sticky; top: 0; background: #f1efeb; border-bottom: 2px solid var(--rose-gold-mid); padding: 8px 4px; text-align: left; font-weight: 800; z-index: 2; white-space: nowrap;
         }
-        .price-table td { border-bottom: 1px dashed rgba(0,0,0,0.15); padding: 7px 4px; font-weight: 600; }
+        .price-table td { border-bottom: 1px dashed rgba(0,0,0,0.15); padding: 8px 4px; font-weight: 600; }
         .price-table tr:last-child td { border-bottom: none; }
         
-        /* Badge Status */
-        .status-badge { padding: 3px 4px; border-radius: 4px; font-size: 8px; font-weight: 800; letter-spacing: 0.5px; display: inline-block; }
-        .badge-ibox { background-color: var(--dark-gray); color: var(--rose-gold-light); }
-        .badge-inter { background-color: transparent; border: 1px solid var(--dark-gray); color: var(--dark-gray); }
-        .badge-new { background-color: #2e6648; color: white; } /* Hijau Elegan untuk NEW bulan ini */
-        .badge-lama { background-color: transparent; border: 1px solid #777; color: #666; } /* Abu-abu untuk LAMA */
+        .brand-col { color: var(--rose-gold-dark); font-weight: 800; font-size: 9px; }
+        .stock-col { text-align: center; font-weight: 900; color: #111; }
         
-        .price-col { text-align: right; color: #b84c4c; font-weight: 800; font-size: 11.5px; }
-        .stock-col { text-align: center; font-weight: 800; font-size: 12px; color: var(--dark-gray); }
+        .status-badge { padding: 3px 5px; border-radius: 4px; font-size: 8px; font-weight: 800; letter-spacing: 0.5px; display: inline-block; white-space: nowrap; }
+        .badge-ready { background-color: var(--dark-gray); color: var(--rose-gold-light); }
+        .badge-promo { background-color: #b84c4c; color: white; }
+        
+        .price-col { text-align: right; color: #b84c4c; font-weight: 800; font-size: 11px; white-space: nowrap; }
 
         .table-accessories { position: absolute; bottom: 0; width: 100%; height: 100%; pointer-events: none; z-index: 6; }
         .pen-img { position: absolute; bottom: 10px; left: -15px; width: 120px; transform: rotate(15deg); filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.4)); opacity: 0.8; }
@@ -181,18 +197,18 @@
 
         .footer-contact {
             background: var(--bronze-gradient); margin: 20px 30px 0; padding: 15px 15px 25px 15px; position: relative; z-index: 2; border: 1px solid rgba(255,255,255,0.4); box-shadow: 2px 8px 20px rgba(0,0,0,0.3); clip-path: polygon(0 0, 100% 0, 100% 90%, 96% 100%, 0 100%); 
-            display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;
+            display: flex; justify-content: space-between; align-items: center; gap: 10px;
         }
 
         .footer-left { flex: 0 0 35%; display: flex; flex-direction: column; gap: 6px; }
         .footer-left p { font-size: 11px; color: #111; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
         .footer-left i { font-size: 15px; color: #222; }
 
-        .footer-divider { width: 2px; min-width: 2px; flex-shrink: 0; height: 80px; background-color: var(--dark-gray); border-radius: 2px; opacity: 0.8; }
+        .footer-divider { width: 2px; min-width: 2px; flex-shrink: 0; height: 75px; background-color: var(--dark-gray); border-radius: 2px; opacity: 0.8; }
 
-        .footer-right { flex: 0 0 58%; display: flex; flex-direction: column; gap: 4px; }
-        .legend-row { display: flex; font-size: 8.5px; color: #111; font-weight: 600; line-height: 1.2; }
-        .legend-title { width: 75px; flex-shrink: 0; font-weight: 800; }
+        .footer-right { flex: 0 0 58%; display: flex; flex-direction: column; gap: 5px; }
+        .legend-row { display: flex; font-size: 9px; color: #111; font-weight: 600; line-height: 1.2; }
+        .legend-title { width: 95px; flex-shrink: 0; }
         .legend-desc { flex-grow: 1; }
 
         .loading-text { text-align: center; padding: 20px !important; font-style: italic; color: #888; }
@@ -222,10 +238,15 @@
             </div>
         </div>
 
-        <div class="hero-stacked-wrapper">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/IPhone_14_Pro_Max_Vector.svg/512px-IPhone_14_Pro_Max_Vector.svg.png" class="card-1" alt="iPhone Dark">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Samsung_Galaxy_S22_Ultra_rear.svg/512px-Samsung_Galaxy_S22_Ultra_rear.svg.png" class="card-2" alt="Samsung">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/IPhone_13_Pro_Max.svg/512px-IPhone_13_Pro_Max.svg.png" class="card-3" alt="iPhone White">
+        <div class="hero-images">
+            <div class="hero-left">
+                <img src="https://cdn.pixabay.com/photo/2020/08/22/01/34/cellphones-5507342_1280.jpg" class="phone-1" alt="iPhone Dark">
+                <img src="https://static.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/p2/113/2024/01/27/2022-05-02_054813jpg-20220928015310-3640475915.jpg" class="phone-2" alt="Samsung">
+                <img src="https://geotimes.id/wp-content/uploads/2017/08/HP-2-Jutaan-Terbaik-telset.jpg" class="phone-3" alt="iPhone White">
+            </div>
+            <div class="hero-right">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Airpods_Pro_Vector.svg/512px-Airpods_Pro_Vector.svg.png" alt="Accessories">
+            </div>
         </div>
 
         <div class="services-bar">
@@ -297,6 +318,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>Brand</th>
                                 <th>Tipe Unit</th>
                                 <th style="text-align: center;">Status</th>
                                 <th style="text-align: right;">Harga (Rb)</th>
@@ -305,7 +327,7 @@
                         </thead>
                         <tbody id="pricelist-data">
                             <tr>
-                                <td colspan="5" class="loading-text"><i class="fas fa-spinner fa-spin"></i> Memuat database & menghitung stok...</td>
+                                <td colspan="6" class="loading-text"><i class="fas fa-spinner fa-spin"></i> Menghubungkan ke database Farid Store...</td>
                             </tr>
                         </tbody>
                     </table>
@@ -330,24 +352,20 @@
 
             <div class="footer-right">
                 <div class="legend-row">
-                    <span class="legend-title">Status NEW</span>
-                    <span class="legend-desc">= Barang fresh bulan ini</span>
+                    <span class="legend-title">iBox</span>
+                    <span class="legend-desc">= Resmi Indonesia</span>
                 </div>
                 <div class="legend-row">
-                    <span class="legend-title">Status LAMA</span>
-                    <span class="legend-desc">= Barang masuk bulan lalu</span>
+                    <span class="legend-title">Resmi Beacukai</span>
+                    <span class="legend-desc">= Sinyal sudah permanen (resmi)</span>
                 </div>
                 <div class="legend-row">
-                    <span class="legend-title">IBOX / INTER</span>
-                    <span class="legend-desc">= Garansi Resmi / Internasional</span>
-                </div>
-                <div class="legend-row">
-                    <span class="legend-title">Kemenperin</span>
-                    <span class="legend-desc">= Sinyal permanen resmi</span>
+                    <span class="legend-title">Resmi Kemenperin</span>
+                    <span class="legend-desc">= Sinyal sudah permanen (resmi)</span>
                 </div>
                 <div class="legend-row">
                     <span class="legend-title">All Operator</span>
-                    <span class="legend-desc">= Sinyal aktif (belum permanen)</span>
+                    <span class="legend-desc">= Bisa semua simcard/kartu (belum permanen)</span>
                 </div>
             </div>
         </div>
@@ -360,97 +378,100 @@
             async function fetchPricelist() {
                 try {
                     const response = await fetch('/api/products');
-                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
                     
                     const data = await response.json();
                     
-                    // Filter: Hanya ambil unit yang BELUM terjual
+                    // Filter: Hanya ambil unit yang BELUM terjual.
                     const availableItems = data.items.filter(item => !item.soldAt && item.status !== 'sold' && item.status !== 'Terjual');
 
                     if (availableItems.length === 0) {
-                        tbody.innerHTML = '<tr><td colspan="5" class="loading-text">Mohon maaf, semua unit sedang habis.</td></tr>';
+                        tbody.innerHTML = '<tr><td colspan="6" class="loading-text">Mohon maaf, semua unit sedang habis / sold out.</td></tr>';
                         return;
                     }
 
-                    // 1. KELOMPOKKAN BERDASARKAN NAMA BARANG YANG SAMA PERSIS
-                    const groupedMap = new Map();
-                    
+                    // Objek penampung untuk logika grouping / menghitung total stok
+                    const groupedData = {};
+
                     availableItems.forEach(item => {
-                        const exactName = (item.name || "").trim().toUpperCase();
+                        // Menghapus tulisan IBOX/INTER di nama agar bisa digabung persis
+                        let cleanName = (item.name || "").replace(/\(IBOX\)|\(INTER\)/gi, '').trim();
                         
-                        if (!groupedMap.has(exactName)) {
-                            groupedMap.set(exactName, {
-                                originalName: item.name.trim(),
-                                price: parseFloat(item.price) || 0,
-                                count: 1,
-                                // Default ke waktu 0 jika tidak ada entryDate
-                                latestDate: item.entryDate ? new Date(item.entryDate) : new Date(0)
-                            });
+                        if (!groupedData[cleanName]) {
+                            groupedData[cleanName] = {
+                                ...item,
+                                cleanName: cleanName,
+                                count: 1
+                            };
                         } else {
-                            const group = groupedMap.get(exactName);
-                            group.count += 1; // Hitung stok
-                            
-                            // Perbarui dengan tanggal masuk yang paling baru
-                            const itemDate = item.entryDate ? new Date(item.entryDate) : new Date(0);
-                            if (itemDate > group.latestDate) {
-                                group.latestDate = itemDate;
-                            }
+                            // Jika namanya sama persis, tambahkan stoknya
+                            groupedData[cleanName].count++;
                         }
                     });
 
-                    // 2. CEK BULAN UNTUK STATUS "NEW" ATAU "LAMA"
-                    const groupedItems = Array.from(groupedMap.values());
-                    const now = new Date();
-                    const currentMonth = now.getMonth();
-                    const currentYear = now.getFullYear();
+                    // Mengubah objek kembali menjadi array
+                    const groupedItems = Object.values(groupedData);
 
-                    tbody.innerHTML = '';
+                    tbody.innerHTML = ''; // Bersihkan teks "Loading..."
 
-                    // 3. TAMPILKAN KE TABEL HTML
-                    groupedItems.forEach((group, index) => {
-                        const nameUpper = group.originalName.toUpperCase();
+                    // Looping data yang sudah di-group
+                    groupedItems.forEach((item, index) => {
+                        const lowerName = item.cleanName.toLowerCase();
                         
-                        // Deteksi IBOX / INTER
-                        let variantBadge = '';
-                        if (nameUpper.includes("IBOX")) {
-                            variantBadge = '<span class="status-badge badge-ibox">IBOX</span>';
-                        } else if (nameUpper.includes("INTER")) {
-                            variantBadge = '<span class="status-badge badge-inter">INTER</span>';
+                        // 1. LOGIKA BRAND OTOMATIS
+                        let brand = 'LAINNYA';
+                        if (lowerName.includes('iphone') || lowerName.includes('apple') || lowerName.includes('ipad') || lowerName.includes('ip ')) brand = 'APPLE';
+                        else if (lowerName.includes('samsung') || lowerName.includes('galaxy') || lowerName.includes('sein') || lowerName.includes('z flip') || lowerName.includes('z fold')) brand = 'SAMSUNG';
+                        else if (lowerName.includes('xiaomi') || lowerName.includes('note') || lowerName.includes('redmi') || lowerName.includes('poco') || lowerName.includes('mi ')) brand = 'XIAOMI/POCO';
+                        else if (lowerName.includes('oppo') || lowerName.includes('reno')) brand = 'OPPO';
+                        else if (lowerName.includes('vivo') || lowerName.includes('iqoo')) brand = 'VIVO';
+                        else if (lowerName.includes('realme')) brand = 'REALME';
+                        else if (lowerName.includes('infinix')) brand = 'INFINIX';
+                        else if (lowerName.includes('tecno')) brand = 'TECNO';
+                        else if (lowerName.includes('itel')) brand = 'ITEL';
+                        else if (lowerName.includes('asus') || lowerName.includes('rog')) brand = 'ASUS';
+                        else if (lowerName.includes('google') || lowerName.includes('pixel')) brand = 'GOOGLE';
+
+                        // 2. LOGIKA STATUS (READY / PROMO)
+                        // Cek apakah item ini ditandai sebagai promo/stok lama dari database API
+                        let isPromo = false;
+                        if(item.status && item.status.toLowerCase().includes('promo')) isPromo = true;
+                        if(item.type && item.type.toLowerCase().includes('promo')) isPromo = true;
+                        
+                        // Cek menggunakan tanggal input (jika tersedia), misalkan stok lebih dari 60 hari = PROMO
+                        if(item.entryDate) {
+                            const daysInStock = (new Date() - new Date(item.entryDate)) / (1000 * 3600 * 24);
+                            if(daysInStock > 60) isPromo = true;
                         }
 
-                        // Deteksi NEW / LAMA berdasarkan entryDate
-                        let isNewMonth = false;
-                        if (group.latestDate.getFullYear() === currentYear && group.latestDate.getMonth() === currentMonth) {
-                            isNewMonth = true;
-                        }
-                        
-                        const arrivalBadge = isNewMonth 
-                            ? '<span class="status-badge badge-new">NEW</span>' 
-                            : '<span class="status-badge badge-lama">LAMA</span>';
+                        let badgeHtml = isPromo 
+                            ? '<span class="status-badge badge-promo">PROMO</span>' 
+                            : '<span class="status-badge badge-ready">READY</span>';
 
-                        // Buat nama bersih (Hilangkan tulisan IBOX/INTER karena sudah ada di badge)
-                        let cleanName = group.originalName.replace(/\(IBOX\)|\(INTER\)/gi, '').trim();
+                        // 3. FORMAT HARGA
+                        const rawPrice = parseFloat(item.price) || 0;
+                        const priceInRibuan = rawPrice / 1000;
+                        const priceFormatted = priceInRibuan.toLocaleString('id-ID'); 
 
-                        // Format Harga Ribuan
-                        const priceFormatted = (group.price / 1000).toLocaleString('id-ID'); 
-
-                        // Gabungkan badge IBOX/INTER dan NEW/LAMA di satu kolom
-                        const finalBadge = variantBadge ? `${variantBadge} <br> ${arrivalBadge}` : arrivalBadge;
-
+                        // 4. MEMASUKKAN BARIS KE TABEL (6 Kolom)
                         const tr = document.createElement('tr');
                         tr.innerHTML = `
                             <td>${index + 1}</td>
-                            <td>${cleanName}</td>
-                            <td style="text-align: center; vertical-align: middle;">${finalBadge}</td>
+                            <td class="brand-col">${brand}</td>
+                            <td>${item.cleanName}</td>
+                            <td style="text-align: center;">${badgeHtml}</td>
                             <td class="price-col">${priceFormatted}</td>
-                            <td class="stock-col">${group.count}</td>
+                            <td class="stock-col">${item.count}</td>
                         `;
                         tbody.appendChild(tr);
                     });
 
                 } catch (error) {
-                    console.error("Gagal menarik data API:", error);
-                    tbody.innerHTML = '<tr><td colspan="5" class="loading-text" style="color:#b84c4c;">Gagal memuat database stok. Silakan refresh halaman.</td></tr>';
+                    console.error("Gagal menarik data API Pricelist:", error);
+                    tbody.innerHTML = '<tr><td colspan="6" class="loading-text" style="color:#b84c4c;">Gagal memuat harga. Silakan refresh halaman.</td></tr>';
                 }
             }
 
