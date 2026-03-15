@@ -157,11 +157,10 @@
         .pen-img { position: absolute; bottom: 10px; left: -15px; width: 120px; transform: rotate(15deg); filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.4)); opacity: 0.8; }
         .key-img { position: absolute; bottom: -20px; right: -10px; width: 100px; transform: rotate(-10deg); filter: drop-shadow(-3px 5px 5px rgba(0,0,0,0.5)); opacity: 0.8; }
 
-        /* FOOTER BARU YANG DIBAGI 2 KOLOM */
         .footer-contact {
             background: var(--bronze-gradient);
             margin: 20px 30px 0;
-            padding: 15px 20px 25px 20px; /* Padding bawah ditambah agar teks tidak terpotong */
+            padding: 15px 20px 25px 20px;
             position: relative;
             z-index: 2;
             border: 1px solid rgba(255,255,255,0.4);
@@ -173,7 +172,6 @@
             gap: 15px;
         }
 
-        /* Kolom Kiri (Kontak) */
         .footer-left {
             flex: 0 0 40%;
             display: flex;
@@ -192,19 +190,17 @@
         
         .footer-left i { font-size: 15px; color: #222; }
 
-        /* Garis Pemisah Tengah */
         .footer-divider {
             width: 1px;
-            height: 60px;
+            height: 75px; /* Disesuaikan agar pas dengan 4 baris */
             background-color: rgba(0,0,0,0.2);
         }
 
-        /* Kolom Kanan (Keterangan Sinyal) */
         .footer-right {
             flex: 0 0 55%;
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 5px; /* Jarak antar baris dirapikan */
         }
 
         .legend-row {
@@ -215,7 +211,6 @@
             line-height: 1.2;
         }
 
-        /* Lebar fix agar tanda "=" sejajar rapi ke bawah */
         .legend-title { width: 95px; flex-shrink: 0; }
         .legend-desc { flex-grow: 1; }
 
@@ -334,6 +329,7 @@
             <div class="footer-left">
                 <p>0812-3301-4523 <i class="fab fa-whatsapp"></i></p>
                 <p>farid.store_ <i class="fab fa-instagram"></i></p>
+                <p>farid.store_ <i class="fab fa-tiktok"></i></p>
                 <p>Pekanbaru, Riau <i class="fas fa-map-marker-alt"></i></p>
             </div>
             
