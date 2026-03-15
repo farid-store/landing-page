@@ -80,9 +80,7 @@
         }
         .promo-banner p { font-size: 14px; color: var(--dark-gray); font-weight: 700; letter-spacing: 0.5px; }
 
-        /* ==========================================================
-           HERO SHOWCASE ELEGAN (FLOATING CARDS) DENGAN GAMBAR USER
-           ========================================================== */
+        /* HERO SHOWCASE ELEGAN (FLOATING CARDS) DENGAN GAMBAR USER */
         .hero-images {
             display: flex; justify-content: space-between; align-items: center; padding: 0 30px; margin-top: 25px; height: 220px; position: relative; z-index: 2;
         }
@@ -90,24 +88,20 @@
             position: relative; width: 50%; height: 100%; display: flex; align-items: center; justify-content: center;
         }
         
-        /* Pembungkus gambar untuk mengatur animasi naik turun */
         .hero-left .img-wrapper {
             position: absolute;
             animation: floatDevice 4s ease-in-out infinite;
         }
         
-        /* Posisi masing-masing kartu */
         .wrapper-1 { transform: translateX(-40px) rotate(-10deg); z-index: 1; animation-delay: 0s; }
         .wrapper-2 { transform: translateY(-5px) rotate(0deg); z-index: 3; animation-delay: 1.5s; }
         .wrapper-3 { transform: translateX(40px) rotate(10deg); z-index: 2; animation-delay: 3s; }
 
-        /* Style gambar di dalam kartu */
         .hero-left img { 
             width: 100px; height: 130px; object-fit: cover; 
             border-radius: 10px; border: 2px solid var(--rose-gold-mid);
             box-shadow: 0 10px 20px rgba(0,0,0,0.5); 
         }
-        /* Kartu tengah dibuat sedikit lebih besar agar menonjol */
         .wrapper-2 img { width: 115px; height: 150px; box-shadow: 0 15px 25px rgba(0,0,0,0.6); border: 3px solid var(--rose-gold-light); }
 
         @keyframes floatDevice {
@@ -116,7 +110,6 @@
         }
 
         .hero-right { width: 45%; height: 100%; display: flex; align-items: center; justify-content: center; }
-        /* Gambar Aksesoris dikanan juga dibuat elegan dan melayang */
         .hero-right img { 
             max-width: 100%; max-height: 140px; 
             border-radius: 10px; border: 2px solid var(--rose-gold-mid);
@@ -142,16 +135,37 @@
         .brand-lenovo { font-family: 'Arial Black', sans-serif; font-weight: 900; font-size: 13px; font-style: italic; letter-spacing: 0.5px; }
         .brand-advan { font-family: 'Arial', sans-serif; font-weight: 900; font-size: 14px; letter-spacing: 0.5px; text-transform: uppercase; }
 
-        /* SLIDER ANIMASI SERVIS YANG BERGERAK (MARQUEE) */
+        /* =======================================================
+           REVISI: SLIDER ANIMASI SERVIS YANG BERGERAK UNLIMITED
+           ======================================================= */
         .service-wrapper { position: relative; z-index: 2; margin: 0 20px 25px; }
         .section-title { text-align: center; font-size: 16px; font-weight: 700; letter-spacing: 3px; color: var(--dark-gray); margin-bottom: 12px; display: flex; align-items: center; justify-content: center; }
         .section-title::before, .section-title::after { content: ''; height: 1px; width: 40px; background-color: var(--text-gray); margin: 0 10px; }
         
         .service-slider { overflow: hidden; width: 100%; position: relative; }
-        .service-track { display: flex; width: max-content; animation: scrollMarquee 25s linear infinite; }
+        
+        /* Waktu diperlambat menjadi 40s agar lebih nyaman dibaca */
+        .service-track { 
+            display: flex; 
+            width: max-content; 
+            animation: scrollMarquee 40s linear infinite; 
+        }
         .service-track:hover { animation-play-state: paused; }
-        .service-group { display: flex; gap: 12px; padding-right: 12px; }
-        @keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        
+        /* Flex-wrap: nowrap memastikan grup tidak turun ke bawah */
+        .service-group { display: flex; flex-wrap: nowrap; gap: 12px; padding-right: 12px; }
+        
+        /* PERHITUNGAN AKURAT ANTI LOMPAT:
+           8 item x 130px = 1040px
+           7 celah x 12px = 84px
+           padding kanan  = 12px
+           Total 1 Grup   = 1136px.
+           Digeser tepat sejauh ukuran 1 grup agar kembali menyatu mulus dengan grup ke-2.
+        */
+        @keyframes scrollMarquee { 
+            0% { transform: translateX(0); } 
+            100% { transform: translateX(-1136px); } 
+        }
         
         .service-item { flex: 0 0 130px; position: relative; border-radius: 6px; overflow: hidden; border: 1px solid var(--rose-gold-mid); box-shadow: 0 4px 8px rgba(0,0,0,0.15); background: #fff; }
         .service-item img { width: 100%; height: 90px; object-fit: cover; display: block; }
@@ -395,11 +409,12 @@
             const tableContainer = document.getElementById("pricelist-container");
             const waBtn = document.getElementById("wa-btn");
 
-            // CEK SCROLL UNTUK TOMBOL WHATSAPP
+            // FUNGSI MUNCULKAN TOMBOL WA SAAT SCROLL SAMPAI BAWAH
             function checkScrollPosition() {
                 if (!tableContainer) return;
                 const isReachedBottom = tableContainer.scrollHeight - tableContainer.scrollTop <= tableContainer.clientHeight + 50;
                 const isNoScrollNeeded = tableContainer.scrollHeight <= tableContainer.clientHeight;
+
                 if (isReachedBottom || isNoScrollNeeded) {
                     waBtn.classList.add('show-wa');
                 } else {
@@ -407,16 +422,20 @@
                 }
             }
 
-            if(tableContainer) tableContainer.addEventListener('scroll', checkScrollPosition);
+            if(tableContainer) {
+                tableContainer.addEventListener('scroll', checkScrollPosition);
+            }
 
             async function fetchPricelist() {
                 try {
                     const response = await fetch('/api/products');
                     
-                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    
                     const data = await response.json();
                     
-                    // Filter: Hanya yang belum terjual
                     const availableItems = data.items.filter(item => !item.soldAt && item.status !== 'sold' && item.status !== 'Terjual');
 
                     if (availableItems.length === 0) {
@@ -425,24 +444,40 @@
                         return;
                     }
 
-                    // Grouping & Hitung Total Stok
+                    // Objek penampung untuk logika grouping / menghitung total stok
                     const groupedData = {};
+
                     availableItems.forEach(item => {
                         let cleanName = (item.name || "").replace(/\(IBOX\)|\(INTER\)/gi, '').trim();
+                        
                         if (!groupedData[cleanName]) {
-                            groupedData[cleanName] = { ...item, cleanName: cleanName, count: 1 };
+                            groupedData[cleanName] = {
+                                ...item,
+                                cleanName: cleanName,
+                                count: 1
+                            };
                         } else {
                             groupedData[cleanName].count++;
                         }
                     });
 
                     const groupedItems = Object.values(groupedData);
+
                     tbody.innerHTML = ''; 
 
                     groupedItems.forEach((item, index) => {
                         const lowerName = item.cleanName.toLowerCase();
                         
-                        // 1. LOGIKA BRAND OTOMATIS (Milik Anda)
+                        // 1. LOGIKA STATUS (PROMO / READY) - Memprioritaskan status 'old'
+                        let isPromo = false;
+                        if(item.status && item.status.toLowerCase() === 'old') isPromo = true;
+                        if(item.type && item.type.toLowerCase() === 'old') isPromo = true;
+
+                        let badgeStatus = isPromo 
+                            ? '<span class="status-badge badge-promo">PROMO</span>' 
+                            : '<span class="status-badge badge-ready">READY</span>';
+
+                        // 2. LOGIKA BRAND OTOMATIS (Sesuai instruksi)
                         let brand = 'LAINNYA';
                         if (lowerName.includes('iphone') || lowerName.includes('apple') || lowerName.includes('ipad') || lowerName.includes('ip ')) brand = 'APPLE';
                         else if (lowerName.includes('samsung') || lowerName.includes('galaxy') || lowerName.includes('sein') || lowerName.includes('z flip') || lowerName.includes('z fold')) brand = 'SAMSUNG';
@@ -456,30 +491,24 @@
                         else if (lowerName.includes('asus') || lowerName.includes('rog')) brand = 'ASUS';
                         else if (lowerName.includes('google') || lowerName.includes('pixel')) brand = 'GOOGLE';
 
-                        // 2. LOGIKA STATUS PROMO/READY (Milik Anda)
-                        let isPromo = false;
-                        if(item.status && item.status.toLowerCase() === 'old') isPromo = true;
-                        if(item.type && item.type.toLowerCase() === 'old') isPromo = true;
-
-                        let badgeStatus = isPromo 
-                            ? '<span class="status-badge badge-promo">PROMO</span>' 
-                            : '<span class="status-badge badge-ready">READY</span>';
-
+                        // 3. LOGIKA KONDISI & IBOX/INTER
                         let badgeKondisi = '';
                         const nameUpper = (item.name || "").toUpperCase();
-                        if (nameUpper.includes("IBOX")) badgeKondisi = '<span class="status-badge badge-ibox">IBOX</span>';
-                        else if (nameUpper.includes("INTER")) badgeKondisi = '<span class="status-badge badge-inter">INTER</span>';
-                        else {
+                        if (nameUpper.includes("IBOX")) {
+                            badgeKondisi = '<span class="status-badge badge-ibox">IBOX</span>';
+                        } else if (nameUpper.includes("INTER")) {
+                            badgeKondisi = '<span class="status-badge badge-inter">INTER</span>';
+                        } else {
                             const conditionText = item.kondisi_barang === 'Baru (BNOB)' ? 'NEW' : '2ND';
                             badgeKondisi = `<span class="status-badge badge-inter" style="border-color:#9a765e; color:#9a765e;">${conditionText}</span>`;
                         }
 
-                        // 3. FORMAT HARGA
+                        // 4. FORMAT HARGA
                         const rawPrice = parseFloat(item.price) || 0;
                         const priceInRibuan = rawPrice / 1000;
                         const priceFormatted = priceInRibuan.toLocaleString('id-ID'); 
 
-                        // 4. MEMASUKKAN BARIS KE TABEL 3 KOLOM MOBILE-FRIENDLY
+                        // 5. BARIS TABEL RESPONSIVE (3 KOLOM)
                         const tr = document.createElement('tr');
                         tr.innerHTML = `
                             <td class="col-no">${index + 1}</td>
