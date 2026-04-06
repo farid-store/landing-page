@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farid Store — Pricelist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+    :root {
+        --sand:        #dfdcd7;
+        --sand-light:  #eeebe6;
+        --sand-dark:   #ccc9c3;
+        --rg-light:    #e6cebc;
+        --rg-mid:      #c5a08b;
+        --rg-dark:     #9a765e;
+        --ink:         #1e1c1a;
+        --ink-soft:    #3a3632;
+        --red-accent:  #b84c4c;
+        --wa:          #25d366;
+        --gold-grad:   linear-gradient(135deg,#d3b49f 0%,#f4e2d3 45%,#b88d75 100%);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+        background: #111;
+        font-family: 'DM Sans', sans-serif;
+        display: flex;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 0;
+    }
+
+    /* ─── SHELL ─── */
+    .shell {
+        width: 100%;
+        max-width: 480px;
+        background: var(--sand-light);
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* ─── ANIMATED GRAIN OVERLAY ─── */
+    .shell::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+        pointer-events: none;
+        z-index: 100;
+        opacity: 0.35;
+    }
+
+    /* ─── CINEMATIC HEADER ─── */
+    .site-header {
+        position: relative;
+        height: 340px;
+        overflow: hidden;
+    }
+    @media(max-width:480px){ .site-header { height: 290px; } }
+
+    .header-bg {
+        position: absolute; inset: 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 2px;
+    }
+    .header-bg img {
+        width: 100%; height: 100%;
+        object-fit: cover;
+        filter: brightness(0.55) saturate(0.7);
+        transition: filter 0.6s;
+    }
+    .header-bg::after {
+        content: '';
+        position: absolute; inset: 0;
+        background: linear-gradient(
+            180deg,
+            rgba(30,28,26,0.2) 0%,
+            rgba(30,28,26,0.1) 40%,
+            rgba(30,28,26,0.75) 75%,
+            rgba(30,28,26,0.95) 100%
+        );
+    }
+    .header-bg img:nth-child(1) { grid-area: 1/1/3/2; }
+    .header-bg img:nth-child(2) { grid-area: 1/2/2/3; }
+    .header-bg img:nth-child(3) { grid-area: 2/2/3/3; }
+
+    .header-content {
+        position: absolute; inset: 0;
+        display: flex; flex-direction: column;
+        justify-content: flex-end;
+        padding: 0 24px 24px;
+        z-index: 2;
+    }
+
+    .eyebrow {
+        display: inline-flex; align-items: center; gap: 8px;
+        font-size: 9px; letter-spacing: 4px; text-transform: uppercase;
+        color: var(--rg-light);
+        margin-bottom: 8px;
+        opacity: 0;
+        animation: fadeUp 0.6s 0.1s forwards;
+    }
+    .eyebrow::before, .eyebrow::after {
+        content: ''; height: 1px; width: 30px;
+        background: var(--rg-mid); display: block;
+    }
+
+    .header-title {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: clamp(44px, 14vw, 56px);
+        font-weight: 300;
+        color: #fff;
+        letter-spacing: -1px;
+        line-height: 1;
+        margin-bottom: 6px;
+        opacity: 0;
+        animation: fadeUp 0.7s 0.2s forwards;
+    }
+    .header-title em {
+        font-style: italic;
+        color: var(--rg-light);
+    }
+
+    .header-sub {
+        font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+        color: rgba(255,255,255,0.6);
+        opacity: 0;
+        animation: fadeUp 0.7s 0.3s forwards;
+    }
+
+    /* ─── PROMO RIBBON ─── */
+    .promo-ribbon {
+        background: var(--ink);
+        color: var(--rg-light);
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 0 20px;
+        height: 44px;
+        overflow: hidden;
+        position: relative;
+    }
+    .promo-ribbon::after {
+        content: '';
+        position: absolute; left: 0; bottom: 0;
+        width: 100%; height: 2px;
+        background: var(--gold-grad);
+    }
+    .promo-pill {
+        background: var(--red-accent);
+        color: #fff;
+        font-size: 9px; font-weight: 700; letter-spacing: 2px;
+        padding: 4px 10px; border-radius: 2px;
+        flex-shrink: 0;
+    }
+    .promo-ticker {
+        flex: 1; overflow: hidden; margin-left: 14px; position: relative;
+    }
+    .promo-ticker-inner {
+        display: flex; gap: 40px;
+        white-space: nowrap;
+        animation: ticker 20s linear infinite;
+        font-size: 10px; letter-spacing: 1.5px; font-weight: 600;
+    }
+    .promo-ticker-inner span { flex-shrink: 0; }
+    @keyframes ticker {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+
+    /* ─── SERVICES BAR ─── */
+    .services-nav {
+        display: flex;
+        border-bottom: 1px solid var(--sand-dark);
+    }
+    .services-nav a {
+        flex: 1; text-align: center;
+        padding: 13px 0;
+        font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+        color: var(--ink-soft);
+        text-decoration: none;
+        border-right: 1px solid var(--sand-dark);
+        transition: background 0.2s, color 0.2s;
+        display: flex; flex-direction: column; align-items: center; gap: 4px;
+    }
+    .services-nav a:last-child { border-right: none; }
+    .services-nav a i { font-size: 14px; color: var(--rg-dark); }
+    .services-nav a:hover { background: var(--ink); color: var(--rg-light); }
+    .services-nav a:hover i { color: var(--rg-light); }
+
+    /* ─── BRAND SCROLL ─── */
+    .brands-section {
+        padding: 18px 0;
+        border-bottom: 1px solid var(--sand-dark);
+        overflow: hidden;
+    }
+    .brands-label {
+        text-align: center;
+        font-size: 8px; letter-spacing: 3px; text-transform: uppercase;
+        color: var(--rg-dark); margin-bottom: 12px;
+    }
+    .brands-track-wrap { overflow: hidden; }
+    .brands-track {
+        display: flex; gap: 24px;
+        width: max-content;
+        animation: scrollMarquee 22s linear infinite;
+        align-items: center;
+    }
+    .brands-track:hover { animation-play-state: paused; }
+    .brand-chip {
+        flex-shrink: 0;
+        font-size: 11px; font-weight: 700; letter-spacing: 1px;
+        color: var(--ink-soft);
+        padding: 5px 14px;
+        border: 1px solid var(--sand-dark);
+        background: var(--sand-light);
+        border-radius: 2px;
+        white-space: nowrap;
+        transition: background 0.2s, border-color 0.2s;
+    }
+    .brand-chip:hover { background: var(--ink); color: var(--rg-light); border-color: var(--ink); }
+    @keyframes scrollMarquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+
+    /* ─── SERVICE CARDS ─── */
+    .section-wrap { padding: 24px 20px; }
+    .section-head {
+        display: flex; align-items: center; gap: 12px;
+        margin-bottom: 16px;
+    }
+    .section-head h2 {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 22px; font-weight: 400; letter-spacing: 0.5px;
+        color: var(--ink);
+    }
+    .section-head .line {
+        flex: 1; height: 1px;
+        background: linear-gradient(to right, var(--rg-mid), transparent);
+    }
+
+    .service-scroll { overflow: hidden; }
+    .service-track {
+        display: flex; gap: 10px;
+        width: max-content;
+        animation: scrollMarquee 28s linear infinite;
+    }
+    .service-track:hover { animation-play-state: paused; }
+    .svc-card {
+        flex-shrink: 0; width: 120px;
+        border-radius: 6px; overflow: hidden;
+        border: 1px solid var(--sand-dark);
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        transition: transform 0.25s, box-shadow 0.25s;
+        cursor: pointer;
+    }
+    .svc-card:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,0.13); }
+    .svc-card img {
+        width: 100%; height: 80px;
+        object-fit: cover; display: block;
+        filter: saturate(0.7);
+        transition: filter 0.3s;
+    }
+    .svc-card:hover img { filter: saturate(1); }
+    .svc-card-label {
+        background: var(--ink);
+        color: var(--rg-light);
+        font-size: 8px; font-weight: 700; letter-spacing: 1px;
+        text-align: center; padding: 7px 4px;
+        border-top: 1px solid var(--rg-mid);
+    }
+
+    /* ─── PRICELIST ─── */
+    .pricelist-section { padding: 0 20px 28px; }
+
+    .filter-bar {
+        display: flex; gap: 6px; flex-wrap: wrap;
+        margin-bottom: 14px;
+    }
+    .filter-btn {
+        padding: 5px 12px;
+        font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+        border: 1px solid var(--sand-dark);
+        background: transparent; color: var(--ink-soft);
+        border-radius: 2px; cursor: pointer;
+        transition: background 0.18s, color 0.18s, border-color 0.18s;
+        font-family: 'DM Sans', sans-serif;
+    }
+    .filter-btn.active, .filter-btn:hover {
+        background: var(--ink); color: var(--rg-light); border-color: var(--ink);
+    }
+
+    .search-wrap {
+        position: relative; margin-bottom: 16px;
+    }
+    .search-wrap i {
+        position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+        color: var(--rg-mid); font-size: 12px; pointer-events: none;
+    }
+    .search-input {
+        width: 100%; padding: 10px 12px 10px 34px;
+        border: 1px solid var(--sand-dark);
+        background: rgba(255,255,255,0.7);
+        font-family: 'DM Sans', sans-serif;
+        font-size: 12px; color: var(--ink);
+        border-radius: 4px;
+        outline: none;
+        transition: border-color 0.2s;
+    }
+    .search-input:focus { border-color: var(--rg-mid); background: #fff; }
+    .search-input::placeholder { color: #aaa; }
+
+    .price-board {
+        border: 1px solid var(--sand-dark);
+        border-radius: 6px;
+        background: #fff;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+
+    .price-table-head {
+        display: grid;
+        grid-template-columns: 28px 1fr 90px;
+        gap: 8px;
+        padding: 10px 16px;
+        background: var(--ink);
+        color: var(--rg-light);
+        font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    }
+    .price-table-head span:last-child { text-align: right; }
+
+    .price-list { max-height: 400px; overflow-y: auto; }
+    .price-list::-webkit-scrollbar { width: 4px; }
+    .price-list::-webkit-scrollbar-track { background: var(--sand-light); }
+    .price-list::-webkit-scrollbar-thumb { background: var(--rg-mid); border-radius: 4px; }
+
+    .price-row {
+        display: grid;
+        grid-template-columns: 28px 1fr 90px;
+        gap: 8px;
+        padding: 12px 16px;
+        border-bottom: 1px solid #f0ede8;
+        align-items: center;
+        transition: background 0.15s;
+        cursor: default;
+    }
+    .price-row:last-child { border-bottom: none; }
+    .price-row:hover { background: #faf8f5; }
+    .price-row.hidden { display: none; }
+
+    .row-num {
+        font-family: 'DM Mono', monospace;
+        font-size: 9px; color: #bbb;
+        text-align: center; line-height: 1;
+    }
+    .row-info {}
+    .row-brand {
+        font-size: 8px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+        color: var(--rg-dark); margin-bottom: 3px;
+    }
+    .row-name {
+        font-size: 12px; font-weight: 600; color: var(--ink);
+        line-height: 1.3; margin-bottom: 5px;
+    }
+    .badges { display: flex; gap: 4px; flex-wrap: wrap; align-items: center; }
+    .badge {
+        padding: 2px 6px; border-radius: 2px;
+        font-size: 7px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;
+    }
+    .badge-ibox   { background: var(--ink); color: var(--rg-light); }
+    .badge-inter  { border: 1px solid var(--ink); color: var(--ink); }
+    .badge-ready  { background: #2a7a4b; color: #fff; }
+    .badge-promo  { background: var(--red-accent); color: #fff; }
+    .badge-stock  { font-size: 7px; font-weight: 600; color: #888; }
+    .row-price {
+        text-align: right;
+        font-family: 'DM Mono', monospace;
+        font-size: 12px; font-weight: 500;
+        color: var(--red-accent);
+        line-height: 1.2;
+    }
+    .row-price small {
+        display: block; font-size: 7px; font-weight: 400;
+        color: #aaa; letter-spacing: 1px; margin-bottom: 1px;
+    }
+
+    .loading-state, .empty-state {
+        text-align: center; padding: 40px 20px;
+        color: #aaa; font-size: 12px;
+    }
+    .loading-state i { font-size: 20px; display: block; margin-bottom: 10px; color: var(--rg-mid); }
+
+    /* ─── FOOTER CONTACT ─── */
+    .contact-footer {
+        margin: 0 20px 28px;
+        border: 1px solid var(--sand-dark);
+        border-radius: 8px;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+    .contact-header-bar {
+        background: var(--ink);
+        padding: 12px 20px;
+        display: flex; align-items: center; justify-content: space-between;
+    }
+    .contact-header-bar h3 {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 18px; font-weight: 300; letter-spacing: 1px;
+        color: #fff;
+    }
+    .contact-header-bar span {
+        font-size: 8px; letter-spacing: 2px; text-transform: uppercase;
+        color: var(--rg-mid);
+    }
+    .contact-body {
+        padding: 18px 20px;
+        display: grid; grid-template-columns: 1fr 1fr; gap: 14px 20px;
+    }
+    .contact-item {
+        display: flex; align-items: center; gap: 10px;
+    }
+    .contact-item i {
+        width: 30px; height: 30px;
+        background: var(--sand-light);
+        border: 1px solid var(--sand-dark);
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 12px; color: var(--rg-dark);
+        flex-shrink: 0;
+    }
+    .contact-item-text { font-size: 11px; font-weight: 600; color: var(--ink-soft); line-height: 1.3; }
+    .contact-item-text small { display: block; font-size: 9px; font-weight: 400; color: #999; }
+
+    .legend-section {
+        border-top: 1px solid #f0ede8;
+        padding: 14px 20px;
+        display: flex; flex-direction: column; gap: 7px;
+    }
+    .legend-row {
+        display: flex; align-items: baseline; gap: 10px;
+        font-size: 10px; color: var(--ink-soft);
+    }
+    .legend-key { font-weight: 700; min-width: 70px; color: var(--rg-dark); }
+
+    /* ─── WA BUTTON ─── */
+    .wa-fab {
+        position: fixed; bottom: -90px; right: 20px;
+        background: var(--wa); color: #fff;
+        padding: 13px 22px;
+        border-radius: 50px;
+        display: flex; align-items: center; gap: 9px;
+        font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 13px;
+        text-decoration: none;
+        box-shadow: 0 6px 20px rgba(37,211,102,0.4);
+        z-index: 999;
+        opacity: 0;
+        transition: bottom 0.5s cubic-bezier(0.34,1.56,0.64,1), opacity 0.4s;
+    }
+    .wa-fab.show { bottom: 24px; opacity: 1; }
+    .wa-fab:hover { transform: scale(1.04); color: #fff; }
+    .wa-fab i { font-size: 20px; }
+    @keyframes pulse-wa {
+        0%   { box-shadow: 0 0 0 0 rgba(37,211,102,0.6); }
+        70%  { box-shadow: 0 0 0 12px rgba(37,211,102,0); }
+        100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+    }
+    .wa-fab.show { animation: pulse-wa 2.5s 0.5s infinite; }
+
+    @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(16px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* DESKTOP ≥ 640px */
+    @media(min-width:640px){
+        body { padding: 30px 20px; }
+        .shell {
+            border-radius: 12px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+            overflow: hidden;
+        }
+        .shell::before { border-radius: 12px; }
+    }
+    </style>
+</head>
+<body>
+
+<div class="shell">
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="header-bg">
+            <img src="https://images.ctfassets.net/d9ybqgejqp0w/3e4ehJZ4hl2oqX0U60UkXi/d7e3c57355ff58c620646a0302f0f863/laptop-repair-feature-half.jpg?fm=webp&q=65" alt="">
+            <img src="https://static.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/p2/113/2024/01/27/2022-05-02_054813jpg-20220928015310-3640475915.jpg" alt="">
+            <img src="https://cdn.pixabay.com/photo/2020/08/22/01/34/cellphones-5507342_1280.jpg" alt="">
+        </div>
+        <div class="header-content">
+            <div class="eyebrow">
+                <span>Pekanbaru · Riau</span>
+            </div>
+            <h1 class="header-title">Farid<br><em>Store</em></h1>
+            <p class="header-sub">Your Gadget Solution</p>
+        </div>
+    </header>
+
+    <!-- PROMO RIBBON -->
+    <div class="promo-ribbon">
+        <span class="promo-pill">GRAND OPENING</span>
+        <div class="promo-ticker">
+            <div class="promo-ticker-inner">
+                <span>✦ CASHBACK 15% OFF</span>
+                <span>✦ GARANSI TERPERCAYA</span>
+                <span>✦ TUKAR TAMBAH HARGA TERBAIK</span>
+                <span>✦ FREE ONGKIR PEKANBARU</span>
+                <span>✦ CASHBACK 15% OFF</span>
+                <span>✦ GARANSI TERPERCAYA</span>
+                <span>✦ TUKAR TAMBAH HARGA TERBAIK</span>
+                <span>✦ FREE ONGKIR PEKANBARU</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- SERVICES NAV -->
+    <nav class="services-nav">
+        <a href="#"><i class="fas fa-tags"></i>Jual</a>
+        <a href="#"><i class="fas fa-wallet"></i>Beli</a>
+        <a href="#"><i class="fas fa-retweet"></i>Tukar Tambah</a>
+        <a href="#"><i class="fas fa-wrench"></i>Service</a>
+    </nav>
+
+    <!-- BRANDS -->
+    <div class="brands-section">
+        <div class="brands-label">brand tersedia</div>
+        <div class="brands-track-wrap">
+            <div class="brands-track">
+                <span class="brand-chip">Samsung</span>
+                <span class="brand-chip">Apple</span>
+                <span class="brand-chip">Xiaomi</span>
+                <span class="brand-chip">OPPO</span>
+                <span class="brand-chip">vivo</span>
+                <span class="brand-chip">realme</span>
+                <span class="brand-chip">Infinix</span>
+                <span class="brand-chip">TECNO</span>
+                <span class="brand-chip">itel</span>
+                <span class="brand-chip">iQOO</span>
+                <span class="brand-chip">Google Pixel</span>
+                <span class="brand-chip">Lenovo</span>
+                <span class="brand-chip">ADVAN</span>
+                <!-- duplicate for loop -->
+                <span class="brand-chip">Samsung</span>
+                <span class="brand-chip">Apple</span>
+                <span class="brand-chip">Xiaomi</span>
+                <span class="brand-chip">OPPO</span>
+                <span class="brand-chip">vivo</span>
+                <span class="brand-chip">realme</span>
+                <span class="brand-chip">Infinix</span>
+                <span class="brand-chip">TECNO</span>
+                <span class="brand-chip">itel</span>
+                <span class="brand-chip">iQOO</span>
+                <span class="brand-chip">Google Pixel</span>
+                <span class="brand-chip">Lenovo</span>
+                <span class="brand-chip">ADVAN</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- SERVICE CARDS -->
+    <div class="section-wrap">
+        <div class="section-head">
+            <h2>Layanan Service</h2>
+            <div class="line"></div>
+        </div>
+        <div class="service-scroll">
+            <div class="service-track" id="svc-track">
+                <div class="svc-card"><img src="https://arepair.id/wp-content/uploads/2018/12/service-kaca-iphone-retak-700x467.jpg" alt="LCD"><div class="svc-card-label">LCD / Kaca</div></div>
+                <div class="svc-card"><img src="https://arepair.id/wp-content/uploads/2018/12/baterai-kembung-membuat-layar-ngangkat-1-700x525.jpg" alt="Baterai"><div class="svc-card-label">Ganti Baterai</div></div>
+                <div class="svc-card"><img src="https://arepair.id/wp-content/uploads/2018/10/service-port-charger-iphone-700x465.jpg" alt="Port"><div class="svc-card-label">Service Port</div></div>
+                <div class="svc-card"><img src="https://arepair.id/wp-content/uploads/2018/12/service-kamera-iphone-700x468.jpg" alt="Kamera"><div class="svc-card-label">Service Kamera</div></div>
+                <div class="svc-card"><img src="https://arepair.id/wp-content/uploads/2018/12/service-speaker-iphone-1-700x467.jpg" alt="Speaker"><div class="svc-card-label">Service Speaker</div></div>
+                <div class="svc-card"><img src="https://arepair.id/wp-content/uploads/2018/12/service-home-button-iphone-700x540.jpg" alt="Home Button"><div class="svc-card-label">Home Button</div></div>
+                <div class="svc-card"><img src="https://arepair.id/wp-content/uploads/2019/03/service-software-iphone-2-700x419.jpg" alt="Software"><div class="svc-card-label">Service Software</div></div>
+                <div class="svc-card"><img src="https://arepair.id/wp-content/uploads/2023/04/service-back-glass-iphone-700x467.jpg" alt="Backglass"><div class="svc-card-label">Ganti Backglass</div></div>
+                <!-- duplicate -->
+                <div class="svc-card"><img src="https://arepair.id/wp-content/uploads/2018/12/service-kaca-iphone-retak-700x467.jpg" alt="LCD"><div class="svc-card-label">LCD / Kaca</div></div>
+                <div class="svc-card"><img src="https://arepair.id/wp-content/uploads/2018/12/baterai-kembung-membuat-layar-ngangkat-1-700x525.jpg" alt="Baterai"><div class="svc-card-label">Ganti Baterai</div></div>
+                <div class="svc-card"><img src="https://arepair.id/wp-content/uploads/2018/10/service-port-charger-iphone-700x465.jpg" alt="Port"><div class="svc-card-label">Service Port</div></div>
+                <div class="svc-card"><img src="https://arepair.id/wp-content/uploads/2018/12/service-kamera-iphone-700x468.jpg" alt="Kamera"><div class="svc-card-label">Service Kamera</div></div>
+                <div class="svc-card"><img src="https://arepair.id/wp-content/uploads/2018/12/service-speaker-iphone-1-700x467.jpg" alt="Speaker"><div class="svc-card-label">Service Speaker</div></div>
+                <div class="svc-card"><img src="https://arepair.id/wp-content/uploads/2018/12/service-home-button-iphone-700x540.jpg" alt="Home Button"><div class="svc-card-label">Home Button</div></div>
+                <div class="svc-card"><img src="https://arepair.id/wp-content/uploads/2019/03/service-software-iphone-2-700x419.jpg" alt="Software"><div class="svc-card-label">Service Software</div></div>
+                <div class="svc-card"><img src="https://arepair.id/wp-content/uploads/2023/04/service-back-glass-iphone-700x467.jpg" alt="Backglass"><div class="svc-card-label">Ganti Backglass</div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRICELIST -->
+    <div class="pricelist-section">
+        <div class="section-head">
+            <h2>Pricelist</h2>
+            <div class="line"></div>
+        </div>
+
+        <div class="search-wrap">
+            <i class="fas fa-search"></i>
+            <input type="text" class="search-input" id="search-input" placeholder="Cari tipe unit…">
+        </div>
+
+        <div class="filter-bar" id="filter-bar">
+            <button class="filter-btn active" data-brand="ALL">Semua</button>
+            <button class="filter-btn" data-brand="APPLE">Apple</button>
+            <button class="filter-btn" data-brand="SAMSUNG">Samsung</button>
+            <button class="filter-btn" data-brand="XIAOMI/POCO">Xiaomi</button>
+            <button class="filter-btn" data-brand="OPPO">OPPO</button>
+            <button class="filter-btn" data-brand="VIVO">Vivo</button>
+            <button class="filter-btn" data-brand="REALME">Realme</button>
+        </div>
+
+        <div class="price-board">
+            <div class="price-table-head">
+                <span>#</span>
+                <span>Tipe Unit</span>
+                <span>Harga (Rb)</span>
+            </div>
+            <div class="price-list" id="price-list">
+                <div class="loading-state">
+                    <i class="fas fa-circle-notch fa-spin"></i>
+                    Menghubungkan ke database…
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTACT FOOTER -->
+    <div class="contact-footer">
+        <div class="contact-header-bar">
+            <h3>Hubungi Kami</h3>
+            <span>Always ready to help</span>
+        </div>
+        <div class="contact-body">
+            <div class="contact-item">
+                <i class="fab fa-whatsapp"></i>
+                <div class="contact-item-text">
+                    0812-3301-4523
+                    <small>WhatsApp</small>
+                </div>
+            </div>
+            <div class="contact-item">
+                <i class="fab fa-instagram"></i>
+                <div class="contact-item-text">
+                    farid.store_
+                    <small>Instagram</small>
+                </div>
+            </div>
+            <div class="contact-item">
+                <i class="fab fa-tiktok"></i>
+                <div class="contact-item-text">
+                    farid.store_
+                    <small>TikTok</small>
+                </div>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <div class="contact-item-text">
+                    Pekanbaru, Riau
+                    <small>Lokasi</small>
+                </div>
+            </div>
+        </div>
+        <div class="legend-section">
+            <div class="legend-row"><span class="legend-key">iBox</span><span>= Unit resmi Indonesia</span></div>
+            <div class="legend-row"><span class="legend-key">Resmi BC</span><span>= Sinyal permanen (resmi)</span></div>
+            <div class="legend-row"><span class="legend-key">All Operator</span><span>= Semua SIM bisa (belum permanen)</span></div>
+        </div>
+    </div>
+
+</div><!-- /shell -->
+
+<!-- WA FAB -->
+<a href="https://wa.me/6281233014523?text=Halo%20Farid%20Store,%20saya%20mau%20tanya%20produk%20di%20pricelist." target="_blank" class="wa-fab" id="wa-fab">
+    <i class="fab fa-whatsapp"></i> Pesan Sekarang
+</a>
+
+<script>
+(function(){
+    const priceList   = document.getElementById('price-list');
+    const searchInput = document.getElementById('search-input');
+    const filterBar   = document.getElementById('filter-bar');
+    const waFab       = document.getElementById('wa-fab');
+    let allRows = [];
+    let activeBrand = 'ALL';
+
+    /* WA FAB visibility */
+    let waShown = false;
+    function checkWa(){
+        if (!waShown){ waFab.classList.add('show'); waShown = true; }
+    }
+    priceList.addEventListener('scroll', checkWa);
+    setTimeout(checkWa, 2800);
+
+    /* Filter buttons */
+    filterBar.addEventListener('click', e => {
+        const btn = e.target.closest('.filter-btn');
+        if(!btn) return;
+        filterBar.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        activeBrand = btn.dataset.brand;
+        applyFilter();
+    });
+
+    searchInput.addEventListener('input', applyFilter);
+
+    function applyFilter(){
+        const q = searchInput.value.toLowerCase();
+        allRows.forEach(row => {
+            const matchBrand = activeBrand === 'ALL' || row.dataset.brand === activeBrand;
+            const matchSearch = !q || row.dataset.name.includes(q);
+            row.classList.toggle('hidden', !(matchBrand && matchSearch));
+        });
+        renumber();
+    }
+
+    function renumber(){
+        let n = 0;
+        allRows.forEach(row => {
+            if(!row.classList.contains('hidden')){
+                row.querySelector('.row-num').textContent = ++n;
+            }
+        });
+    }
+
+    function getBrand(name){
+        const n = name.toLowerCase();
+        if(/iphone|ipad|apple/i.test(n)) return 'APPLE';
+        if(/samsung|galaxy|z flip|z fold|sein/i.test(n)) return 'SAMSUNG';
+        if(/xiaomi|redmi|poco|mi /i.test(n)) return 'XIAOMI/POCO';
+        if(/oppo|reno/i.test(n)) return 'OPPO';
+        if(/vivo|iqoo/i.test(n)) return 'VIVO';
+        if(/realme/i.test(n)) return 'REALME';
+        if(/infinix/i.test(n)) return 'INFINIX';
+        if(/tecno/i.test(n)) return 'TECNO';
+        if(/itel/i.test(n)) return 'ITEL';
+        if(/asus|rog/i.test(n)) return 'ASUS';
+        if(/google|pixel/i.test(n)) return 'GOOGLE';
+        return 'LAINNYA';
+    }
+
+    function renderRows(items){
+        priceList.innerHTML = '';
+        if(!items.length){
+            priceList.innerHTML = '<div class="empty-state">Semua unit sedang habis / sold out.</div>';
+            return;
+        }
+
+        /* group by cleanName */
+        const grouped = {};
+        items.forEach(item => {
+            const clean = (item.name||'').replace(/\(IBOX\)|\(INTER\)/gi,'').trim();
+            if(!grouped[clean]){
+                grouped[clean] = {...item, cleanName: clean, count:1};
+            } else {
+                grouped[clean].count++;
+            }
+        });
+
+        allRows = [];
+        Object.values(grouped).forEach((item, idx) => {
+            const brand = getBrand(item.cleanName);
+            const nameUpper = (item.name||'').toUpperCase();
+            const isPromo = /old/i.test(item.status||'') || /old/i.test(item.type||'');
+            const badgeKondisi = nameUpper.includes('IBOX')
+                ? '<span class="badge badge-ibox">iBox</span>'
+                : nameUpper.includes('INTER')
+                ? '<span class="badge badge-inter">Inter</span>'
+                : '';
+            const badgeStatus = isPromo
+                ? '<span class="badge badge-promo">Promo</span>'
+                : '<span class="badge badge-ready">Ready</span>';
+            const rawPrice = parseFloat(item.price)||0;
+            const priceRb = (rawPrice/1000).toLocaleString('id-ID');
+
+            const row = document.createElement('div');
+            row.className = 'price-row';
+            row.dataset.brand = brand;
+            row.dataset.name  = item.cleanName.toLowerCase();
+            row.innerHTML = `
+                <div class="row-num">${idx+1}</div>
+                <div class="row-info">
+                    <div class="row-brand">${brand}</div>
+                    <div class="row-name">${item.cleanName}</div>
+                    <div class="badges">
+                        ${badgeKondisi}
+                        ${badgeStatus}
+                        <span class="badge-stock">Stok: ${item.count}</span>
+                    </div>
+                </div>
+                <div class="row-price"><small>IDR</small>${priceRb}</div>
+            `;
+            priceList.appendChild(row);
+            allRows.push(row);
+        });
+    }
+
+    async function fetchPricelist(){
+        try {
+            const res = await fetch('/api/products');
+            if(!res.ok) throw new Error(res.status);
+            const data = await res.json();
+            const available = data.items.filter(i => !i.soldAt && i.status !== 'sold' && i.status !== 'Terjual');
+            renderRows(available);
+        } catch(err){
+            console.error(err);
+            priceList.innerHTML = '<div class="empty-state" style="color:var(--red-accent)"><i class="fas fa-exclamation-triangle"></i><br>Gagal memuat harga.<br>Silakan refresh halaman.</div>';
+        }
+    }
+
+    fetchPricelist();
+})();
+</script>
+</body>
+</html>
